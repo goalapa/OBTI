@@ -63,8 +63,12 @@
 
 #### 📝 Project Rules
 * Issue가 생기면 Repository의 Issues에 기록하기
-* main branch에 바로 push 금지! Pull requests 하기
+* main branch에 바로 push 금지! develop branch로 Pull requests 하기
 * git convention을 지키기
+* pr 전에 이슈 발행 필수, pr 할 때 이슈 번호 입력 필수!
+* 이슈 1개 당 pr 1개
+* 이슈 하나는 본인이 하루 내에 해결할 수 있는 양으로 선정하기
+* pr에 모든 사람이 코드 리뷰 남기기 (LGTM 금지🙅)
 
 #### 🏷️ Git Convention
 | **Convention**  | **내용**                                                         |
