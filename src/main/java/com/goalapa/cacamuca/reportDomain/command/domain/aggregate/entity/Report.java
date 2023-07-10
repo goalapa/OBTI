@@ -12,7 +12,7 @@ public class Report {
     private int reportNo;
 
     @Column(name = "review_no")
-    private String reviewNo;
+    private Integer reviewNo;
 
     @Column(name = "report_member_no")
     private Integer reportMemberNo;
@@ -22,5 +22,11 @@ public class Report {
 
     @Column(name = "report_type")
     private Integer reportType;
+
+    public void setReport(Integer reportMemberNo, Integer reportedMemberNo, Integer reviewNo, Integer reportType) {
+        this.reportedMemberNo = reportedMemberNo;
+        this.reviewNo = reviewNo;
+        this.reportType = reportType;
+    }
 
 }
