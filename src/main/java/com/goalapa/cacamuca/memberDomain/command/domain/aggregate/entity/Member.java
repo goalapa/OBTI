@@ -1,9 +1,16 @@
 package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Member")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Member {
 
     @Id
