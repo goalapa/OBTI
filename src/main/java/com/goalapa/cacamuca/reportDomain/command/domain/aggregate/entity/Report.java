@@ -1,5 +1,7 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
+import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,11 +24,5 @@ public class Report {
 
     @Column(name = "report_type")
     private Integer reportType;
-
-    public void setReport(Integer reportMemberNo, Integer reportedMemberNo, Integer reviewNo, Integer reportType) {
-        this.reportedMemberNo = reportedMemberNo;
-        this.reviewNo = reviewNo;
-        this.reportType = reportType;
-    }
 
 }

@@ -1,15 +1,15 @@
 package com.goalapa.cacamuca.reportDomain.command.infrastructure.repository;
 
+import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
-import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepositoryImpl;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ReportRepository implements ReportRepositoryImpl {
+public class ReportRepositoryImpl implements com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository {
 
     @Override
-    public void save(Integer reportMemberNo, Integer reportedMemberNo, String reviewNo, Integer reviewType) {
+    public void save(ReportDTO reportDTO) {
         Report report = new Report();
-        report.set
     }
+
 }
