@@ -18,6 +18,15 @@ public class Review {
     @Column(name = "review_content")
     private String reviewContent;
 
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "food_type")
+    private String foodType;
+
+    @Column(name = "food_name")
+    private String foodName;
+
     @Column(name = "review_date")
     private LocalDate reviewDate;
 

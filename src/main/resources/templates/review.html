@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        fieldset{
+            display: inline-block;
+            direction: rtl;
+            border:0;
+        }
+        fieldset legend{
+            text-align: right;
+        }
+        input[type=radio]{
+            display: none;
+        }
+        label{
+            font-size: 3em;
+            color: transparent;
+            text-shadow: 0 0 0 #f0f0f0;
+        }
+        label:hover{
+            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+        }
+        label:hover ~ label{
+            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+        }
+        input[type=radio]:checked ~ label{
+            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+        }
+        #reviewContents {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: solid 1.5px #D3D3D3;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="review" method="post">
+    <select name="country" >
+        <option value="none">=== 선택 ===</option>
+        <option value="ko">한국</option>
+        <option value="jp">일본</option>
+        <option value="us">미국</option>
+        <option value="sp">영국</option>
+        <option value="vi">베트남</option>
+        <option value="ta">태국</option>
+        <option value="fr">프랑스</option>
+        <option value="it">이탈리아</option>
+        <option value="tr">튀르키예</option>
+        <option value="ch">중국</option>
+        <option value="mo">몽골</option>
+    </select>
+
+    <select name="food_type" >
+        <option value="none">=== 선택 ===</option>
+        <option value="ko">과자</option>
+        <option value="ko">차</option>
+        <option value="ko">커피</option>
+        <option value="ko">음료</option>
+        <option value="ko">빵</option>
+        <option value="ko">젤리</option>
+        <option value="ko">초콜릿</option>
+        <option value="ko">사탕</option>
+    </select>
+
+    <select name="reviewKeyword" >
+        <option value="none">=== 선택 ===</option>
+        <option value="ko">가성비</option>
+        <option value="jp">개별포장</option>
+        <option value="us">선물하기좋은</option>
+        <option value="us">증정품포함</option>
+    </select>
+
+    <input type="text" name="food_name" placeholder="식품 이름을 입력해주세요">
+
+    <input type="number" name="review_price" placeholder="식품 가격을 입력해주세요">
+
+    <input type="text" name="review_link" placeholder="구매한 링크를 입력해주세요">
+
+    <link href="/assets/css/star.css" rel="stylesheet"/>
+    <fieldset>
+        <input type="radio" name="reviewRate" value="5" id="rate1"><label
+            for="rate1">★</label>
+        <input type="radio" name="reviewRate" value="4" id="rate2"><label
+            for="rate2">★</label>
+        <input type="radio" name="reviewRate" value="3" id="rate3"><label
+            for="rate3">★</label>
+        <input type="radio" name="reviewRate" value="2" id="rate4"><label
+            for="rate4">★</label>
+        <input type="radio" name="reviewRate" value="1" id="rate5"><label
+            for="rate5">★</label>
+    </fieldset>
+
+
+    <div id="reviewContent">
+        <textarea name="reviewContent" id="content" cols="130" rows="25" placeholder="내용을 작성해주세요"></textarea>
+    </div>
+
+    <div>
+        <input type="submit" value="글쓰기">
+    </div>
+
+    <div class="images">
+        <p>
+            <input type="file" multiple="multiple" name="imageFiles">
+        </p>
+    </div>
+
+</form>
+
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        $('.rating > span').click(function() {-->
+<!--            var rating = $(this).data('rating'); // 클릭한 별점 가져오기-->
+<!--            sendRatingToServer(rating);-->
+<!--        });-->
+<!--    });-->
+
+<!--    function sendRatingToServer(rating) {-->
+<!--        fetch('/review', {-->
+<!--            method: 'POST',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json'-->
+<!--            },-->
+<!--            body: JSON.stringify({ rating: rating })-->
+<!--        })-->
+<!--            .then(response => {-->
+<!--                if (response.ok) {-->
+<!--                    console.log('별점 전송 성공');-->
+<!--                } else {-->
+<!--                    console.error('별점 전송 실패');-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                console.error('별점 전송 중 오류 발생:', error);-->
+<!--            });-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>
