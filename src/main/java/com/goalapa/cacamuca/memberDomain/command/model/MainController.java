@@ -1,8 +1,10 @@
-package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity;
+package com.goalapa.cacamuca.memberDomain.command.model;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/*")
