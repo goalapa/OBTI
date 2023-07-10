@@ -17,15 +17,11 @@ This example requires updating your template:
 <!-- https://tailwindui.com/components/application-ui/application-shells/stacked -->
 <div class="min-h-full">
     <header class="bg-white shadow">
-        <div class="ax-w-3xl px-4 py-6 sm:px-6 lg:px-8">
-            <div class="inline flex-shrink-0">
-                <img th:src="@{/assets/img/CACAMUCA.svg}" />
-            </div>
-            <div class="inline flex-shrink-0">
-                <input type="text" name="price" id="price" class="block w-half rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="검색하세요">
-            </div>
-        </div>
+        <div class="ax-w-3xl flex px-4 py-6 sm:px-6 lg:px-8">
+            <img class="inline" th:src="@{/assets/img/CACAMUCA.svg}" />
+            <input type="text" name="price" id="price" class="inline w-half rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="검색하세요">
 
+        </div>
     </header>
     <nav class="bg-blue-200">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
