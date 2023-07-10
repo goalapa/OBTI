@@ -21,6 +21,9 @@ public class Request {
     @Column(name = "member_no")
     private Integer memberNo;
 
-    @Column(name = "category_no")
-    private Integer categoryNo;
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "food_type")
+    private String foodType;
 }
