@@ -28,8 +28,8 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot:3.0.4'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    testImplementation 'org.springframework.security:spring-security-test'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
