@@ -1,8 +1,10 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.repository;
 
-import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ReportRepository {
-    // 신고 테이블에 저장
-    void save(ReportDTO reportDTO);
+@Repository
+public interface ReportRepository extends JpaRepository<Report, Integer>{
+
 }

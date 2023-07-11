@@ -1,13 +1,12 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
-import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import groovy.transform.builder.Builder;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "report")
 public class Report {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "report_no")
@@ -25,4 +24,13 @@ public class Report {
     @Column(name = "report_type")
     private Integer reportType;
 
+    public Report() {
+    }
+
+    public Report(Integer reviewNo, Integer reportMemberNo, Integer reportedMemberNo, Integer reportType) {
+        this.reviewNo = reviewNo;
+        this.reportMemberNo = reportMemberNo;
+        this.reportedMemberNo = reportedMemberNo;
+        this.reportType = reportType;
+    }
 }

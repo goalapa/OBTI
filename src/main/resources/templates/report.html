@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>신고 페이지</title>
@@ -10,7 +10,22 @@
         <input type="number" name="report_member_no" placeholder="신고자 번호">
         <input type="number" name="reported_member_no" placeholder="피신고자 번호">
         <input type="number" name="review_no" placeholder="리뷰 번호">
-        <input type="number" name="report_type" placeholder="신고 유형">
+        <br>
+        <br>
+        <label>
+            <input type="radio" name="report_type" value="1">폭력적 또는 혐오스러운 리뷰
+        </label>
+        <label>
+            <input type="radio" name="report_type" value="2">스팸 또는 광고성 리뷰
+        </label>
+        <label>
+            <input type="radio" name="report_type" value="3">타인을 비방하는 리뷰
+        </label>
+        <label>
+            <input type="radio" name="report_type" value="4">악의적인 리뷰
+        </label>
+        <br>
+        <br>
         <input type="submit" value="신고하기">
     </form>
 </body>
