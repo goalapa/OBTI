@@ -10,13 +10,20 @@ import javax.transaction.Transactional;
 @Service
 public class SaveRequestServiceImpl implements SaveRequestService {
 
-    private static RequestRepository requestRepository;
+    private final RequestRepository requestRepository;
+
+    public SaveRequestServiceImpl(RequestRepository requestRepository) {
+        this.requestRepository = requestRepository;
+    }
+
     @Override
     @Transactional
     public void saveRequest(RequestDTO requestDTO) {
 
         Request request = new Request(requestDTO.getRequestedFood(), requestDTO.getRequestPrice(),
                 requestDTO.getMemberNo(), requestDTO.getCountry(), requestDTO.getFoodType(), requestDTO.getRequestContent());
+
+        System.out.println("request = " + request);
 
         requestRepository.save(request);
 

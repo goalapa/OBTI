@@ -30,6 +30,8 @@ public class Request {
     @Column(name = "request_content")
     private String requestContent;  //추가 - commit전, data.sql 수정
 
+    public Request() { }
+
     public Request(String requestedFood, Integer requestPrice, Integer memberNo, String country, String foodType, String requestContent) {
         this.requestedFood = requestedFood;
         this.requestPrice = requestPrice;
@@ -38,4 +40,6 @@ public class Request {
         this.foodType = foodType;
         this.requestContent = requestContent;
     }
+
+
 }
