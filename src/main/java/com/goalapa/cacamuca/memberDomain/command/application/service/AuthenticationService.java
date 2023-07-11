@@ -1,9 +1,8 @@
-package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.model.service;
+package com.goalapa.cacamuca.memberDomain.command.application.service;
 
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
-import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.model.repository.MemberRepository;
+import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
