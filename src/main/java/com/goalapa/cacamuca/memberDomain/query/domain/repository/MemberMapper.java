@@ -1,4 +1,4 @@
-package com.goalapa.cacamuca.memberDomain.command.model.Mapper;
+package com.goalapa.cacamuca.memberDomain.query.domain.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 
