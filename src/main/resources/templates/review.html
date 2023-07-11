@@ -44,7 +44,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="review" method="post">
+<form action="review" method="post" enctype="multipart/form-data">
     <select name="country" >
         <option value="none">=== 선택 ===</option>
         <option value="ko">한국</option>
@@ -109,41 +109,15 @@
         <input type="submit" value="글쓰기">
     </div>
 
-    <div class="images">
+    <div id="images">
         <p>
-            <input type="file" multiple="multiple" name="imageFiles">
+            <input type="file" multiple="multiple" name="reviewPicUrl">
         </p>
     </div>
 
 </form>
-
-<!--<script>-->
-<!--    $(document).ready(function() {-->
-<!--        $('.rating > span').click(function() {-->
-<!--            var rating = $(this).data('rating'); // 클릭한 별점 가져오기-->
-<!--            sendRatingToServer(rating);-->
-<!--        });-->
-<!--    });-->
-
-<!--    function sendRatingToServer(rating) {-->
-<!--        fetch('/review', {-->
-<!--            method: 'POST',-->
-<!--            headers: {-->
-<!--                'Content-Type': 'application/json'-->
-<!--            },-->
-<!--            body: JSON.stringify({ rating: rating })-->
-<!--        })-->
-<!--            .then(response => {-->
-<!--                if (response.ok) {-->
-<!--                    console.log('별점 전송 성공');-->
-<!--                } else {-->
-<!--                    console.error('별점 전송 실패');-->
-<!--                }-->
-<!--            })-->
-<!--            .catch(error => {-->
-<!--                console.error('별점 전송 중 오류 발생:', error);-->
-<!--            });-->
-<!--    }-->
-<!--</script>-->
+<!--<form action="item" method="post">-->
+<!--    -->
+<!--</form>-->
 </body>
 </html>
