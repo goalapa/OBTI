@@ -1,7 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.controller;
 
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
