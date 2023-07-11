@@ -4,6 +4,7 @@ import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,9 +35,8 @@ public class ReviewController {
     }
 
     @PostMapping("/review")
-    public String writeReview(HttpServletRequest request, @RequestParam List<MultipartFile> reviewPicUrl){
+    public String writeReview(HttpServletRequest request, @RequestParam List<MultipartFile> reviewPicUrl, Model model){
         ReviewDTO reviewDTO = new ReviewDTO();
-        ReviewPicDTO reviewPicDTO = new ReviewPicDTO();
 
         reviewDTO.setReviewContent(request.getParameter("reviewContent"));
         reviewDTO.setCountry(request.getParameter("country"));

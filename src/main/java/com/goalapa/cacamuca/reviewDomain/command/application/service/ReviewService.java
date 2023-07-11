@@ -48,7 +48,7 @@ public class ReviewService {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
             try {
-                String uniqueFileName = UUID.randomUUID().toString();
+                String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;;
                 File uploadDir = new File(filePath);
 
                 if (!uploadDir.exists()) {
@@ -59,7 +59,6 @@ public class ReviewService {
                 file.transferTo(new File(uploadPath));
 
                 reviewPic = new ReviewPic(uploadPath);
-
                 fileNames.add(uniqueFileName);
                 reviewPicRepository.save(reviewPic);
             } catch (IOException e) {
