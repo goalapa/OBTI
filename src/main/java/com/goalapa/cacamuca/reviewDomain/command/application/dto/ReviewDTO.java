@@ -16,7 +16,7 @@ public class ReviewDTO {
     private String foodName;
     private int reviewNo;
     private String reviewContent;
-    private LocalDate reviewDate;
+    private String reviewDate;
     private double reviewRate;
     private Integer memberNo;
     private Integer foodNo;
@@ -25,7 +25,7 @@ public class ReviewDTO {
     private String reviewLink;
     private Integer likeCnt;
 
-    public ReviewDTO(String country, String foodType, int reviewNo, String foodName, String reviewContent, LocalDate reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
+    public ReviewDTO(String country, String foodType, int reviewNo, String foodName, String reviewContent, String reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
         this.country = country;
         this.foodType = foodType;
         this.reviewNo = reviewNo;
@@ -92,11 +92,11 @@ public class ReviewDTO {
         this.reviewContent = reviewContent;
     }
 
-    public LocalDate getReviewDate() {
+    public String getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(String reviewDate) {
         this.reviewDate = reviewDate;
     }
 

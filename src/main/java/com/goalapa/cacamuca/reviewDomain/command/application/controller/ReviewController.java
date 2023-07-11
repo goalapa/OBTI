@@ -1,7 +1,7 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.controller;
 
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewServiceImpl;
+import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/*")
 public class ReviewController {
-    private final ReviewServiceImpl reviewServiceImpl;
+    private final ReviewService reviewService;
 
-    public ReviewController(ReviewServiceImpl reviewServiceImpl) {
-        this.reviewServiceImpl = reviewServiceImpl;
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
     }
 
 
@@ -25,9 +25,10 @@ public class ReviewController {
     }
 
     @PostMapping("/review")
-    public void writeReview(HttpServletRequest request){
+    public String writeReview(HttpServletRequest request){
         ReviewDTO reviewDTO = new ReviewDTO();
 
+        reviewDTO.setReviewContent(request.getParameter("reviewContent"));
         reviewDTO.setCountry(request.getParameter("country"));
         reviewDTO.setFoodType(request.getParameter("food_type"));
         reviewDTO.setReviewKeyword(request.getParameter("reviewKeyword"));
@@ -36,7 +37,8 @@ public class ReviewController {
         reviewDTO.setReviewRate(Integer.parseInt(request.getParameter("reviewRate")));
         reviewDTO.setReviewLink(request.getParameter("review_link"));
 
-        reviewServiceImpl.saveReview(reviewDTO);
+        reviewService.saveReview(reviewDTO);
 
+        return "redirect:/";
     }
 }
