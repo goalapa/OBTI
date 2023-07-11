@@ -21,7 +21,6 @@ public class ReviewController {
 
     @GetMapping("/review")
     public String reviewPage(){
-
         return "review";
     }
 
