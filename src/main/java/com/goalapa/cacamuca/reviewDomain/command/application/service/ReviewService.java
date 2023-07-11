@@ -2,8 +2,9 @@ package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
+import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
+import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
-import lombok.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,21 +19,24 @@ import java.util.*;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final ReviewPicRepository reviewPicRepository;
+
+    private static String root = "C:\\app-file";
+    private static String filePath = root + "/uploadFiles";
+    private static ReviewPic reviewPic = null;
 
 
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository, ReviewPicRepository reviewPicRepository) {
         this.reviewRepository = reviewRepository;
+        this.reviewPicRepository = reviewPicRepository;
     }
 
     @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl) {
         LocalDate date = LocalDate.now();
         Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewDTO.getMemberNo(), reviewDTO.getFoodNo()
-                                    , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink());
-
-        String root = "C:\\app-file";
-        String filePath = root + "/uploadFiles";
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink());
 
         List<String> fileNames = new ArrayList<>();
 
@@ -54,8 +58,12 @@ public class ReviewService {
                 String uploadPath = filePath + File.separator + uniqueFileName;
                 file.transferTo(new File(uploadPath));
 
+                reviewPic = new ReviewPic(uploadPath);
+
                 fileNames.add(uniqueFileName);
+                reviewPicRepository.save(reviewPic);
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         reviewRepository.save(review);
