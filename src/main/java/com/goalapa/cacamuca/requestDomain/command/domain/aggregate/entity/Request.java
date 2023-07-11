@@ -28,5 +28,14 @@ public class Request {
     private String foodType;
 
     @Column(name = "request_content")
-    private String requestFood;  //추가 - commit전, data.sql 수정
+    private String requestContent;  //추가 - commit전, data.sql 수정
+
+    public Request(String requestedFood, Integer requestPrice, Integer memberNo, String country, String foodType, String requestContent) {
+        this.requestedFood = requestedFood;
+        this.requestPrice = requestPrice;
+        this.memberNo = memberNo;
+        this.country = country;
+        this.foodType = foodType;
+        this.requestContent = requestContent;
+    }
 }

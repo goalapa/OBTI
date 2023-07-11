@@ -9,14 +9,16 @@ public class RequestDTO {
     private String requestedFood;
     private Integer requestPrice;
     private Integer memberNo;
+    private String requestContent;
 
     public RequestDTO() {}
-    public RequestDTO(String country, String foodType, String requestedFood, Integer requestPrice, Integer memberNo, Integer categoryNo) {
+    public RequestDTO(String country, String foodType, String requestedFood, Integer requestPrice, Integer memberNo, String requestContent) {
         this.country = country;
         this.foodType = foodType;
         this.requestedFood = requestedFood;
         this.requestPrice = requestPrice;
         this.memberNo = memberNo;
+        this.requestContent = requestContent;
     }
 
     public String getCountry() {
@@ -59,6 +61,14 @@ public class RequestDTO {
         this.memberNo = memberNo;
     }
 
+    public String getRequestContent() {
+        return requestContent;
+    }
+
+    public void setRequestContent(String requestContent) {
+        this.requestContent = requestContent;
+    }
+
     @Override
     public String toString() {
         return "RequestDTO{" +
@@ -67,6 +77,7 @@ public class RequestDTO {
                 ", requestedFood='" + requestedFood + '\'' +
                 ", requestPrice=" + requestPrice +
                 ", memberNo=" + memberNo +
+                ", requestContent='" + requestContent + '\'' +
                 '}';
     }
 }
