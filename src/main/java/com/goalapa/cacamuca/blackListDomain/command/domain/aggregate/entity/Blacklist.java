@@ -1,4 +1,4 @@
-package com.goalapa.cacamuca.blackListDomain.aggregate.entity;
+package com.goalapa.cacamuca.blackListDomain.command.domain.aggregate.entity;
 
 import org.hibernate.annotations.Comment;
 
