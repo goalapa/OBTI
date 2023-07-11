@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RequestRepositoryImpl implements RequestRepository{
+public class RequestRepositoryImpl{
 
     private Request request;
 
-    @Override
-    public Request findByRequestNumber(int requestNumber) {
-        return null;
-    }
+
 
 
 }

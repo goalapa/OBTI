@@ -26,4 +26,7 @@ public class Request {
 
     @Column(name = "food_type")
     private String foodType;
+
+    @Column(name = "request_content")
+    private String requestFood;  //추가 - commit전, data.sql 수정
 }

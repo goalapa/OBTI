@@ -1,35 +1,22 @@
 package com.goalapa.cacamuca.requestDomain.command.application.controller;
 
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.Request;
-import com.goalapa.cacamuca.requestDomain.command.infrastructure.service.RequestServiceImpl;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestServiceImpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Controller
 @RequestMapping("/*")
 public class RequestController {
 
-    private final RequestServiceImpl requestServiceImpl;
+    private final SaveRequestServiceImpl saveRequestServiceImpl;
 
-    public RequestController(RequestServiceImpl requestServiceImpl) {
-        this.requestServiceImpl = requestServiceImpl;
+    public RequestController(SaveRequestServiceImpl saveRequestServiceImpl) {
+        this.saveRequestServiceImpl = saveRequestServiceImpl;
     }
 
     // 요청 입력 받아서 저장
@@ -54,7 +41,7 @@ public class RequestController {
         requestDTO.setRequestPrice(requestPrice);
         requestDTO.setMemberNo(memberNo);
 
-        requestServiceImpl.addNewRequest(requestDTO);
+        saveRequestServiceImpl.addNewRequest(requestDTO);
     }
 
 }
