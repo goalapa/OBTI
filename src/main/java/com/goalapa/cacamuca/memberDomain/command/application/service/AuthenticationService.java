@@ -11,9 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -33,8 +31,23 @@ public class AuthenticationService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(member.get().getMemberGrant()));
 
-//        CustomerUser customerUser = new Customer
+        return (UserDetails) member.get();
+    }
 
-        return null;
+    public Map<String, List<String>> getPermitListMap() {
+
+        Map<String, List<String>> permitListMap = new HashMap<>();
+        List<String> adminPermitList = new ArrayList<>();
+        List<String> memberPermitList = new ArrayList<>();
+        List<String> franchisePermitList = new ArrayList<>();
+
+//        adminPermitList.add("/member/regist");
+//        adminPermitList.add("/member/list");
+
+        permitListMap.put("adminPermitList", adminPermitList);
+        permitListMap.put("memberPermitList", memberPermitList);
+        permitListMap.put("franchisePermitList", franchisePermitList);
+
+        return permitListMap;
     }
 }
