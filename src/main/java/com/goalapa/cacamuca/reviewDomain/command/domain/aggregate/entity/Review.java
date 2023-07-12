@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity;
 
+import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
@@ -33,8 +34,8 @@ public class Review {
     @Column(name = "review_rate")
     private double reviewRate;
 
-    @Column(name = "member_no")
-    private Integer memberNo;
+    @Embedded
+    private ReviewWriter reviewWriter;
 
     @Column(name = "food_no")
     private Integer foodNo;

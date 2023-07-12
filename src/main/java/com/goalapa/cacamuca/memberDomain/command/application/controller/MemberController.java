@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/member")
 @RequiredArgsConstructor
-@RequestMapping("/member1")
-public class CommandMemberController {
+public class MemberController {
 
 }

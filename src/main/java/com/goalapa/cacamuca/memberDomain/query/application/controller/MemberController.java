@@ -11,25 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-@RequiredArgsConstructor
-@RequestMapping("/member")
 public class MemberController {
 
-    private final MemberService memberService;
-
-    @GetMapping("/main")
-    public String main() {
-
-        return "/main";
-    }
-
-    @GetMapping("/member")
-    @ResponseBody
-    public Map<String, Object> getMember() {
-
-        Integer memberNo = 1;
-
-        return memberService.getMember(memberNo);
-    }
 }
