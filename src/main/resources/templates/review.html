@@ -129,8 +129,7 @@
         var previewContainer = document.getElementById('preview-container');
         var files = event.target.files;
 
-        previewContainer.innerHTML = ''; // 이전에 추가된 미리보기 이미지를 초기화합니다.
-
+        previewContainer.innerHTML = '';
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
             var reader = new FileReader();

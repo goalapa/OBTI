@@ -5,4 +5,8 @@
 <mapper namespace="">
     <select id="findById" parameterType="_int" resultType="map">
     </select>
+
+    <select id="findAllReviews" resultType="QueryReviewDTO">
+
+    </select>
 </mapper>
