@@ -6,8 +6,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RequestMemberNo {
 
-    @Column
+    @Column(name = "request_member_no")
     private int requestMemberNo;
 
     protected RequestMemberNo() {}
+
+    public RequestMemberNo(int requestMemberNo) {
+        this.requestMemberNo = requestMemberNo;
+    }
 }

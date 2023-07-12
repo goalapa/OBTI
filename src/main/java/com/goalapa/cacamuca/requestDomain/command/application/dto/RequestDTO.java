@@ -6,31 +6,33 @@ import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMem
 
 import javax.persistence.Column;
 
+import static java.lang.Integer.parseInt;
+
 public class RequestDTO {
 
-    private RequestCountry country;
-    private RequestFoodType foodType;
+    private String requestCountry;
+    private String requestFoodType;
     private String requestedFood;
-    private Integer requestPrice;
-    private RequestMemberNo memberNo;
+    private int requestPrice;
+    private int requestMemberNo;
     private String requestContent;
 
     public RequestDTO() {}
 
-    public RequestCountry getCountry() {
-        return country;
+    public String getRequestCountry() {
+        return requestCountry;
     }
 
-    public void setCountry(RequestCountry country) {
-        this.country = country;
+    public void setRequestCountry(String requestCountry) {
+        this.requestCountry = requestCountry;
     }
 
-    public RequestFoodType getFoodType() {
-        return foodType;
+    public String getRequestFoodType() {
+        return requestFoodType;
     }
 
-    public void setFoodType(RequestFoodType foodType) {
-        this.foodType = foodType;
+    public void setRequestFoodType(String requestFoodType) {
+        this.requestFoodType = requestFoodType;
     }
 
     public String getRequestedFood() {
@@ -49,12 +51,12 @@ public class RequestDTO {
         this.requestPrice = requestPrice;
     }
 
-    public RequestMemberNo getMemberNo() {
-        return memberNo;
+    public int getRequestMemberNo() {
+        return requestMemberNo;
     }
 
-    public void setMemberNo(RequestMemberNo memberNo) {
-        this.memberNo = memberNo;
+    public void setRequestMemberNo(int requestMemberNo) {
+        this.requestMemberNo = requestMemberNo;
     }
 
     public String getRequestContent() {
@@ -63,5 +65,17 @@ public class RequestDTO {
 
     public void setRequestContent(String requestContent) {
         this.requestContent = requestContent;
+    }
+
+    @Override
+    public String toString() {
+        return "RequestDTO{" +
+                "requestCountry=" + requestCountry +
+                ", requestFoodType=" + requestFoodType +
+                ", requestedFood='" + requestedFood + '\'' +
+                ", requestPrice=" + requestPrice +
+                ", requestMemberNo=" + requestMemberNo +
+                ", requestContent='" + requestContent + '\'' +
+                '}';
     }
 }

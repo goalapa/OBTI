@@ -17,11 +17,11 @@ public class CheckRequestServiceImpl implements CheckRequestService {
 
     @Override
     public void checkNotNull(RequestDTO requestDTO) {
-        if(requestDTO.getRequestContent() != null &&
-        requestDTO.getRequestPrice() != null &&
-        requestDTO.getRequestedFood() != null &&
-        requestDTO.getCountry() != null &&
-        requestDTO.getFoodType() != null ) {
+        if(requestDTO.getRequestFoodType() != null &&
+            requestDTO.getRequestCountry() != null &&
+            requestDTO.getRequestPrice() != null &&
+            requestDTO.getRequestedFood() != null &&
+            requestDTO.getRequestContent() != null) {
             saveRequestServiceImpl.saveRequest(requestDTO);
         }
     }

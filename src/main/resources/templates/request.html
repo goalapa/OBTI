@@ -8,7 +8,7 @@
 <body>
     <form action="request" method="post">
 
-        <select name="country" >
+        <select name="requestCountry" >
             <option value="none">=== 국가 ===</option>
             <option value="ko">한국</option>
             <option value="jp">일본</option>
@@ -23,7 +23,7 @@
             <option value="mo">몽골</option>
         </select>
 
-        <select name="foodType" >
+        <select name="requestFoodType" >
            <option value="none">=== 종류 ===</option>
             <option value="snack">과자</option>
             <option value="tea">차</option>
@@ -35,7 +35,7 @@
           <option value="candy">사탕</option>
         </select>
         <br>
-        <input type="number" name="memberNo" placeholder="회원 번호를 입력해주세요(임시)">
+        <input type="number" name="requestMemberNo" placeholder="회원 번호를 입력해주세요(임시)">
         <input type="text" name="requestedFood" placeholder="식품 이름을 입력해주세요">
         <input type="number" name="requestPrice" placeholder="식품 가격을 입력해주세요">
         <br>

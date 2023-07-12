@@ -6,8 +6,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RequestFoodType {
 
-    @Column
+    @Column(name = "request_food_type")
     private String requestFoodType;
 
     protected RequestFoodType() {}
+
+    public RequestFoodType(String requestFoodType) {
+        this.requestFoodType = requestFoodType;
+    }
 }

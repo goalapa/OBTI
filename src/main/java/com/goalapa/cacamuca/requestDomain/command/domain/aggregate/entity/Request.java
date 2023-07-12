@@ -3,13 +3,16 @@ package com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCountry;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestFoodType;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMemberNo;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@Setter
+@Getter
 @Table(name = "request")
 public class Request {
     @Id
@@ -34,7 +37,4 @@ public class Request {
 
     @Column(name = "request_content")
     private String requestContent;
-
-    public Request(String requestedFood, Integer requestPrice, RequestMemberNo memberNo,
-                   RequestCountry country, RequestFoodType foodType, String requestContent) { }
 }

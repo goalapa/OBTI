@@ -32,6 +32,7 @@ public class RequestController {
 
     @PostMapping("/request")
     public void saveRequest(@ModelAttribute RequestDTO requestDTO) {
+        System.out.println("requestDTO = " + requestDTO.toString());
         checkRequestServiceImpl.checkNotNull(requestDTO);
     }
 

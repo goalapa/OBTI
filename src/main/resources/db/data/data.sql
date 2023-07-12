@@ -46,11 +46,11 @@ INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,repor
 VALUES(2,3,3,2,1);
 
 
-INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('한국','과자','신상요청1',1500,1, 'test1');
-INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('일본','과자','신상요청2',1500,2, 'test2');
-INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('대만','과자','신상요청3',1500,3, 'test3');
 
 

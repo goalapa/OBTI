@@ -6,9 +6,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RequestCountry {
 
-    @Column
+    @Column(name = "request_country")
     private String requestCountry;
 
     protected RequestCountry() {}
 
+    public RequestCountry(String requestCountry) {
+        this.requestCountry = requestCountry;
+    }
 }
