@@ -1,4 +1,4 @@
-package com.goalapa.cacamuca.memberDomain.command.application.dto;
+package com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MemberDTO {
+public class Member {
 
     private Integer memberNo;
 

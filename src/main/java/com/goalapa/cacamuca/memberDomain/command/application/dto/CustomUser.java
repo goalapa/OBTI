@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.memberDomain.command.application.dto;
 
+import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -12,13 +13,13 @@ public class CustomUser extends User {
     private String memberPwd;
     private String memberGrant;
 
-    public CustomUser(MemberDTO member, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUser(Member member, Collection<? extends GrantedAuthority> authorities) {
         super(member.getMemberId(), member.getMemberPwd(), authorities);
 
         setDetails(member);
     }
 
-    private void setDetails(MemberDTO member) {
+    private void setDetails(Member member) {
         this.memberNo = member.getMemberNo();
         this.memberId = member.getMemberId();
         this.memberPwd = member.getMemberPwd();

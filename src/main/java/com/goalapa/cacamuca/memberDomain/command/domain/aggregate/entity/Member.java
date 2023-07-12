@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity;
 
+import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,6 +37,6 @@ public class Member {
     @Column(name = "member_report_cnt")
     private String memberReportCnt;
 
-    @Column(name = "member_birth")
-    private String memberBirth;
+    @Embedded
+    private BirthDay birthDay;
 }

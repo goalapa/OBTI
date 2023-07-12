@@ -1,4 +1,4 @@
-package com.goalapa.cacamuca.memberDomain.command.application.dto;
+package com.goalapa.cacamuca.memberDomain.query.domain.aggregate.dto;
 
 import lombok.*;
 
