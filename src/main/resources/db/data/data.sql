@@ -4,12 +4,12 @@ INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_
 VALUES(2,'2023-07-25','2023-08-20',2);
 
 
-INSERT INTO category(category_name,sub_category_name)
-VALUES('한국','과자');
-INSERT INTO category(category_name,sub_category_name)
-VALUES('일본','과자');
-INSERT INTO category(category_name,sub_category_name)
-VALUES('대만','과자');
+INSERT INTO category(category_no,category_name,sub_category_name)
+VALUES(1,'한국','과자');
+INSERT INTO category(category_no,category_name,sub_category_name)
+VALUES(2,'일본','과자');
+INSERT INTO category(category_no,category_name,sub_category_name)
+VALUES(3,'대만','과자');
 
 
 INSERT INTO food(food_no,food_name,category_no,food_rate,food_price)

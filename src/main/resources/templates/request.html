@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>식품 요청 페이지</title>
+    <script src="request.js"></script>
 </head>
 <body>
     <form action="request" method="post">
+
         <select name="country" >
-            <option value="none">=== 선택 ===</option>
+            <option value="none">=== 국가 ===</option>
             <option value="ko">한국</option>
             <option value="jp">일본</option>
             <option value="us">미국</option>
@@ -21,8 +23,8 @@
             <option value="mo">몽골</option>
         </select>
 
-        <select name="food_type" >
-           <option value="none">=== 선택 ===</option>
+        <select name="foodType" >
+           <option value="none">=== 종류 ===</option>
             <option value="snack">과자</option>
             <option value="tea">차</option>
            <option value="coffee">커피</option>
@@ -33,9 +35,11 @@
           <option value="candy">사탕</option>
         </select>
         <br>
-        <input type="number" name="member_no" placeholder="회원 번호를 입력해주세요(임시)">
-        <input type="text" name="requested_food" placeholder="식품 이름을 입력해주세요">
-        <input type="number" name="request_price" placeholder="식품 가격을 입력해주세요">
+        <input type="number" name="memberNo" placeholder="회원 번호를 입력해주세요(임시)">
+        <input type="text" name="requestedFood" placeholder="식품 이름을 입력해주세요">
+        <input type="number" name="requestPrice" placeholder="식품 가격을 입력해주세요">
+        <br>
+        <textarea name="requestContent" cols="60" rows="10" placeholder="내용을 작성해주세요"></textarea>
         <br>
         <input type="file" name="requestPic">
         <br>

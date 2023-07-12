@@ -20,10 +20,9 @@ public class SaveRequestServiceImpl implements SaveRequestService {
     @Transactional
     public void saveRequest(RequestDTO requestDTO) {
 
+
         Request request = new Request(requestDTO.getRequestedFood(), requestDTO.getRequestPrice(),
                 requestDTO.getMemberNo(), requestDTO.getCountry(), requestDTO.getFoodType(), requestDTO.getRequestContent());
-
-        System.out.println("request = " + request);
 
         requestRepository.save(request);
 
