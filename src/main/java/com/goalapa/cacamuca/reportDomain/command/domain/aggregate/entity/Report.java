@@ -1,6 +1,8 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
-import groovy.transform.builder.Builder;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
 
 import javax.persistence.*;
 
@@ -12,14 +14,23 @@ public class Report {
     @Column(name = "report_no")
     private int reportNo;
 
-    @Column(name = "review_no")
-    private Integer reviewNo;
+    @Embedded
+    private ReviewVO reviewVO;
 
-    @Column(name = "report_member_no")
-    private Integer reportMemberNo;
+    @Embedded
+    private ReportedMemberVO reportedMemberVO;
 
-    @Column(name = "reported_member_no")
-    private Integer reportedMemberNo;
+    @Embedded
+    private ReportMemberVO reportMemberVO;
+
+//    @Column(name = "review_no")
+//    private Integer reviewNo;
+//
+//    @Column(name = "report_member_no")
+//    private Integer reportMemberNo;
+//
+//    @Column(name = "reported_member_no")
+//    private Integer reportedMemberNo;
 
     @Column(name = "report_type")
     private Integer reportType;
@@ -27,10 +38,11 @@ public class Report {
     public Report() {
     }
 
-    public Report(Integer reviewNo, Integer reportMemberNo, Integer reportedMemberNo, Integer reportType) {
-        this.reviewNo = reviewNo;
-        this.reportMemberNo = reportMemberNo;
-        this.reportedMemberNo = reportedMemberNo;
+    public Report(ReviewVO reviewVO, ReportMemberVO reportMemberVO,
+                  ReportedMemberVO reportedMemberVO, Integer reportType) {
+        this.reportMemberVO = reportMemberVO;
+        this.reportedMemberVO = reportedMemberVO;
+        this.reviewVO = reviewVO;
         this.reportType = reportType;
     }
 }
