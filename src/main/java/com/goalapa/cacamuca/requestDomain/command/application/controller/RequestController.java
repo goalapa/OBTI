@@ -16,13 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 public class RequestController {
 
     private final CheckRequestServiceImpl checkRequestServiceImpl;
-    private final SaveRequestServiceImpl saveRequestServiceImpl;
 
 
 
-    public RequestController(CheckRequestServiceImpl checkRequestServiceImpl, SaveRequestServiceImpl saveRequestServiceImpl) {
+    public RequestController(CheckRequestServiceImpl checkRequestServiceImpl) {
         this.checkRequestServiceImpl = checkRequestServiceImpl;
-        this.saveRequestServiceImpl = saveRequestServiceImpl;
     }
 
 
@@ -32,30 +30,8 @@ public class RequestController {
         return "request";
     }
 
-//    @PostMapping("/request")
-//    public void saveRequest(HttpServletRequest request) {
-//        RequestDTO requestDTO = new RequestDTO();
-//
-//        String country = request.getParameter("country");
-//        String foodType = request.getParameter("food_type");
-//        String requestedFood = request.getParameter("requested_food");
-//        String requestContent = request.getParameter("request_content");
-//        int requestPrice = Integer.parseInt(request.getParameter("request_price"));
-//        int memberNo = Integer.parseInt(request.getParameter("member_no")); //로그인 완료 후 수정
-//
-//        requestDTO.setCountry(country);
-//        requestDTO.setFoodType(foodType);
-//        requestDTO.setRequestContent(requestContent);
-//        requestDTO.setRequestedFood(requestedFood);
-//        requestDTO.setRequestPrice(requestPrice);
-//        requestDTO.setMemberNo(memberNo);
-//
-//        checkRequestServiceImpl.checkNotNull(requestDTO);
-//    }
-
     @PostMapping("/request")
     public void saveRequest(@ModelAttribute RequestDTO requestDTO) {
-        System.out.println("requestDTO = " + requestDTO);
         checkRequestServiceImpl.checkNotNull(requestDTO);
     }
 
