@@ -20,7 +20,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/member/*")
 public class ReviewController {
     private final ReviewService reviewService;
 
@@ -49,6 +49,6 @@ public class ReviewController {
 
         reviewService.saveReview(reviewDTO, reviewPicUrl);
 
-        return "redirect:/";
+        return "redirect:/member/main";
     }
 }

@@ -57,8 +57,9 @@ public class ReviewService {
 
                 String uploadPath = filePath + File.separator + uniqueFileName;
                 file.transferTo(new File(uploadPath));
+                int review_no = 1;
 
-                reviewPic = new ReviewPic(uploadPath);
+                reviewPic = new ReviewPic(uploadPath, review_no);
                 fileNames.add(uniqueFileName);
                 reviewPicRepository.save(reviewPic);
             } catch (IOException e) {

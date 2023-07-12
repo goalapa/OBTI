@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/*")
 public class SelectReviewController {
@@ -17,10 +19,18 @@ public class SelectReviewController {
         this.selectReviewService = selectReviewService;
     }
 
-    @GetMapping("/selectReview")
-    public String selectReviews(Model model){
 
-        QueryReviewDTO queryReviewDTO = selectReviewService.getReviews();
+    @GetMapping("/selectReviews")
+    public String selectReviews(Model model){
+//        List<QueryReviewPicDTO> reviewPictures = selectReviewService.getPictures();
+//
+//        model.addAttribute("reviewPictures", reviewPictures);
+
+        List<QueryReviewDTO> reviews = selectReviewService.findAllReviews();
+        System.out.println("reviews = " + reviews);
+
+//        model.addAttribute("reviews", reviews);
+
 
         return "selectReviews";
     }
