@@ -1,11 +1,10 @@
 package com.goalapa.cacamuca.memberDomain.query.domain.repository;
 
+import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity.Member;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.Map;
 
 @Mapper
 public interface MemberMapper {
 
-    Map<String, Object> findById(Integer no);
+    Member findByMemberId(String memberId);
 }
