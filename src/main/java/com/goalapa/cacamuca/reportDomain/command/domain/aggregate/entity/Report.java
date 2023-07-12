@@ -23,15 +23,6 @@ public class Report {
     @Embedded
     private ReportMemberVO reportMemberVO;
 
-//    @Column(name = "review_no")
-//    private Integer reviewNo;
-//
-//    @Column(name = "report_member_no")
-//    private Integer reportMemberNo;
-//
-//    @Column(name = "reported_member_no")
-//    private Integer reportedMemberNo;
-
     @Column(name = "report_type")
     private Integer reportType;
 

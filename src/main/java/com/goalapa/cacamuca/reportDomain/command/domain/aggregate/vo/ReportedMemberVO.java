@@ -11,7 +11,6 @@ public class ReportedMemberVO {
 
     public ReportedMemberVO(Integer reportedMemberNo) {
         this.reportedMemberNo = reportedMemberNo;
-
     }
 
     protected ReportedMemberVO() {

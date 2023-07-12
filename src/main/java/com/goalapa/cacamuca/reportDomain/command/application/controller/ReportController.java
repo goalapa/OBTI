@@ -35,8 +35,6 @@ public class ReportController {
         reportDTO.setReportMemberNo(Integer.parseInt(request.getParameter("report_member_no")));
         reportDTO.setReviewNo(Integer.parseInt(request.getParameter("review_no")));
         reportDTO.setReportType(Integer.parseInt(request.getParameter("report_type")));
-        System.out.println("reportDTO = " + reportDTO);
-        System.out.println("Controller");
 
         // 누적 신고 횟수 조회해서 블랙리스트에 저장하는 로직 추가
 
