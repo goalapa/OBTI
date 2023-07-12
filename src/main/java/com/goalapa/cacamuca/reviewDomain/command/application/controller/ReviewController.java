@@ -1,11 +1,9 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.controller;
 
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/*")
 public class ReviewController {
     private final ReviewService reviewService;
 
@@ -49,6 +43,6 @@ public class ReviewController {
 
         reviewService.saveReview(reviewDTO, reviewPicUrl);
 
-        return "redirect:/member/main";
+        return "redirect:/";
     }
 }

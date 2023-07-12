@@ -9,7 +9,4 @@
     <typeAliases>
     </typeAliases>
     
-    <mappers>
-        <package name="com.goalapa.cacamuca.reviewDomain.query.domain.repository"/>
-    </mappers>
 </configuration>

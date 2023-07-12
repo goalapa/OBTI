@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,15 +24,20 @@ public class SelectReviewController {
     @GetMapping("/selectReviews")
     public String selectReviews(Model model){
 //        List<QueryReviewPicDTO> reviewPictures = selectReviewService.getPictures();
-//
 //        model.addAttribute("reviewPictures", reviewPictures);
 
         List<QueryReviewDTO> reviews = selectReviewService.findAllReviews();
-        System.out.println("reviews = " + reviews);
 
-//        model.addAttribute("reviews", reviews);
+        model.addAttribute("reviews", reviews);
 
 
         return "selectReviews";
+    }
+
+    @GetMapping("/detail")
+    public String selectReview(Model model, @RequestParam int no){
+        model.addAttribute("review", selectReviewService.findReviewByNo(no));
+
+        return "reviewDetail";
     }
 }

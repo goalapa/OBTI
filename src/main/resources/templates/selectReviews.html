@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .layout{
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-  <h1>리뷰우우우우페이지이이잉</h1>
+  <div class="layout">
+      <table>
+          <thead>
+            <tr>
+                <th>리뷰 번호</th>
+                <th>까까 이름</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="review : ${reviews}">
+                <td th:text="${review.reviewNo}"/>
+                <td>
+                    <a th:text="${review.foodName}" th:href="@{/detail}"></a>
+                </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
 </body>
 </html>

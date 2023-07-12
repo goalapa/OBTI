@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface ReviewMapper {
-    List<QueryReviewPicDTO> findAllPictures();
+//    List<QueryReviewPicDTO> findAllPictures();
     List<QueryReviewDTO> findAllReviews();
+
+    QueryReviewDTO findReviewByNo(int no);
 }

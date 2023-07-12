@@ -3,6 +3,7 @@ package com.goalapa.cacamuca.reviewDomain.command.application.service;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
+import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
+
 @Service
 public class ReviewService {
 
@@ -24,8 +26,7 @@ public class ReviewService {
     private static String root = "C:\\app-file";
     private static String filePath = root + "/uploadFiles";
     private static ReviewPic reviewPic = null;
-
-
+    private static ReviewWriter reviewWriter = new ReviewWriter();
 
     public ReviewService(ReviewRepository reviewRepository, ReviewPicRepository reviewPicRepository) {
         this.reviewRepository = reviewRepository;
@@ -35,7 +36,7 @@ public class ReviewService {
     @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl) {
         LocalDate date = LocalDate.now();
-        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewDTO.getMemberNo(), reviewDTO.getFoodNo()
+        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
                 , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink());
 
         List<String> fileNames = new ArrayList<>();
