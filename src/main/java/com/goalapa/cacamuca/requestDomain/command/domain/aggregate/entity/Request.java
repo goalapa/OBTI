@@ -1,12 +1,17 @@
 package com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity;
 
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCountry;
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestFoodType;
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMemberNo;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "request")
 public class Request {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_no")
@@ -18,28 +23,18 @@ public class Request {
     @Column(name = "request_price")
     private Integer requestPrice;
 
-    @Column(name = "member_no")
-    private Integer memberNo;
+    @Embedded
+    private RequestMemberNo requestMemberNo;
 
-    @Column(name = "country")
-    private String country;
+    @Embedded
+    private RequestCountry requestCountry;
 
-    @Column(name = "food_type")
-    private String foodType;
+    @Embedded
+    private RequestFoodType requestFoodType;
 
     @Column(name = "request_content")
-    private String requestContent;  //추가 - commit전, data.sql 수정
+    private String requestContent;
 
-    public Request() { }
-
-    public Request(String requestedFood, Integer requestPrice, Integer memberNo, String country, String foodType, String requestContent) {
-        this.requestedFood = requestedFood;
-        this.requestPrice = requestPrice;
-        this.memberNo = memberNo;
-        this.country = country;
-        this.foodType = foodType;
-        this.requestContent = requestContent;
-    }
-
-
+    public Request(String requestedFood, Integer requestPrice, RequestMemberNo memberNo,
+                   RequestCountry country, RequestFoodType foodType, String requestContent) { }
 }
