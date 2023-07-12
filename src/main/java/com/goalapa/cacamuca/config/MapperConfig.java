@@ -19,9 +19,6 @@ import javax.sql.DataSource;
 @MapperScan("com.goalapa.cacamuca")
 public class MapperConfig {
 
-    @Value("${mybatis.mapper-locations}")
-    private String mapperLocations;
-
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource, Resource[] mapperLocations, ApplicationContext applicationContext) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
