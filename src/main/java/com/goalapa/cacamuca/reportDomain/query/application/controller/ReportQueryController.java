@@ -1,6 +1,7 @@
 package com.goalapa.cacamuca.reportDomain.query.application.controller;
 
-import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
+import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO;
 import com.goalapa.cacamuca.reportDomain.query.application.service.ReportPageServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,21 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/*")
-public class ReportController {
+public class ReportQueryController {
 
     private final ReportPageServiceImpl reportPageServiceImpl;
 
-    public ReportController(ReportPageServiceImpl reportPageServiceImpl) {
+    public ReportQueryController(ReportPageServiceImpl reportPageServiceImpl) {
         this.reportPageServiceImpl = reportPageServiceImpl;
     }
 
     @GetMapping("admin/report")
-    public Page<Report> getReportPage(Model model, @PageableDefault(size = 10, sort="report_no", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Report> reportList = reportPageServiceImpl.findAllReport(pageable);
-
-        //model.addAttribute("reportList", reportPageServiceImpl.findAllReport(pageable));
+    public Page<ReportQueryDTO> getReportPage(@PageableDefault(size = 10, sort="report_no", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<ReportQueryDTO> reportList = reportPageServiceImpl.getReportPage(pageable);
 
         return reportList;
     }

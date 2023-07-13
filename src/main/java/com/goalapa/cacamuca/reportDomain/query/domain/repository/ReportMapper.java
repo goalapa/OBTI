@@ -1,14 +1,15 @@
 package com.goalapa.cacamuca.reportDomain.query.domain.repository;
 
-import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ReportMapper {
 
-    List<ReportDTO> findAllReport(@Param("offset") int offset, @Param("limit") int limit);
+    List<ReportQueryDTO> getReportPage(Map<String,Integer> pageMap);
 
 }
