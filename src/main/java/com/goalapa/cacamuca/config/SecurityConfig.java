@@ -28,7 +28,10 @@ public class SecurityConfig {
                         .antMatchers("login").authenticated()
 //                        .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
+                .formLogin(form -> form
+                    .loginPage("/member/login")
+                        .permitAll()
+                )
                 .httpBasic(withDefaults())
                 .logout(logout -> logout
                         .logoutUrl("/logout")
