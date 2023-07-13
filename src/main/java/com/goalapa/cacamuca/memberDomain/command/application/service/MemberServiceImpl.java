@@ -4,7 +4,7 @@ import com.goalapa.cacamuca.memberDomain.command.application.dto.MemberDTO;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
-import com.goalapa.cacamuca.memberDomain.command.domain.service.MemberService;
+import com.goalapa.cacamuca.memberDomain.command.domain.service.CommandMemberService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements CommandMemberService {
 
     private final ModelMapper modelMapper;
     private final MemberRepository memberRepository;
