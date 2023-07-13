@@ -24,7 +24,7 @@
             <tr th:each="review : ${reviews}">
                 <td th:text="${review.reviewNo}"/>
                 <td>
-                    <a th:text="${review.foodName}" th:href="@{/detail}"></a>
+                    <a th:text="${review.foodName}" th:href="@{/detail(no=${review.reviewNo})}"></a>
                 </td>
             </tr>
           </tbody>

@@ -43,6 +43,6 @@ public class ReviewController {
 
         reviewService.saveReview(reviewDTO, reviewPicUrl);
 
-        return "redirect:/";
+        return "redirect:/selectReviews";
     }
 }

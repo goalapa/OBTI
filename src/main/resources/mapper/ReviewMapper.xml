@@ -33,4 +33,12 @@
         SELECT r.review_no, r.food_name, r.review_date, r.review_price, r.review_rate
         FROM review r
     </select>
+
+    <select id="findReviewByNo" resultMap="reviewResultMap">
+        SELECT r.review_no, r.country, r.food_name, r.food_no, r.food_type, r.like_cnt, r.member_no,
+               r.review_date, r.review_content, r.review_date, r.review_keyword, r.review_link,
+               r.review_price, r.review_rate
+        FROM review r
+        WHERE r.review_no = #{ no }
+    </select>
 </mapper>

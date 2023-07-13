@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @RequestMapping("/*")
 public class SelectReviewController {
     private final SelectReviewService selectReviewService;
+    private static final Logger logger = LoggerFactory.getLogger(SelectReviewController.class);
 
     public SelectReviewController(SelectReviewService selectReviewService) {
         this.selectReviewService = selectReviewService;
@@ -27,6 +30,7 @@ public class SelectReviewController {
 //        model.addAttribute("reviewPictures", reviewPictures);
 
         List<QueryReviewDTO> reviews = selectReviewService.findAllReviews();
+//        System.out.println("reviews.get(3).getReviewNo() = " + reviews.get(3).getReviewNo());
 
         model.addAttribute("reviews", reviews);
 
@@ -36,6 +40,7 @@ public class SelectReviewController {
 
     @GetMapping("/detail")
     public String selectReview(Model model, @RequestParam int no){
+        logger.info(String.valueOf(no));
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
 
         return "reviewDetail";
