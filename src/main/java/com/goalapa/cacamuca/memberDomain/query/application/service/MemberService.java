@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-@Service
+@Service(value = "QueryMemberService")
 @RequiredArgsConstructor
 public class MemberService {
 

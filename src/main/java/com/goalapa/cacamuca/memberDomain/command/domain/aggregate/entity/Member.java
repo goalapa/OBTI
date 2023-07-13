@@ -2,6 +2,7 @@ package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity;
 
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import lombok.*;
+import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 
@@ -36,6 +37,12 @@ public class Member {
 
     @Column(name = "member_report_cnt")
     private String memberReportCnt;
+
+    @Column(name = "member_country")
+    private String memberCountry;
+
+    @Column(name = "member_gender")
+    private String memberGender;
 
     @Embedded
     private BirthDay birthDay;

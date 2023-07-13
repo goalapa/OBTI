@@ -13,12 +13,18 @@ public class MemberController {
     @GetMapping("/main")
     public String main() {
 
-        return "/main";
+        return "main";
     }
 
     @GetMapping("/login")
     public String login() {
 
         return "member/login";
+    }
+
+    @GetMapping("registration")
+    public String registration() {
+
+        return "member/registration";
     }
 }
