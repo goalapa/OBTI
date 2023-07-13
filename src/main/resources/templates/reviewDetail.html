@@ -2,29 +2,31 @@
 <html lang="en">
 <head>
     <style>
-        fieldset{
+        fieldset {
             display: inline-block;
             direction: rtl;
-            border:0;
+            border: 0;
         }
-        fieldset legend{
+
+        fieldset legend {
             text-align: right;
         }
-        input[type=radio]{
+
+        input[type=radio] {
             display: none;
         }
-        label{
+
+        label {
             font-size: 3em;
             color: transparent;
             text-shadow: 0 0 0 #f0f0f0;
         }
-        label:hover{
+
+        label {
             text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
         }
-        label:hover ~ label{
-            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-        }
-        input[type=radio]:checked ~ label{
+
+        input[type=radio]:checked ~ label {
             text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
         }
         #reviewContents {
@@ -50,30 +52,29 @@
     <title>Title</title>
 </head>
 <body>
-    <label th:text="${review.country}"/>
-    <label th:text="${review.foodType}"/>
-    <label th:text="${review.reviewKeyword}"/>
-    <label th:text="${review.foodName}"/>
-    <label th:text="${review.reviewPrice}"/>
-    <label th:text="${review.reviewLink}"/>
+    <input type="text" th:value="${review.country}" readonly />
+    <input type="text" th:value="${review.foodType}" readonly/>
+    <input type="text" th:value="${review.reviewKeyword}" readonly/>
+    <input type="text" th:value="${review.foodName}" readonly/>
+    <input type="text" th:value="${review.reviewPrice}" readonly/>
+    <input type="text" th:value="${review.reviewLink}" readonly/>
+    <input type="text" th:value="${review.reviewDate}" readonly/>
     <div>
-        <label th:text="${review.reviewContent}"/>
+        <div id="reviewContent">
+            <textarea name="reviewContent" th:value="${review.reviewContent}" th:text="${review.reviewContent}" id="content" cols="130" rows="25" readonly></textarea>
+        </div>
     </div>
 
 
-<!--    <link href="/assets/css/star.css" rel="stylesheet"/>-->
-<!--    <fieldset>-->
-<!--        <input type="radio" name="reviewRate" value="5" id="rate1"><label-->
-<!--            for="rate1">★</label>-->
-<!--        <input type="radio" name="reviewRate" value="4" id="rate2"><label-->
-<!--            for="rate2">★</label>-->
-<!--        <input type="radio" name="reviewRate" value="3" id="rate3"><label-->
-<!--            for="rate3">★</label>-->
-<!--        <input type="radio" name="reviewRate" value="2" id="rate4"><label-->
-<!--            for="rate4">★</label>-->
-<!--        <input type="radio" name="reviewRate" value="1" id="rate5"><label-->
-<!--            for="rate5">★</label>-->
-<!--    </fieldset>-->
+    <link href="/assets/css/star.css" rel="stylesheet"/>
+    <fieldset th:switch="${review.reviewRate}">
+        <label th:text="${review.reviewRate}"/>
+        <label th:case="5.0">★★★★★</label>
+        <label th:case="4.0">☆★★★★</label>
+        <label th:case="3.0">☆☆★★★</label>
+        <label th:case="2.0">☆☆☆★★</label>
+        <label th:case="1.0">☆☆☆☆★</label>
+    </fieldset>
 
 
 <!--    <div id="reviewContent">-->
@@ -81,7 +82,7 @@
 <!--    </div>-->
 
     <div>
-        <button type="button" onclick="location.href='/selectReviews.html'" value="목록으로"/>
+        <button type="button" onclick="location.href='/selectReviews'">목록으로</button>
     </div>
 
 <!--    <div>-->
@@ -90,6 +91,7 @@
 <!--        </p>-->
 <!--        <div id="preview-container"></div>-->
 <!--    </div>-->
+
 
 
 <script>

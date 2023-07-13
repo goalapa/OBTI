@@ -9,44 +9,24 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 public class QueryReviewDTO {
-    private int reviewNo;
-
-    private String reviewContent;
-
-
     private String country;
-
-
     private String foodType;
-
-
     private String foodName;
-
-
-    private LocalDate reviewDate;
-
-
+    private int reviewNo;
+    private String reviewContent;
+    private String reviewDate;
     private double reviewRate;
-
-
     private Integer memberNo;
-
-
     private Integer foodNo;
-
-
     private String reviewKeyword;
-
     private int reviewPrice;
-
     private String reviewLink;
-
     private Integer likeCnt;
 
     public QueryReviewDTO() {
     }
 
-    public QueryReviewDTO(int reviewNo, String reviewContent, String country, String foodType, String foodName, LocalDate reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
+    public QueryReviewDTO(int reviewNo, String reviewContent, String country, String foodType, String foodName, String reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
         this.reviewNo = reviewNo;
         this.reviewContent = reviewContent;
         this.country = country;
@@ -102,11 +82,11 @@ public class QueryReviewDTO {
         this.foodName = foodName;
     }
 
-    public LocalDate getReviewDate() {
+    public String getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(String reviewDate) {
         this.reviewDate = reviewDate;
     }
 

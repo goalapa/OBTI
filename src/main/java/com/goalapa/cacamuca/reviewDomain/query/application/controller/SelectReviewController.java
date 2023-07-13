@@ -40,8 +40,10 @@ public class SelectReviewController {
 
     @GetMapping("/detail")
     public String selectReview(Model model, @RequestParam int no){
-        logger.info(String.valueOf(no));
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
+
+        QueryReviewDTO review = selectReviewService.findReviewByNo(no);
+        logger.info(String.valueOf(review.getReviewRate()));
 
         return "reviewDetail";
     }

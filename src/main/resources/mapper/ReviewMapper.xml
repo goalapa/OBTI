@@ -9,8 +9,8 @@
         <result property="foodName" column="food_name"/>
         <result property="foodType" column="food_type"/>
         <result property="likeCnt" column="like_cnt"/>
-        <result property="member_no" column="member_no"/>
-        <result property="reviewContent" column="reviewContent"/>
+        <result property="memberNo" column="member_no"/>
+        <result property="reviewContent" column="review_content"/>
         <result property="reviewDate" column="review_date"/>
         <result property="reviewKeyword" column="review_keyword"/>
         <result property="reviewLink" column="review_link"/>
