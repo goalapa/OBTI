@@ -21,7 +21,7 @@ public class CheckRequestServiceImpl implements CheckRequestService {
             requestDTO.getRequestCountry() != null &&
             requestDTO.getRequestPrice() != null &&
             requestDTO.getRequestedFood() != null &&
-            requestDTO.getRequestContent() != null) {
+            requestDTO.getRequestContent() != null ) {
             saveRequestServiceImpl.saveRequest(requestDTO);
         }
     }

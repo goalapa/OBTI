@@ -1,26 +1,24 @@
 package com.goalapa.cacamuca.requestDomain.command.application.controller;
 
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
-import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestServiceImpl;
+import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestPicServiceImpl;
 import com.goalapa.cacamuca.requestDomain.command.infrastructure.service.CheckRequestServiceImpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/*")
 public class RequestController {
 
     private final CheckRequestServiceImpl checkRequestServiceImpl;
+    private final SaveRequestPicServiceImpl saveRequestPicServiceImpl;
 
 
 
-    public RequestController(CheckRequestServiceImpl checkRequestServiceImpl) {
+    public RequestController(CheckRequestServiceImpl checkRequestServiceImpl, SaveRequestPicServiceImpl saveRequestPicServiceImpl) {
         this.checkRequestServiceImpl = checkRequestServiceImpl;
+        this.saveRequestPicServiceImpl = saveRequestPicServiceImpl;
     }
 
 
@@ -30,10 +28,12 @@ public class RequestController {
         return "request";
     }
 
-    @PostMapping("/request")
-    public void saveRequest(@ModelAttribute RequestDTO requestDTO) {
-        System.out.println("requestDTO = " + requestDTO.toString());
+    @PostMapping(value = "/request")
+    public void saveRequest(@ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
+
         checkRequestServiceImpl.checkNotNull(requestDTO);
+        saveRequestPicServiceImpl.saveRequestPic(requestPic);
+
     }
 
 }
