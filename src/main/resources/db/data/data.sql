@@ -44,6 +44,26 @@ INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,repor
 VALUES(1,1,2,3,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
 VALUES(2,3,3,2,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(3,1,2,3,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(4,3,3,2,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(5,1,2,3,3);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(6,3,3,2,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(7,1,2,3,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(8,3,3,2,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(9,1,2,3,2);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(10,3,3,2,1);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(11,1,2,3,3);
+INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
+VALUES(12,3,3,2,2);
 
 
 INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
