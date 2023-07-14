@@ -23,20 +23,12 @@ public class SelectReviewService {
 //    }
 
     public List<QueryReviewDTO> findAllReviews() {
-        System.out.println("넘버원");
         List<QueryReviewDTO> reviews = mapper.findAllReviews();
 
         return reviews;
     }
 
     public QueryReviewDTO findReviewByNo(int no) {
-        System.out.println("넘버투");
-        QueryReviewDTO review = mapper.findReviewByNo(no);
-        return review;
-    }
-
-    public QueryReviewDTO findReviewByNo2(int no) {
-        System.out.println("넘버쓰리");
         QueryReviewDTO review = mapper.findReviewByNo(no);
         return review;
     }
