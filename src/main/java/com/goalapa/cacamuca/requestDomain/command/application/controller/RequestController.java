@@ -31,6 +31,7 @@ public class RequestController {
     @PostMapping(value = "/request")
     public void saveRequest(@ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
 
+        System.out.println("requestDTO = " + requestDTO);;
         checkRequestServiceImpl.checkNotNull(requestDTO);
         saveRequestPicServiceImpl.saveRequestPic(requestPic);
 

@@ -37,13 +37,10 @@ public class SaveRequestPicServiceImpl implements SaveRequestPicService {
         }
 
         String originFileName = singleFile.getOriginalFilename();
-        System.out.println("originFileName = " + originFileName);
 
         String ext = originFileName.substring(originFileName.lastIndexOf("."));
-        System.out.println("ext = " + ext);
 
         String savedName = UUID.randomUUID().toString().replaceAll("-", "") + ext;
-        System.out.println("savedName = " + savedName);
 
         try {
             singleFile.transferTo(new File(filePath  + "/" + savedName));
