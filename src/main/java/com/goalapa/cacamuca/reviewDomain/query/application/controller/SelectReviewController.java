@@ -30,10 +30,8 @@ public class SelectReviewController {
 //        model.addAttribute("reviewPictures", reviewPictures);
 
         List<QueryReviewDTO> reviews = selectReviewService.findAllReviews();
-//        System.out.println("reviews.get(3).getReviewNo() = " + reviews.get(3).getReviewNo());
 
         model.addAttribute("reviews", reviews);
-
 
         return "selectReviews";
     }
@@ -43,7 +41,7 @@ public class SelectReviewController {
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
 
         QueryReviewDTO review = selectReviewService.findReviewByNo(no);
-        logger.info(String.valueOf(review.getReviewRate()));
+//        logger.info(String.valueOf(review.getReviewRate()));
 
         return "reviewDetail";
     }
