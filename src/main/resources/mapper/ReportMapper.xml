@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goalapa.cacamuca.reportDomain.query.domain.repository.ReportMapper">
-    <resultMap id="reportResultMap" type="com.goalapa.cacamuca.reportDomain.query.domain.entity.ReportQuery">
-        <id property="reportNo" column="report_no" />
+    <resultMap id="reportResultMap" type="com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO">
+        <result property="reportNo" column="report_no" />
         <result property="reviewNo" column="review_no" />
         <result property="reportMemberNo" column="report_member_no" />
         <result property="reportedMemberNo" column="reported_member_no" />
@@ -14,21 +14,25 @@
     <select id="getReportPage" parameterType="hashmap" resultMap="reportResultMap">
         SELECT *
         FROM REPORT
-        WHERE REVIEW_NO IN (
-            SELECT REVIEW_NO
-            FROM REPORT
-            GROUP BY REVIEW_NO
-            HAVING COUNT(REVIEW_NO) > 10
-        )
-        GROUP BY REVIEW_NO
-        ORDER BY REVIEW_NO DESC
-        LIMIT ${ offset }, ${ pageSize }
-
-        <if test="pageable.sort.sorted">
-            <foreach item="order" index="i" collection="pageable.sort" separator=", ">
-                ${order.property} ${order.direction}
-            </foreach>
-        </if>
-
+<!--        WHERE REVIEW_NO IN (-->
+<!--            SELECT REVIEW_NO-->
+<!--            FROM REPORT-->
+<!--            GROUP BY REVIEW_NO-->
+<!--            HAVING COUNT(REVIEW_NO) > 10-->
+<!--        )-->
+<!--        GROUP BY REVIEW_NO-->
+<!--        ORDER BY REVIEW_NO DESC-->
+<!--        LIMIT ${ offset }, ${ pageSize }-->
     </select>
+
+<!--    <select id="getReportPage" resultType="Object">-->
+<!--        select * from report-->
+<!--        <if test="pageable.sort.sorted">-->
+<!--            <trim prefix="order by">-->
+<!--                <foreach item="order" index="i" collection="pageable.sort" separator=", ">-->
+<!--                    ${order.property} ${order.direction}-->
+<!--                </foreach>-->
+<!--            </trim>-->
+<!--        </if>-->
+<!--    </select>-->
 </mapper>

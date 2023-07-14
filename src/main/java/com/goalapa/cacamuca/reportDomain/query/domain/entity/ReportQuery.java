@@ -1,9 +1,5 @@
 package com.goalapa.cacamuca.reportDomain.query.domain.entity;
 
-import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
-import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
-import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
-
 import javax.persistence.Entity;
 import javax.persistence.*;
 
@@ -15,14 +11,14 @@ public class ReportQuery {
     @Column(name = "report_no")
     private int reportNo;
 
-    @Embedded
-    private ReviewVO reviewVO;
+    @Column(name = "review_no")
+    private Integer reviewNo;
 
-    @Embedded
-    private ReportedMemberVO reportedMemberVO;
+    @Column(name = "reported_member_no")
+    private Integer reportedMemberNo;
 
-    @Embedded
-    private ReportMemberVO reportMemberVO;
+    @Column(name = "report_member_no")
+    private Integer reportMemberNo;
 
     @Column(name = "report_type")
     private Integer reportType;
@@ -30,11 +26,11 @@ public class ReportQuery {
     public ReportQuery() {
     }
 
-    public ReportQuery(ReviewVO reviewVO, ReportMemberVO reportMemberVO,
-                       ReportedMemberVO reportedMemberVO, Integer reportType) {
-        this.reportMemberVO = reportMemberVO;
-        this.reportedMemberVO = reportedMemberVO;
-        this.reviewVO = reviewVO;
+    public ReportQuery(Integer reviewNo, Integer reportMemberNo,
+                       Integer reportedMemberNo, Integer reportType) {
+        this.reportMemberNo = reportMemberNo;
+        this.reportedMemberNo = reportedMemberNo;
+        this.reviewNo = reviewNo;
         this.reportType = reportType;
     }
 }

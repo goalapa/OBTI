@@ -1,6 +1,7 @@
 package com.goalapa.cacamuca.reportDomain.query.application.service;
 
 import com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO;
+import com.goalapa.cacamuca.reportDomain.query.domain.entity.ReportQuery;
 import com.goalapa.cacamuca.reportDomain.query.domain.repository.ReportMapper;
 import com.goalapa.cacamuca.reportDomain.query.domain.service.ReportPageService;
 import org.springframework.data.domain.Page;
@@ -30,6 +31,7 @@ public class ReportPageServiceImpl implements ReportPageService {
         pageMap.put("pageSize", pageable.getPageSize());
 
         List<ReportQueryDTO> reportList = reportMapper.getReportPage(pageMap);
+        reportList.forEach(System.out::println);
 
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), reportList.size());
