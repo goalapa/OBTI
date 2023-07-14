@@ -84,8 +84,6 @@ public class ReviewService {
 
     @Transactional
     public void countHeart(Integer no, Integer memberNo) {
-        System.out.println("no = " + no);
-//        QueryReviewDTO review =  selectReviewService.findReviewByNo2(no);
         Review review = reviewRepository.findById(no).get();
 
         LikeId likeId = new LikeId();
@@ -98,7 +96,5 @@ public class ReviewService {
         review.setLikeCnt(review.getLikeCnt() + 1);
 
         ReviewLikeDTO reviewLike = new ReviewLikeDTO(like.getId().getMemberNo(), like.getId().getReviewNo());
-
-        System.out.println("reviewLike = " + reviewLike);
     }
 }
