@@ -38,7 +38,7 @@ public class ReviewController {
         reviewDTO.setReviewKeyword(request.getParameter("reviewKeyword"));
         reviewDTO.setFoodName(request.getParameter("food_name"));
         reviewDTO.setReviewPrice(Integer.parseInt(request.getParameter("review_price")));
-        reviewDTO.setReviewRate(Integer.parseInt(request.getParameter("reviewRate")));
+        reviewDTO.setReviewRate(Double.parseDouble(request.getParameter("reviewRate")));
         reviewDTO.setReviewLink(request.getParameter("review_link"));
 
         reviewService.saveReview(reviewDTO, reviewPicUrl);
