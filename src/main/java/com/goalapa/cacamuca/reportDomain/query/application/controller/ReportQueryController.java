@@ -22,7 +22,17 @@ public class ReportQueryController {
 
     @GetMapping("/report")
     public String getReportPage(@PageableDefault(size = 5, sort="report_no", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<ReportQueryDTO> reportPage = reportPageServiceImpl.getReportPage(pageable);
+        int totalPages = reportPageServiceImpl.getTotalPages(pageable.getPageSize());
+        Page<ReportQueryDTO> reportPage = reportPageServiceImpl.getReportPage(pageable, totalPages);
+
+        System.out.println("Controller = " + reportPage.getPageable());
+        System.out.println("reportPageHasNext = " + reportPage.hasNext());
+        System.out.println("reportPageHasPrevious = " + reportPage.hasPrevious());
+        System.out.println("reportPageIsLast = " + reportPage.isLast());
+        System.out.println("reportPageNextPageable = " + reportPage.nextPageable());
+        System.out.println("reportPage 현재 페이지 색인 = " + reportPage.getNumber());
+        System.out.println("reportPage 페이지 크기 = " + reportPage.getSize());
+        System.out.println("reportPage 총 페이지 수 = " + reportPage.getTotalPages());
 
         return "reportlist";
     }

@@ -1,7 +1,6 @@
 package com.goalapa.cacamuca.reportDomain.query.application.service;
 
 import com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO;
-import com.goalapa.cacamuca.reportDomain.query.domain.entity.ReportQuery;
 import com.goalapa.cacamuca.reportDomain.query.domain.repository.ReportMapper;
 import com.goalapa.cacamuca.reportDomain.query.domain.service.ReportPageService;
 import org.springframework.data.domain.Page;
@@ -25,18 +24,26 @@ public class ReportPageServiceImpl implements ReportPageService {
 
     @Override
     @Transactional
-    public Page<ReportQueryDTO> getReportPage(Pageable pageable) {
+    public Page<ReportQueryDTO> getReportPage(Pageable pageable, int totalPages) {
         Map<String, Integer> pageMap = new HashMap<>();
         pageMap.put("offset", (int) pageable.getOffset());
         pageMap.put("pageSize", pageable.getPageSize());
 
         List<ReportQueryDTO> reportList = reportMapper.getReportPage(pageMap);
+
         reportList.forEach(System.out::println);
 
         int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), reportList.size());
+        int end = Math.min(start + pageable.getPageSize(), reportList.size());
+        if (start > end) {
+            start = Math.max(0, end - pageable.getPageSize());
+        }
 
-        // PageImpl -> 리스트를 page로 변환
-        return new PageImpl<>(reportList.subList(start, end), pageable, reportList.size());
+        return new PageImpl<>(reportList.subList(start, end), pageable, totalPages);
     }
+
+    public int getTotalPages(int pageSize) {
+        return reportMapper.getTotalPages();
+    }
+
 }
