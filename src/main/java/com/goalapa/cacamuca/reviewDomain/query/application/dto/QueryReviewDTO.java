@@ -17,7 +17,7 @@ public class QueryReviewDTO {
     private String reviewDate;
     private double reviewRate;
     private Integer memberNo;
-    private Integer foodNo;
+
     private String reviewKeyword;
     private int reviewPrice;
     private String reviewLink;
@@ -35,7 +35,6 @@ public class QueryReviewDTO {
         this.reviewDate = reviewDate;
         this.reviewRate = reviewRate;
         this.memberNo = memberNo;
-        this.foodNo = foodNo;
         this.reviewKeyword = reviewKeyword;
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
@@ -106,13 +105,6 @@ public class QueryReviewDTO {
         this.memberNo = memberNo;
     }
 
-    public Integer getFoodNo() {
-        return foodNo;
-    }
-
-    public void setFoodNo(Integer foodNo) {
-        this.foodNo = foodNo;
-    }
 
     public String getReviewKeyword() {
         return reviewKeyword;
@@ -157,7 +149,6 @@ public class QueryReviewDTO {
                 ", reviewDate=" + reviewDate +
                 ", reviewRate=" + reviewRate +
                 ", memberNo=" + memberNo +
-                ", foodNo=" + foodNo +
                 ", reviewKeyword='" + reviewKeyword + '\'' +
                 ", reviewPrice=" + reviewPrice +
                 ", reviewLink='" + reviewLink + '\'' +

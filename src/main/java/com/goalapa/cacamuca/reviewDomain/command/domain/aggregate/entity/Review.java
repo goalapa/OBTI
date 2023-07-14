@@ -71,6 +71,10 @@ public class Review {
     public Review(){
     }
 
+    public int getReviewNo() {
+        return reviewNo;
+    }
+
     public String getReviewContent() {
         return reviewContent;
     }

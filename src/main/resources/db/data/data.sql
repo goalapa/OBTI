@@ -63,8 +63,8 @@ INSERT INTO request_pic(request_url)
 VALUES('link');
 
 
-INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(1,'리뷰 예시01','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link');
+INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(1,'리뷰 예시01','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
 
 INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(2,'리뷰 예시02','쌍쌍바','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');

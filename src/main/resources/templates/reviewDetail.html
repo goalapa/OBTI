@@ -54,6 +54,7 @@
 
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <input type="text" th:value="${review.country}" readonly />
@@ -87,11 +88,15 @@
         <button type="button" onclick="location.href='/selectReviews'">목록으로</button>
     </div>
 
-    <div>
-        <button type="button"></button>
-    </div>
+        <!-- 좋아요 -->
 
-<!--    <div>-->
+    <input type="hidden" id="like_check">
+    <span th:text="${review.likeCnt}"></span>
+    <img id="likeImg" src="/assets/img/empty_heart.png" alt="" width="30px" height="30px" onclick="clickHeart()">
+
+
+
+    <!--    <div>-->
 <!--        <p>-->
 <!--            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)">-->
 <!--        </p>-->
@@ -99,8 +104,49 @@
 <!--    </div>-->
 
 
+    <script>
+        let noValue = `[[${no}]]`;
+        let memberValue = `[[${member}]]`;
+
+        function clickHeart () {
+            console.log('하트가 클릭되었습니다.');
+            document.getElementById("likeImg").src = "/assets/img/heart.png";
+
+
+
+            var likeCheck = document.getElementById('like_check').value;
+
+            // axios.post('/reviewDetail', {
+            //     likeCheck: likeCheck
+            // })
+            //     .then(function (response) {
+            //         console.log(response.data);
+            //     })
+            //     .catch(function (error) {
+            //         console.error(error);
+            //     });
+
+
+
+            axios({
+                method: 'post',
+                url: '/reviewDetail',
+                data: {
+                    no: noValue,
+                    member: memberValue
+                }
+            }).then(function (response) {
+                console.log(response.data.no);
+                console.log(response.data.member);
+            });
+
+        }
+        // console.log(`[[${no}]]`);
+        // console.log(`[[${member}]]`);
+    </script>
 
 <script>
+
     const rating_input = document.querySelector('.rating input');
     const rating_star = document.querySelector('.rating_star');
 

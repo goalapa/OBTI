@@ -1,7 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,11 +36,14 @@ public class SelectReviewController {
     }
 
     @GetMapping("/detail")
-    public String selectReview(Model model, @RequestParam int no){
+    public String selectReview(Model model, @RequestParam int no, @RequestParam int member){
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
 
         QueryReviewDTO review = selectReviewService.findReviewByNo(no);
 //        logger.info(String.valueOf(review.getReviewRate()));
+
+        model.addAttribute("no", no);
+        model.addAttribute("member", member);
 
         return "reviewDetail";
     }
