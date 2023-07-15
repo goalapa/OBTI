@@ -3,10 +3,12 @@ package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @Table(name = "report")
 public class Report {
     @Id
