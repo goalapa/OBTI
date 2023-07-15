@@ -33,6 +33,7 @@ public class MemberServiceImpl implements CommandMemberService {
 
         BirthDay birthDay = new BirthDay(date);
         member.setBirthDay(birthDay);
+        member.setMemberGrant("member");
 
         memberRepository.save(member);
     }

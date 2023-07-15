@@ -191,8 +191,10 @@ const preventSubmit =  async function submit(event) {
 
     const birthDay = new Date(document.getElementById('datepicker').value).toDateString();
     const today = new Date(Date.now()).toDateString();
+    const parsedBirthday = new Date(birthDay).getTime();
+    const parsedToday = new Date(today).getTime();
 
-    if(birthDay >= today) {
+    if(parsedBirthday >= parsedToday) {
         alert('오늘 날짜 이후는 설정할 수 없습니다.');
         event.preventDefault();
         return false;
