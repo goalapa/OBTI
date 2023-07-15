@@ -21,13 +21,13 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String getReport (){
         return "report";
     }
 
     // 신고하기 기능
-    @PostMapping("/")
+    @PostMapping("")
     public void saveReport(HttpServletRequest request) {
         ReportDTO reportDTO = new ReportDTO();
         reportDTO.setReportedMemberNo(Integer.parseInt(request.getParameter("reported_member_no")));

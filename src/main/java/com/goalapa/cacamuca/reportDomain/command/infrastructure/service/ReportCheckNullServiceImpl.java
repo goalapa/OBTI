@@ -26,9 +26,9 @@ public class ReportCheckNullServiceImpl implements ReportCheckNullService {
     public boolean checkNotNull(ReportDTO reportDTO)  {
         try {
 
-            Member reportedMember = memberRepository.findByMemberId(reportDTO.getReportedMemberNo().toString())
+            Member reportedMember = memberRepository.findById(reportDTO.getReportedMemberNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
-            Member reportMember = memberRepository.findByMemberId(reportDTO.getReportMemberNo().toString())
+            Member reportMember = memberRepository.findById(reportDTO.getReportMemberNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
             Review review = reviewRepository.findById(reportDTO.getReviewNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 리뷰입니다."));
