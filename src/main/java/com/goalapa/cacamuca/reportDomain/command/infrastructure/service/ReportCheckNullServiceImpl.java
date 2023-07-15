@@ -33,8 +33,7 @@ public class ReportCheckNullServiceImpl implements ReportCheckNullService {
             Review review = reviewRepository.findById(reportDTO.getReviewNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 리뷰입니다."));
 
-            return reportMember == null && reportedMember == null && review == null;
-
+            return true;
         }
         catch (NotFoundException e) {
             throw new RuntimeException(e);
