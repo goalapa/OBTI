@@ -36,25 +36,26 @@
       </div>
 
       <div class="mt-10 sm:mx-auto lg:w-full lg:max-w-lg">
-        <form class="space-y-6" action="/member/registration" method="POST">
+        <form class="space-y-6" action="/member/registration" method="POST" onsubmit="return submit(event)">
           <div>
             <div class="mt-2 flex items-center w-full">
-              <input id="username" name="memberId" type="text" required placeholder="아이디" autocomplete="off" class="flex w-full p-2 py-2 rounded-l-lg border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              <button id="idCheck" onclick="chechId()" type="button" class="flex w-3/12 px-6 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">중복체크</button>
+              <input id="username" name="memberId" type="text" required placeholder="아이디" autocomplete="off" onchange="validateId()" class="flex w-full p-2 py-2 rounded-l-lg border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <button id="idCheck" onclick="checkId()" onchange="validateId()" type="button" class="flex w-3/12 px-6 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">중복체크</button>
             </div>
-            <label for="username" class="block text-sm font-medium leading-6 text-gray-500">*아이디는 영문, 숫자만 입력 가능합니다.</label>
+            <label id="labelUsername" for="username" class="block text-sm font-medium leading-6 text-gray-500">*아이디는 영문, 숫자만 입력 가능합니다.</label>
           </div>
 
           <div>
             <div class="mt-2">
-              <input id="password" name="memberPwd" type="password" required placeholder="비밀번호" autocomplete="off" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input id="password" name="memberPwd" type="password" required placeholder="비밀번호" autocomplete="off" onchange="validatePassword()" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
-            <label for="password" class="block text-sm font-small leading-6 text-gray-500">*비밀번호는 대문자와 소문자를 포함한 6-20자로 되어야 합니다.</label>
+            <label id="labelPassword" for="password" class="block text-sm font-small leading-6 text-gray-500"></label>
           </div>
 
           <div>
             <div class="mt-2">
-              <input id="try-password" type="password" required placeholder="비밀번호확인" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input id="confirmPassword" type="password" required placeholder="비밀번호확인" onchange="checkPassword()" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <label id="labelConfirmPassword" for="password" class="block text-sm font-small leading-6 text-red-500"></label>
             </div>
           </div>
 
@@ -67,7 +68,7 @@
           <div>
             <div class="mt-2 flex items-center w-full">
               <input id="email" name="memberEmail" type="email" required placeholder="이메일" class="block w-full p-2 rounded-l-lg border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              <button type="button" class="flex w-3/12 px-6 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">중복체크</button>
+              <button type="button" onclick="checkEmail()" class="flex w-3/12 px-6 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">중복체크</button>
             </div>
           </div>
 
@@ -102,7 +103,7 @@
         </div>
 
         <div>
-            <button type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">회원가입</button>
+            <button id="submit" type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">회원가입</button>
         </div>
         </form>
           <div class="flex justify-center">
@@ -118,5 +119,5 @@
 <!--            console.log('memberId',id.value);-->
 <!--        }-->
 <!--    </script>-->
-<!--</body>-->
+</body>
 </html>

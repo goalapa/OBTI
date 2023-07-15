@@ -23,4 +23,17 @@ public class QueryMemberServiceImpl implements QueryMemberService {
             return false;
         }
     }
+
+    @Override
+    public Boolean checkIsDuplicatedEmail(String email) {
+
+        Member member = memberMapper.findByMemberEmail(email);
+
+        if(member == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

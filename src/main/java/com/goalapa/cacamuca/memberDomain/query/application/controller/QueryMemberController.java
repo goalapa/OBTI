@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
-public class MemberController {
+public class QueryMemberController {
 
     private final QueryMemberServiceImpl memberService;
 
@@ -39,6 +39,15 @@ public class MemberController {
     public ResponseEntity checkIsDuplicatedId(@PathVariable String memberId) {
 
         Boolean result =  memberService.checkIsDuplicatedId(memberId);
+
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("email/{email}")
+    @ResponseBody
+    public ResponseEntity checkDuplicatedEmail(@PathVariable String email) {
+
+        Boolean result = memberService.checkIsDuplicatedEmail(email);
 
         return ResponseEntity.ok(result);
     }
