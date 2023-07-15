@@ -30,13 +30,13 @@ VALUES(3,'link');
 
 INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth)
 -- VALUES(1,'abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
-VALUES(1,'abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
+VALUES(1,'abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','dkem@gmail.com','ROLE_MEMBER',0,'2001-08-04');
 INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth)
 -- VALUES(2,'abc111','pwd111','오늘은뭐먹지','zmzlsk@gmail.com',30,20,'1990-01-20');
-VALUES(2,'abc111','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com',30,20,'1990-01-20');
+VALUES(2,'abc111','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com','ROLE_MEMBER',20,'1990-01-20');
 INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth)
 -- VALUES(3,'abc222','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES(3,'abc222','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com',10,10,'2008-11-30');
+VALUES(3,'abc222','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',10,'2008-11-30');
 
 
 

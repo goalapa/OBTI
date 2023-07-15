@@ -30,12 +30,11 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                     .loginPage("/member/login")
-                        .permitAll()
+                    .defaultSuccessUrl("/member/main")
                 )
-                .httpBasic(withDefaults())
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/member/main")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
