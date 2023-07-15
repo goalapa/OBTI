@@ -3,6 +3,7 @@ let isPasswordValidate = null;
 let isIdCheck = null;
 let isEmailCheck = null;
 let isPwdCheck = null;
+let isBirthCheck = null;
 
 async function validateId() {
     const id = document.getElementById('username').value;
@@ -10,6 +11,10 @@ async function validateId() {
     const validation = /^[a-zA-z0-9]{6,20}$/;
 
     if(validation.test(id)) {
+        if(isIdCheck === false) {
+            isIdCheck = null;
+        }
+
         isIdValidate = true;
         label.innerText = '사용 가능한 아이디 입니다.';
         label.classList.replace('text-gray-500', 'text-green-500');
@@ -25,7 +30,7 @@ async function validatePassword() {
     const validation = /^[a-zA-z0-9]{6,20}$/;
 
     if(validation.test(password)) {
-        isPasswordValidate = false;
+        isPasswordValidate = true;
         label.innerText = '사용 가능한 비밀번호 입니다.';
         if(label.classList.contains('text-gray-500')) {
             label.classList.replace('text-gray-500', 'text-green-500');
@@ -36,7 +41,7 @@ async function validatePassword() {
         isPasswordValidate = false;
         label.innerText = '';
     } else {
-        isPasswordValidate = true;
+        isPasswordValidate = false;
         label.innerText = '비밀번호는 대문자와 소문자를 포함한 6-20자로 되어야 합니다.';
 
         if(label.classList.contains('text-gray-500')) {
@@ -80,7 +85,6 @@ async function checkId() {
 
 async function checkPassword() {
     const originPwd = document.getElementById('password').value;
-    console.log(originPwd);
     const confirmPwd= document.getElementById('confirmPassword').value;
     const label =  document.getElementById('labelConfirmPassword');
 
@@ -101,6 +105,12 @@ async function checkPassword() {
 async function checkEmail() {
     const email = document.getElementById('email').value;
 
+    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+    if(!regex.test(email)) {
+        alert('이메일 형식이 일치하지 않습니다.');
+        return false;
+    }
+
     await axios.get(`/member/email/${email}`)
         .then((res) => {
             isEmailCheck = res.data;
@@ -116,6 +126,15 @@ async function checkEmail() {
                 alert('에러');
             }
         })
+}
+
+async function checkBirth() {
+    // const birthDay = new Date();
+    const birth = document.getElementById('datepicker').value;
+    const birthday = new Date(document.getElementById('datepicker').value);
+    console.log('여기오나');
+    console.log(birth);
+    console.log(birthday);
 }
 
 const preventSubmit =  async function submit(event) {
@@ -154,6 +173,27 @@ const preventSubmit =  async function submit(event) {
 
     if(isPasswordValidate === false) {
         alert('비밀번호 제약규칙에 위배 됩니다.');
+        event.preventDefault();
+        return false;
+    }
+
+    if(document.getElementById('country').value === 'none') {
+        alert('국적을 확인해주세요.');
+        event.preventDefault();
+        return false;
+    }
+
+    if(document.getElementById('gender').value === 'none') {
+        alert('성별을 확인해주세요.');
+        event.preventDefault();
+        return false;
+    }
+
+    const birthDay = new Date(document.getElementById('datepicker').value).toDateString();
+    const today = new Date(Date.now()).toDateString();
+
+    if(birthDay >= today) {
+        alert('오늘 날짜 이후는 설정할 수 없습니다.');
         event.preventDefault();
         return false;
     }

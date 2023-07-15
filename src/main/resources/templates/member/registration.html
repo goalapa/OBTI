@@ -72,8 +72,8 @@
             </div>
           </div>
 
-        <select id="country" name="memberCountry" class="block w-full p-2 mb-6 text-sm text-gray-500 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected class="">국가를 선택해주세요</option>
+        <select id="country" name="memberCountry" class="block w-full p-2 mb-6 text-sm text-gray-500 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            <option selected value="none">국가를 선택해주세요</option>
             <option value="한국">한국</option>
             <option value="일본">일본</option>
             <option value="미국">미국</option>
@@ -87,8 +87,8 @@
             <option value="몽골">몽골</option>
         </select>
 
-        <select id="gender" name="memberGender" class="block w-full p-2 mb-6 text-sm text-gray-500 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected class="">성별을 선택해주세요</option>
+        <select id="gender" name="memberGender" class="block w-full p-2 mb-6 text-sm text-gray-500 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            <option selected value="none">성별을 선택해주세요</option>
             <option value="male">남자</option>
             <option value="female">여자</option>
         </select>
@@ -99,7 +99,7 @@
                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                 </svg>
             </div>
-            <input datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" type="text" name="memberBirth" autocomplete="off" class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="생년월일을 입력해주세요">
+            <input id="datepicker" onselect="checkBirth()" onchange="checkBirth()" datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" type="text" name="memberBirth" autocomplete="off" class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="생년월일을 입력해주세요" required>
         </div>
 
         <div>
@@ -113,11 +113,5 @@
       </div>
     </div>
     <script th:src="@{/js/registration.js}"></script>
-<!--    <script>-->
-<!--        async function chechId() {-->
-<!--            const id = document.getElementById('username');-->
-<!--            console.log('memberId',id.value);-->
-<!--        }-->
-<!--    </script>-->
 </body>
 </html>
