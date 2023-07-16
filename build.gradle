@@ -39,6 +39,8 @@ dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.1'
 }
 
 tasks.named('test') {

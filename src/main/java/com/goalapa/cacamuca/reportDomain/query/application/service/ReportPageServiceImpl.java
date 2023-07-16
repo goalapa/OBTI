@@ -9,9 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ReportPageServiceImpl implements ReportPageService {
@@ -22,28 +21,20 @@ public class ReportPageServiceImpl implements ReportPageService {
         this.reportMapper = reportMapper;
     }
 
+    // 신고 리스트 페이징
     @Override
     @Transactional
-    public Page<ReportQueryDTO> getReportPage(Pageable pageable, int totalPages) {
-        Map<String, Integer> pageMap = new HashMap<>();
-        pageMap.put("offset", (int) pageable.getOffset());
-        pageMap.put("pageSize", pageable.getPageSize());
+    public Page<ReportQueryDTO> getReportPage(Pageable pageable) {
+        List<ReportQueryDTO> reportList = new ArrayList<>(reportMapper.getReportPage(pageable));
 
-        List<ReportQueryDTO> reportList = reportMapper.getReportPage(pageMap);
-
-        reportList.forEach(System.out::println);
-
+        int totalItems = reportMapper.getTotalItems(pageable);
         int start = (int) pageable.getOffset();
-        int end = Math.min(start + pageable.getPageSize(), reportList.size());
-        if (start > end) {
-            start = Math.max(0, end - pageable.getPageSize());
-        }
+        int end = Math.min(start + pageable.getPageSize(), totalItems);
 
-        return new PageImpl<>(reportList.subList(start, end), pageable, totalPages);
+        // 목록이 없으면 빈페이지 생성
+        if (start > reportList.size())
+            return new PageImpl<>(new ArrayList<>(), pageable, reportList.size());
+
+        return new PageImpl<>(reportList.subList(start, end), pageable, totalItems);
     }
-
-    public int getTotalPages(int pageSize) {
-        return reportMapper.getTotalPages();
-    }
-
 }

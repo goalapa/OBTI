@@ -11,25 +11,14 @@
         <result property="reportType" column="report_type" />
     </resultMap>
 
-    <select id="getReportPage" parameterType="hashmap" resultMap="reportResultMap">
+    <select id="getReportPage" resultMap="reportResultMap">
         SELECT *
         FROM REPORT
-        LIMIT ${ offset }, ${ pageSize }
+<!--        LIMIT #{ offset }, #{ pageSize }-->
     </select>
 
-    <select id="getTotalPages" resultType="_int">
-        SELECT COUNT(1)
+    <select id="getTotalItems" resultType="_int">
+        SELECT COUNT(*)
         FROM REPORT
     </select>
-
-<!--    <select id="getReportPage" resultMap="reportResultMap">-->
-<!--        select * from report-->
-<!--        <if test="pageable.sort.sorted">-->
-<!--            <trim prefix="order by">-->
-<!--                <foreach item="order" index="i" collection="pageable.sort" separator=", ">-->
-<!--                    ${order.property} ${order.direction}-->
-<!--                </foreach>-->
-<!--            </trim>-->
-<!--        </if>-->
-<!--    </select>-->
 </mapper>
