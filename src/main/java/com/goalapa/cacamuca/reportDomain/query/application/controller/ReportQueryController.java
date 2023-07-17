@@ -22,11 +22,15 @@ public class ReportQueryController {
         this.reportPageServiceImpl = reportPageServiceImpl;
     }
 
-    // 신고 리스트 조회
     @GetMapping("/report")
+    public String getReportPage () {
+        return "reportlist";
+    }
+
+    // 신고 리스트 조회
+    @GetMapping("/report-list")
     @ResponseBody
-    public ResponseEntity<Page<ReportQueryDTO>>
-    getReportPage(@PageableDefault(size = 2, sort="report_no", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<Page<ReportQueryDTO>> getReportListPage(@PageableDefault(size = 2, sort="report_no", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<ReportQueryDTO> reportPage = reportPageServiceImpl.getReportPage(pageable);
 
         return ResponseEntity.ok(reportPage);

@@ -10,11 +10,11 @@
 </head>
 
 <body>
-  <form action="admin-page/report" method="get">
     <script>
-      axios.post('/admin-page/report')
+      axios.get('/admin-page/report-list')
               .then(function(response) {
-                window.location.href = 'reportlist.html';
+                let reportData = response.data.content;
+                console.log(reportData);
               })
               .catch(function(error) {
                 console.log(error);
