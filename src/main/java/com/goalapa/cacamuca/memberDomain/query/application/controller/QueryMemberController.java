@@ -40,6 +40,11 @@ public class QueryMemberController {
         return "member/findId";
     }
 
+    @GetMapping("find-password-page")
+    public String findPasswordPage() {
+
+        return "member/findPassword";
+    }
 
     @GetMapping("id/{memberId}")
     @ResponseBody
@@ -54,9 +59,9 @@ public class QueryMemberController {
     @ResponseBody
     public ResponseEntity findId(@RequestParam String email) {
 
-        infraMemberService.sendIdToMember(email);
+        Boolean result =  infraMemberService.sendIdToMember(email);
 
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("email/{email}")
