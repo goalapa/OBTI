@@ -36,4 +36,9 @@ public class QueryMemberServiceImpl implements QueryMemberService {
         }
     }
 
+    @Override
+    public void findId(String email) {
+
+    }
+
 }

@@ -52,6 +52,23 @@ spring:
       max-request-size: 100MB
       # 파일 하나의 최대 크기
       max-file-size: 20MB
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: ENC(G5K3KlQM6HV8hFJjsbewNHfNI8lVXrx4)
+    password: ENC(6wjMN4dAQDbx8xMCbHqrYTZFA4y4OL0noFuUMgoZoLk=)
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+            trust: smtp.gmail.com
+          starttls:
+            enable: true
+          transport:
+            protocol: smtp
 
 mybatis:
     mapper-locations: classpath*:mapper/*.xml

@@ -5,4 +5,6 @@ public interface QueryMemberService {
     Boolean checkIsDuplicatedId(String memberId);
 
     Boolean checkIsDuplicatedEmail(String email);
+
+    void findId(String email);
 }

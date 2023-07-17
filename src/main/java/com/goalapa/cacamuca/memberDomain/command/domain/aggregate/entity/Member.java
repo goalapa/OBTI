@@ -1,6 +1,7 @@
 package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity;
 
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
+import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.Password;
 import lombok.*;
 import org.hibernate.annotations.Check;
 

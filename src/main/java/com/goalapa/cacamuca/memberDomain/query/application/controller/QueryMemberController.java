@@ -1,13 +1,11 @@
 package com.goalapa.cacamuca.memberDomain.query.application.controller;
 
 import com.goalapa.cacamuca.memberDomain.query.application.service.QueryMemberServiceImpl;
+import com.goalapa.cacamuca.memberDomain.query.infrastructure.service.InfraQueryMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class QueryMemberController {
 
     private final QueryMemberServiceImpl memberService;
+    private final InfraQueryMemberService infraMemberService;
 
     @GetMapping("/main")
     public String main() {
@@ -35,6 +34,13 @@ public class QueryMemberController {
         return "member/registration";
     }
 
+    @GetMapping("find-id-page")
+    public String findIdPage() {
+
+        return "member/findId";
+    }
+
+
     @GetMapping("id/{memberId}")
     @ResponseBody
     public ResponseEntity checkIsDuplicatedId(@PathVariable String memberId) {
@@ -42,6 +48,15 @@ public class QueryMemberController {
         Boolean result =  memberService.checkIsDuplicatedId(memberId);
 
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("id/find-id")
+    @ResponseBody
+    public ResponseEntity findId(@RequestParam String email) {
+
+        infraMemberService.sendIdToMember(email);
+
+        return ResponseEntity.ok(true);
     }
 
     @GetMapping("email/{email}")
