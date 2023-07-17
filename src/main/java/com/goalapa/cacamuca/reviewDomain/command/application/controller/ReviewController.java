@@ -39,21 +39,11 @@ public class ReviewController {
         return "redirect:/selectReviews";
     }
 
-//    @PostMapping("/reviewDetail")
-//    public void CountHeart(@RequestParam int no, @RequestParam int member, Model model){
-//        System.out.println("no = " + no);
-//        System.out.println("member = " + member);
-////        reviewService.countHeart(reviewDTO.getLikeCnt());
-//
-//
-//    }
 @PostMapping("/reviewDetail")
 @ResponseBody
 public Map<String, Object> CountHeart(Model model, @RequestBody HashMap<String, Object> parameter){
     String no = (String) parameter.get("no");
     Integer no1 =  Integer.parseInt(no);
-
-    System.out.println("받아온 리뷰 넘버 = " + no);
     Integer memberNo = Integer.parseInt((String) parameter.get("member"));
 
     reviewService.countHeart(no1, memberNo);

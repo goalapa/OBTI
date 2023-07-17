@@ -86,15 +86,21 @@ public class ReviewService {
     public void countHeart(Integer no, Integer memberNo) {
         Review review = reviewRepository.findById(no).get();
 
+        if(review.getLikeCnt()==null){
+            review.setLikeCnt(0);
+        }
+
+        System.out.println("no = " + no);
+        System.out.println("memberNo = " + memberNo);
+
         LikeId likeId = new LikeId();
 
         likeId.setReviewNo(no);
         likeId.setMemberNo(memberNo);
 
-        Like like =  likeRepository.findById(likeId).get();
-
         review.setLikeCnt(review.getLikeCnt() + 1);
 
-        ReviewLikeDTO reviewLike = new ReviewLikeDTO(like.getId().getMemberNo(), like.getId().getReviewNo());
+//        Like like =  likeRepository.findById(likeId).get();
+//        ReviewLikeDTO reviewLike = new ReviewLikeDTO(like.getId().getMemberNo(), like.getId().getReviewNo());
     }
 }
