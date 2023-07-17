@@ -25,7 +25,7 @@ public class InfraQueryMemberService {
 
         if(member != null) {
             String subject = "[cacamuca] 아이디 찾기";
-            String text = "아이디는" + member.getMemberId() + " 입니다.";
+            String text = "아이디는 " + member.getMemberId() + " 입니다.";
 
             SimpleMailMessage message = new SimpleMailMessage();
             message.setSubject(subject);
