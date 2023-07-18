@@ -1,6 +1,7 @@
-package com.goalapa.cacamuca.memberDomain.command.application.dto;
+package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -27,8 +28,6 @@ public class MemberDTO {
     private String memberReportCnt;
 
     private String memberCountry;
-
-    private String memberGender;
 
     private String memberBirth;
 }
