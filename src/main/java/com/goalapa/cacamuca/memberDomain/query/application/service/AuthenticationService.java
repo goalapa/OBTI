@@ -5,7 +5,7 @@ import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberReposit
 import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+//import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
