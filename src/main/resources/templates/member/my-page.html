@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<th:block th:insert="~{common/header}" />
+<th:block th:insert="~{common/aside}" />
+
+<main class="p-4 sm:ml-64">
+  <div class="flex min-h-full flex-col justify-center px-8 py-12 lg:px-8">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">회원정보 수정</h2>
+    <div class="mt-10 sm:mx-auto lg:w-full lg:max-w-lg">
+      <form class="space-y-6" action="/member" method="PUT" onsubmit="return submit(event)">
+        <div>
+          <div class="mt-2">
+            <input type="text" id="memberNo" name="memberNo" hidden>
+            <input id="nickname" name="memberNickname" type="text" required placeholder="닉네임" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div>
+          <div class="mt-2 flex items-center w-full">
+            <input id="email" name="memberEmail" type="email" required placeholder="이메일" class="block w-full p-2 rounded-l-lg border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <button type="button" onclick="checkEmail()" class="flex w-3/12 px-6 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">중복체크</button>
+          </div>
+        </div>
+
+        <select id="country" name="memberCountry" class="block w-full p-2 mb-6 text-sm text-gray-500 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+          <option selected value="none">국가를 선택해주세요</option>
+          <option value="한국">한국</option>
+          <option value="일본">일본</option>
+          <option value="미국">미국</option>
+          <option value="영국">영국</option>
+          <option value="베트남">베트남</option>
+          <option value="태국">태국</option>
+          <option value="프랑스">프랑스</option>
+          <option value="이탈리아">이탈리아</option>
+          <option value="튀르키예">튀르키예</option>
+          <option value="중국">중국</option>
+          <option value="몽골">몽골</option>
+        </select>
+
+        <div class="relative max-w-lg">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <a href="/member/main">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </a>
+          </div>
+          <input id="datepicker" onselect="checkBirth()" onchange="checkBirth()" datepicker datepicker-autohide datepicker-format="yyyy-mm-dd" type="text" name="memberBirth" autocomplete="off" class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="생년월일을 입력해주세요" required>
+        </div>
+
+        <div>
+          <button id="submit" type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">회원정보수정</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<script>
+  const memberNo = '[[${ member.memberNo }]]';
+  const nickname = '[[${ member.memberNickname }]]';
+  const email = '[[${ member.memberEmail }]]';
+  const country = '[[${ member.memberCountry }]]';
+  const birth = '[[${ member.memberBirth }]]';
+
+  document.getElementById('memberNo').value = memberNo;
+  document.getElementById('nickname').value = nickname;
+  document.getElementById('email').value = email;
+  document.getElementById('datepicker').value = birth;
+
+  const countryElement = document.getElementById('country');
+  const len = countryElement.options.length;
+
+  for (let i=0; i<len; i++) {
+    if(countryElement.options[i].value == country){
+      countryElement.options[i].selected = true;
+    }
+  }
+
+  async function checkEmail() {
+    const convertedEmail = document.getElementById('email').value;
+    if(convertedEmail === email) {
+      alert('기존 이메일이 아닌 다른 이메일을 입력하세요.');
+    } else {
+        axios.get(`/member/email/${convertedEmail}`)
+                .then((res) => {
+                  const isEmailCheck = res.data;
+
+                  if(isEmailCheck === false) {
+                    alert('이미 사용중인 이메일 입니다.')
+                  } else {
+                    alert('사용 가능한 이메일 입니다.')
+                  }
+                })
+                .catch((err) => {
+                  if(err.status === 500) {
+                    alert('에러');
+                  }
+                })
+    }
+  }
+</script>
+</body>
+</html>

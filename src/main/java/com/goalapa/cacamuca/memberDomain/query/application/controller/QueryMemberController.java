@@ -1,11 +1,16 @@
 package com.goalapa.cacamuca.memberDomain.query.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.memberDomain.query.application.service.QueryMemberServiceImpl;
+import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.query.infrastructure.service.InfraQueryMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -44,6 +49,19 @@ public class QueryMemberController {
     public String findPasswordPage() {
 
         return "member/findPassword";
+    }
+
+    @GetMapping("my-page")
+    public ModelAndView findMyPage(@AuthenticationPrincipal CustomUser user, ModelAndView mv, Model model) {
+
+        String memberId =  user.getUsername();
+
+        Member member = memberService.findId(memberId);
+
+        mv.addObject("member", member);
+        mv.setViewName("member/my-page");
+
+        return mv;
     }
 
     @GetMapping("id/{memberId}")

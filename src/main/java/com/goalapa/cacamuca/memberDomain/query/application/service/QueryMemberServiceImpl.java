@@ -37,8 +37,11 @@ public class QueryMemberServiceImpl implements QueryMemberService {
     }
 
     @Override
-    public void findId(String email) {
+    public Member findId(String memberId) {
 
+        Member member = memberMapper.getMember(memberId);
+
+        return member;
     }
 
 }

@@ -57,4 +57,16 @@ public class MemberServiceImpl implements CommandMemberService {
             throw new Exception("password is null");
         }
     }
+
+    public void modifyMemberInfo(MemberDTO memberDTO) {
+        Optional<Member> optionalMember = memberRepository.findByMemberId(memberDTO.getMemberId());
+
+        if(optionalMember.isPresent()) {
+            Member member = optionalMember.get();
+            if(memberDTO.getMemberNickname() != null) member.setMemberNickname(memberDTO.getMemberNickname());
+            if(memberDTO.getMemberEmail() != null) member.setMemberEmail(memberDTO.getMemberEmail());
+            if(memberDTO.getMemberCountry() != null) member.setMemberCountry(memberDTO.getMemberCountry());
+
+        }
+    }
 }

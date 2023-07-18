@@ -52,4 +52,9 @@ public class CommandMemberController {
         }
     }
 
+    @PutMapping("/")
+    public void modifyMemberInfo(@ModelAttribute MemberDTO member) {
+
+        memberService.modifyMemberInfo(member);
+    }
 }

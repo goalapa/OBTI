@@ -8,5 +8,7 @@ public interface MemberMapper {
 
     Member findByMemberId(String memberId);
 
+    Member getMember(String memberId);
+
     Member findByMemberEmail(String email);
 }
