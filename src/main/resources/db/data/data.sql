@@ -4,12 +4,12 @@ INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_
 VALUES(2,'2023-07-25','2023-08-20',2);
 
 
-INSERT INTO category(category_name,sub_category_name)
-VALUES('한국','과자');
-INSERT INTO category(category_name,sub_category_name)
-VALUES('일본','과자');
-INSERT INTO category(category_name,sub_category_name)
-VALUES('대만','과자');
+INSERT INTO category(category_no,category_name,sub_category_name)
+VALUES(1,'한국','과자');
+INSERT INTO category(category_no,category_name,sub_category_name)
+VALUES(2,'일본','과자');
+INSERT INTO category(category_no,category_name,sub_category_name)
+VALUES(3,'대만','과자');
 
 
 INSERT INTO food(food_no,food_name,category_no,food_rate,food_price)
@@ -46,11 +46,11 @@ INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,repor
 VALUES(2,3,3,2,1);
 
 
-INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('한국','과자','신상요청1',1500,1, 'test1');
-INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('일본','과자','신상요청2',1500,2, 'test2');
-INSERT INTO request(country, food_type, request_food,request_price,member_no, request_content)
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('대만','과자','신상요청3',1500,3, 'test3');
 
 

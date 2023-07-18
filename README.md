@@ -41,11 +41,12 @@
 
 
 ## 🧱 4. 프로젝트 아키텍처
-###  4-1. 흐름도
+### 4-1 . CQRS 미로 
+![image](https://github.com/goalapa/spring-cacamuca/assets/61495627/1083d5fd-9e89-4b0c-8652-0d85466c5024)
 
-### 4-2. ERD 다이어그램
+### 4-2. 흐름도
 
-###  4-3. File Settings 🗄️
+### 4-3. File Settings 🗄️
 
 
 <br>
