@@ -58,15 +58,36 @@ public class MemberServiceImpl implements CommandMemberService {
         }
     }
 
-    public void modifyMemberInfo(MemberDTO memberDTO) {
-        Optional<Member> optionalMember = memberRepository.findByMemberId(memberDTO.getMemberId());
+    @Transactional
+    public void modifyMemberInfo(MemberDTO memberDTO) throws Exception {
+        Optional<Member> optionalMember = memberRepository.findById(memberDTO.getMemberNo());
 
         if(optionalMember.isPresent()) {
             Member member = optionalMember.get();
-            if(memberDTO.getMemberNickname() != null) member.setMemberNickname(memberDTO.getMemberNickname());
-            if(memberDTO.getMemberEmail() != null) member.setMemberEmail(memberDTO.getMemberEmail());
-            if(memberDTO.getMemberCountry() != null) member.setMemberCountry(memberDTO.getMemberCountry());
+            String encodedPassword =  passwordEncoder.encode(memberDTO.getMemberPwd());
+            if(memberDTO.getMemberPwd() != null) member.setMemberPwd(encodedPassword);
+        } else {
+            throw new Exception("변경할 회원정보가 없습니다.");
+        }
+    }
 
+    @Transactional
+    public void secession(Integer memberNo, String password) throws Exception {
+
+        Optional<Member> optionalMember = memberRepository.findById(memberNo);
+
+        if(optionalMember.isPresent()) {
+            Member member = optionalMember.get();
+
+            String encodedPassword = passwordEncoder.encode(password);
+
+            if(passwordEncoder.matches(password, encodedPassword)) {
+                member.setMemberId(null);
+                member.setMemberEmail(null);
+                member.setMemberPwd(null);
+            }
+        } else {
+            throw new Exception("회원정보가 없습니다.");
         }
     }
 }

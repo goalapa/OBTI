@@ -70,5 +70,12 @@
         </div>
       </div>
     </div>
+<script>
+    const urlParams = new URL(location.href).searchParams;
+    const error = urlParams.get('error');
+    if(error === 'true') {
+        alert('아이디 혹은 비밀번호를 확인해주세요.');
+    }
+</script>
 </body>
 </html>

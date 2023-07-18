@@ -128,15 +128,6 @@ async function checkEmail() {
         })
 }
 
-async function checkBirth() {
-    // const birthDay = new Date();
-    const birth = document.getElementById('datepicker').value;
-    const birthday = new Date(document.getElementById('datepicker').value);
-    console.log('여기오나');
-    console.log(birth);
-    console.log(birthday);
-}
-
 const preventSubmit =  async function submit(event) {
 
     if(isIdCheck === null) {

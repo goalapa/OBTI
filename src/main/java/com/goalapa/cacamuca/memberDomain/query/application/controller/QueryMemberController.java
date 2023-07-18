@@ -52,7 +52,7 @@ public class QueryMemberController {
     }
 
     @GetMapping("my-page")
-    public ModelAndView findMyPage(@AuthenticationPrincipal CustomUser user, ModelAndView mv, Model model) {
+    public ModelAndView findMyPage(@AuthenticationPrincipal CustomUser user, ModelAndView mv) {
 
         String memberId =  user.getUsername();
 
@@ -63,6 +63,26 @@ public class QueryMemberController {
 
         return mv;
     }
+
+    @GetMapping("my-password")
+    public ModelAndView findMyPasswordPage(@AuthenticationPrincipal CustomUser user, ModelAndView mv) {
+
+        String memberId =  user.getUsername();
+
+        Member member = memberService.findId(memberId);
+
+        mv.addObject("member", member);
+        mv.setViewName("member/my-password");
+
+        return mv;
+    }
+
+    @GetMapping("secession")
+    public String secessionPage() {
+
+        return "member/secession";
+    }
+
 
     @GetMapping("id/{memberId}")
     @ResponseBody
