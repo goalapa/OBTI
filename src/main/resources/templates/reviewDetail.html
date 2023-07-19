@@ -57,6 +57,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
+    <th:block th:insert="~{common/header}"/>
     <input type="text" th:value="${review.country}" readonly />
     <input type="text" th:value="${review.foodType}" readonly/>
     <input type="text" th:value="${review.reviewKeyword}" readonly/>
@@ -75,7 +76,7 @@
         <div class="rating">
             ★★★★★
             <span class="rating_star">★★★★★</span>
-            <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${review.reviewRate}">
+            <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${review.reviewRate}" readonly>
         </div>
     </div>
 

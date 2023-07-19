@@ -29,7 +29,6 @@ public class QueryMemberController {
 
     @GetMapping("registration")
     public String registration() {
-
         return "member/registration";
     }
 
