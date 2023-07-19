@@ -34,7 +34,7 @@ public class SaveRequestServiceImpl implements SaveRequestService {
         request.setRequestPrice(requestDTO.getRequestPrice());
         request.setRequestFoodType(requestFoodType);
         request.setRequestCountry(requestCountry);
-        request.setRequestedFood(requestDTO.getRequestedFood());
+        request.setRequestedFood(requestDTO.getRequestFood());
         request.setRequestContent(requestDTO.getRequestContent());
 
 

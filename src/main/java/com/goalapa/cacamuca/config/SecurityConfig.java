@@ -2,6 +2,7 @@ package com.goalapa.cacamuca.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,11 +31,16 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                     .loginPage("/member/login")
-                    .defaultSuccessUrl("/member/main")
+//                    .failureHandler((request, response, exception) -> {
+//                        response.addHeader( "content-Type", "application/json");
+//                        response.sendError(400);
+//                    })
+                    .failureUrl("/member/login?error=true")
+                    .defaultSuccessUrl("/")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/member/main")
+                        .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
