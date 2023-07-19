@@ -1,78 +1,52 @@
-package com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity;
+package com.goalapa.cacamuca.reviewDomain.query.application.dto;
 
-import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
 import org.hibernate.annotations.Comment;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "review")
-public class Review {
-
-    @Id()
-    @Column(name = "review_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reviewNo;
-
-    @Comment("리뷰 내용")
-    @Column(name = "review_content")
-    private String reviewContent;
-
-    @Column(name = "country")
+public class QueryReviewDTO {
     private String country;
-
-    @Column(name = "food_type")
     private String foodType;
-
-    @Column(name = "food_name")
     private String foodName;
-
-    @Column(name = "review_date")
-    private LocalDate reviewDate;
-
-    @Column(name = "review_rate")
+    private int reviewNo;
+    private String reviewContent;
+    private String reviewDate;
     private double reviewRate;
+    private Integer memberNo;
 
-    @Embedded
-    private ReviewWriter reviewWriter;
-
-    @Column(name = "food_no")
-    private Integer foodNo;
-
-    @Column(name = "review_keyword")
     private String reviewKeyword;
-
-    @Column(name = "review_price")
     private int reviewPrice;
-
-    @Column(name = "review_link")
     private String reviewLink;
-
-    @Column(name = "likeCnt")
     private Integer likeCnt;
 
-    public Review(String reviewContent, String country, String foodType, String foodName, LocalDate date, double reviewRate, ReviewWriter reviewWriter, Integer foodNo,
-                  String reviewKeyword, int reviewPrice, String reviewLink) {
+    public QueryReviewDTO() {
+    }
+
+    public QueryReviewDTO(int reviewNo, String reviewContent, String country, String foodType, String foodName, String reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
+        this.reviewNo = reviewNo;
         this.reviewContent = reviewContent;
         this.country = country;
         this.foodType = foodType;
         this.foodName = foodName;
-        this.reviewDate = date;
+        this.reviewDate = reviewDate;
         this.reviewRate = reviewRate;
-        this.reviewWriter = reviewWriter;
-        this.foodNo = foodNo;
+        this.memberNo = memberNo;
         this.reviewKeyword = reviewKeyword;
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
-
-    }
-
-    public Review(){
+        this.likeCnt = likeCnt;
     }
 
     public int getReviewNo() {
         return reviewNo;
+    }
+
+    public void setReviewNo(int reviewNo) {
+        this.reviewNo = reviewNo;
     }
 
     public String getReviewContent() {
@@ -107,11 +81,11 @@ public class Review {
         this.foodName = foodName;
     }
 
-    public LocalDate getReviewDate() {
+    public String getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(String reviewDate) {
         this.reviewDate = reviewDate;
     }
 
@@ -123,13 +97,14 @@ public class Review {
         this.reviewRate = reviewRate;
     }
 
-    public Integer getFoodNo() {
-        return foodNo;
+    public Integer getMemberNo() {
+        return memberNo;
     }
 
-    public void setFoodNo(Integer foodNo) {
-        this.foodNo = foodNo;
+    public void setMemberNo(Integer memberNo) {
+        this.memberNo = memberNo;
     }
+
 
     public String getReviewKeyword() {
         return reviewKeyword;
@@ -165,7 +140,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "QueryReviewDTO{" +
                 "reviewNo=" + reviewNo +
                 ", reviewContent='" + reviewContent + '\'' +
                 ", country='" + country + '\'' +
@@ -173,7 +148,7 @@ public class Review {
                 ", foodName='" + foodName + '\'' +
                 ", reviewDate=" + reviewDate +
                 ", reviewRate=" + reviewRate +
-                ", foodNo=" + foodNo +
+                ", memberNo=" + memberNo +
                 ", reviewKeyword='" + reviewKeyword + '\'' +
                 ", reviewPrice=" + reviewPrice +
                 ", reviewLink='" + reviewLink + '\'' +

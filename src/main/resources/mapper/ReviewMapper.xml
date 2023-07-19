@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper">
+    <resultMap id="reviewResultMap" type="com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO">
+        <result property="reviewNo" column="review_no"/>
+        <result property="country" column="country"/>
+        <result property="foodName" column="food_name"/>
+        <result property="foodType" column="food_type"/>
+        <result property="likeCnt" column="like_cnt"/>
+        <result property="memberNo" column="member_no"/>
+        <result property="reviewContent" column="review_content"/>
+        <result property="reviewDate" column="review_date"/>
+        <result property="reviewKeyword" column="review_keyword"/>
+        <result property="reviewLink" column="review_link"/>
+        <result property="reviewPrice" column="review_price"/>
+        <result property="reviewRate" column="review_rate"/>
+    </resultMap>
+
+    <resultMap id="reviewPicResultMap" type="com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO">
+        <id property="reviewPicNo" column="review_pic_no"/>
+        <result property="reviewNo" column="review_no"/>
+        <result property="reviewPicUrl" column="review_pic_url"/>
+    </resultMap>
+
+    <select id="findAllPictures" resultMap="reviewPicResultMap">
+        SELECT p.review_pic_url
+        FROM review_pic p
+    </select>
+
+    <select id="findAllReviews" resultMap="reviewResultMap">
+        SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
+        FROM review r
+    </select>
+
+    <select id="findReviewByNo" resultMap="reviewResultMap">
+        SELECT r.review_no, r.country, r.food_name, r.food_no, r.food_type, r.like_cnt, r.member_no,
+               r.review_date, r.review_content, r.review_date, r.review_keyword, r.review_link,
+               r.review_price, r.review_rate
+        FROM review r
+        WHERE r.review_no = #{ no }
+    </select>
+
+    <select id="findLike" resultType="int">
+        SELECT l.count(*)
+        FROM review_like l
+        WHERE member_no = #{member_no} and review_no = #{review_no}
+    </select>
+
+</mapper>

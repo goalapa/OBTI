@@ -1,11 +1,11 @@
-package com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity;
+package com.goalapa.cacamuca.reviewDomain.query.domain.entity;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Table(name = "review_pic")
-public class ReviewPic {
-
+public class QueryReviewPic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_pic_no")
@@ -18,16 +18,16 @@ public class ReviewPic {
     @Column(name = "review_pic_url")
     private String reviewPicUrl;
 
-    public ReviewPic(String uploadPath, int review_no) {
+    public QueryReviewPic(String uploadPath, int review_no) {
         this.reviewPicUrl = uploadPath;
         this.reviewNo = review_no;
     }
 
-    public ReviewPic(String uploadPath) {
+    public QueryReviewPic(String uploadPath) {
         this.reviewPicUrl = uploadPath;
     }
 
-    public ReviewPic() {
+    public QueryReviewPic() {
 
     }
 }

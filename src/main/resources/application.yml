@@ -70,9 +70,6 @@ spring:
           transport:
             protocol: smtp
 
-mybatis:
-    mapper-locations: classpath*:mapper/*.xml
-
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
