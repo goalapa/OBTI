@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ReportPageServiceImpl implements ReportPageService {
 
     // 신고 리스트 페이징
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<ReportQueryDTO> getReportPage(Pageable pageable) {
         List<ReportQueryDTO> reportList = new ArrayList<>(reportMapper.getReportPage(pageable));
 
