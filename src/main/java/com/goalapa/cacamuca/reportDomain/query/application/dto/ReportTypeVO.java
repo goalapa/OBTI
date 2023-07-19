@@ -1,4 +1,4 @@
-package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo;
+package com.goalapa.cacamuca.reportDomain.query.application.dto;
 
 import javax.persistence.Column;
 
