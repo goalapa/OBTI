@@ -4,6 +4,7 @@ import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.Password;
 import lombok.*;
 import org.hibernate.annotations.Check;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ public class Member {
     private Integer memberNo;
 
     @Column(name = "member_id")
+    @Nullable
     private String memberId;
 
     @Column(name = "member_pwd")
