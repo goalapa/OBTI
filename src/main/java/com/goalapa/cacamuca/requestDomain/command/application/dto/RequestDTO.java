@@ -1,40 +1,38 @@
 package com.goalapa.cacamuca.requestDomain.command.application.dto;
 
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCountry;
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestFoodType;
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMemberNo;
+
 import javax.persistence.Column;
+
+import static java.lang.Integer.parseInt;
 
 public class RequestDTO {
 
-    private String country;
-    private String foodType;
+    private String requestCountry;
+    private String requestFoodType;
     private String requestedFood;
-    private Integer requestPrice;
-    private Integer memberNo;
+    private int requestPrice;
+    private int requestMemberNo;
     private String requestContent;
 
     public RequestDTO() {}
-    public RequestDTO(String country, String foodType, String requestedFood, Integer requestPrice, Integer memberNo, String requestContent) {
-        this.country = country;
-        this.foodType = foodType;
-        this.requestedFood = requestedFood;
-        this.requestPrice = requestPrice;
-        this.memberNo = memberNo;
-        this.requestContent = requestContent;
+
+    public String getRequestCountry() {
+        return requestCountry;
     }
 
-    public String getCountry() {
-        return country;
+    public void setRequestCountry(String requestCountry) {
+        this.requestCountry = requestCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public String getRequestFoodType() {
+        return requestFoodType;
     }
 
-    public String getFoodType() {
-        return foodType;
-    }
-
-    public void setFoodType(String foodType) {
-        this.foodType = foodType;
+    public void setRequestFoodType(String requestFoodType) {
+        this.requestFoodType = requestFoodType;
     }
 
     public String getRequestedFood() {
@@ -53,12 +51,12 @@ public class RequestDTO {
         this.requestPrice = requestPrice;
     }
 
-    public Integer getMemberNo() {
-        return memberNo;
+    public int getRequestMemberNo() {
+        return requestMemberNo;
     }
 
-    public void setMemberNo(Integer memberNo) {
-        this.memberNo = memberNo;
+    public void setRequestMemberNo(int requestMemberNo) {
+        this.requestMemberNo = requestMemberNo;
     }
 
     public String getRequestContent() {
@@ -72,11 +70,11 @@ public class RequestDTO {
     @Override
     public String toString() {
         return "RequestDTO{" +
-                "country='" + country + '\'' +
-                ", foodType='" + foodType + '\'' +
+                "requestCountry=" + requestCountry +
+                ", requestFoodType=" + requestFoodType +
                 ", requestedFood='" + requestedFood + '\'' +
                 ", requestPrice=" + requestPrice +
-                ", memberNo=" + memberNo +
+                ", requestMemberNo=" + requestMemberNo +
                 ", requestContent='" + requestContent + '\'' +
                 '}';
     }
