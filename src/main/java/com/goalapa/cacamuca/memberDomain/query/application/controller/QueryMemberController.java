@@ -21,12 +21,6 @@ public class QueryMemberController {
     private final QueryMemberServiceImpl memberService;
     private final InfraQueryMemberService infraMemberService;
 
-    @GetMapping("/main")
-    public String main() {
-
-        return "main";
-    }
-
     @GetMapping("/login")
     public String login() {
 

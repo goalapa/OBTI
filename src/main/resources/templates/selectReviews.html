@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .layout{
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+  <div class="layout">
+      <table>
+          <thead>
+            <tr>
+                <th>리뷰 번호</th>
+                <th>까까 이름</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="review : ${reviews}">
+                <td th:text="${review.reviewNo}"/>
+                <td>
+                    <a th:text="${review.foodName}" th:href="@{/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
+                </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <button onclick="location.href='/review'" class="writeReview">글쓰기</button>
+  </div>
+</body>
+</html>

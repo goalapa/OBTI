@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .rating_box {
+            display: flex;
+        }
+
+        .rating {
+            position: relative;
+            color: #ddd;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .rating input {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .rating_star {
+            width: 0;
+            color: #ffc107;
+            position: absolute;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #reviewContents {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: solid 1.5px #D3D3D3;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .preview-image {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="review" method="post" enctype="multipart/form-data">
+    <select name="country" >
+        <option value="none">=== 선택 ===</option>
+        <option value="ko">한국</option>
+        <option value="jp">일본</option>
+        <option value="us">미국</option>
+        <option value="sp">영국</option>
+        <option value="vi">베트남</option>
+        <option value="ta">태국</option>
+        <option value="fr">프랑스</option>
+        <option value="it">이탈리아</option>
+        <option value="tr">튀르키예</option>
+        <option value="ch">중국</option>
+        <option value="mo">몽골</option>
+    </select>
+
+    <select name="foodType" >
+        <option value="none">=== 선택 ===</option>
+        <option value="snack">과자</option>
+        <option value="tea">차</option>
+        <option value="cof">커피</option>
+        <option value="drink">음료</option>
+        <option value="bread">빵</option>
+        <option value="jel">젤리</option>
+        <option value="choco">초콜릿</option>
+        <option value="candy">사탕</option>
+    </select>
+
+    <select name="reviewKeyword" >
+        <option value="none">=== 선택 ===</option>
+        <option value="gas">가성비</option>
+        <option value="gae">개별포장</option>
+        <option value="pre">선물하기좋은</option>
+        <option value="gif">증정품포함</option>
+    </select>
+
+    <input type="text" name="foodName" placeholder="식품 이름을 입력해주세요">
+
+    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요">
+
+    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요">
+
+    <div class="rating_box">
+        <div class="rating">
+            ★★★★★
+            <span class="rating_star">★★★★★</span>
+            <input type="range" name="reviewRate" value="1" step="1" min="0" max="10">
+        </div>
+    </div>
+
+    <div id="reviewContent">
+        <textarea name="reviewContent" id="content" cols="130" rows="25" placeholder="내용을 작성해주세요"></textarea>
+    </div>
+
+    <div>
+        <input type="submit" value="글쓰기">
+    </div>
+
+    <div>
+        <p>
+            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)">
+        </p>
+        <div id="preview-container"></div>
+    </div>
+
+</form>
+
+<script>
+    const rating_input = document.querySelector('.rating input');
+    const rating_star = document.querySelector('.rating_star');
+
+    // 별점 드래그 할 때
+    rating_input.addEventListener('input', () => {
+        rating_star.style.width = `${rating_input.value * 10}%`;
+    });
+
+    function previewImages(event) {
+        var previewContainer = document.getElementById('preview-container');
+        var files = event.target.files;
+
+        previewContainer.innerHTML = '';
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var imageUrl = event.target.result;
+                var imageElement = document.createElement('img');
+
+                imageElement.src = imageUrl;
+                imageElement.classList.add('preview-image');
+
+                previewContainer.appendChild(imageElement);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+</body>
+</html>
