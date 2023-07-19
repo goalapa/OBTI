@@ -28,11 +28,13 @@ public class SecurityConfig {
                         .antMatchers("login").authenticated()
 //                        .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
-                .httpBasic(withDefaults())
+                .formLogin(form -> form
+                    .loginPage("/member/login")
+                    .defaultSuccessUrl("/member/main")
+                )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/member/main")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );

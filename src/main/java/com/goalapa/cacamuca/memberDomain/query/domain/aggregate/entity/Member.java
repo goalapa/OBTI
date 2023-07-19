@@ -2,6 +2,8 @@ package com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,5 +25,7 @@ public class Member {
 
     private String memberReportCnt;
 
-    private String memberBirth;
+    private String memberCountry;
+
+    private LocalDate memberBirth;
 }
