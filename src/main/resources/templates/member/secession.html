@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<th:block th:insert="~{common/header}" />
+<th:block th:insert="~{common/aside}" />
+
+<main class="p-4 sm:ml-64">
+  <div class="flex min-h-full flex-col justify-center px-8 py-12 lg:px-8">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">회원탈퇴</h2>
+    <div class="mt-10 sm:mx-auto lg:w-full lg:max-w-lg">
+      <form class="space-y-6" action="/member/secession" method="post" onsubmit="return submit(event)">
+        <div>
+          <div class="mt-2">
+            <input type="text" id="memberNo" name="memberNo" hidden>
+            <input id="password" name="password" type="password" required placeholder="비밀번호" autocomplete="off" onchange="validatePassword()" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <label id="labelPassword" for="password" class="block text-sm font-small leading-6 text-gray-500"></label>
+        </div>
+
+        <div>
+          <div class="mt-2">
+            <input id="confirmPassword" type="password" required placeholder="비밀번호확인" onchange="checkPassword()" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <label id="labelConfirmPassword" for="password" class="block text-sm font-small leading-6 text-red-500"></label>
+          </div>
+        </div>
+        <div>
+          <button id="submit" type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">회원탈퇴</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<script>
+  let isPwdCheck = null;
+
+  async function checkPassword() {
+    const originPwd = document.getElementById('password').value;
+    const confirmPwd= document.getElementById('confirmPassword').value;
+    const label =  document.getElementById('labelConfirmPassword');
+
+    if(confirmPwd !== '' && originPwd != confirmPwd) {
+      isPwdCheck = false;
+      label.innerText = '비밀번호가 다릅니다.';
+      label.classList.replace('text-green-500', 'text-red-500');
+    } else if(confirmPwd === '') {
+      isPwdCheck = false;
+      label.innerText = '';
+    } else {
+      isPwdCheck = true;
+      label.innerText = '비밀번호가 같습니다.';
+      label.classList.replace('text-red-500', 'text-green-500');
+    }
+  }
+
+  const preventSubmit =  async function submit(event) {
+    if(isPwdCheck === false) {
+      alert('비밀번호가 일치하지 않습니다.');
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  let ele = document.getElementById('submit');
+  ele.addEventListener('click', preventSubmit);
+</script>
+</body>
+</html>
