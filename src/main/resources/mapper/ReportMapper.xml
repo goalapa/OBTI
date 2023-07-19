@@ -9,11 +9,16 @@
         <result property="reportMemberNo" column="report_member_no" />
         <result property="reportedMemberNo" column="reported_member_no" />
         <result property="reportType" column="report_type" />
+        <result property="reviewContent" column="review_content" />
     </resultMap>
 
     <select id="getReportPage" resultMap="reportResultMap">
-        SELECT *
-        FROM REPORT
+        SELECT A.REPORT_NO, A.REPORT_MEMBER_NO, A.REPORT_TYPE,
+                A.REPORTED_MEMBER_NO, A.REVIEW_NO,
+                B.REVIEW_CONTENT
+        FROM REPORT A
+        LEFT JOIN REVIEW B
+        ON A.REVIEW_NO = B.REVIEW_NO
 <!--        LIMIT #{ offset }, #{ pageSize }-->
     </select>
 

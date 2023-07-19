@@ -1,11 +1,14 @@
 package com.goalapa.cacamuca.reportDomain.query.application.dto;
 
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportTypeVO;
+
 public class ReportQueryDTO {
     private int reportNo;
     private Integer reviewNo;
     private Integer reportMemberNo;
     private Integer reportedMemberNo;
-    private Integer reportType;
+    private String reportType;
+    private String reviewContent;
 
     public void ReportQueryDTO() {}
 
@@ -25,8 +28,12 @@ public class ReportQueryDTO {
         return reportedMemberNo;
     }
 
-    public Integer getReportType() {
+    public String getReportType() {
         return reportType;
+    }
+
+    public String getReviewContent() {
+        return reviewContent;
     }
 
     public void setReportNo(int reportNo) {
@@ -46,7 +53,11 @@ public class ReportQueryDTO {
     }
 
     public void setReportType(Integer reportType) {
-        this.reportType = reportType;
+        this.reportType = new ReportTypeVO().getReportTypeToString(reportType);
+    }
+
+    public void setReviewContent(String reviewContent) {
+        this.reviewContent = reviewContent;
     }
 
     @Override
@@ -57,6 +68,7 @@ public class ReportQueryDTO {
                 ", reportMemberNo=" + reportMemberNo +
                 ", reportedMemberNo=" + reportedMemberNo +
                 ", reportType=" + reportType +
+                ", reviewContent=" + reviewContent +
                 '}';
     }
 }
