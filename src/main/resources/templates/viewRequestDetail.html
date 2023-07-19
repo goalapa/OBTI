@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>요청 식품 상세보기</title>
+    <th:block th:insert="~{common/header}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modifyRequest1{
+            position: relative;
+            top: 30px;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <form action="saveRequest" method="post" class="modifyRequest1">
+        <div class="w-3/4 grid gap-6 mb-6 md:grid-cols-4">
+            <div>
+                <label for="requestNo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">REQUEST NO</label>
+                <input type="text" id="requestNo" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" th:value="${requestNo}" disabled>
+            </div>
+            <div>
+                <label for="memberNo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Member NO</label>
+                <input type="text" id="memberNo" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" th:value="${selectRequest.getRequestMemberNo()}" disabled>
+            </div>
+            <div>
+                <label for="requestCountry" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">COUNTRY</label>
+                <select name="requestCountry" id="requestCountry" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option th:text="${selectRequest.getRequestCountry()}" value="none" disabled selected></option>
+                    <option value="ko">한국</option>
+                    <option value="jp">일본</option>
+                    <option value="us">미국</option>
+                    <option value="sp">영국</option>
+                    <option value="vi">베트남</option>
+                    <option value="ta">태국</option>
+                    <option value="fr">프랑스</option>
+                    <option value="it">이탈리아</option>
+                    <option value="tr">튀르키예</option>
+                    <option value="ch">중국</option>
+                    <option value="mo">몽골</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="requestFoodType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">COUNTRY</label>
+                <select name="requestFoodType" id="requestFoodType" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">-->
+                    <option th:text="${selectRequest.getRequestFoodType()}" value="none" disabled selected></option>
+                    <option value="snack">과자</option>
+                    <option value="tea">차</option>
+                    <option value="coffee">커피</option>
+                    <option value="drink">음료</option>
+                    <option value="bread">빵</option>
+                    <option value="jelly">젤리</option>
+                    <option value="chocolate">초콜릿</option>
+                    <option value="candy">사탕</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="w-f grid gap-6 mb-6 md:grid-cols-3">
+            <div>
+                <label for="foodName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FOOD NAME</label>
+                <input type="text" id="foodName" name="requestFood" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" th:placeholder="${selectRequest.getRequestFood()}" required>
+            </div>
+
+            <div>
+                <label for="foodPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FOOD PRICE</label>
+                <input type="number" id="foodPrice" name="requestPrice"class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" th:placeholder="${selectRequest.getRequestPrice()}" required>
+            </div>
+
+            <div></div>
+
+            <div>
+                <label for="foodPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FOOD PICTURE</label>
+                <img class="h-auto max-w-lg rounded-lg" th:src="${selectRequestPic.getRequestURL()}" th:alt="${selectRequestPic.getRequestURL()}">
+            </div>
+
+            <div>
+                <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTENT</label>
+                <textarea id="content" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-900 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" th:placeholder="${selectRequest.getRequestContent()}" disabled></textarea>
+            </div>
+
+            <div></div>
+        </div>
+
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">식품 저장</button>
+
+    </form>
+
+</body>
+</html>
