@@ -42,15 +42,15 @@ public class ReviewController {
 @PostMapping("/reviewDetail")
 @ResponseBody
 public Map<String, Object> CountHeart(Model model, @RequestBody HashMap<String, Object> parameter){
-    String no = (String) parameter.get("no");
-    Integer no1 =  Integer.parseInt(no);
-    Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+        String no = (String) parameter.get("no");
+        Integer reviewNo =  Integer.parseInt(no);
+        Integer memberNo = Integer.parseInt((String) parameter.get("member"));
 
-    reviewService.countHeart(no1, memberNo);
+        reviewService.countHeart(reviewNo, memberNo);
 
-    Map<String, Object> responseMap = new HashMap<>();
-    responseMap.put("no", Integer.valueOf(no).toString());
-    responseMap.put("member", memberNo);
-    return responseMap;
-}
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("no", Integer.valueOf(reviewNo).toString());
+        responseMap.put("member", memberNo);
+        return responseMap;
+    }
 }

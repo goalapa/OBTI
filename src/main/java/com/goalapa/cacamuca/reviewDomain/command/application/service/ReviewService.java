@@ -1,15 +1,14 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
-import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.Like;
 import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.LikeId;
 import com.goalapa.cacamuca.likeDomain.command.domain.repository.LikeRepository;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewLikeDTO;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
+import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewValidationService;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,5 +101,6 @@ public class ReviewService {
 
 //        Like like =  likeRepository.findById(likeId).get();
 //        ReviewLikeDTO reviewLike = new ReviewLikeDTO(like.getId().getMemberNo(), like.getId().getReviewNo());
+
     }
 }
