@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.requestDomain.query.application.controller;
 
+import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestToFoodImpl;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestDTO;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestPicDTO;
 import com.goalapa.cacamuca.requestDomain.query.application.service.FindRequestPicService;
@@ -17,9 +18,12 @@ public class FindRequestController {
     private final FindRequestService findRequestService;
     private final FindRequestPicService findRequestPicService;
 
-    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService) {
+    private final SaveRequestToFoodImpl saveRequestToFoodImpl;
+
+    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService, SaveRequestToFoodImpl saveRequestToFoodImpl) {
         this.findRequestService = findRequestService;
         this.findRequestPicService = findRequestPicService;
+        this.saveRequestToFoodImpl = saveRequestToFoodImpl;
     }
 
 
@@ -43,5 +47,14 @@ public class FindRequestController {
         model.addAttribute("selectRequestPic", requestPic);
 
         return "viewRequestDetail";
+    }
+
+
+    @PostMapping(value = "/view/saveRequest")
+    public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
+
+        saveRequestToFoodImpl.saveRequestToFood(findRequestDTO);
+
+        return "redirect:/adminRequest";
     }
 }

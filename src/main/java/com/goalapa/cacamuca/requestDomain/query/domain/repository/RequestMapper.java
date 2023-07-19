@@ -9,6 +9,5 @@ import java.util.List;
 public interface RequestMapper {
     List<FindRequestDTO> findAllRequests();
     FindRequestDTO findRequestByRequestNo(int requestNo);
-
     FindRequestPicDTO findRequestPicByRequestNo(int requestNo);
 }
