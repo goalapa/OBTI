@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -38,12 +38,13 @@
         </table>
     </div>
 
-    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing
+    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation" >
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
             <span class="font-semibold text-gray-900 dark:text-white" th:text="${reportPage.getPageable().getOffset()} + 1" /> -
             <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getPageable().offset} + ${reportPage.getNumberOfElements()}" /> of
-            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" /> total pages:
-            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalPages()}" id="totalPages"/>
+            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" />
+<!--            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" /> total pages:-->
+<!--            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalPages()}" id="totalPages"/>-->
         </span>
         <ul class="inline-flex -space-x-px text-sm h-8">
             <li>
@@ -88,6 +89,9 @@
                 <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
             </li>
         </ul>
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalPages()}" id="totalPages"/>
+        </span>
     </nav>
 
     <script>
