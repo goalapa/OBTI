@@ -102,7 +102,7 @@ public class CommandMemberController {
             cookie.setMaxAge(0);
             cookie.setPath("/");
             response.addCookie(cookie);
-            response.sendRedirect("/member/main");
+            response.sendRedirect("/");
         } catch (Exception e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("result", "잘못된 회원정보 입니다.");

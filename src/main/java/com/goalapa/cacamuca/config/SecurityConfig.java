@@ -36,11 +36,11 @@ public class SecurityConfig {
 //                        response.sendError(400);
 //                    })
                     .failureUrl("/member/login?error=true")
-                    .defaultSuccessUrl("/member/main")
+                    .defaultSuccessUrl("/")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/member/main")
+                        .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
