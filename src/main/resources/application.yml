@@ -1,6 +1,6 @@
 # server config
 server:
-  port: 8001
+  port: 7777
   servlet:
     session:
       timeout: 360000s
