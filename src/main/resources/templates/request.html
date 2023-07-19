@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>식품 요청 페이지</title>
-    <th:block th:insert="~{common/header}" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .request {
             position: relative;
@@ -15,7 +12,7 @@
     </style>
 </head>
 <body>
-
+    <th:block th:insert="~{common/header}" />
     <form action="request" method="post", enctype="multipart/form-data" class="request">
         <select name="requestCountry" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="none">국가를 선택해주세요.</option>
@@ -80,7 +77,5 @@
 <!--        <input type="submit" value="요청하기" class="">-->
 <!--        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"/>-->
     </form>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
 </body>
-
 </html>
