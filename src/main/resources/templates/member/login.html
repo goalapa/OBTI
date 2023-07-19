@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!--
+    This example requires some changes to your config:
+
+    ```
+    // tailwind.config.js
+    module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+    }
+    ```
+    -->
+    <!--
+      This example requires updating your template:
+
+      ```
+      <html class="h-full bg-white">
+      <body class="h-full">
+      ```
+    -->
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+          <a href="/member/main">
+              <img class="mx-auto h-10 w-auto" th:src="@{/assets/img/CACAMUCA.svg}" alt="CACAMUCA">
+          </a>
+<!--        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>-->
+      </div>
+
+      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" action="#" method="POST">
+          <div>
+            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">ID</label>
+            <div class="mt-2">
+              <input id="username" name="username" type="text" required class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+
+            </div>
+            <div class="mt-2">
+              <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">로그인</button>
+          </div>
+        </form>
+        <div class="inline flex">
+          <div class="inline flex justify-start text-sm">
+              <a href="/member/find-id-page" class="flex justify-start font-semibold text-blue-500 hover:text-blue-700">ID / PASSWORD 찾기</a>
+          </div>
+          <div class="grow"></div>
+          <div class="inline flex justify-end">
+              <a href="/member/registration" class="flex justify-end font-semibold leading-6 text-blue-500 hover:text-blue-700">회원가입</a>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+    const urlParams = new URL(location.href).searchParams;
+    const error = urlParams.get('error');
+    if(error === 'true') {
+        alert('아이디 혹은 비밀번호를 확인해주세요.');
+    }
+</script>
+</body>
+</html>

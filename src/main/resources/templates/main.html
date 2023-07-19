@@ -7,5 +7,12 @@
 <body>
   <th:block th:insert="~{common/header}" />
   <h1>main</h1>
+<script>
+    const result = '[[${ result }]]';
+
+    if(result) {
+        alert(result);
+    }
+</script>
 </body>
 </html>
