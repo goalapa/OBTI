@@ -9,15 +9,35 @@
         <result property="memberPwd" column="member_pwd" />
         <result property="memberNickname" column="member_nickname" />
         <result property="memberBirth" column="member_birth" />
+        <result property="memberCountry" column="member_country" />
         <result property="memberEmail" column="member_email" />
         <result property="memberGrant" column="member_grant" />
         <result property="memberReportCnt" column="member_report_cnt" />
     </resultMap>
 
     <select id="findByMemberId" parameterType="string" resultMap="memberResultMap">
-        SELECT
+        SELECT <!-- com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper -->
                *
           FROM member m
          WHERE m.member_id = #{ memberId }
+    </select>
+
+    <select id="getMember" parameterType="string" resultMap="memberResultMap">
+        SELECT <!-- com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper -->
+               m.member_no
+             , m.member_id
+             , m.member_nickname
+             , m.member_country
+             , m.member_birth
+             , m.member_email
+          FROM member m
+         WHERE m.member_id = #{ memberId }
+    </select>
+
+    <select id="findByMemberEmail" parameterType="string" resultMap="memberResultMap">
+        SELECT <!-- com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper -->
+               *
+          FROM member m
+         WHERE m.member_email = #{ memberEmail }
     </select>
 </mapper>

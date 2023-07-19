@@ -11,6 +11,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Comment("상위카테고리와 하위카테고리를 포함한 고유번호")
     @Column(name = "category_no")
     private Integer categoryNo;
 

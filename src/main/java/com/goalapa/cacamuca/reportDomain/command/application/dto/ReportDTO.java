@@ -7,7 +7,7 @@ public class ReportDTO {
     private Integer reportedMemberNo;
     private Integer reportType;
 
-    public void ReportDTO() {}
+    public ReportDTO() {}
 
     public int getReportNo() {
         return reportNo;
