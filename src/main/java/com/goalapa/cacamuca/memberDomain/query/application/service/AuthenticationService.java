@@ -1,11 +1,9 @@
 package com.goalapa.cacamuca.memberDomain.query.application.service;
 
 import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
-import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
 import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
-//import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +32,8 @@ public class AuthenticationService implements UserDetailsService {
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("MEMBER"));
+        authorities.add(new SimpleGrantedAuthority(member.getMemberGrant()));
+//        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
 
         CustomUser customUser = new CustomUser(member, authorities);
 
