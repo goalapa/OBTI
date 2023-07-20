@@ -1,7 +1,9 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller

@@ -132,14 +132,14 @@ INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,m
 VALUES(12,'리뷰 예시03','프레첼','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
 
 
-INSERT INTO review_like(review_no,member_no)
-VALUES(1,2);
-INSERT INTO review_like(review_no,member_no)
-VALUES(2,2);
-INSERT INTO review_like(review_no,member_no)
-VALUES(1,1);
-INSERT INTO review_like(review_no,member_no)
-VALUES(3,2);
+-- INSERT INTO review_like(review_no,member_no)
+-- VALUES(1,2);
+-- INSERT INTO review_like(review_no,member_no)
+-- VALUES(2,2);
+-- INSERT INTO review_like(review_no,member_no)
+-- VALUES(1,1);
+-- INSERT INTO review_like(review_no,member_no)
+-- VALUES(3,2);
 
 
 INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
