@@ -38,7 +38,7 @@ public class CommandMemberController {
 
         memberService.registMember(memberDTO);
 
-        return "redirect:main";
+        return "redirect:/";
     }
 
     @PostMapping("temp-password")
@@ -78,7 +78,7 @@ public class CommandMemberController {
     public String modifyMemberPassword(@ModelAttribute MemberDTO member, RedirectAttributes redirectAttributes) {
 
         try {
-            memberService.modifyMemberInfo(member);
+            memberService.modifyMemberPassword(member);
 
             redirectAttributes.addFlashAttribute("result", "비밀번호 변경이 완료되었습니다.");
             return "redirect:/member/my-password";

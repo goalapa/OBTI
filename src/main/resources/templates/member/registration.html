@@ -42,14 +42,14 @@
               <input id="username" name="memberId" type="text" required placeholder="아이디" autocomplete="off" onchange="validateId()" class="flex w-full p-2 py-2 rounded-l-lg border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               <button id="idCheck" onclick="checkId()" onchange="validateId()" type="button" class="flex w-3/12 px-6 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">중복체크</button>
             </div>
-            <label id="labelUsername" for="username" class="block text-sm font-medium leading-6 text-gray-500">*아이디는 영문, 숫자만 입력 가능합니다.</label>
+            <label id="labelUsername" for="username" class="block text-xs font-medium leading-6 text-gray-500">영문, 숫자만 4글자 이상 20글자 이하만 입력 가능합니다.</label>
           </div>
 
           <div>
             <div class="mt-2">
               <input id="password" name="memberPwd" type="password" required placeholder="비밀번호" autocomplete="off" onchange="validatePassword()" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
-            <label id="labelPassword" for="password" class="block text-sm font-small leading-6 text-gray-500"></label>
+            <label id="labelPassword" for="password" class="block text-xs font-small leading-6 text-gray-500">영문, 숫자 6-20자로 되어야 합니다.</label>
           </div>
 
           <div>
