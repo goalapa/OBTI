@@ -1,14 +1,6 @@
-package com.goalapa.cacamuca.requestDomain.command.application.dto;
+package com.goalapa.cacamuca.requestDomain.query.application.dto;
 
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCountry;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestFoodType;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMemberNo;
-
-import javax.persistence.Column;
-
-import static java.lang.Integer.parseInt;
-
-public class RequestDTO {
+public class FindRequestDTO {
 
     private int requestNo;
 
@@ -19,7 +11,7 @@ public class RequestDTO {
     private int requestMemberNo;
     private String requestContent;
 
-    public RequestDTO() {}
+    public FindRequestDTO() {}
 
     public int getRequestNo() {
         return requestNo;
@@ -83,10 +75,11 @@ public class RequestDTO {
 
     @Override
     public String toString() {
-        return "RequestDTO{" +
-                "requestCountry=" + requestCountry +
-                ", requestFoodType=" + requestFoodType +
-                ", requestedFood='" + requestFood + '\'' +
+        return "FindRequestDTO{" +
+                "requestNo=" + requestNo +
+                ", requestCountry='" + requestCountry + '\'' +
+                ", requestFoodType='" + requestFoodType + '\'' +
+                ", requestFood='" + requestFood + '\'' +
                 ", requestPrice=" + requestPrice +
                 ", requestMemberNo=" + requestMemberNo +
                 ", requestContent='" + requestContent + '\'' +

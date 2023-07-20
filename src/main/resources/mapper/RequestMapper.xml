@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goalapa.cacamuca.requestDomain.query.domain.repository.RequestMapper">
+
+    <resultMap id="requestResultMap" type="com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestDTO">
+        <id property="requestNo" column="REQUEST_NO"/>
+        <result property="requestName" column="REQUEST_NAME"/>
+        <result property="requestContent" column="REQUEST_CONTENT"/>
+        <result property="requestCountry" column="REQUEST_COUNTRY"/>
+        <result property="requestFoodType" column="REQUEST_FOOD_TYPE"/>
+        <result property="requestMemberNo" column="REQUEST_MEMBER_NO"/>
+        <result property="requestFood" column="REQUEST_FOOD"/>
+        <result property="requestPrice" column="REQUEST_PRICE"/>
+    </resultMap>
+
+    <resultMap id="requestPicResultMap" type="com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestPicDTO">
+        <id property="requestNo" column="REQUEST_NO"/>
+        <result property="requestURL" column="REQUEST_URL"/>
+    </resultMap>
+
+    <select id="findAllRequests" resultMap="requestResultMap">
+        SELECT
+                A.REQUEST_NO
+            ,   A.REQUEST_FOOD
+            ,   A.REQUEST_PRICE
+            ,   A.REQUEST_CONTENT
+            ,   A.REQUEST_COUNTRY
+            ,   A.REQUEST_FOOD_TYPE
+            ,   A.REQUEST_MEMBER_NO
+        FROM REQUEST A
+    </select>
+
+    <select id="findRequestByRequestNo" resultMap="requestResultMap" parameterType="_int">
+        SELECT
+                A.REQUEST_NO
+            ,   A.REQUEST_FOOD
+            ,   A.REQUEST_PRICE
+            ,   A.REQUEST_CONTENT
+            ,   A.REQUEST_COUNTRY
+            ,   A.REQUEST_FOOD_TYPE
+            ,   A.REQUEST_MEMBER_NO
+        FROM REQUEST A
+        WHERE A.REQUEST_NO = #{ requestNo }
+    </select>
+
+    <select id="findRequestPicByRequestNo" resultMap="requestPicResultMap" parameterType="_int">
+        SELECT
+        A.REQUEST_NO
+        ,   A.REQUEST_URL
+        FROM REQUEST_PIC A
+        WHERE A.REQUEST_NO = #{ requestNo }
+    </select>
+
+</mapper>
