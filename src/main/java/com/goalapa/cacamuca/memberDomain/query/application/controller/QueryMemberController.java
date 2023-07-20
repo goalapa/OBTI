@@ -8,9 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -54,6 +55,17 @@ public class QueryMemberController {
 
         mv.addObject("member", member);
         mv.setViewName("member/my-page");
+
+        return mv;
+    }
+
+    @GetMapping("admin-list")
+    public ModelAndView findAdminPage(ModelAndView mv) {
+
+        List<Member> memberList = memberService.findMemberList();
+
+        mv.addObject("members", memberList);
+        mv.setViewName("adminList");
 
         return mv;
     }
