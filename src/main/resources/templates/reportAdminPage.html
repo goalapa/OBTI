@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CACAMUCA</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -11,10 +11,11 @@
 
 <body>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table id="reportList" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">리뷰 번호</th>
+                <th scope="col" class="px-6 py-3">신고 번호</th>
                 <th scope="col" class="px-6 py-3">리뷰 내용</th>
                 <th scope="col" class="px-6 py-3">신고자</th>
                 <th scope="col" class="px-6 py-3">피신고자</th>
@@ -25,14 +26,19 @@
             </thead>
 
             <tbody>
-            <tr th:each="report : ${reportPage}">
-                <th scope="row" class="px-6 py-4" th:text="${report.reviewNo}" ></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reviewContent}" ></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}" ></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberNo}" ></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportType}" ></th>
-                <th scope="row"> <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" formmethod="post">신고 완료</button></th>
-                <th scope="row"> <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" formmethod="post">신고 삭제</button></th>
+            <tr th:each="report, reportStat : ${reportPage}" th:id="${reportStat.index}">
+                <th scope="row" class="px-6 py-4" th:text="${report.reviewNo}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${report.reportNo}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${report.reviewContent}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberNo}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${report.reportType}"></th>
+                <th scope="row">
+                    <button type="button" onclick="deleteReport(event, true)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 완료</button>
+                </th>
+                <th scope="row">
+                    <button type="button" onclick="deleteReport(event, false)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 삭제</button>
+                </th>
             </tr>
             </tbody>
         </table>
@@ -43,8 +49,6 @@
             <span class="font-semibold text-gray-900 dark:text-white" th:text="${reportPage.getPageable().getOffset()} + 1" /> -
             <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getPageable().offset} + ${reportPage.getNumberOfElements()}" /> of
             <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" />
-<!--            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" /> total pages:-->
-<!--            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalPages()}" id="totalPages"/>-->
         </span>
         <ul class="inline-flex -space-x-px text-sm h-8">
             <li>
@@ -95,6 +99,30 @@
     </nav>
 
     <script>
+        function deleteReport(event, isAccept) {
+            const reportRowId = event.target.getAttribute('data-report-id');
+            const reportTable = document.getElementById(reportRowId);
+
+            const reviewNo = reportTable.cells[0].innerText;
+            const reportNo = reportTable.cells[1].innerText;
+            const reportedMemberNo = reportTable.cells[4].innerText;
+
+            const data = {
+                reviewNo: reviewNo,
+                reportNo: reportNo,
+                reportedMemberNo: reportedMemberNo,
+                isAccept: isAccept
+            };
+
+            axios.post('/report/delete', data)
+                .then(response => {
+                    console.log('Report deleted successfully:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
         const urlParams = new URLSearchParams(window.location.search);
         const currentPage = parseInt(urlParams.get('page') || 0);
 

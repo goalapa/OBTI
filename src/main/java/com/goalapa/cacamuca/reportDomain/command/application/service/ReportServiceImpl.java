@@ -3,25 +3,31 @@ package com.goalapa.cacamuca.reportDomain.command.application.service;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDeleteDTO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.BlackList;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.repository.BlackListRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.service.ReportService;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 @Service
 public class ReportServiceImpl implements ReportService {
     private final ReportRepository reportRepository;
     private final MemberRepository memberRepository;
+    private final BlackListRepository blackListRepository;
 
-    public ReportServiceImpl(ReportRepository reportRepository, MemberRepository memberRepository) {
+    public ReportServiceImpl(ReportRepository reportRepository, MemberRepository memberRepository, BlackListRepository blackListRepository) {
         this.reportRepository = reportRepository;
         this.memberRepository = memberRepository;
+        this.blackListRepository = blackListRepository;
     }
 
     // 신고 저장
@@ -55,10 +61,9 @@ public class ReportServiceImpl implements ReportService {
     // 피신고자의 누적 신고 횟수 + 1
     @Override
     @Transactional
-    public int addReportCount(ReportDTO reportDTO) {
+    public int addReportCount(ReportDeleteDTO reportDeleteDTO) {
         try {
-            System.out.println("member : " + reportDTO.getReportedMemberNo().toString());
-            Member member = memberRepository.findById(reportDTO.getReportedMemberNo())
+            Member member = memberRepository.findById(reportDeleteDTO.getReportedMemberNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
 
             int reportCnt = Integer.parseInt(member.getMemberReportCnt()) + 1;
@@ -68,5 +73,23 @@ public class ReportServiceImpl implements ReportService {
         } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    @Transactional
+    public void saveBlackList(Integer reportedMemberNo) {
+//        try {
+//            Member member = memberRepository.findById(reportedMemberNo)
+//                    .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
+//
+//            if (!member.getmemberBlackListStatus()) {
+//                BlackList blacklist = new BlackList(member.getMemberId(), LocalDate.now(), null);
+//                blackListRepository.save(blacklist);
+//            }
+//
+//        } catch (NotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
     }
 }

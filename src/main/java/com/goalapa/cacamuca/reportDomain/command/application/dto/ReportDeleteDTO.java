@@ -12,5 +12,5 @@ public class ReportDeleteDTO {
     private Integer reportNo;
     private Integer reviewNo;
     private Integer reportedMemberNo;
-    private boolean isAccept;
+    private String isAccept;
 }

@@ -44,15 +44,12 @@ public class ReportController {
     // 신고 삭제 기능 (admin page 에서)
     @PostMapping("/delete")
     public ResponseEntity<String> acceptReport(@RequestBody ReportDeleteDTO reportDeleteDTO) {
-
-        System.out.println("reportDeleteDTO = " + reportDeleteDTO);
-
-        if (reportDeleteDTO.isAccept()) {
+        if (reportDeleteDTO.getIsAccept().equals("true")) {
             int reportCnt = reportService.addReportCount(reportDeleteDTO);
 
             System.out.println(reportCnt);
 
-            reportService.saveBlackList(reportDeleteDTO.getReportedMemberNo());
+            //reportService.saveBlackList(reportDeleteDTO.getReportedMemberNo());
             // member의 현재 블랙리스트 상태값 false && 신고 누적 단위가 10이 될 때 블랙리스트에 추가하는 로직 작성
         }
 
