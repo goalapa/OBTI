@@ -10,12 +10,12 @@ public class FoodDTO {
     private String foodName;
     private double foodRate;
     private int foodPrice;
-    private Country country;
-    private FoodType foodType;
+    private String country;
+    private String foodType;
 
     public FoodDTO() {}
 
-    public FoodDTO(String foodName, double foodRate, int foodPrice, Country country, FoodType foodType) {
+    public FoodDTO(String foodName, double foodRate, int foodPrice, String country, String foodType) {
         this.foodName = foodName;
         this.foodRate = foodRate;
         this.foodPrice = foodPrice;
@@ -55,19 +55,19 @@ public class FoodDTO {
         this.foodPrice = foodPrice;
     }
 
-    public Country getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    public FoodType getFoodType() {
+    public String getFoodType() {
         return foodType;
     }
 
-    public void setFoodType(FoodType foodType) {
+    public void setFoodType(String foodType) {
         this.foodType = foodType;
     }
 

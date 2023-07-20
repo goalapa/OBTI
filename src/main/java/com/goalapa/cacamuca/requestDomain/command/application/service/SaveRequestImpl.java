@@ -37,8 +37,6 @@ public class SaveRequestImpl implements SaveRequest {
         request.setRequestedFood(requestDTO.getRequestFood());
         request.setRequestContent(requestDTO.getRequestContent());
 
-
-        System.out.println("request = " + request);
         requestRepository.save(request);
 
     }
