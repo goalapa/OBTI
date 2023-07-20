@@ -1,6 +1,6 @@
-package com.goalapa.cacamuca.blackListDomain.command.domain.repository;
+package com.goalapa.cacamuca.reportDomain.command.domain.repository;
 
-import com.goalapa.cacamuca.blackListDomain.command.domain.aggregate.entity.Blacklist;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Blacklist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

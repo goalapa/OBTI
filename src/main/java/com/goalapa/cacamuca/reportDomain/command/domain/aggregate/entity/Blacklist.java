@@ -1,6 +1,4 @@
-package com.goalapa.cacamuca.blackListDomain.command.domain.aggregate.entity;
-
-import org.hibernate.annotations.Comment;
+package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
