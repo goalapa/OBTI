@@ -17,7 +17,6 @@ public class FindRequestController {
 
     private final FindRequestService findRequestService;
     private final FindRequestPicService findRequestPicService;
-
     private final SaveRequestToFoodImpl saveRequestToFoodImpl;
 
     public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService, SaveRequestToFoodImpl saveRequestToFoodImpl) {
@@ -37,7 +36,6 @@ public class FindRequestController {
     }
 
     @GetMapping("/view/{requestNo}")
-//    public String requestViewDetailPage(@PathVariable("requestNo") int requestNo, Model model) {
     public String requestViewDetailPage(@PathVariable("requestNo") int requestNo, Model model) {
 
         FindRequestDTO request = findRequestService.findRequestByRequestNo(requestNo);
