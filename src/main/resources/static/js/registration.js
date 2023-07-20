@@ -42,7 +42,7 @@ async function validatePassword() {
         label.innerText = '';
     } else {
         isPasswordValidate = false;
-        label.innerText = '비밀번호는 대문자와 소문자를 포함한 6-20자로 되어야 합니다.';
+        label.innerText = '비밀번호는 영문, 숫자 6-20자로 되어야 합니다.';
 
         if(label.classList.contains('text-gray-500')) {
             label.classList.replace('text-gray-500', 'text-red-500');
