@@ -43,7 +43,7 @@
         <th>FOOD TYPE</th>
         <th>NAME</th>
         <th>PRICE</th>
-        <th>CONTENT</th>
+<!--        <th>CONTENT</th>-->
         <th scope="col" class="px-6 py-3">
             <span class="sr-only">Edit</span>
         </th>
@@ -57,9 +57,10 @@
         <td><span th:text="${list.requestFoodType}"/></td>
         <td><span th:text="${list.requestFood}"/></td>
         <td><span th:text="${list.requestPrice}"/></td>
-        <td><span th:text="${list.requestContent}"/></td>
+<!--        <td><span th:text="${list.requestContent}"/></td>-->
         <td class="px-6 py-4">
-            <a th:href="@{/adminRequest/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">상세보기</a>
+            <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">상세보기</a>
+            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">삭제</a>
         </td>
     </tr>
 </table>

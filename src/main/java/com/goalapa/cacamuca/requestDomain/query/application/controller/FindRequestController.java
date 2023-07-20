@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/adminRequest")
+@RequestMapping("/request-list")
 public class FindRequestController {
 
     private final FindRequestService findRequestService;
@@ -33,7 +33,7 @@ public class FindRequestController {
 
         model.addAttribute("requestList", requests);
 
-        return "adminRequest";
+        return "request-list";
     }
 
     @GetMapping("/view/{requestNo}")
@@ -46,15 +46,15 @@ public class FindRequestController {
         model.addAttribute("selectRequest", request);
         model.addAttribute("selectRequestPic", requestPic);
 
-        return "viewRequestDetail";
+        return "request-detail";
     }
 
 
-    @PostMapping(value = "/view/saveRequest")
+    @PostMapping(value = "/view/save-request")
     public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
 
         saveRequestToFoodImpl.saveRequestToFood(findRequestDTO);
 
-        return "redirect:/adminRequest";
+        return "redirect:/request-list";
     }
 }
