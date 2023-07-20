@@ -1,24 +1,28 @@
 package com.goalapa.cacamuca.requestDomain.command.application.controller;
 
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
-import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestPicServiceImpl;
+import com.goalapa.cacamuca.requestDomain.command.application.service.DeleteRequestImpl;
+import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestPicImpl;
 import com.goalapa.cacamuca.requestDomain.command.infrastructure.service.CheckRequestServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("/*")
+//@RequestMapping("/*")
 public class RequestController {
 
-    private final CheckRequestServiceImpl checkRequestServiceImpl;
-    private final SaveRequestPicServiceImpl saveRequestPicServiceImpl;
+    private final CheckRequestServiceImpl checkRequestImpl;
+    private final SaveRequestPicImpl saveRequestPicImpl;
+
+    private final DeleteRequestImpl deleteRequestImpl;
 
 
 
-    public RequestController(CheckRequestServiceImpl checkRequestServiceImpl, SaveRequestPicServiceImpl saveRequestPicServiceImpl) {
-        this.checkRequestServiceImpl = checkRequestServiceImpl;
-        this.saveRequestPicServiceImpl = saveRequestPicServiceImpl;
+    public RequestController(CheckRequestServiceImpl checkRequestImpl, SaveRequestPicImpl saveRequestPicImpl, DeleteRequestImpl deleteRequestImpl) {
+        this.checkRequestImpl = checkRequestImpl;
+        this.saveRequestPicImpl = saveRequestPicImpl;
+        this.deleteRequestImpl = deleteRequestImpl;
     }
 
 
@@ -28,12 +32,22 @@ public class RequestController {
         return "request";
     }
 
-    @PostMapping(value = "/request")
-    public void saveRequest(@ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
+//    @PostMapping("/request")
+    @PostMapping("/request")
+    public String saveRequest(@ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
 
-        checkRequestServiceImpl.checkNotNull(requestDTO);
-        saveRequestPicServiceImpl.saveRequestPic(requestPic);
+        checkRequestImpl.checkNotNull(requestDTO);
+        saveRequestPicImpl.saveRequestPic(requestPic);
 
+        return "redirect:/";
+
+    }
+
+    @GetMapping("/request-list/delete/{requestNo}")
+    public String deleteRequest(@PathVariable("requestNo") int requestNo) {
+        deleteRequestImpl.deleteRequest(requestNo);
+
+        return "redirect:/request-list";
     }
 
 }

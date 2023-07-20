@@ -9,7 +9,6 @@
         table {
             position: relative;
             top: 30px;
-            font-family: arial, sans-serif;
         }
         .search {
             position: relative;
@@ -34,7 +33,7 @@
     </div>
 </div>
 
-<table  class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
+<table  class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400 text-center mx-auto">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
     <tr>
         <th>REQUEST NO</th>
@@ -43,6 +42,9 @@
         <th>FOOD TYPE</th>
         <th>NAME</th>
         <th>PRICE</th>
+<!--        <th></th>-->
+<!--        <th></th>-->
+
 <!--        <th>CONTENT</th>-->
         <th scope="col" class="px-6 py-3">
             <span class="sr-only">Edit</span>
@@ -50,17 +52,21 @@
     </tr>
     </thead>
 
-    <tr th:each="list : ${requestList}" scope="col" class="px-6 py-3 text-center">
+    <tr th:each="list : ${requestList}" scope="col" class="px-6 py-3">
         <td><span th:text="${list.requestNo}"/></td>
         <td><span th:text="${list.requestMemberNo}"/></td>
         <td><span th:text="${list.requestCountry}"/></td>
         <td><span th:text="${list.requestFoodType}"/></td>
         <td><span th:text="${list.requestFood}"/></td>
         <td><span th:text="${list.requestPrice}"/></td>
-<!--        <td><span th:text="${list.requestContent}"/></td>-->
-        <td class="px-6 py-4">
+        <td></td>
+        <td></td>
+<!--        <td class="px-6 py-4">-->
+        <td>
             <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">상세보기</a>
-            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">삭제</a>
+        </td>
+        <td>
+            <a th:href="@{/request-list/delete/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">삭제</a>
         </td>
     </tr>
 </table>

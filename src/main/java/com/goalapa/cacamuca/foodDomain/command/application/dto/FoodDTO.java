@@ -1,4 +1,5 @@
 package com.goalapa.cacamuca.foodDomain.command.application.dto;
 
-public class Dto {
+public class FoodDTO {
+
 }

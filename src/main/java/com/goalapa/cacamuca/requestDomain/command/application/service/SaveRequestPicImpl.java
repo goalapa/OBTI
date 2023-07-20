@@ -2,7 +2,7 @@ package com.goalapa.cacamuca.requestDomain.command.application.service;
 
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.RequestPic;
 import com.goalapa.cacamuca.requestDomain.command.domain.repository.RequestPicRepository;
-import com.goalapa.cacamuca.requestDomain.command.domain.service.SaveRequestPicService;
+import com.goalapa.cacamuca.requestDomain.command.domain.service.SaveRequestPic;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,16 +10,15 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.UUID;
 
 @Service
-public class SaveRequestPicServiceImpl implements SaveRequestPicService {
+public class SaveRequestPicImpl implements SaveRequestPic {
 
 
     private final RequestPicRepository requestPicRepository;
 
-    public SaveRequestPicServiceImpl(RequestPicRepository requestPicRepository) {
+    public SaveRequestPicImpl(RequestPicRepository requestPicRepository) {
         this.requestPicRepository = requestPicRepository;
     }
 
