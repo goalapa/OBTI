@@ -21,13 +21,13 @@ public class CategoryEntity {
     @Column(name = "category_no")
     private Integer categoryNo;
 
-    @Column(name = "category_name")
-    @Comment("상위카테고리(국가)")
-    private String categoryName;
+    @Column(name = "country")
+    @Comment("국가명")
+    private String country;
 
-    @Column(name = "sub_category_name")
-    @Comment("하위카테고리(식품 종류)")
-    private String subCategoryName;
+    @Column(name = "food_type")
+    @Comment("식품 종류")
+    private String foodType;
 
 
     public CategoryEntity() {
