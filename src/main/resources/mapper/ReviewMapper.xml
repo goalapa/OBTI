@@ -37,10 +37,10 @@
         WHERE r.review_no = #{ no }
     </select>
 
-    <select id="findAllPictures" resultType="reviewPicResultMap">
-        SELECT r.review_pic_url
-        FROM review_pic r
-        WHERE r.review_no = #{no}
-    </select>
+<!--    <select id="findAllPictures" resultType="reviewPicResultMap">-->
+<!--        SELECT r.review_pic_url-->
+<!--        FROM review_pic r-->
+<!--        WHERE r.review_no = #{no}-->
+<!--    </select>-->
 
 </mapper>

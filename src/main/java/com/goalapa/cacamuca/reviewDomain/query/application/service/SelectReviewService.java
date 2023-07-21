@@ -5,6 +5,10 @@ import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO
 import com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,17 +37,20 @@ public class SelectReviewService {
         return review;
     }
 
-    @Transactional(readOnly = true)
-    public List<QueryReviewPicDTO> findReviewPicByNo(int no) {
-        List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures(no);
-        System.out.println("저장된 사진의 경로는 = " + reviewPics);
-
-        for(QueryReviewPicDTO reviewPic : reviewPics){
-
-        }
-
-
-
-        return reviewPics;
-    }
+//    @Transactional(readOnly = true)
+//    public List<QueryReviewPicDTO> findReviewPicByNo(int no) {
+//        List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures(no);
+//        System.out.println("저장된 사진의 경로는 = " + reviewPics);
+//
+//        for(QueryReviewPicDTO reviewPic : reviewPics){
+//            if(reviewPic == null){
+//                continue;
+//            }
+//
+//            Resource resource = new FileSystemResource(filePath);
+//            System.out.println("resource = " + resource);
+//
+//        }
+//        return reviewPics;
+//    }
 }

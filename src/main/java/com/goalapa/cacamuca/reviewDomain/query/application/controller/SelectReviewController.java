@@ -42,7 +42,7 @@ public class SelectReviewController {
     @GetMapping("/detail")
     public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member){
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
-        model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
+//        model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
 
 //        QueryReviewDTO review = selectReviewService.findReviewByNo(no);
 //        logger.info(String.valueOf(review.getReviewRate()));
