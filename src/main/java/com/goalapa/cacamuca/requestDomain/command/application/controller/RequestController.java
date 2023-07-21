@@ -8,6 +8,7 @@ import com.goalapa.cacamuca.requestDomain.command.infrastructure.service.CheckRe
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 //@RequestMapping("/*")
@@ -40,6 +41,8 @@ public class RequestController {
 
         checkRequestImpl.checkNotNull(requestDTO);
         saveRequestPicImpl.saveRequestPic(requestPic);
+
+
 
         return "redirect:/";
 

@@ -11,7 +11,6 @@ import static java.lang.Integer.parseInt;
 public class RequestDTO {
 
     private int requestNo;
-
     private String requestCountry;
     private String requestFoodType;
     private String requestFood;

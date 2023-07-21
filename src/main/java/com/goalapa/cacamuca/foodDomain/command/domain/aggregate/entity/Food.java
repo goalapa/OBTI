@@ -35,7 +35,4 @@ public class Food {
     @Embedded
     private FoodType foodType;
 
-//    @Column(name = "category_no")
-//    private Integer categoryNo;
-
 }
