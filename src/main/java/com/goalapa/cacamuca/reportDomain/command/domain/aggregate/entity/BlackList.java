@@ -23,13 +23,17 @@ public class BlackList {
     @Embedded
     private BlackListMemberVO blackListMemberVO;
 
+    public BlackList() {
+
+    }
+
     public BlackList(BlackListMemberVO blackListMemberVO, LocalDate blacklistRegDate, LocalDate blacklistRelDate) {
         this.blackListMemberVO = blackListMemberVO;
         this.blacklistRegDate = blacklistRegDate;
         this.blacklistRelDate = blacklistRelDate;
     }
 
-    public BlackList() {
-
+    public void setBlacklistRelDate(LocalDate blacklistRelDate) {
+        this.blacklistRelDate = blacklistRelDate;
     }
 }

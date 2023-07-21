@@ -11,16 +11,18 @@
         <result property="memberId" column="member_id"/>
     </resultMap>
 
-    <select id="getBlackList" resultType="blackListResultMap">
+    <select id="getBlackListPage" resultMap="blackListResultMap">
             SELECT b.blacklist_no, b.blacklist_reg_date,
-                   b.blacklist_rel_date, m.member_no, m.member_id
+                   b.blacklist_rel_date,
+                   m.member_no, m.member_id
             FROM blacklist b
             LEFT JOIN member m
             ON b.member_no = m.member_no
+            ORDER BY b.blacklist_rel_date, b.blacklist_reg_date
     </select>
 
     <select id="getTotalItems" resultType="_int">
-        SELECT COUNT(*)
-        FROM blacklist
+        SELECT COUNT(b.blacklist_no)
+        FROM blacklist b
     </select>
 </mapper>
