@@ -49,14 +49,25 @@
             height: auto;
             margin: 10px;
         }
+
+
+         .review {
+             position: relative;
+             top: 80px;
+             left: 250px;
+         }
     </style>
 
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form action="review" method="post" enctype="multipart/form-data">
-    <select name="country" >
+<th:block th:insert="~{common/header}" />
+
+
+<form action="review" method="post" enctype="multipart/form-data" class="review">
+
+    <select name="country"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option value="none">=== 선택 ===</option>
         <option value="ko">한국</option>
         <option value="jp">일본</option>
@@ -71,7 +82,7 @@
         <option value="mo">몽골</option>
     </select>
 
-    <select name="foodType" >
+    <select name="foodType" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option value="none">=== 선택 ===</option>
         <option value="snack">과자</option>
         <option value="tea">차</option>
@@ -83,7 +94,7 @@
         <option value="candy">사탕</option>
     </select>
 
-    <select name="reviewKeyword" >
+    <select name="reviewKeyword"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option value="none">=== 선택 ===</option>
         <option value="gas">가성비</option>
         <option value="gae">개별포장</option>
@@ -91,11 +102,11 @@
         <option value="gif">증정품포함</option>
     </select>
 
-    <input type="text" name="foodName" placeholder="식품 이름을 입력해주세요">
+    <input type="text" name="foodName" placeholder="식품 이름을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요">
+    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요">
+    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
     <div class="rating_box">
         <div class="rating">
@@ -105,22 +116,46 @@
         </div>
     </div>
 
-    <div id="reviewContent">
-        <textarea name="reviewContent" id="content" cols="130" rows="25" placeholder="내용을 작성해주세요"></textarea>
+    <div class="absolute top-20 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+            <textarea name="reviewContent" id="reviewContent" cols="60" rows="25" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="과자에 대한 설명을 적어주세요!" required></textarea>
+        </div>
+        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                글 쓰기
+            </button>
+            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)" >
+        </div>
+
+        <div class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                <div id="preview-container"></div>
+            </div>
+        </div>
+
     </div>
 
-    <div>
-        <input type="submit" value="글쓰기">
-    </div>
 
-    <div>
-        <p>
-            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)">
-        </p>
-        <div id="preview-container"></div>
-    </div>
+
+<!--    <div id="reviewContent">-->
+<!--        <textarea name="reviewContent" id="content" cols="130" rows="25" placeholder="내용을 작성해주세요"></textarea>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <input class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit" value="글쓰기">-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <p>-->
+<!--            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)" >-->
+<!--        </p>-->
+<!--        <div id="preview-container"></div>-->
+<!--    </div>-->
 
 </form>
+
+
+
 
 <script>
     const rating_input = document.querySelector('.rating input');

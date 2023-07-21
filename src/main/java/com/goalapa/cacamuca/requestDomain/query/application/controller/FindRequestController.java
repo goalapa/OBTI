@@ -1,6 +1,5 @@
 package com.goalapa.cacamuca.requestDomain.query.application.controller;
 
-import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestToFoodImpl;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestDTO;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestPicDTO;
 import com.goalapa.cacamuca.requestDomain.query.application.service.FindRequestPicService;
@@ -12,19 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/adminRequest")
+@RequestMapping("/request-list")
 public class FindRequestController {
 
     private final FindRequestService findRequestService;
     private final FindRequestPicService findRequestPicService;
 
-    private final SaveRequestToFoodImpl saveRequestToFoodImpl;
-
-    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService, SaveRequestToFoodImpl saveRequestToFoodImpl) {
+    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService) {
         this.findRequestService = findRequestService;
         this.findRequestPicService = findRequestPicService;
-        this.saveRequestToFoodImpl = saveRequestToFoodImpl;
     }
+//    private final SaveRequestToFoodImpl saveRequestToFoodImpl;
+
+//    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService, SaveRequestToFoodImpl saveRequestToFoodImpl) {
+//        this.findRequestService = findRequestService;
+//        this.findRequestPicService = findRequestPicService;
+//        this.saveRequestToFoodImpl = saveRequestToFoodImpl;
+//    }
 
 
     @GetMapping("")
@@ -33,11 +36,10 @@ public class FindRequestController {
 
         model.addAttribute("requestList", requests);
 
-        return "adminRequest";
+        return "request-list";
     }
 
     @GetMapping("/view/{requestNo}")
-//    public String requestViewDetailPage(@PathVariable("requestNo") int requestNo, Model model) {
     public String requestViewDetailPage(@PathVariable("requestNo") int requestNo, Model model) {
 
         FindRequestDTO request = findRequestService.findRequestByRequestNo(requestNo);
@@ -46,15 +48,16 @@ public class FindRequestController {
         model.addAttribute("selectRequest", request);
         model.addAttribute("selectRequestPic", requestPic);
 
-        return "viewRequestDetail";
+        return "request-detail";
     }
 
 
-    @PostMapping(value = "/view/saveRequest")
-    public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
+//    @PostMapping( "/view/save-request")
+//    public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
+//
+//        saveRequestToFoodImpl.saveRequestToFood(findRequestDTO);
+//
+//        return "redirect:/request-list";
+//    }
 
-        saveRequestToFoodImpl.saveRequestToFood(findRequestDTO);
-
-        return "redirect:/adminRequest";
-    }
 }
