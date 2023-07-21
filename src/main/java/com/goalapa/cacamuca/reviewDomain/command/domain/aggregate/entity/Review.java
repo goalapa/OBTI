@@ -52,8 +52,11 @@ public class Review {
     @Column(name = "likeCnt")
     private Integer likeCnt;
 
+    @Column(name = "member_no", insertable = false, updatable = false)
+    private int memberNo;
+
     public Review(String reviewContent, String country, String foodType, String foodName, LocalDate date, double reviewRate, ReviewWriter reviewWriter, Integer foodNo,
-                  String reviewKeyword, int reviewPrice, String reviewLink) {
+                  String reviewKeyword, int reviewPrice, String reviewLink, int loginMemberNo) {
         this.reviewContent = reviewContent;
         this.country = country;
         this.foodType = foodType;
@@ -65,6 +68,7 @@ public class Review {
         this.reviewKeyword = reviewKeyword;
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
+        this.memberNo = loginMemberNo;
 
     }
 
@@ -163,6 +167,14 @@ public class Review {
         this.likeCnt = likeCnt;
     }
 
+    public int getMemberNo() {
+        return memberNo;
+    }
+
+    public void setMemberNo(int memberNo) {
+        this.memberNo = memberNo;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
@@ -173,11 +185,13 @@ public class Review {
                 ", foodName='" + foodName + '\'' +
                 ", reviewDate=" + reviewDate +
                 ", reviewRate=" + reviewRate +
+                ", reviewWriter=" + reviewWriter +
                 ", foodNo=" + foodNo +
                 ", reviewKeyword='" + reviewKeyword + '\'' +
                 ", reviewPrice=" + reviewPrice +
                 ", reviewLink='" + reviewLink + '\'' +
                 ", likeCnt=" + likeCnt +
+                ", memberNo=" + memberNo +
                 '}';
     }
 }

@@ -1,16 +1,16 @@
 package com.goalapa.cacamuca.requestDomain.command.infrastructure.service;
 
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
-import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestServiceImpl;
-import com.goalapa.cacamuca.requestDomain.command.domain.service.CheckRequestService;
+import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestImpl;
+import com.goalapa.cacamuca.requestDomain.command.domain.service.CheckRequest;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CheckRequestServiceImpl implements CheckRequestService {
+public class CheckRequestServiceImpl implements CheckRequest {
 
-    private final SaveRequestServiceImpl saveRequestServiceImpl;
+    private final SaveRequestImpl saveRequestServiceImpl;
 
-    public CheckRequestServiceImpl(SaveRequestServiceImpl saveRequestServiceImpl) {
+    public CheckRequestServiceImpl(SaveRequestImpl saveRequestServiceImpl) {
         this.saveRequestServiceImpl = saveRequestServiceImpl;
     }
 
@@ -20,7 +20,7 @@ public class CheckRequestServiceImpl implements CheckRequestService {
         if(requestDTO.getRequestFoodType() != null &&
             requestDTO.getRequestCountry() != null &&
             requestDTO.getRequestPrice() != null &&
-            requestDTO.getRequestedFood() != null &&
+            requestDTO.getRequestFood() != null &&
             requestDTO.getRequestContent() != null ) {
             saveRequestServiceImpl.saveRequest(requestDTO);
         }

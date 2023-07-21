@@ -40,4 +40,17 @@
           FROM member m
          WHERE m.member_email = #{ memberEmail }
     </select>
+
+    <select id="findMembers" resultMap="memberResultMap">
+        SELECT <!-- com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper -->
+                m.member_no
+              , m.member_id
+              , m.member_nickname
+              , m.member_country
+              , m.member_birth
+              , m.member_gender
+              , m.member_email
+          FROM member m
+         WHERE m.member_grant = "ROLE_MEMBER"
+    </select>
 </mapper>

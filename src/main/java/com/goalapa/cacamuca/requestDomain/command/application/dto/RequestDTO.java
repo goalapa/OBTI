@@ -10,14 +10,28 @@ import static java.lang.Integer.parseInt;
 
 public class RequestDTO {
 
+    private int requestNo;
+
     private String requestCountry;
     private String requestFoodType;
-    private String requestedFood;
+    private String requestFood;
     private int requestPrice;
     private int requestMemberNo;
     private String requestContent;
 
     public RequestDTO() {}
+
+    public int getRequestNo() {
+        return requestNo;
+    }
+
+    public void setRequestNo(int requestNo) {
+        this.requestNo = requestNo;
+    }
+
+    public void setRequestPrice(int requestPrice) {
+        this.requestPrice = requestPrice;
+    }
 
     public String getRequestCountry() {
         return requestCountry;
@@ -35,12 +49,12 @@ public class RequestDTO {
         this.requestFoodType = requestFoodType;
     }
 
-    public String getRequestedFood() {
-        return requestedFood;
+    public String getRequestFood() {
+        return requestFood;
     }
 
-    public void setRequestedFood(String requestedFood) {
-        this.requestedFood = requestedFood;
+    public void setRequestFood(String requestedFood) {
+        this.requestFood = requestedFood;
     }
 
     public Integer getRequestPrice() {
@@ -72,7 +86,7 @@ public class RequestDTO {
         return "RequestDTO{" +
                 "requestCountry=" + requestCountry +
                 ", requestFoodType=" + requestFoodType +
-                ", requestedFood='" + requestedFood + '\'' +
+                ", requestedFood='" + requestFood + '\'' +
                 ", requestPrice=" + requestPrice +
                 ", requestMemberNo=" + requestMemberNo +
                 ", requestContent='" + requestContent + '\'' +
