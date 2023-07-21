@@ -1,9 +1,8 @@
 package com.goalapa.cacamuca.requestDomain.command.domain.service;
 
-
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
 
-public interface CheckRequestService {
+public interface DeleteRequest {
 
-    void checkNotNull(RequestDTO requestDTO);
+    void deleteRequest(int requestNo);
 }

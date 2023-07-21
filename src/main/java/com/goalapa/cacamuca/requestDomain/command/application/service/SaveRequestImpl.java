@@ -6,16 +6,16 @@ import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCou
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestFoodType;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMemberNo;
 import com.goalapa.cacamuca.requestDomain.command.domain.repository.RequestRepository;
-import com.goalapa.cacamuca.requestDomain.command.domain.service.SaveRequestService;
+import com.goalapa.cacamuca.requestDomain.command.domain.service.SaveRequest;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class SaveRequestServiceImpl implements SaveRequestService {
+public class SaveRequestImpl implements SaveRequest {
 
     private final RequestRepository requestRepository;
 
-    public SaveRequestServiceImpl(RequestRepository requestRepository) {
+    public SaveRequestImpl(RequestRepository requestRepository) {
         this.requestRepository = requestRepository;
     }
 
@@ -37,9 +37,9 @@ public class SaveRequestServiceImpl implements SaveRequestService {
         request.setRequestedFood(requestDTO.getRequestFood());
         request.setRequestContent(requestDTO.getRequestContent());
 
-
-        System.out.println("request = " + request);
         requestRepository.save(request);
 
     }
+
+
 }

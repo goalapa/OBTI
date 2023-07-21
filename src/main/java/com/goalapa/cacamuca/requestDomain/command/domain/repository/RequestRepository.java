@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Integer> {
-    List<Request> findAll();
+    //List<Request> findAll();
 
 }
