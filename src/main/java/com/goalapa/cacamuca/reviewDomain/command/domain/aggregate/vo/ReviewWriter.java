@@ -16,4 +16,11 @@ public class ReviewWriter {
     public Integer getReviewWriterMemberId() {
         return reviewWriterMemberId;
     }
+
+    @Override
+    public String toString() {
+        return "ReviewWriter{" +
+                "reviewWriterMemberId=" + reviewWriterMemberId +
+                '}';
+    }
 }

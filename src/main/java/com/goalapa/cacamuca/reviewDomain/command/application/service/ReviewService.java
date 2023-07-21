@@ -11,6 +11,8 @@ import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWrite
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -25,9 +27,8 @@ import java.util.*;
 
 @Service
 public class ReviewService {
-
+    private static final Logger logger = LoggerFactory.getLogger(ReviewService.class);
     private final ReviewRepository reviewRepository;
-
     private final LikeRepository likeRepository;
     private final ReviewPicRepository reviewPicRepository;
     private final SelectReviewService selectReviewService;
@@ -44,12 +45,12 @@ public class ReviewService {
     }
 
     @Transactional
-    public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl) {
+    public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
         LocalDate date = LocalDate.now();
         ReviewWriter reviewWriter = new ReviewWriter();
         ReviewPic reviewPic = new ReviewPic();
         Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink());
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), loginMemberNo);
 
         List<String> fileNames = new ArrayList<>();
 
@@ -83,24 +84,26 @@ public class ReviewService {
     }
 
     @Transactional
-    public void countHeart(Integer no, Integer memberNo) {
+    public void countHeart(Integer no, Integer memberNo, int loginMemberNo) {
         Review review = reviewRepository.findById(no).get();
 
         if(review.getLikeCnt()==null){
             review.setLikeCnt(0);
         }
 
-        System.out.println("no = " + no);
-        System.out.println("memberNo = " + memberNo);
+        if(likeRepository.findByReviewNoAndMemberNo(no, loginMemberNo).isPresent()){
+            review.setLikeCnt(review.getLikeCnt() -1);
+        }else {
+            System.out.println("no = " + no);
+            System.out.println("memberNo = " + memberNo);
 
-        LikeId likeId = new LikeId();
+            Like like = new Like();
 
-        likeId.setReviewNo(no);
-        likeId.setMemberNo(memberNo);
+            like.setReviewNo(no);
+            like.setMemberNo(memberNo);
 
-        review.setLikeCnt(review.getLikeCnt() + 1);
-
-//        Like like =  likeRepository.findById(likeId).get();
-//        ReviewLikeDTO reviewLike = new ReviewLikeDTO(like.getId().getMemberNo(), like.getId().getReviewNo());
+            review.setLikeCnt(review.getLikeCnt() + 1);
+            likeRepository.save(like);
+        }
     }
 }

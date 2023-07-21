@@ -38,7 +38,7 @@ public class MemberServiceImpl implements CommandMemberService {
 
         BirthDay birthDay = new BirthDay(date);
         member.setBirthDay(birthDay);
-        member.setMemberGrant("member");
+        member.setMemberGrant("ROLE_MEMBER");
 
         memberRepository.save(member);
     }
@@ -60,6 +60,20 @@ public class MemberServiceImpl implements CommandMemberService {
 
     @Transactional
     public void modifyMemberInfo(MemberDTO memberDTO) throws Exception {
+        Optional<Member> optionalMember = memberRepository.findById(memberDTO.getMemberNo());
+
+        if (optionalMember.isPresent()) {
+            Member member = optionalMember.get();
+            if (memberDTO.getMemberNickname() != null) member.setMemberNickname(memberDTO.getMemberNickname());
+            if (memberDTO.getMemberEmail() != null) member.setMemberEmail(memberDTO.getMemberEmail());
+            if (memberDTO.getMemberCountry() != null) member.setMemberCountry(memberDTO.getMemberCountry());
+        } else {
+            throw new Exception("변경할 회원정보가 없습니다.");
+        }
+    }
+
+    @Transactional
+    public void modifyMemberPassword(MemberDTO memberDTO) throws Exception {
         Optional<Member> optionalMember = memberRepository.findById(memberDTO.getMemberNo());
 
         if(optionalMember.isPresent()) {

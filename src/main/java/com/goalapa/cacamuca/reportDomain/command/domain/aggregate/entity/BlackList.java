@@ -1,13 +1,11 @@
-package com.goalapa.cacamuca.blackListDomain.command.domain.aggregate.entity;
-
-import org.hibernate.annotations.Comment;
+package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "blacklist")
-public class Blacklist {
+public class BlackList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +19,15 @@ public class Blacklist {
     private LocalDate blacklistRelDate;
 
     @Column(name = "member_no")
-    private int memberNo;
+    private Integer memberNo;
+
+    public BlackList(Integer memberNo, LocalDate blacklistRegDate, LocalDate blacklistRelDate) {
+        this.memberNo = memberNo;
+        this.blacklistRegDate = blacklistRegDate;
+        this.blacklistRelDate = blacklistRelDate;
+    }
+
+    public BlackList() {
+
+    }
 }

@@ -17,4 +17,20 @@ public class LikeId implements Serializable {
 
     @Column(name = "member_no")
     private Integer memberNo;
+
+    public LikeId() {
+    }
+
+    public LikeId(Integer reviewNo, Integer memberNo) {
+        this.reviewNo = reviewNo;
+        this.memberNo = memberNo;
+    }
+
+    public Integer getReviewNo() {
+        return reviewNo;
+    }
+
+    public Integer getMemberNo() {
+        return memberNo;
+    }
 }
