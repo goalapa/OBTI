@@ -32,7 +32,6 @@ public class ReviewService {
     private final SelectReviewService selectReviewService;
 
     private static String root = "C:\\app-file";
-//    private static String root = "./app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Autowired
@@ -46,12 +45,13 @@ public class ReviewService {
     @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
         LocalDate date = LocalDate.now();
-        ReviewWriter reviewWriter = new ReviewWriter();
-        ReviewPic reviewPic = new ReviewPic();
+        ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
         Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), loginMemberNo);
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink());
 
         List<String> fileNames = new ArrayList<>();
+        ReviewPic reviewPic = new ReviewPic();
+
 
         for (MultipartFile file : reviewPicUrl) {
             if (file.isEmpty()) {
@@ -75,19 +75,25 @@ public class ReviewService {
                 file.transferTo(new File(uploadPath));
 
                 reviewPic = new ReviewPic(uploadPath);
-                fileNames.add(uniqueFileName);
+                fileNames.add(uploadPath);
+
+                reviewPic.setReviewNo(review);
+
                 reviewPicRepository.save(reviewPic);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        reviewRepository.save(review);
+
+//        ReviewPic reviewPic = new ReviewPic(fileNames.toString());
+
+//        reviewRepository.save(review);
+//        reviewPicRepository.save(reviewPic);
     }
 
     @Transactional
     public void countHeart(Integer no, Integer memberNo, int loginMemberNo) {
         Review review = reviewRepository.findById(no).get();
-
 
         if(review.getLikeCnt()==null){
             review.setLikeCnt(0);

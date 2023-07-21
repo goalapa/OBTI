@@ -22,6 +22,9 @@
             </tr>
           </thead>
           <tbody>
+            <span th:each="reviewPic : ${reviewPics}">
+                <img id="reivewPictures" th:src="${reviewPic.reviewPicUrl}"/>
+            </span>
             <tr th:each="review : ${reviews}">
                 <td th:text="${review.reviewNo}"/>
                 <td>

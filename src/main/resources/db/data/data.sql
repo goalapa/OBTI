@@ -142,14 +142,14 @@ VALUES(12,'리뷰 예시03','프레첼','2023-06-20',5.0,2,2,'선물추천',1000
 -- VALUES(3,2);
 
 
-INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
-VALUES(1,1,'link');
-INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
-VALUES(2,2,'link');
-INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
-VALUES(2,3,'link');
-INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
-VALUES(2,4,'link');
+-- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
+-- VALUES(1,1,'link');
+-- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
+-- VALUES(2,2,'link');
+-- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
+-- VALUES(2,3,'link');
+-- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
+-- VALUES(2,4,'link');
 
 
 INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)

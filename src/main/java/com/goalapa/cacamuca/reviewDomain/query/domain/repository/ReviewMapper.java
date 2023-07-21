@@ -10,8 +10,7 @@ import java.util.List;
 public interface ReviewMapper {
 //    List<QueryReviewPicDTO> findAllPictures();
     List<QueryReviewDTO> findAllReviews();
-
+    List<QueryReviewPicDTO> findAllPictures();
     QueryReviewDTO findReviewByNo(int no);
-
-    List<QueryReviewPicDTO> findAllPictures(int no);
+    List<QueryReviewDTO> findAllReviewsBySearch(String search);
 }

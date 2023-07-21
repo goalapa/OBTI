@@ -1,9 +1,12 @@
 package com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "review_pic")
+@Getter
 public class ReviewPic {
 
     @Id
@@ -12,7 +15,7 @@ public class ReviewPic {
     private Integer reviewPicNo;
 
 //    @Column(name = "review_no")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "review_no")
     private Review reviewNo;
 
@@ -25,5 +28,18 @@ public class ReviewPic {
 
     public ReviewPic() {
 
+    }
+
+    public void setReviewNo(Review review) {
+        this.reviewNo = review;
+    }
+
+    @Override
+    public String toString() {
+        return "ReviewPic{" +
+                "reviewPicNo=" + reviewPicNo +
+                ", reviewNo=" + reviewNo +
+                ", reviewPicUrl='" + reviewPicUrl + '\'' +
+                '}';
     }
 }

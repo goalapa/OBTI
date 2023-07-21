@@ -32,25 +32,24 @@ public class SelectReviewService {
     }
 
     @Transactional(readOnly = true)
+    public List<QueryReviewPicDTO> findAllPictures() {
+        List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures();
+
+        System.out.println("저장된 사진의 경로는 = " + reviewPics);
+
+
+        return reviewPics;
+    }
+
+    @Transactional(readOnly = true)
     public QueryReviewDTO findReviewByNo(int no) {
         QueryReviewDTO review = mapper.findReviewByNo(no);
         return review;
     }
 
-//    @Transactional(readOnly = true)
-//    public List<QueryReviewPicDTO> findReviewPicByNo(int no) {
-//        List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures(no);
-//        System.out.println("저장된 사진의 경로는 = " + reviewPics);
-//
-//        for(QueryReviewPicDTO reviewPic : reviewPics){
-//            if(reviewPic == null){
-//                continue;
-//            }
-//
-//            Resource resource = new FileSystemResource(filePath);
-//            System.out.println("resource = " + resource);
-//
-//        }
-//        return reviewPics;
-//    }
+
+    public List<QueryReviewDTO> searchReviews(String search) {
+        List<QueryReviewDTO> reviews = mapper.findAllReviewsBySearch(search);
+        return reviews;
+    }
 }

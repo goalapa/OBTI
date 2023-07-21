@@ -19,7 +19,7 @@
     </resultMap>
 
     <resultMap id="reviewPicResultMap" type="com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO">
-        <id property="reviewPicNo" column="review_pic_no"/>
+        <result property="reviewPicNo" column="review_pic_no"/>
         <result property="reviewNo" column="review_no"/>
         <result property="reviewPicUrl" column="review_pic_url"/>
     </resultMap>
@@ -27,6 +27,11 @@
     <select id="findAllReviews" resultMap="reviewResultMap">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
         FROM review r
+    </select>
+
+    <select id="findAllPictures" resultMap="reviewPicResultMap">
+        SELECT r.review_pic_url
+        FROM review_pic r
     </select>
 
     <select id="findReviewByNo" resultMap="reviewResultMap">
@@ -37,10 +42,10 @@
         WHERE r.review_no = #{ no }
     </select>
 
-<!--    <select id="findAllPictures" resultType="reviewPicResultMap">-->
-<!--        SELECT r.review_pic_url-->
-<!--        FROM review_pic r-->
-<!--        WHERE r.review_no = #{no}-->
-<!--    </select>-->
+    <select id="findAllReviewsBySearch" resultMap="reviewResultMap">
+        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
+        from review r
+        where r.food_name like '%${ search }%'
+    </select>
 
 </mapper>

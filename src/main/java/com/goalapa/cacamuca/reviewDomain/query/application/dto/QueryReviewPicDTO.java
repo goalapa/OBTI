@@ -19,4 +19,13 @@ public class QueryReviewPicDTO {
     public String getReviewPicUrl() {
         return reviewPicUrl;
     }
+
+    @Override
+    public String toString() {
+        return "QueryReviewPicDTO{" +
+                "reviewPicNo=" + reviewPicNo +
+                ", reviewNo=" + reviewNo +
+                ", reviewPicUrl='" + reviewPicUrl + '\'' +
+                '}';
+    }
 }

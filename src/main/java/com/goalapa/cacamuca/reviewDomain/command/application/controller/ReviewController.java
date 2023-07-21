@@ -2,7 +2,6 @@ package com.goalapa.cacamuca.reviewDomain.command.application.controller;
 
 import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewLikeDTO;
 import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import com.goalapa.cacamuca.reviewDomain.query.application.controller.SelectReviewController;
 import org.slf4j.Logger;
@@ -17,10 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/review/*")
 public class ReviewController {
     private final ReviewService reviewService;
     private static final Logger logger = LoggerFactory.getLogger(SelectReviewController.class);
@@ -36,13 +34,18 @@ public class ReviewController {
 
     @PostMapping("/review")
     public String writeReview(@RequestParam List<MultipartFile> reviewPicUrl, @ModelAttribute ReviewDTO reviewDTO,
-                              @AuthenticationPrincipal CustomUser user){
+                              @AuthenticationPrincipal CustomUser user, HttpServletRequest request){
+
+//        String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+//        String fileRoot = contextRoot+"resources/db";
+//        String filePath = fileRoot+"/fileupload";
 
         int loginMemberNo = user.getMemberNo();
 
         reviewService.saveReview(reviewDTO, reviewPicUrl,loginMemberNo);
 
-        return "redirect:/selectReviews";
+//        return "review";
+        return "redirect:/review/selectReviews";
     }
 
 @PostMapping("/reviewDetail")
