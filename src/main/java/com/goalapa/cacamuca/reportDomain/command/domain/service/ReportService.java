@@ -1,9 +1,8 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.service;
 
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDeleteDTO;
 import javassist.NotFoundException;
-
-import javax.transaction.Transactional;
 
 public interface ReportService {
 
@@ -13,7 +12,8 @@ public interface ReportService {
     // 신고 테이블에서 삭제
     void deleteReportById(int reportNo) throws NotFoundException;
 
-    @Transactional
-    int addReportCount(ReportDTO reportDTO);
+    // 누적 신고 횟수 추가
+    int addReportCount(ReportDeleteDTO reportDeleteDTO);
 
+    void saveBlackList(Integer reportedMemberNo);
 }
