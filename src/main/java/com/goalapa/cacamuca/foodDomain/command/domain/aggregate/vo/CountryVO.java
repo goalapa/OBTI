@@ -4,13 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Country {
+public class CountryVO {
 
     @Column(name = "country")
     private String country;
 
-    protected Country() {}
-    public Country(String country) {
-        this.country = country;
-    }
+    public CountryVO(String country) { this.country = country; }
+
+    public CountryVO() {}
 }
