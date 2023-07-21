@@ -14,6 +14,5 @@ public class ReportedMemberVO {
     }
 
     protected ReportedMemberVO() {
-
     }
 }

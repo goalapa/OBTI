@@ -47,10 +47,7 @@ public class ReportController {
         if (reportDeleteDTO.getIsAccept().equals("true")) {
             int reportCnt = reportService.addReportCount(reportDeleteDTO);
 
-            System.out.println(reportCnt);
-
-            //reportService.saveBlackList(reportDeleteDTO.getReportedMemberNo());
-            // member의 현재 블랙리스트 상태값 false && 신고 누적 단위가 10이 될 때 블랙리스트에 추가하는 로직 작성
+            reportService.saveBlackList(reportDeleteDTO.getReportedMemberNo());
         }
 
         reportService.deleteReportById(reportDeleteDTO.getReportNo());

@@ -6,6 +6,7 @@ import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDeleteDTO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.BlackList;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.BlackListMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
@@ -78,18 +79,20 @@ public class ReportServiceImpl implements ReportService {
     @Override
     @Transactional
     public void saveBlackList(Integer reportedMemberNo) {
-//        try {
-//            Member member = memberRepository.findById(reportedMemberNo)
-//                    .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
-//
-//            if (!member.getmemberBlackListStatus()) {
-//                BlackList blacklist = new BlackList(member.getMemberId(), LocalDate.now(), null);
-//                blackListRepository.save(blacklist);
-//            }
-//
-//        } catch (NotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            Member member = memberRepository.findById(reportedMemberNo)
+                    .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
 
+//            if (!member.getmemberBlackListStatus()){
+            if (true) {
+//                member.setmemberBlackListStatus = true;
+                BlackListMemberVO blackListMemberVO = new BlackListMemberVO(member.getMemberNo());
+                BlackList blacklist = new BlackList(blackListMemberVO, LocalDate.now(), null);
+                blackListRepository.save(blacklist);
+            }
+
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
