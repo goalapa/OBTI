@@ -12,4 +12,6 @@ public interface ReviewMapper {
     List<QueryReviewDTO> findAllReviews();
 
     QueryReviewDTO findReviewByNo(int no);
+
+    List<QueryReviewPicDTO> findAllPictures(int no);
 }

@@ -1,10 +1,8 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
 import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.Like;
-import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.LikeId;
 import com.goalapa.cacamuca.likeDomain.command.domain.repository.LikeRepository;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewLikeDTO;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
@@ -34,6 +32,7 @@ public class ReviewService {
     private final SelectReviewService selectReviewService;
 
     private static String root = "C:\\app-file";
+//    private static String root = "./app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Autowired
@@ -60,6 +59,8 @@ public class ReviewService {
             }
 
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//            int idx = fileName.lastIndexOf(".");
+//            String ext = fileName.substring(idx);
 
             try {
                 String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;;
@@ -70,10 +71,10 @@ public class ReviewService {
                 }
 
                 String uploadPath = filePath + File.separator + uniqueFileName;
+                System.out.println("uploadPath = " + uploadPath);
                 file.transferTo(new File(uploadPath));
-                int review_no = 1;
 
-                reviewPic = new ReviewPic(uploadPath, review_no);
+                reviewPic = new ReviewPic(uploadPath);
                 fileNames.add(uniqueFileName);
                 reviewPicRepository.save(reviewPic);
             } catch (IOException e) {
@@ -87,12 +88,17 @@ public class ReviewService {
     public void countHeart(Integer no, Integer memberNo, int loginMemberNo) {
         Review review = reviewRepository.findById(no).get();
 
+
         if(review.getLikeCnt()==null){
             review.setLikeCnt(0);
         }
 
         if(likeRepository.findByReviewNoAndMemberNo(no, loginMemberNo).isPresent()){
             review.setLikeCnt(review.getLikeCnt() -1);
+
+            Like like = likeRepository.findByMemberNo(loginMemberNo);
+            likeRepository.delete(like);
+
         }else {
             System.out.println("no = " + no);
             System.out.println("memberNo = " + memberNo);

@@ -24,11 +24,6 @@
         <result property="reviewPicUrl" column="review_pic_url"/>
     </resultMap>
 
-    <select id="findAllPictures" resultMap="reviewPicResultMap">
-        SELECT p.review_pic_url
-        FROM review_pic p
-    </select>
-
     <select id="findAllReviews" resultMap="reviewResultMap">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
         FROM review r
@@ -42,10 +37,10 @@
         WHERE r.review_no = #{ no }
     </select>
 
-    <select id="findLike" resultType="int">
-        SELECT l.count(*)
-        FROM review_like l
-        WHERE member_no = #{member_no} and review_no = #{review_no}
+    <select id="findAllPictures" resultType="reviewPicResultMap">
+        SELECT r.review_pic_url
+        FROM review_pic r
+        WHERE r.review_no = #{no}
     </select>
 
 </mapper>

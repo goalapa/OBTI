@@ -10,10 +10,6 @@ import javax.persistence.*;
 @Setter
 @ToString
 public class Like {
-
-//    @EmbeddedId
-//    private LikeId id;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_no")

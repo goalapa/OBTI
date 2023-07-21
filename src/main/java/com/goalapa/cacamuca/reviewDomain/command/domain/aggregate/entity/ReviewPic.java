@@ -11,17 +11,13 @@ public class ReviewPic {
     @Column(name = "review_pic_no")
     private Integer reviewPicNo;
 
-    @Column(name = "review_no")
+//    @Column(name = "review_no")
+    @ManyToOne
     @JoinColumn(name = "review_no")
-    private Integer reviewNo;
+    private Review reviewNo;
 
     @Column(name = "review_pic_url")
     private String reviewPicUrl;
-
-    public ReviewPic(String uploadPath, int review_no) {
-        this.reviewPicUrl = uploadPath;
-        this.reviewNo = review_no;
-    }
 
     public ReviewPic(String uploadPath) {
         this.reviewPicUrl = uploadPath;
