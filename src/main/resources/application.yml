@@ -37,6 +37,7 @@ spring:
       data-locations: classpath:db/data/data.sql
       mode: always
       platform: mysql
+      encoding: UTF-8
 
     web:
       resources:

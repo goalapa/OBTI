@@ -1,11 +1,13 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewLikeDTO;
 import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import com.goalapa.cacamuca.reviewDomain.query.application.controller.SelectReviewController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,24 +35,31 @@ public class ReviewController {
     }
 
     @PostMapping("/review")
-    public String writeReview(@RequestParam List<MultipartFile> reviewPicUrl, @ModelAttribute ReviewDTO reviewDTO){
-        reviewService.saveReview(reviewDTO, reviewPicUrl);
+    public String writeReview(@RequestParam List<MultipartFile> reviewPicUrl, @ModelAttribute ReviewDTO reviewDTO,
+                              @AuthenticationPrincipal CustomUser user){
+
+        int loginMemberNo = user.getMemberNo();
+
+        reviewService.saveReview(reviewDTO, reviewPicUrl,loginMemberNo);
 
         return "redirect:/selectReviews";
     }
 
 @PostMapping("/reviewDetail")
 @ResponseBody
-public Map<String, Object> CountHeart(Model model, @RequestBody HashMap<String, Object> parameter){
-    String no = (String) parameter.get("no");
-    Integer no1 =  Integer.parseInt(no);
-    Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+public Map<String, Object> CountHeart(Model model, @RequestBody HashMap<String, Object> parameter,
+                                      @AuthenticationPrincipal CustomUser user){
+        String no = (String) parameter.get("no");
+        Integer reviewNo =  Integer.parseInt(no);
+        Integer memberNo = Integer.parseInt((String) parameter.get("member"));
 
-    reviewService.countHeart(no1, memberNo);
+        int loginMemberNo = user.getMemberNo();
 
-    Map<String, Object> responseMap = new HashMap<>();
-    responseMap.put("no", Integer.valueOf(no).toString());
-    responseMap.put("member", memberNo);
-    return responseMap;
-}
+        reviewService.countHeart(reviewNo, memberNo, loginMemberNo);
+
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("no", Integer.valueOf(reviewNo).toString());
+        responseMap.put("member", memberNo);
+        return responseMap;
+    }
 }
