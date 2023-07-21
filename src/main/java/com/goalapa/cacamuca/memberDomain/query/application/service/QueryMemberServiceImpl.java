@@ -6,6 +6,8 @@ import com.goalapa.cacamuca.memberDomain.query.domain.service.QueryMemberService
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class QueryMemberServiceImpl implements QueryMemberService {
@@ -44,4 +46,9 @@ public class QueryMemberServiceImpl implements QueryMemberService {
         return member;
     }
 
+    public List<Member> findMemberList() {
+        List<Member> memberList = memberMapper.findMembers();
+
+        return memberList;
+    }
 }

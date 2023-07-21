@@ -12,12 +12,12 @@ INSERT INTO category(category_no,category_name,sub_category_name)
 VALUES(3,'대만','과자');
 
 
-INSERT INTO food(food_no,food_name,category_no,food_rate,food_price)
-VALUES(1,'오레오',1,4.7,2000);
-INSERT INTO food(food_no,food_name,category_no,food_rate,food_price)
-VALUES(2,'초코롤',2,5.0,3000);
-INSERT INTO food(food_no,food_name,category_no,food_rate,food_price)
-VALUES(3,'초록매실',3,4.3,1800);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(1,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(2,'초코롤','미국','차',5.0,3000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(3,'초록매실','일본','빵',4.3,1800);
 
 
 INSERT INTO food_pic(food_no,food_pic_url)

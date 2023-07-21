@@ -11,17 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/adminRequest")
+@RequestMapping("/request-list")
 public class FindRequestController {
 
     private final FindRequestService findRequestService;
     private final FindRequestPicService findRequestPicService;
 
-
     public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService) {
         this.findRequestService = findRequestService;
         this.findRequestPicService = findRequestPicService;
     }
+//    private final SaveRequestToFoodImpl saveRequestToFoodImpl;
+
+//    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService, SaveRequestToFoodImpl saveRequestToFoodImpl) {
+//        this.findRequestService = findRequestService;
+//        this.findRequestPicService = findRequestPicService;
+//        this.saveRequestToFoodImpl = saveRequestToFoodImpl;
+//    }
 
 
     @GetMapping("")
@@ -30,11 +36,10 @@ public class FindRequestController {
 
         model.addAttribute("requestList", requests);
 
-        return "adminRequest";
+        return "request-list";
     }
 
     @GetMapping("/view/{requestNo}")
-//    public String requestViewDetailPage(@PathVariable("requestNo") int requestNo, Model model) {
     public String requestViewDetailPage(@PathVariable("requestNo") int requestNo, Model model) {
 
         FindRequestDTO request = findRequestService.findRequestByRequestNo(requestNo);
@@ -43,15 +48,16 @@ public class FindRequestController {
         model.addAttribute("selectRequest", request);
         model.addAttribute("selectRequestPic", requestPic);
 
-        return "viewRequestDetail";
+        return "request-detail";
     }
 
 
-    @PostMapping(value = "/view/saveRequest")
-    public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
-
+//    @PostMapping( "/view/save-request")
+//    public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
+//
 //        saveRequestToFoodImpl.saveRequestToFood(findRequestDTO);
+//
+//        return "redirect:/request-list";
+//    }
 
-        return "redirect:/adminRequest";
-    }
 }

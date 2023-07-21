@@ -3,7 +3,6 @@ let isPasswordValidate = null;
 let isIdCheck = null;
 let isEmailCheck = null;
 let isPwdCheck = null;
-let isBirthCheck = null;
 
 async function validateId() {
     const id = document.getElementById('username').value;
@@ -17,10 +16,23 @@ async function validateId() {
 
         isIdValidate = true;
         label.innerText = '사용 가능한 아이디 입니다.';
-        label.classList.replace('text-gray-500', 'text-green-500');
+
+        if(label.classList.contains('text-gray-500')) {
+            label.classList.replace('text-gray-500', 'text-green-500');
+        } else {
+            label.classList.replace('text-red-500', 'text-green-500');
+        }
+    } else if(id === null) {
+        isPasswordValidate = false;
     } else {
         isIdValidate = false;
-        label.innerText = '아이디는 영문, 숫자만 4글자 이상 20글자 이하만 입력 가능합니다.';
+        label.innerText = '영문, 숫자만 4글자 이상 20글자 이하만 입력 가능합니다.';
+
+        if(label.classList.contains('text-gray-500')) {
+            label.classList.replace('text-gray-500', 'text-red-500');
+        } else {
+            label.classList.replace('text-green-500', 'text-red-500');
+        }
     }
 }
 
@@ -39,10 +51,9 @@ async function validatePassword() {
         }
     } else if(password === '') {
         isPasswordValidate = false;
-        label.innerText = '';
     } else {
         isPasswordValidate = false;
-        label.innerText = '비밀번호는 대문자와 소문자를 포함한 6-20자로 되어야 합니다.';
+        label.innerText = '영문, 숫자 6-20자로 되어야 합니다.';
 
         if(label.classList.contains('text-gray-500')) {
             label.classList.replace('text-gray-500', 'text-red-500');
@@ -88,7 +99,7 @@ async function checkPassword() {
     const confirmPwd= document.getElementById('confirmPassword').value;
     const label =  document.getElementById('labelConfirmPassword');
 
-    if(confirmPwd !== '' && originPwd != confirmPwd) {
+    if(confirmPwd !== '' && originPwd !== confirmPwd) {
         isPwdCheck = false;
         label.innerText = '비밀번호가 다릅니다.';
         label.classList.replace('text-green-500', 'text-red-500');
