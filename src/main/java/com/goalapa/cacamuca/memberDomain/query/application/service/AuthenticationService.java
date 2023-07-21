@@ -33,7 +33,6 @@ public class AuthenticationService implements UserDetailsService {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(member.getMemberGrant()));
-//        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
 
         CustomUser customUser = new CustomUser(member, authorities);
 

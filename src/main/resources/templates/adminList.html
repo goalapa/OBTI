@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+</head>
+<body>
+    <th:block th:insert="~{common/adminHeader}" />
+    <th:block th:insert="~{common/adminAside}" />
+    <main class="p-4 sm:ml-64">
+        <h1 class="px-1 mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-gray-900 dark:text-primary-500">
+            회원목록
+        </h1>
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        아이디
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        닉네임
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        이메일
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        국적
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        성별
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        생년월일
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="members, index : ${ members} " class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" th:text="${members.memberId}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" />
+                    <td th:text="${members.memberNickname}" class="px-6 py-4" />
+                    <td th:text="${members.memberEmail}" class="px-6 py-4" />
+                    <td th:text="${members.memberCountry}" class="px-6 py-4" />
+                    <td th:text="${members.memberGender}" class="px-6 py-4" />
+                    <td th:text="${members.memberBirth}" class="px-6 py-4" />
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

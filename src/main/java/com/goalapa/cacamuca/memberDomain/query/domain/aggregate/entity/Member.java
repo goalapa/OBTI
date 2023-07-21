@@ -27,5 +27,7 @@ public class Member {
 
     private String memberCountry;
 
+    private String memberGender;
+
     private LocalDate memberBirth;
 }
