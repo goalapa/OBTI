@@ -48,4 +48,10 @@
         where r.food_name like '%${ search }%'
     </select>
 
+    <select id="findReviewPicByNo" resultMap="reviewPicResultMap">
+        select p.review_pic_url
+        from review_pic p
+        where p.review_no = #{ no }
+    </select>
+
 </mapper>

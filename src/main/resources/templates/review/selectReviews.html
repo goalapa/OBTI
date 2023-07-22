@@ -22,20 +22,20 @@
             </tr>
           </thead>
           <tbody>
-            <span th:each="reviewPic : ${reviewPics}">
-                <img id="reivewPictures" th:src="${reviewPic.reviewPicUrl}"/>
-            </span>
             <tr th:each="review : ${reviews}">
                 <td th:text="${review.reviewNo}"/>
                 <td>
-                    <a th:text="${review.foodName}" th:href="@{/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
+                    <a th:text="${review.foodName}" th:href="@{/review/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
+                    <span th:each="reviewPic : ${reviewPics}">
+                        <img th:if="${reviewPic.reviewNo == review.reviewNo}" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="70" height="70" alt="Image">
+                    </span>
                 </td>
             </tr>
           </tbody>
       </table>
   </div>
   <div style="display: flex; justify-content: center;">
-    <button onclick="location.href='/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
+    <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
   </div>
 </body>
 </html>

@@ -71,10 +71,9 @@ public class ReviewService {
                 }
 
                 String uploadPath = filePath + File.separator + uniqueFileName;
-                System.out.println("uploadPath = " + uploadPath);
                 file.transferTo(new File(uploadPath));
 
-                reviewPic = new ReviewPic(uploadPath);
+                reviewPic = new ReviewPic(uniqueFileName);
                 fileNames.add(uploadPath);
 
                 reviewPic.setReviewNo(review);

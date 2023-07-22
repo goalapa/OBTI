@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/review/*")
+@RequestMapping(value = {"/*/*", "/*"})
 public class SelectReviewController {
     private final SelectReviewService selectReviewService;
     private static final Logger logger = LoggerFactory.getLogger(SelectReviewController.class);
@@ -39,19 +39,17 @@ public class SelectReviewController {
     @GetMapping("/detail")
     public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member){
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
-//        model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
+        model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
 
         model.addAttribute("no", no);
         model.addAttribute("member", member);
 
-        return "review/reviewDetail";
+        return "/review/reviewDetail";
     }
 
     @GetMapping("/search")
     public String searchReview(Model model, @RequestParam String search){
-        System.out.println("검색 결과는 = " + search);
-
-        model.addAttribute("searchResults", selectReviewService.searchReviews(search));
+        model.addAttribute("searchResult", selectReviewService.searchReviews(search));
 
         return "review/search";
     }

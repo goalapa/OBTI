@@ -22,10 +22,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="searchResult : ${searchResults}">
-                <td th:text="${searchResult.reviewNo}"/>
+            <tr th:each="search : ${searchResult}">
+                <td th:text="${search.reviewNo}"/>
                 <td>
-                    <a th:text="${searchResult.foodName}" th:href="@{/detail(no=${searchResult.reviewNo}, member=${searchResult.memberNo})}"></a>
+                    <a th:text="${search.foodName}" th:href="@{/detail(no=${search.reviewNo}, member=${search.memberNo})}"></a>
                 </td>
             </tr>
             </tbody>

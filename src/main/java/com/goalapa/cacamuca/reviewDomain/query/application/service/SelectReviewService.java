@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,10 +35,6 @@ public class SelectReviewService {
     @Transactional(readOnly = true)
     public List<QueryReviewPicDTO> findAllPictures() {
         List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures();
-
-        System.out.println("저장된 사진의 경로는 = " + reviewPics);
-
-
         return reviewPics;
     }
 
@@ -47,9 +44,18 @@ public class SelectReviewService {
         return review;
     }
 
+    @Transactional(readOnly = true)
+    public QueryReviewPicDTO findReviewPicByNo(int no) {
+        QueryReviewPicDTO reviewPic = mapper.findReviewPicByNo(no);
+        return reviewPic;
+    }
 
+    @Transactional(readOnly = true)
     public List<QueryReviewDTO> searchReviews(String search) {
         List<QueryReviewDTO> reviews = mapper.findAllReviewsBySearch(search);
+        System.out.println("reviews = " + reviews);
         return reviews;
     }
+
+
 }
