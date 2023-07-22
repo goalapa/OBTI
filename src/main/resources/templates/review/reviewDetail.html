@@ -93,15 +93,17 @@
         <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
             <button type="button" onclick="location.href='/selectReviews'" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">목록으로</button>
         </div>
-        <div class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-            <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="300" height="250" alt="Image">
+
+        <th:block th:if="${reviewPic eq null}"/>
+
+        <th:block th:unless="${reviewPic eq null}">
+            <div class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="300" height="250" alt="Image">
+                </div>
             </div>
-        </div>
+        </th:block>
     </div>
-
-
-
 </form>
 
 
