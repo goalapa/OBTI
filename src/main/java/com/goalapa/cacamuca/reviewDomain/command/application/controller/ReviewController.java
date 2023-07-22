@@ -35,16 +35,10 @@ public class ReviewController {
     @PostMapping("/review")
     public String writeReview(@RequestParam List<MultipartFile> reviewPicUrl, @ModelAttribute ReviewDTO reviewDTO,
                               @AuthenticationPrincipal CustomUser user, HttpServletRequest request){
-
-//        String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-//        String fileRoot = contextRoot+"resources/db";
-//        String filePath = fileRoot+"/fileupload";
-
         int loginMemberNo = user.getMemberNo();
 
         reviewService.saveReview(reviewDTO, reviewPicUrl,loginMemberNo);
 
-//        return "review";
         return "redirect:/review/selectReviews";
     }
 
@@ -58,7 +52,7 @@ public Map<String, Object> CountHeart(Model model, @RequestBody HashMap<String, 
 
         int loginMemberNo = user.getMemberNo();
 
-        reviewService.countHeart(reviewNo, memberNo, loginMemberNo);
+        reviewService.countHeart(reviewNo, loginMemberNo);
 
         Map<String, Object> responseMap = new HashMap<>();
         responseMap.put("no", Integer.valueOf(reviewNo).toString());

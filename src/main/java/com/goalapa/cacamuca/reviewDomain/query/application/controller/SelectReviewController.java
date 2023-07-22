@@ -41,6 +41,7 @@ public class SelectReviewController {
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
         model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
 
+
         model.addAttribute("no", no);
         model.addAttribute("member", member);
 
@@ -50,8 +51,6 @@ public class SelectReviewController {
     @GetMapping("/search")
     public String searchReview(Model model, @RequestParam String search){
         model.addAttribute("searchResult", selectReviewService.searchReviews(search));
-
-
 
         return "review/search";
     }

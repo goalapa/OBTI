@@ -8,6 +8,7 @@ import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewP
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
+import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewValidationServiceImpl;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,16 +31,18 @@ public class ReviewService {
     private final LikeRepository likeRepository;
     private final ReviewPicRepository reviewPicRepository;
     private final SelectReviewService selectReviewService;
+    private final ReviewValidationServiceImpl reviewValidationService;
 
     private static String root = "C:\\app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService) {
+    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService) {
         this.reviewRepository = reviewRepository;
         this.likeRepository = likeRepository;
         this.reviewPicRepository = reviewPicRepository;
         this.selectReviewService = selectReviewService;
+        this.reviewValidationService = reviewValidationService;
     }
 
     @Transactional
@@ -59,8 +62,6 @@ public class ReviewService {
             }
 
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//            int idx = fileName.lastIndexOf(".");
-//            String ext = fileName.substring(idx);
 
             try {
                 String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;;
@@ -83,35 +84,19 @@ public class ReviewService {
                 e.printStackTrace();
             }
         }
-
-//        ReviewPic reviewPic = new ReviewPic(fileNames.toString());
-
-//        reviewRepository.save(review);
-//        reviewPicRepository.save(reviewPic);
     }
 
     @Transactional
-    public void countHeart(Integer no, Integer memberNo, int loginMemberNo) {
+    public void countHeart(Integer no, int loginMemberNo) {
         Review review = reviewRepository.findById(no).get();
 
-        if(review.getLikeCnt()==null){
-            review.setLikeCnt(0);
-        }
+        boolean checkCondition = reviewValidationService.checkCondition(review, no, loginMemberNo);
 
-        if(likeRepository.findByReviewNoAndMemberNo(no, loginMemberNo).isPresent()){
-            review.setLikeCnt(review.getLikeCnt() -1);
-
-            Like like = likeRepository.findByMemberNo(loginMemberNo);
-            likeRepository.delete(like);
-
-        }else {
-            System.out.println("no = " + no);
-            System.out.println("memberNo = " + memberNo);
-
+        if(checkCondition == true){
             Like like = new Like();
 
             like.setReviewNo(no);
-            like.setMemberNo(memberNo);
+            like.setMemberNo(loginMemberNo);
 
             review.setLikeCnt(review.getLikeCnt() + 1);
             likeRepository.save(like);
