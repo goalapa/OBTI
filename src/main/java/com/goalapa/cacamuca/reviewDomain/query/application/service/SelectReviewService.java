@@ -19,15 +19,14 @@ public class SelectReviewService {
     private static String filePath = root + "/uploadFiles";
 
     @Transactional(readOnly = true)
-    public List<QueryReviewDTO> findAllReviews() {
-        List<QueryReviewDTO> reviews = mapper.findAllReviews();
-
+    public List<QueryReviewDTO> findAllReviews(String foodName, String country) {
+        List<QueryReviewDTO> reviews = mapper.findAllReviews(foodName, country);
         return reviews;
     }
 
     @Transactional(readOnly = true)
-    public List<QueryReviewPicDTO> findAllPictures() {
-        List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures();
+    public List<QueryReviewPicDTO> findAllPictures(String foodName, String country) {
+        List<QueryReviewPicDTO> reviewPics = mapper.findAllPictures(foodName, country);
         return reviewPics;
     }
 
@@ -40,14 +39,12 @@ public class SelectReviewService {
     @Transactional(readOnly = true)
     public QueryReviewPicDTO findReviewPicByNo(int no) {
         QueryReviewPicDTO reviewPic = mapper.findReviewPicByNo(no);
-
         return reviewPic;
     }
 
     @Transactional(readOnly = true)
     public List<QueryReviewDTO> searchReviews(String search) {
-        List<QueryReviewDTO> reviews = mapper.findAllReviewsBySearch(search);
-        System.out.println("reviews = " + reviews);
+        List<QueryReviewDTO> reviews = mapper.findAllReviewsByName(search);
         return reviews;
     }
 }

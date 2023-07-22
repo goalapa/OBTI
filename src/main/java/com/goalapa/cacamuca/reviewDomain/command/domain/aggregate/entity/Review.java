@@ -52,11 +52,11 @@ public class Review {
     @Column(name = "likeCnt")
     private Integer likeCnt;
 
-//    @Column(name = "member_no")
-//    private int memberNo;
+    @Column(name = "report_cnt")
+    private Integer reportCnt;
 
     public Review(String reviewContent, String country, String foodType, String foodName, LocalDate date, double reviewRate, ReviewWriter reviewWriter, Integer foodNo,
-                  String reviewKeyword, int reviewPrice, String reviewLink) {
+                  String reviewKeyword, int reviewPrice, String reviewLink, Integer reportCnt) {
         this.reviewContent = reviewContent;
         this.country = country;
         this.foodType = foodType;
@@ -68,7 +68,7 @@ public class Review {
         this.reviewKeyword = reviewKeyword;
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
-
+        this.reportCnt = reportCnt;
     }
 
     public Review(){
@@ -166,6 +166,13 @@ public class Review {
         this.likeCnt = likeCnt;
     }
 
+    public Integer getReportCnt() {
+        return reportCnt;
+    }
+
+    public void setReportCnt(Integer reportCnt) {
+        this.reportCnt = reportCnt;
+    }
 
     @Override
     public String toString() {

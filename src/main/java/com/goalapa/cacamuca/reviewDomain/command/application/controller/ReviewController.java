@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.exceptions.TemplateInputException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -42,21 +43,38 @@ public class ReviewController {
         return "redirect:/review/selectReviews";
     }
 
-@PostMapping("/reviewDetail")
-@ResponseBody
-public Map<String, Object> CountHeart(@RequestBody HashMap<String, Object> parameter,
-                                      @AuthenticationPrincipal CustomUser user){
-        String no = (String) parameter.get("no");
-        Integer reviewNo =  Integer.parseInt(no);
-        Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+    @PostMapping("/reviewDetail")
+    @ResponseBody
+    public Map<String, Object> CountHeart(@RequestBody HashMap<String, Object> parameter,
+                                          @AuthenticationPrincipal CustomUser user){
+            String no = (String) parameter.get("no");
+            Integer reviewNo =  Integer.parseInt(no);
+            Integer memberNo = Integer.parseInt((String) parameter.get("member"));
 
+            int loginMemberNo = user.getMemberNo();
+
+            reviewService.countHeart(reviewNo, loginMemberNo);
+
+            Map<String, Object> responseMap = new HashMap<>();
+            responseMap.put("no", Integer.valueOf(reviewNo).toString());
+            responseMap.put("member", memberNo);
+            return responseMap;
+    }
+
+    @PostMapping("/report")
+    public void countReport(@RequestBody HashMap<String, Object> param,
+                            @AuthenticationPrincipal CustomUser user){
+        int reportReason = Integer.parseInt((String) param.get("reportReason"));
+        int memberNo = Integer.parseInt((String) param.get("member"));
+        int reviewNo = Integer.parseInt((String) param.get("no"));
         int loginMemberNo = user.getMemberNo();
 
-        reviewService.countHeart(reviewNo, loginMemberNo);
+        System.out.println("신고 이유는 = " + reportReason);
+        System.out.println("작성자의 번호는 = " + memberNo);
+        System.out.println("리뷰의 번호는 = " + reviewNo);
+        System.out.println("로그인 유저의 번호는 = " + loginMemberNo);
 
-        Map<String, Object> responseMap = new HashMap<>();
-        responseMap.put("no", Integer.valueOf(reviewNo).toString());
-        responseMap.put("member", memberNo);
-        return responseMap;
+        boolean reportResult = reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
+        System.out.println("신고 결과는 = " + reportResult);
     }
 }

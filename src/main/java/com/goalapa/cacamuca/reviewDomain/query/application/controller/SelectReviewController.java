@@ -24,18 +24,24 @@ public class SelectReviewController {
         this.selectReviewService = selectReviewService;
     }
 
-
     @GetMapping("/selectReviews")
-    public String selectReviews(Model model, @RequestParam String country){
+    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country){
+
+        System.out.println("foodName = " + foodName);
         System.out.println("country = " + country);
-        List<QueryReviewDTO> reviews = selectReviewService.findAllReviews();
-        List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures();
+
+        List<QueryReviewDTO> reviews = selectReviewService.findAllReviews(foodName, country);
+        List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
+
+        System.out.println("reviews = " + reviews);
+        System.out.println("reviewPics = " + reviewPics);
 
         model.addAttribute("reviews", reviews);
         model.addAttribute("reviewPics", reviewPics);
 
         return "/review/selectReviews";
     }
+
 
     @GetMapping("/detail")
     public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member){

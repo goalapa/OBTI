@@ -2,6 +2,11 @@ package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
 import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.Like;
 import com.goalapa.cacamuca.likeDomain.command.domain.repository.LikeRepository;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
@@ -32,17 +37,19 @@ public class ReviewService {
     private final ReviewPicRepository reviewPicRepository;
     private final SelectReviewService selectReviewService;
     private final ReviewValidationServiceImpl reviewValidationService;
+    private final ReportRepository reportRepository;
 
     private static String root = "C:\\app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService) {
+    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository) {
         this.reviewRepository = reviewRepository;
         this.likeRepository = likeRepository;
         this.reviewPicRepository = reviewPicRepository;
         this.selectReviewService = selectReviewService;
         this.reviewValidationService = reviewValidationService;
+        this.reportRepository = reportRepository;
     }
 
     @Transactional
@@ -50,7 +57,7 @@ public class ReviewService {
         LocalDate date = LocalDate.now();
         ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
         Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink());
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0);
 
         List<String> fileNames = new ArrayList<>();
         ReviewPic reviewPic = new ReviewPic();
@@ -90,9 +97,9 @@ public class ReviewService {
     public void countHeart(Integer no, int loginMemberNo) {
         Review review = reviewRepository.findById(no).get();
 
-        boolean checkCondition = reviewValidationService.checkCondition(review, no, loginMemberNo);
+        boolean checkHeartCondition = reviewValidationService.checkHeartCondition(review, no, loginMemberNo);
 
-        if(checkCondition == true){
+        if(checkHeartCondition == true){
             Like like = new Like();
 
             like.setReviewNo(no);
@@ -101,5 +108,22 @@ public class ReviewService {
             review.setLikeCnt(review.getLikeCnt() + 1);
             likeRepository.save(like);
         }
+    }
+
+    @Transactional
+    public boolean countReport(int reportReason, int reviewNo, int loginMemberNo, int memberNo) {
+        Review review = reviewRepository.findById(reviewNo).get();
+        ReviewVO reviewVO = new ReviewVO(reviewNo);
+        ReportMemberVO reportMemberVO = new ReportMemberVO(loginMemberNo);
+        ReportedMemberVO reportedMemberVO = new ReportedMemberVO(memberNo);
+
+        boolean checkCondition = reviewValidationService.checkReportCondition(review, reviewVO, reportMemberVO, reportedMemberVO);
+
+        if (checkCondition==true){
+            Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportReason);
+            reportRepository.save(report);
+        }
+
+        return checkCondition;
     }
 }

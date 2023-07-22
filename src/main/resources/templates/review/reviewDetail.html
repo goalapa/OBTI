@@ -43,16 +43,31 @@
             font-size: 16px;
             resize: none;
         }
-
-        .preview-image {
-            width: 200px;
-            height: auto;
-            margin: 10px;
-        }
         .review {
             position: relative;
             top: 80px;
             left: 250px;
+        }
+
+        #my_modal {
+            display: none;
+            width: 300px;
+            padding: 20px 60px;
+            background-color: #fefefe;
+            border: 1px solid #888;
+            border-radius: 3px;
+        }
+
+        #my_modal .modal_close_btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .report_button{
+            /*right: 15px;*/
+            /*position: absolute;*/
+            color: red;
         }
 
     </style>
@@ -63,6 +78,8 @@
 </head>
 <body>
 <th:block th:insert="~{common/header}"/>
+
+
 <form class="review">
     <input type="text" th:value="${review.country}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
     <input type="text" th:value="${review.foodType}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
@@ -72,6 +89,24 @@
     <input type="text" th:value="${review.reviewLink}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
     <input type="text" th:value="${review.reviewDate}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
 
+    <div id="my_modal">
+        <select name="report_reason" onchange="showInputForm(this.value)" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="none">=== 선택 ===</option>
+            <option value="1">관련없는 리뷰 작성</option>
+            <option value="2">욕성 및 비방</option>
+            <option value="3">음란 및 유해</option>
+            <option value="4">광고 및 홍보</option>
+            <option value="5">기타</option>
+        </select>
+
+        <div id="inputForm" style="display: none;">
+            <textarea name="other_reason" placeholder="기타 사유를 입력하세요" rows="3" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+        </div>
+
+        <a class="modal_close_btn">X</a>
+        <button type="button" onclick="clickReport()">신고하기</button>
+    </div>
+    <button type="button" class="report_button" id="popup_open_btn">신고하기</button>
 
     <div class="rating_box">
         <div class="rating">
@@ -107,29 +142,22 @@
 </form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!--<span th:each="reviewPic : ${reviewPics}">-->
-<!--    <img th:if="${reviewPic.reviewNo == review.reviewNo}" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="70" height="70" alt="Image">-->
-<!--</span>-->
-
     <script>
         let noValue = `[[${no}]]`;
         let memberValue = `[[${member}]]`;
 
+        function showInputForm(value) {
+            var inputForm = document.getElementById("inputForm");
+            if (value === "5") {
+                inputForm.style.display = "block";
+            } else {
+                inputForm.style.display = "none";
+            }
+        }
+
         function clickHeart () {
             console.log('하트가 클릭되었습니다.');
             document.getElementById("likeImg").src = "/assets/img/heart.png";
-
 
             axios({
                 method: 'post',
@@ -142,9 +170,87 @@
                 console.log(response.data.no);
                 console.log(response.data.member);
             });
-
         }
+
+        function clickReport(){
+            if (confirm('신고하시겠습니까?')==true) {
+                console.log('신고 버튼이 클릭되었습니다.');
+
+                const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
+                console.log(reportReason);
+
+                axios({
+                    method: 'post',
+                    url:'/review/report',
+                    data: {
+                        no: noValue,
+                        member: memberValue,
+                        reportReason:reportReason
+                    }
+                }).then(function (response){
+                    console.log(response.date);
+                }).catch(function (error){
+                    console.log(error);
+                });
+            }
+            else {
+                console.log('취소되었습니다.');
+            }
+        }
+
     </script>
+
+
+<script>
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
+
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            zIndex: zIndex + 1,
+
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
+
+
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    document.getElementById('popup_open_btn').addEventListener('click', function() {
+        modal('my_modal');
+    });
+</script>
 
 <script>
 
@@ -157,28 +263,6 @@
     rating_input.addEventListener('input', () => {
         rating_star.style.width = `${rating_input.value * 10}%`;
     });
-    function previewImages(event) {
-        var previewContainer = document.getElementById('preview-container');
-        var files = event.target.files;
-
-        previewContainer.innerHTML = '';
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var reader = new FileReader();
-
-            reader.onload = function (event) {
-                var imageUrl = event.target.result;
-                var imageElement = document.createElement('img');
-
-                imageElement.src = imageUrl;
-                imageElement.classList.add('preview-image');
-
-                previewContainer.appendChild(imageElement);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    }
 </script>
 </body>
 </html>

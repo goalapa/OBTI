@@ -22,6 +22,7 @@ public class ReviewPic {
     @Column(name = "review_pic_url")
     private String reviewPicUrl;
 
+
     public ReviewPic(String uploadPath) {
         this.reviewPicUrl = uploadPath;
     }

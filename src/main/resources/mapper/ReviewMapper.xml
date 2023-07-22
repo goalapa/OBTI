@@ -27,11 +27,13 @@
     <select id="findAllReviews" resultMap="reviewResultMap">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
         FROM review r
+        WHERE r.food_name = #{ foodName } and r.country = #{ country }
     </select>
 
     <select id="findAllPictures" resultMap="reviewPicResultMap">
-        SELECT r.review_pic_url
-        FROM review_pic r
+        SELECT p.review_pic_url
+        FROM review_pic p, review r
+        WHERE r.food_name = #{ foodName } and r.country = #{ country }
     </select>
 
     <select id="findReviewByNo" resultMap="reviewResultMap">
@@ -42,7 +44,7 @@
         WHERE r.review_no = #{ no }
     </select>
 
-    <select id="findAllReviewsBySearch" resultMap="reviewResultMap">
+    <select id="findAllReviewsByName" resultMap="reviewResultMap">
         select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
         from review r
         where r.food_name like '%${ search }%'
