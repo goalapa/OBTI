@@ -47,6 +47,8 @@ public class SelectReviewService {
     @Transactional(readOnly = true)
     public QueryReviewPicDTO findReviewPicByNo(int no) {
         QueryReviewPicDTO reviewPic = mapper.findReviewPicByNo(no);
+        System.out.println("검색 결과는 = " + reviewPic.getReviewPicUrl());
+
         return reviewPic;
     }
 

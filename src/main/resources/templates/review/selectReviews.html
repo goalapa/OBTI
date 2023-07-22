@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .layout{
+        .layout {
             width: 500px;
             margin: 0 auto;
             margin-top: 40px;
@@ -13,29 +13,32 @@
 </head>
 <body>
 <th:block th:insert="~{common/header}"/>
-  <div class="layout">
-      <table>
-          <thead>
-            <tr>
-                <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰 번호</th>
-                <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">까까 이름</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="review : ${reviews}">
-                <td th:text="${review.reviewNo}"/>
-                <td>
-                    <a th:text="${review.foodName}" th:href="@{/review/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
-                    <span th:each="reviewPic : ${reviewPics}">
-                        <img th:if="${reviewPic.reviewNo == review.reviewNo}" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="70" height="70" alt="Image">
-                    </span>
-                </td>
-            </tr>
-          </tbody>
-      </table>
-  </div>
-  <div style="display: flex; justify-content: center;">
+<div class="layout">
+    <table>
+        <thead>
+        <tr>
+            <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰 번호</th>
+            <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">까까 이름</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="review : ${reviews}">
+            <td th:text="${review.reviewNo}"/>
+            <td>
+                <a th:text="${review.foodName}" th:href="@{/review/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
+<!--                <span th:each="reviewPic : ${reviewPics}">-->
+<!--                <th:block th:if="${reviewPic.reviewNo == review.reviewNo}">-->
+<!--                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="70" height="70" alt="Image">-->
+<!--                </th:block>-->
+<!--                </span>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="display: flex; justify-content: center;">
     <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
-  </div>
+</div>
+
 </body>
 </html>

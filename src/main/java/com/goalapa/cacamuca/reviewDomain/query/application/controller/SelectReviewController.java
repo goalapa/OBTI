@@ -51,6 +51,8 @@ public class SelectReviewController {
     public String searchReview(Model model, @RequestParam String search){
         model.addAttribute("searchResult", selectReviewService.searchReviews(search));
 
+
+
         return "review/search";
     }
 }
