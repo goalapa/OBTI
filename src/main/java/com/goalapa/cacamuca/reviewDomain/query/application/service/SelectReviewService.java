@@ -16,7 +16,6 @@ public class SelectReviewService {
     private final ReviewMapper mapper;
 
     private static String root = "C:\\app-file";
-    //    private static String root = "./app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Transactional(readOnly = true)

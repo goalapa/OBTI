@@ -44,7 +44,7 @@ public class ReviewController {
 
 @PostMapping("/reviewDetail")
 @ResponseBody
-public Map<String, Object> CountHeart(Model model, @RequestBody HashMap<String, Object> parameter,
+public Map<String, Object> CountHeart(@RequestBody HashMap<String, Object> parameter,
                                       @AuthenticationPrincipal CustomUser user){
         String no = (String) parameter.get("no");
         Integer reviewNo =  Integer.parseInt(no);

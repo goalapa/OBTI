@@ -26,7 +26,8 @@ public class SelectReviewController {
 
 
     @GetMapping("/selectReviews")
-    public String selectReviews(Model model){
+    public String selectReviews(Model model, @RequestParam String country){
+        System.out.println("country = " + country);
         List<QueryReviewDTO> reviews = selectReviewService.findAllReviews();
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures();
 
