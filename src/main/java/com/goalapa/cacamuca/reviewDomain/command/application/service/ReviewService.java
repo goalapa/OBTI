@@ -121,6 +121,8 @@ public class ReviewService {
 
         if (checkCondition==true){
             Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportReason);
+
+            review.setReportCnt(review.getReportCnt()+1);
             reportRepository.save(report);
         }
 
