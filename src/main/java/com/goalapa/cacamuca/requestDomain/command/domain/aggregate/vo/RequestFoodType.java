@@ -14,4 +14,13 @@ public class RequestFoodType {
     public RequestFoodType(String requestFoodType) {
         this.requestFoodType = requestFoodType;
     }
+
+    public String getRequestFoodType() {
+        return requestFoodType;
+    }
+
+    @Override
+    public String toString() {
+        return requestFoodType;
+    }
 }

@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.requestDomain.query.application.service;
 
+import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.Request;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestDTO;
 import com.goalapa.cacamuca.requestDomain.query.domain.repository.FindRequestRepository;

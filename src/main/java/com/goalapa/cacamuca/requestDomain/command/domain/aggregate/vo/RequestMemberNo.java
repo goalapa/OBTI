@@ -14,4 +14,13 @@ public class RequestMemberNo {
     public RequestMemberNo(int requestMemberNo) {
         this.requestMemberNo = requestMemberNo;
     }
+
+    public int getRequestMemberNo() {
+        return requestMemberNo;
+    }
+
+    @Override
+    public String toString() {
+        return "" + requestMemberNo;
+    }
 }
