@@ -84,9 +84,81 @@ INSERT INTO request(request_country, request_food_type, request_food,request_pri
 VALUES('일본','과자','신상요청2',1500,2, 'test2');
 INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
 
 
 
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
 INSERT INTO request_pic(request_url)
 VALUES('link');
 INSERT INTO request_pic(request_url)

@@ -21,7 +21,7 @@ public class Request {
     private Integer requestNo;
 
     @Column(name = "request_food")
-    private String requestedFood;
+    private String requestFood;
 
     @Column(name = "request_price")
     private Integer requestPrice;

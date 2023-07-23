@@ -20,7 +20,6 @@ public class SaveFoodPicFromRequestImpl implements SaveFoodPicFromRequest {
         this.foodPicRepository = foodPicRepository;
     }
 
-
     @Override
     @Transactional
     public void saveFoodPicFromRequest(String url) {

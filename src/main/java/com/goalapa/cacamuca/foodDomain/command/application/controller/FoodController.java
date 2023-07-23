@@ -33,7 +33,6 @@ public class FoodController {
         saveFoodFromRequest.saveFoodFromRequest(food);
         saveFoodPicFromRequest.saveFoodPicFromRequest(url);
 
-
         return "redirect:/request-list";
     }
 }

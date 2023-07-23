@@ -1,14 +1,16 @@
 package com.goalapa.cacamuca.requestDomain.query.application.controller;
 
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.Request;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestDTO;
 import com.goalapa.cacamuca.requestDomain.query.application.dto.FindRequestPicDTO;
 import com.goalapa.cacamuca.requestDomain.query.application.service.FindRequestPicService;
 import com.goalapa.cacamuca.requestDomain.query.application.service.FindRequestService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/request-list")
@@ -21,20 +23,13 @@ public class FindRequestController {
         this.findRequestService = findRequestService;
         this.findRequestPicService = findRequestPicService;
     }
-//    private final SaveRequestToFoodImpl saveRequestToFoodImpl;
-
-//    public FindRequestController(FindRequestService findRequestService, FindRequestPicService findRequestPicService, SaveRequestToFoodImpl saveRequestToFoodImpl) {
-//        this.findRequestService = findRequestService;
-//        this.findRequestPicService = findRequestPicService;
-//        this.saveRequestToFoodImpl = saveRequestToFoodImpl;
-//    }
 
 
     @GetMapping("")
-    public String adminRequestPage(Model model) {
-        List<FindRequestDTO> requests = findRequestService.findAllRequestService();
+    public String adminRequestPage(Model model, @PageableDefault(size = 5) Pageable pageable) {
+        Page<Request> requestPage = findRequestService.findAllRequest(pageable);
 
-        model.addAttribute("requestList", requests);
+        model.addAttribute("requestPage", requestPage);
 
         return "request-list";
     }
@@ -51,13 +46,5 @@ public class FindRequestController {
         return "request-detail";
     }
 
-
-//    @PostMapping( "/view/save-request")
-//    public String saveRequest(@ModelAttribute FindRequestDTO findRequestDTO) {
-//
-//        saveRequestToFoodImpl.saveRequestToFood(findRequestDTO);
-//
-//        return "redirect:/request-list";
-//    }
 
 }
