@@ -7,6 +7,7 @@
     <style>
         table {
             position: relative;
+            left: 400px;
             top: 30px;
         }
         .search {
@@ -14,12 +15,18 @@
             top: 20px;
             left: 40px;
         }
+        .nav {
+            position: relative;
+            left: 400px;
+            top: 100px;
+        }
 
     </style>
 </head>
 
 <body>
-<th:block th:insert="~{common/header}" />
+<th:block th:insert="~{common/adminHeader}" />
+<th:block th:insert="~{common/adminAside}" />
 <!--<div class="search">-->
 <!--    <div class="pb-4 bg-white dark:bg-gray-900">-->
 <!--        <label for="table-search" class="sr-only">Search</label>-->
@@ -33,9 +40,8 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
-<!--<div class="h-96 relative overflow-x-auto shadow-md sm:rounded-lg m-10">-->
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<div class="body">
+<table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
         <th scope="col" class="px-6 py-3">REQUEST NO</th>
@@ -67,51 +73,35 @@
     </tbody>
 
 </table>
-<!--</div>-->
 
-<nav style="text-align: center;">
-    <ul class="pagination"
-        th:with="start=${T(java.lang.Math).floor(requestPage.number/10)*10 + 1},
+<div class="nav">
+<nav>
+    <ul class="flex items-center -space-x-px h-8 text-sm mx-auto"
+        th:with="start=${T(java.lang.Math).floor(requestPage.number/10)*10},
                     last=(${start + 9 < requestPage.totalPages ? start + 9 : requestPage.totalPages})">
         <th:block th:with="
-                firstAddr=@{/request-list(page=1)},
-                prevAddr=@{/request-list(page=${requestPage.number})},
-                nextAddr=@{/request-list(page=${requestPage.number + 2})},
+                firstAddr=@{/request-list(page=0)},
                 lastAddr=@{/request-list(page=${requestPage.totalPages})}">
-            <li>
-                <a th:href="${firstAddr}" aria-label="First">
-                    <span aria-hidden="true">First</span>
-                </a>
-            </li>
-            <!-- 이전 페이지로 가기 버튼 -->
             <li th:class="${requestPage.first} ? 'disabled'">
-                <a th:href="${requestPage.first} ? '#' :${prevAddr}"
+                <a th:href="${requestPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                    aria-label="Previous">
                     <span aria-hidden="true">&lt;</span>
                 </a>
             </li>
-            <!--1,2,3,4,.. 등 페이지-->
             <li th:each="page: ${#numbers.sequence(start, last)}"
                 th:class="${page == requestPage.number + 1} ? 'active'">
-                <a th:text="${page}" th:href="@{/request-list(page=${page})}"></a>
+                <a th:text="${page}+1" th:href="@{/request-list(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
             </li>
-            <!--다음 페이지로 -->
             <li th:class="${requestPage.last} ? 'disabled'">
-                <a th:href="${requestPage.last} ? '#' : ${nextAddr}"
+                <a th:href="${requestPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                    aria-label="Next">
                     <span aria-hidden="true">&gt;</span>
-                </a>
-            </li>
-            <!--맨 마지막 페이지로 이동 -->
-            <li>
-                <a th:href="${lastAddr}" aria-label="Last">
-                    <span aria-hidden="true">Last</span>
                 </a>
             </li>
         </th:block>
     </ul>
 </nav>
-
-
+</div>
+</div>
 </body>
 </html>

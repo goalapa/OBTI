@@ -26,7 +26,7 @@ public class FindRequestController {
 
 
     @GetMapping("")
-    public String adminRequestPage(Model model, @PageableDefault(size = 5) Pageable pageable) {
+    public String adminRequestPage(Model model, @PageableDefault Pageable pageable) {
         Page<Request> requestPage = findRequestService.findAllRequest(pageable);
 
         model.addAttribute("requestPage", requestPage);
