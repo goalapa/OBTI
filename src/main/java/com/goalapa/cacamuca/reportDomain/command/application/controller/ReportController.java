@@ -44,16 +44,19 @@ public class ReportController {
     // 신고 삭제 기능 (admin page 에서)
     @PostMapping("/delete")
     public ResponseEntity<String> acceptReport(@RequestBody ReportDeleteDTO reportDeleteDTO) {
+
+        reportService.deleteReportById(reportDeleteDTO.getReportNo());
+
         if (reportDeleteDTO.getIsAccept().equals("true")) {
-            int reportCnt = reportService.addReportCount(reportDeleteDTO);
+            // 피신고자의 신고 횟수 추가
+            reportService.addReportCount(reportDeleteDTO);
+
             // 피신고자의 누적 신고 횟수를 확인하고 블랙리스트에 추가하는 로직
             reportService.saveBlackList(reportDeleteDTO.getReportedMemberNo());
 
-            // 리뷰의 누적 신고 횟수를 확인
-            // 확인 후 누적 신고 횟수 + 1 을 하거나 리뷰를 삭제하는 로직
+            // 리뷰의 누적 신고 횟수를 확인하고, 확인 후 누적 신고 횟수 + 1 을 하거나 리뷰를 삭제하는 로직
+            reportService.deleteReviewWithReportedCnt(reportDeleteDTO);
         }
-
-        reportService.deleteReportById(reportDeleteDTO.getReportNo());
 
         return new ResponseEntity<>("200", HttpStatus.OK);
     }

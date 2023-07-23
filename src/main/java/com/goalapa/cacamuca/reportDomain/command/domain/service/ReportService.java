@@ -16,4 +16,6 @@ public interface ReportService {
     int addReportCount(ReportDeleteDTO reportDeleteDTO);
 
     void saveBlackList(Integer reportedMemberNo);
+
+    void deleteReviewWithReportedCnt(ReportDeleteDTO reportDeleteDTO);
 }
