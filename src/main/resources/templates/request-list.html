@@ -76,19 +76,19 @@
 
 <div class="nav">
 <nav>
-    <ul class="flex items-center -space-x-px h-8 text-sm mx-auto"
+    <ul class="flex items-center -space-x-px h-8 text-sm"
         th:with="start=${T(java.lang.Math).floor(requestPage.number/10)*10},
                     last=(${start + 9 < requestPage.totalPages ? start + 9 : requestPage.totalPages})">
         <th:block th:with="
                 firstAddr=@{/request-list(page=0)},
-                lastAddr=@{/request-list(page=${requestPage.totalPages})}">
+                lastAddr=@{/request-list(page=${requestPage.totalPages - 1})}">
             <li th:class="${requestPage.first} ? 'disabled'">
                 <a th:href="${requestPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                    aria-label="Previous">
                     <span aria-hidden="true">&lt;</span>
                 </a>
             </li>
-            <li th:each="page: ${#numbers.sequence(start, last)}"
+            <li th:each="page: ${#numbers.sequence(start, last - 1)}"
                 th:class="${page == requestPage.number + 1} ? 'active'">
                 <a th:text="${page}+1" th:href="@{/request-list(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
             </li>
