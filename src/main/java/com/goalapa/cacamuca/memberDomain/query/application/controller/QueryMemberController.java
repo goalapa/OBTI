@@ -60,7 +60,7 @@ public class QueryMemberController {
     }
 
     @GetMapping("admin-list")
-    public ModelAndView findAdminPage(ModelAndView mv, @PageableDefault(page = 1, size = 10) Pageable pageable) {
+    public ModelAndView findAdminPage(ModelAndView mv, @PageableDefault Pageable pageable) {
 
         Page<MemberDTO> members = memberService.findMemberList(pageable);
 
@@ -68,15 +68,6 @@ public class QueryMemberController {
         mv.setViewName("adminList");
 
         return mv;
-    }
-
-    @GetMapping("memberList")
-    @ResponseBody
-    public ResponseEntity getPage(@PageableDefault(page = 1, size = 10) Pageable pageable) {
-
-        Page<MemberDTO> members = memberService.findMemberList(pageable);
-
-        return ResponseEntity.ok(members);
     }
 
     @GetMapping("my-password")

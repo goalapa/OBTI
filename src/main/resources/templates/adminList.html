@@ -44,7 +44,7 @@
                     <td th:text="${members.memberEmail}" class="px-6 py-4" />
                     <td th:text="${members.memberCountry}" class="px-6 py-4" />
                     <td th:text="${members.memberGender}" class="px-6 py-4" />
-                    <td th:text="${members.memberBirth}" class="px-6 py-4" />
+                    <td th:text="${members.memberBirth}" class="px-6 py-4" />/
                 </tr>
                 </tbody>
             </table>
@@ -60,40 +60,25 @@
                             Showing
                             <span class="font-medium">1</span>
                             to
-                            <span class="font-medium">10</span>
+                            <span class="font-medium" th:text="${ members.numberOfElements }"></span>
                             of
                             <span class="font-medium" th:text="${ members.totalElements }"></span>
                             results
                         </p>
                     </div>
-                    <script>
-                        // const ele = `[[${ members.totalElements }]]`;
-                        const number = `[[${ members.number }]]`;
-                        const totalPages = `[[${ members.totalPages }]]`;
-                        const pageNumber = `[[${ members.pageable.pageNumber }]]`;
-                        console.log('number', number);
-                        console.log('totalPages', totalPages);
-                        console.log('pageNumber', pageNumber);
-                    </script>
                     <div>
-                        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                            <a th:href="@{/member/admin-list(page=${ members.number == 0? members.number : members.number - 1 })}" th:disabled="${ members.number eq 0 }" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination"
+                             th:with="start=${(members.number/ 5) * 5  + 1}, end=(${(members.totalPages == 0) ? 1 : (start + (5 - 1) < members.totalPages ? start + (5 - 1) : members.totalPages)})">
+                            <a th:href="@{/member/admin-list(page=${ members.number == 0? members.number : members.number - 1 })}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                                 <span class="sr-only">Previous</span>
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
                                 </svg>
                             </a>
-                            <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-<!--                            <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>-->
-                            <th:block th:each="page : ${#numbers.sequence(members.number, members.totalPages - 1)}">
-                                <a th:href="@{/member/admin-list(page=${ page })}" th:text="${ page + 1 }" th:disabled="${ members.number eq page }" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"></a>
+                            <th:block th:each="page: ${#numbers.sequence(start, end)}">
+                                <a th:id="'page-' + ${ page }" th:href="@{/member/admin-list(page=${ page } - 1)}" th:text="${ page }" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"></a>
                             </th:block>
-<!--                            <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>-->
-<!--                            <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>-->
-<!--                            <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>-->
-<!--                            <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>-->
-<!--                            <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>-->
-                            <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                            <a id="close-button" th:href="@{/member/admin-list(page=${ members.number == members.totalPages - 1? members.number : members.number + 1 })}" th:disabled="${ members.number eq members.totalPages - 1 }" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                                 <span class="sr-only">Next</span>
                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
@@ -105,5 +90,18 @@
             </div>
         </div>
     </main>
+    <script>
+        window.onload = function() {
+            const no = Number(`[[${ members.number }]]`).valueOf() + 1;
+            const number = 'page-' + no;
+            const element =  document.getElementById(number);
+            element.classList.add("bg-blue-300");
+            element.classList.remove("hover:bg-gray-50");
+
+            // const totalPage = `[[${ members.totalPages }]]`
+            //
+            // document.getElementById('close-button')
+        }
+    </script>
 </body>
 </html>
