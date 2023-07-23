@@ -10,50 +10,46 @@
     <th:block th:insert="~{common/adminHeader}" />
     <th:block th:insert="~{common/adminAside}" />
     <main class="p-4 sm:ml-64">
-        <h1 class="px-1 mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-gray-900 dark:text-primary-500">
+        <h1 class="px-1 mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-gray-900 ">
             회원목록
         </h1>
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        아이디
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        닉네임
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        이메일
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        국적
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        성별
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        생년월일
-                    </th>
-                </tr>
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            아이디
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            닉네임
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            이메일
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            국적
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            성별
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            생년월일
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr th:each="members, index : ${ members.content } " class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" th:text="${members.memberId}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" />
-                    <td th:text="${members.memberNickname}" class="px-6 py-4" />
-                    <td th:text="${members.memberEmail}" class="px-6 py-4" />
-                    <td th:text="${members.memberCountry}" class="px-6 py-4" />
-                    <td th:text="${members.memberGender}" class="px-6 py-4" />
-                    <td th:text="${members.memberBirth}" class="px-6 py-4" />/
-                </tr>
+                    <tr th:each="members, index : ${ members.content } " class="bg-white border-b">
+                        <th th:text="${members.memberId}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" />
+                        <td th:text="${members.memberNickname}" class="px-6 py-4" />
+                        <td th:text="${members.memberEmail}" class="px-6 py-4" />
+                        <td th:text="${members.memberCountry}" class="px-6 py-4" />
+                        <td th:text="${members.memberGender}" class="px-6 py-4" />
+                        <td th:text="${members.memberBirth}" class="px-6 py-4" />
+                    </tr>
                 </tbody>
             </table>
 
             <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-                <div class="flex flex-1 justify-between sm:hidden">
-                    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-                    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
-                </div>
                 <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                     <div>
                         <p class="text-sm text-gray-700">
@@ -66,26 +62,24 @@
                             results
                         </p>
                     </div>
-                    <div>
-                        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination"
-                             th:with="start=${(members.number/ 5) * 5  + 1}, end=(${(members.totalPages == 0) ? 1 : (start + (5 - 1) < members.totalPages ? start + (5 - 1) : members.totalPages)})">
-                            <a th:href="@{/member/admin-list(page=${ members.number == 0? members.number : members.number - 1 })}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span class="sr-only">Previous</span>
-                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                            <th:block th:each="page: ${#numbers.sequence(start, end)}">
-                                <a th:id="'page-' + ${ page }" th:href="@{/member/admin-list(page=${ page } - 1)}" th:text="${ page }" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"></a>
-                            </th:block>
-                            <a id="close-button" th:href="@{/member/admin-list(page=${ members.number == members.totalPages - 1? members.number : members.number + 1 })}" th:disabled="${ members.number eq members.totalPages - 1 }" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span class="sr-only">Next</span>
-                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </nav>
-                    </div>
+                    <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination"
+                         th:with="start=${(members.number/ 5) * 5  + 1}, end=(${(members.totalPages == 0) ? 1 : (start + (5 - 1) < members.totalPages ? start + (5 - 1) : members.totalPages)})">
+                        <a id="previous-page" th:href="@{/member/admin-list(page=${ members.number == 0? members.number : members.number - 1 })}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                            <span class="sr-only">Previous</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <th:block th:each="page: ${#numbers.sequence(start, end)}">
+                            <a th:id="'page-' + ${ page }" th:href="@{/member/admin-list(page=${ page } - 1)}" th:text="${ page }" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"></a>
+                        </th:block>
+                        <a id="next-page" th:href="@{/member/admin-list(page=${ members.number == members.totalPages - 1? members.number : members.number + 1 })}" th:disabled="${ members.number eq members.totalPages - 1 }" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                            <span class="sr-only">Next</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -98,9 +92,17 @@
             element.classList.add("bg-blue-300");
             element.classList.remove("hover:bg-gray-50");
 
-            // const totalPage = `[[${ members.totalPages }]]`
-            //
-            // document.getElementById('close-button')
+            const currentPage = Number(`[[${ members.number }]]`);
+            const lastPage = Number(`[[${ members.totalPages }]]`).valueOf() - 1;
+
+            if(currentPage == 0) {
+                document.getElementById('previous-page').removeAttribute('href');
+            }
+
+            if(currentPage === lastPage) {
+                document.getElementById('next-page').removeAttribute('href');
+            }
+
         }
     </script>
 </body>
