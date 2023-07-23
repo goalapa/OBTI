@@ -20,6 +20,15 @@ public class RequestDTO {
 
     public RequestDTO() {}
 
+    public RequestDTO(int requestNo, String requestCountry, String requestFoodType, String requestFood, int requestPrice, String requestContent) {
+        this.requestNo = requestNo;
+        this.requestCountry = requestCountry;
+        this.requestFoodType = requestFoodType;
+        this.requestFood = requestFood;
+        this.requestPrice = requestPrice;
+        this.requestContent = requestContent;
+    }
+
     public int getRequestNo() {
         return requestNo;
     }

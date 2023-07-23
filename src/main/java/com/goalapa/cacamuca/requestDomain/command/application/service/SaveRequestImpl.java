@@ -1,5 +1,7 @@
 package com.goalapa.cacamuca.requestDomain.command.application.service;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
+import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.Request;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCountry;
@@ -21,11 +23,11 @@ public class SaveRequestImpl implements SaveRequest {
 
     @Override
     @Transactional
-    public void saveRequest(RequestDTO requestDTO) {
+    public void saveRequest(RequestDTO requestDTO, int user) {
 
         RequestCountry requestCountry = new RequestCountry(requestDTO.getRequestCountry());
         RequestFoodType requestFoodType = new RequestFoodType(requestDTO.getRequestFoodType());
-        RequestMemberNo requestMemberNo = new RequestMemberNo(requestDTO.getRequestMemberNo());
+        RequestMemberNo requestMemberNo = new RequestMemberNo(user);
 
 
 
@@ -40,6 +42,5 @@ public class SaveRequestImpl implements SaveRequest {
         requestRepository.save(request);
 
     }
-
 
 }
