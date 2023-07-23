@@ -60,7 +60,7 @@ public class QueryMemberController {
     }
 
     @GetMapping("admin-list")
-    public ModelAndView findAdminPage(ModelAndView mv, @PageableDefault Pageable pageable) {
+    public ModelAndView findAdminPage(ModelAndView mv, @PageableDefault(sort = "member_email") Pageable pageable) {
 
         Page<MemberDTO> members = memberService.findMemberList(pageable);
 
