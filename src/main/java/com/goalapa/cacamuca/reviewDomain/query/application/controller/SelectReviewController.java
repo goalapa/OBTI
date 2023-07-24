@@ -40,7 +40,9 @@ public class SelectReviewController {
 
         System.out.println("reviews = " + reviews);
         System.out.println("reviewPics = " + reviewPics);
-        
+
+        model.addAttribute("foodName", foodName);
+        model.addAttribute("country",country);
         model.addAttribute("reviews", reviews);
         model.addAttribute("reviewPages", reviewPages);
         model.addAttribute("reviewPics", reviewPics);

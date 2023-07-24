@@ -74,16 +74,47 @@
     </div>
 </div>
 
-
-<div style="display: flex; justify-content: center;" th:each="reviewPage : ${reviewPages}">
-    <a th:if="${reviewPages.hasPrevious()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.previousPageable().pageNumber})}">
-        <button class="selected-page">Previous</button>
+<!-- 페이지 이동 버튼 -->
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+    <!-- 이전 페이지 버튼 -->
+    <a th:if="${reviewPages.hasPrevious()}"
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number - 1})}">
+        <button class="w-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            &laquo;
+        </button>
     </a>
 
-    <a th:if="${reviewPages.hasNext()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.nextPageable().pageNumber})}">
-        <button class="selected-page">Next</button>
+    <!-- 페이지 번호 버튼 -->
+    <div style="display: flex; gap: 10px;">
+        <a th:each="page : ${#numbers.sequence(0, reviewPages.totalPages - 1)}"
+           th:if="${reviewPages.totalPages > 1}"
+           th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${page})}">
+            <button th:text="${page + 1}"
+                    th:classappend="${page == reviewPages.number} ? 'selected-page' : ''"
+                    class="w-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </button>
+        </a>
+    </div>
+
+    <!-- 다음 페이지 버튼 -->
+    <a th:if="${reviewPages.hasNext()}"
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number + 1})}">
+        <button class="w-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            &raquo;
+        </button>
     </a>
 </div>
+
+
+<!--<div style="display: flex; justify-content: center;" th:each="reviewPage : ${reviewPages}">-->
+<!--    <a th:if="${reviewPages.hasPrevious()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.previousPageable().pageNumber})}">-->
+<!--        <button class="selected-page">Previous</button>-->
+<!--    </a>-->
+
+<!--    <a th:if="${reviewPages.hasNext()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.nextPageable().pageNumber})}">-->
+<!--        <button class="selected-page">Next</button>-->
+<!--    </a>-->
+<!--</div>-->
 
 
 
