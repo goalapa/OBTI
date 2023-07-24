@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
     <style>
         .layout{
             width: 500px;
@@ -10,29 +8,28 @@
             margin-top: 40px;
         }
     </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-<th:block th:insert="~{common/header}"/>
-  <div class="layout">
-      <table>
-          <thead>
+    <th:block th:insert="~{common/header}"/>
+    <div class="layout">
+        <table>
+            <thead>
             <tr>
                 <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰 번호</th>
                 <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">까까 이름</th>
             </tr>
-          </thead>
-          <tbody>
-            <tr th:each="review : ${reviews}">
-                <td th:text="${review.reviewNo}"/>
+            </thead>
+            <tbody>
+            <tr th:each="search : ${searchResult}">
+                <td th:text="${search.reviewNo}"/>
                 <td>
-                    <a th:text="${review.foodName}" th:href="@{/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
+                    <a th:text="${search.foodName}" th:href="@{/detail(no=${search.reviewNo}, member=${search.memberNo})}"></a>
                 </td>
             </tr>
-          </tbody>
-      </table>
-  </div>
-  <div style="display: flex; justify-content: center;">
-    <button onclick="location.href='/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
-  </div>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

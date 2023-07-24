@@ -19,19 +19,21 @@
     </resultMap>
 
     <resultMap id="reviewPicResultMap" type="com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO">
-        <id property="reviewPicNo" column="review_pic_no"/>
+        <result property="reviewPicNo" column="review_pic_no"/>
         <result property="reviewNo" column="review_no"/>
         <result property="reviewPicUrl" column="review_pic_url"/>
     </resultMap>
 
-    <select id="findAllPictures" resultMap="reviewPicResultMap">
-        SELECT p.review_pic_url
-        FROM review_pic p
+    <select id="findAllReviews" resultMap="reviewResultMap">
+        SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate, r.review_content, r.country
+        FROM review r
+        WHERE r.food_name = #{ foodName } and r.country = #{ country }
     </select>
 
-    <select id="findAllReviews" resultMap="reviewResultMap">
-        SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
-        FROM review r
+    <select id="findAllPictures" resultMap="reviewPicResultMap">
+        SELECT p.review_pic_url, p.review_no
+        FROM review_pic p, review r
+        WHERE r.food_name = #{ foodName } and r.country = #{ country }
     </select>
 
     <select id="findReviewByNo" resultMap="reviewResultMap">
@@ -42,10 +44,16 @@
         WHERE r.review_no = #{ no }
     </select>
 
-    <select id="findLike" resultType="int">
-        SELECT l.count(*)
-        FROM review_like l
-        WHERE member_no = #{member_no} and review_no = #{review_no}
+    <select id="findAllReviewsByName" resultMap="reviewResultMap">
+        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
+        from review r
+        where r.food_name like '%${ search }%'
+    </select>
+
+    <select id="findReviewPicByNo" resultMap="reviewPicResultMap">
+        select p.review_pic_url
+        from review_pic p
+        where p.review_no = #{ no }
     </select>
 
 </mapper>
