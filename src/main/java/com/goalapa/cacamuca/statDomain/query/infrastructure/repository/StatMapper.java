@@ -1,8 +1,10 @@
-package com.goalapa.cacamuca.statDomain.query.domain.respository;
+package com.goalapa.cacamuca.statDomain.query.infrastructure.repository;
 
-@org.apache.ibatis.annotations.Mapper
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface StatMapper {
-    int countLikes(int foodNo);
+    Integer countLikes(int foodNo);
     int countReviews(int foodNo);
     float calculateFoodRate(int foodNo);
     int memberAgeGroup(int foodNo);

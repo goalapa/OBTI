@@ -30,11 +30,11 @@ public class FindRequestService {
     }
 
 
-    public List<FindRequestDTO> findAllRequestService() {
-
-       List<FindRequestDTO> requests = requestMapper.findAllRequests();
-        return requests;
-    }
+//    public List<FindRequestDTO> findAllRequestService() {
+//
+//       List<FindRequestDTO> requests = requestMapper.findAllRequests();
+//        return requests;
+//    }
 
 
     public FindRequestDTO findRequestByRequestNo(int requestNo) {

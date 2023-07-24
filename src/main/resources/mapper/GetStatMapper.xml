@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goalapa.cacamuca.statDomain.query.domain.respository.GetStatMapper">
+
+    <resultMap id="statResultMap" type="com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO">
+        <id property="statNo" column="STAT_NO"/>
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <result property="foodNo" column="FOOD_NO"/>
+        <result property="reviewCnt" column="REVIEW_CNT"/>
+        <result property="foodRate" column="FOOD_RATE"/>
+        <result property="likeCnt" column="LIKE_CNT"/>
+        <result property="memberAgeGroup" column="MEMBER_AGE_GROUP"/>
+        <result property="memberGender" column="MEMBER_GENDER"/>
+    </resultMap>
+
+    <select id="findAllStats" resultMap="statResultMap">
+        SELECT
+        A.STAT_NO
+        ,   A.UPDATE_DATE
+        ,   A.FOOD_NO
+        ,   A.REVIEW_CNT
+        ,   A.FOOD_RATE
+        ,   A.LIKE_CNT
+        ,   A.MEMBER_AGE_GROUP
+        ,   A.MEMBER_GENDER
+        FROM STAT A
+    </select>
+
+</mapper>

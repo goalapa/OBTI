@@ -1,9 +1,14 @@
 package com.goalapa.cacamuca.statDomain.command.domain.aggregate.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "stat")
 public class Stat {
 
@@ -31,7 +36,7 @@ public class Stat {
     private Integer memberAgeGroup;
 
     @Column(name = "member_gender")
-    private Integer memberGender;
+    private String memberGender;
 
 //    @Column(name = "report_type")
 //    private Integer reportType;

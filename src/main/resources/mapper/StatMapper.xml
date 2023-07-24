@@ -2,45 +2,58 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goalapa.cacamuca.statDomain.query.domain.respository.StatMapper">
+<mapper namespace="com.goalapa.cacamuca.statDomain.query.infrastructure.repository.StatMapper">
 
-    <resultMap id="statResultMap" type="com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO">
-        <id property="statNo" column="STAT_NO"/>
-        <result property="updateDate" column="UPDATE_DATE"/>
-        <result property="foodNo" column="FOOD_NO"/>
-        <result property="reviewCnt" column="REVIEW_CNT"/>
-        <result property="foodRate" column="FOOD_RATE"/>
-        <result property="likeCnt" column="LIKE_CNT"/>
-        <result property="memberAgeGroup" column="MEMBER_AGE_GROUP"/>
-        <result property="memberGender" column="MEMBER_GENDER"/>
-    </resultMap>
+<!--    <resultMap id="statResultMap" type="com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO">-->
+<!--        <id property="statNo" column="STAT_NO"/>-->
+<!--        <result property="updateDate" column="UPDATE_DATE"/>-->
+<!--        <result property="foodNo" column="FOOD_NO"/>-->
+<!--        <result property="reviewCnt" column="REVIEW_CNT"/>-->
+<!--        <result property="foodRate" column="FOOD_RATE"/>-->
+<!--        <result property="likeCnt" column="LIKE_CNT"/>-->
+<!--        <result property="memberAgeGroup" column="MEMBER_AGE_GROUP"/>-->
+<!--        <result property="memberGender" column="MEMBER_GENDER"/>-->
+<!--    </resultMap>-->
 
-    <select id="countLikes" resultType="_int">
+    <select id="countLikes" resultType="java.lang.Integer">
         SELECT
                 SUM(LIKE_CNT)
-                FROM REVIEW
-                WHERE FOOD_NO = #{ foodNo }
+        FROM
+                REVIEW A
+        WHERE
+                A.FOOD_NO = #{ foodNo }
     </select>
 
     <select id="countReviews" resultType="_int">
         SELECT
-                COUNT (*)
-                FROM REVIEW
-                WHERE FOOD_NO = #{ foodNo }
+                COUNT(*)
+        FROM
+                REVIEW A
+        WHERE
+                A.FOOD_NO = #{ foodNo }
+    </select>
+
+    <select id="calculateFoodRate" resultType="java.lang.Float">
+        SELECT
+                AVG(REVIEW_RATE)
+        FROM
+                REVIEW A
+        WHERE
+                A.FOOD_NO = #{ foodNo }
     </select>
 
     <select id="memberAgeGroup" resultType="_int">
         SELECT
                 CASE
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 10 AND 19 THEN 10
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 20 AND 29 THEN 20
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 30 AND 39 THEN 30
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 40 AND 49 THEN 40
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 50 AND 59 THEN 50
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 50 AND 59 THEN 50
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 60 AND 69 THEN 60
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 70 AND 79 THEN 70
-                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM m.member_birthday) BETWEEN 80 AND 89 THEN 80
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 10 AND 19 THEN 10
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 20 AND 29 THEN 20
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 30 AND 39 THEN 30
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 40 AND 49 THEN 40
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 50 AND 59 THEN 50
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 50 AND 59 THEN 50
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 60 AND 69 THEN 60
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 70 AND 79 THEN 70
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 80 AND 89 THEN 80
                     ELSE 0
                 END AS AGE_GROUP,
                 COUNT(*) AS REVIEW_CNT
@@ -60,7 +73,7 @@
     <select id="memberGender" resultType="java.lang.String">
         SELECT
                 B.MEMBER_GENDER,
-                COUNT (*) AS REVIEW_CNT
+                COUNT(*) AS REVIEW_CNT
         FROM
                 REVIEW A
         JOIN

@@ -18,6 +18,13 @@ public class SaveStatServiceImpl implements SaveStatService {
     @Override
     public void insertData(StatDTO statDTO) {
         Stat stat = new Stat();
+        stat.setStatNo(statDTO.getStatNo());
+        stat.setFoodNo(statDTO.getFoodNo());
+        stat.setFoodRate(statDTO.getFoodRate());
+        stat.setLikeCnt(statDTO.getLikeCnt());
+        stat.setReviewCnt(statDTO.getReviewCnt());
+        stat.setMemberAgeGroup(statDTO.getMemberAgeGroup());
+        stat.setMemberGender(statDTO.getMemberGender());
 
         statRepository.save(stat);
     }

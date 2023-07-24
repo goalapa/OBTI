@@ -15,16 +15,16 @@ import java.util.List;
 public class StatScheduler {
 
     private final FoodRepository foodRepository;
-    private final SaveStatService saveStatService;
+    private final SaveStatServiceImpl saveStatServiceImpl;
     private final LikeCntService likeCntService;
     private final ReviewCntService reviewCntService;
     private final FoodRateService foodRateService;
     private final MemberAgeGroupService memberAgeGroupService;
     private final MemberGenderService memberGenderService;
 
-    public StatScheduler(FoodRepository foodRepository, SaveStatService saveStatService, LikeCntService likeCntService, ReviewCntService reviewCntService, FoodRateService foodRateService, MemberAgeGroupService memberAgeGroupService, MemberGenderService memberGenderService) {
+    public StatScheduler(FoodRepository foodRepository, SaveStatServiceImpl saveStatServiceImpl, LikeCntService likeCntService, ReviewCntService reviewCntService, FoodRateService foodRateService, MemberAgeGroupService memberAgeGroupService, MemberGenderService memberGenderService) {
         this.foodRepository = foodRepository;
-        this.saveStatService = saveStatService;
+        this.saveStatServiceImpl = saveStatServiceImpl;
         this.likeCntService = likeCntService;
         this.reviewCntService = reviewCntService;
         this.foodRateService = foodRateService;
@@ -32,19 +32,22 @@ public class StatScheduler {
         this.memberGenderService = memberGenderService;
     }
 
-    @Scheduled(cron = "0 0 3 * * *")
+    //@Scheduled(cron = "0 0 3 * * *")
     public void insertData() {
 
         List<Food> foods = foodRepository.findAll();
 
         for(Food food : foods) {
             int foodNo = food.getFoodNo();
-            int likeCnt = likeCntService.countLikes(foodNo);
+            Integer likeCnt = likeCntService.countLikes(foodNo);
             int reviewCnt = reviewCntService.countReviews(foodNo);
             float foodRate = foodRateService.calculateFoodRate(foodNo);
             int memberAgeGroup = memberAgeGroupService.returnMemberAgeGroup(foodNo);
             String memberGender = memberGenderService.getPreferredMemberGender(foodNo);
 
+            System.out.println("foodNo = " + foodNo);
+            System.out.println("likeCnt = " + likeCnt);
+            System.out.println("foodRate = " + foodRate);
 
             StatDTO statDTO = new StatDTO();
             statDTO.setUpdateDate(LocalDate.now());
@@ -55,7 +58,7 @@ public class StatScheduler {
             statDTO.setMemberAgeGroup(memberAgeGroup);
             statDTO.setMemberGender(memberGender);
 
-            saveStatService.insertData(statDTO);
+            saveStatServiceImpl.insertData(statDTO);
         }
 
 

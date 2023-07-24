@@ -28,12 +28,12 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(3,'link');
 
 
-INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender,member_grant,member_report_cnt,member_birth,member_country)
+INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender, member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES(1,'abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
-VALUES(1,'abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','F','ROLE_MEMBER',0,'2001-08-04','한국');
+VALUES(1,'abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','M','ROLE_MEMBER',0,'2001-08-04','한국');
 INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES(2,'abc111','pwd111','오늘은뭐먹지','zmzlsk@gmail.com',30,20,'1990-01-20');
-VALUES(2,'abc111','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com','M','ROLE_MEMBER',20,'1990-01-20','한국');
+VALUES(2,'abc111','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com','F','ROLE_MEMBER',20,'1990-01-20','한국');
 INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES(3,'abc222','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
 VALUES(3,'abc222','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','F','ROLE_MEMBER',10,'2008-11-30','한국');
@@ -183,7 +183,7 @@ INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,m
 VALUES(5,'리뷰 예시02','쌍쌍바','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');
 
 INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(6,'리뷰 예시03','프레첼','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
+VALUES(6,'리뷰 예시03','프레첼','2023-06-20',5.0,2,3,'선물추천',1000.0,'link');
 
 INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(7,'리뷰 예시01','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
@@ -192,7 +192,7 @@ INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,m
 VALUES(8,'리뷰 예시02','쌍쌍바','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');
 
 INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(9,'리뷰 예시03','프레첼','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
+VALUES(9,'리뷰 예시03','프레첼','2023-06-20',5.0,2,3,'선물추천',1000.0,'link');
 
 INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(10,'리뷰 예시01','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
@@ -201,7 +201,7 @@ INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,m
 VALUES(11,'리뷰 예시02','쌍쌍바','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');
 
 INSERT INTO review(review_no, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(12,'리뷰 예시03','프레첼','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
+VALUES(12,'리뷰 예시03','프레첼','2023-06-20',5.0,2,3,'선물추천',1000.0,'link');
 
 
 -- INSERT INTO review_like(review_no,member_no)
