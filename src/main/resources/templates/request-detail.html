@@ -74,6 +74,7 @@
             <div>
                 <label for="foodPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FOOD PICTURE</label>
                 <img class="h-auto max-w-lg rounded-lg" th:src="${selectRequestPic.getRequestURL()}" th:alt="${selectRequestPic.getRequestURL()}">
+                <input type="hidden" name="imageUrl" th:value="${selectRequestPic.getRequestURL()}" />
             </div>
 
             <div>

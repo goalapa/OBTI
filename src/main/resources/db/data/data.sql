@@ -30,6 +30,7 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(3,'link');
 
 
+
 INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES('abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
 VALUES('abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','ROLE_MEMBER',0,'2001-08-04','한국');
@@ -113,9 +114,81 @@ INSERT INTO request(request_country, request_food_type, request_food,request_pri
 VALUES('일본','과자','신상요청2',1500,2, 'test2');
 INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('한국','과자','신상요청1',1500,1, 'test1');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('일본','과자','신상요청2',1500,2, 'test2');
+INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
+VALUES('대만','과자','신상요청3',1500,3, 'test3');
 
 
 
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
+INSERT INTO request_pic(request_url)
+VALUES('link');
 INSERT INTO request_pic(request_url)
 VALUES('link');
 INSERT INTO request_pic(request_url)
@@ -145,14 +218,17 @@ VALUES(6,'ko','리뷰 예시03','프레첼', '2023-06-20',5.0,2,2,'선물추천'
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(7,'ko','리뷰 예시01','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
 
+
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(8,'ko','리뷰 예시02','오레오','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');
 
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(9,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
 
+
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(10,'ko','리뷰 예시01','오레오','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
+
 
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(11,'ko','리뷰 예시02','오레오','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');
@@ -172,6 +248,7 @@ INSERT INTO review(review_no, country, review_content,food_name,review_date,revi
 VALUES(17,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(18,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
+
 
 
 -- INSERT INTO review_like(review_no,member_no)
@@ -194,9 +271,9 @@ VALUES(18,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천'
 -- VALUES(2,4,'link');
 
 
-INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)
-VALUES('2023-06-01',20,3.5,100,1,1);
-INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)
-VALUES('2023-06-02',20,4.5,150,1,1);
-INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)
-VALUES('2023-06-03',20,2.5,200,1,1);
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',20,200,4.5,100,20,'M');
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',21,255,3.8,200,10,'F');
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',22,150,5.0,120,30,'F');
