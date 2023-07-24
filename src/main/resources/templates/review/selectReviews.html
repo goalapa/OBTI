@@ -49,10 +49,34 @@
             top: 10px;
         }
 
+
         .selected-page {
-            background-color: #ffc107;
+            background-color: #3490dc;
             color: white;
-            font-weight: bold;
+        }
+
+        .page-button {
+            width: 30px;
+            height: 30px;
+            /*background-color: #f2f2f2;*/
+            border: 1px solid #ccc;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 4px;
+        }
+
+        .page-button:hover {
+            background-color: #ddd;
+        }
+
+        .page-button:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -74,12 +98,13 @@
     </div>
 </div>
 
-<!-- 페이지 이동 버튼 -->
 <div style="display: flex; justify-content: center; margin-top: 20px;">
+
+
     <!-- 이전 페이지 버튼 -->
     <a th:if="${reviewPages.hasPrevious()}"
        th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number - 1})}">
-        <button class="w-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <button class="page-button">
             &laquo;
         </button>
     </a>
@@ -91,7 +116,7 @@
            th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${page})}">
             <button th:text="${page + 1}"
                     th:classappend="${page == reviewPages.number} ? 'selected-page' : ''"
-                    class="w-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="page-button">
             </button>
         </a>
     </div>
@@ -99,32 +124,17 @@
     <!-- 다음 페이지 버튼 -->
     <a th:if="${reviewPages.hasNext()}"
        th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number + 1})}">
-        <button class="w-10 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <button class="page-button">
             &raquo;
         </button>
     </a>
 </div>
-
-
-<!--<div style="display: flex; justify-content: center;" th:each="reviewPage : ${reviewPages}">-->
-<!--    <a th:if="${reviewPages.hasPrevious()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.previousPageable().pageNumber})}">-->
-<!--        <button class="selected-page">Previous</button>-->
-<!--    </a>-->
-
-<!--    <a th:if="${reviewPages.hasNext()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.nextPageable().pageNumber})}">-->
-<!--        <button class="selected-page">Next</button>-->
-<!--    </a>-->
-<!--</div>-->
-
-
-
 
 <div style="display: flex; justify-content: center;">
     <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
 </div>
 
 <script>
-
     const rating_inputs = document.querySelectorAll('.rating input');
     const rating_stars = document.querySelectorAll('.rating_star');
 
@@ -138,7 +148,6 @@
             rating_star.style.width = `${rating_input.value * 10}%`;
         });
     }
-
 </script>
 </body>
 </html>
