@@ -23,5 +23,9 @@ public class MemberDTO {
 
     private String memberReportCnt;
 
+    private String memberCountry;
+
+    private String memberGender;
+
     private String memberBirth;
 }
