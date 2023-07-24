@@ -98,32 +98,32 @@
     </div>
 </div>
 
+
 <div style="display: flex; justify-content: center; margin-top: 20px;">
-
-
     <!-- 이전 페이지 버튼 -->
     <a th:if="${reviewPages.hasPrevious()}"
-       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number - 1})}">
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number - 1})}"
+       style="display: inline-block;">
         <button class="page-button">
             &laquo;
         </button>
     </a>
 
     <!-- 페이지 번호 버튼 -->
-    <div style="display: flex; gap: 10px;">
-        <a th:each="page : ${#numbers.sequence(0, reviewPages.totalPages - 1)}"
-           th:if="${reviewPages.totalPages > 1}"
-           th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${page})}">
-            <button th:text="${page + 1}"
-                    th:classappend="${page == reviewPages.number} ? 'selected-page' : ''"
-                    class="page-button">
-            </button>
-        </a>
-    </div>
+    <a th:each="page : ${#numbers.sequence(0, reviewPages.totalPages - 1)}"
+       th:if="${reviewPages.totalPages > 1}"
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${page})}"
+       style="display: inline-block;">
+        <button th:text="${page + 1}"
+                th:classappend="${page == reviewPages.number} ? 'selected-page' : ''"
+                class="page-button">
+        </button>
+    </a>
 
     <!-- 다음 페이지 버튼 -->
     <a th:if="${reviewPages.hasNext()}"
-       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number + 1})}">
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number + 1})}"
+       style="display: inline-block;">
         <button class="page-button">
             &raquo;
         </button>
