@@ -4,9 +4,13 @@ import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,7 +18,6 @@ import java.util.List;
 public class SelectReviewService {
 
     private final ReviewMapper mapper;
-
     private static String root = "C:\\app-file";
     private static String filePath = root + "/uploadFiles";
 
@@ -22,6 +25,20 @@ public class SelectReviewService {
     public List<QueryReviewDTO> findAllReviews(String foodName, String country) {
         List<QueryReviewDTO> reviews = mapper.findAllReviews(foodName, country);
         return reviews;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<QueryReviewDTO> findAllReviews(String foodName, String country, Pageable pageable) {
+        List<QueryReviewDTO> reviews = mapper.findAllReviews(foodName, country);
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), reviews.size());
+
+        // 목록이 없으면 빈페이지 생성
+        if (start > reviews.size())
+            return new PageImpl<>(new ArrayList<>(), pageable, reviews.size());
+
+        return new PageImpl<>(reviews.subList(start, end), pageable, reviews.size());
     }
 
     @Transactional(readOnly = true)
@@ -47,4 +64,6 @@ public class SelectReviewService {
         List<QueryReviewDTO> reviews = mapper.findAllReviewsByName(search);
         return reviews;
     }
+
+
 }

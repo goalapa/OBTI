@@ -1,8 +1,14 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,19 +31,20 @@ public class SelectReviewController {
     }
 
     @GetMapping("/selectReviews")
-    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country){
-
-        System.out.println("foodName = " + foodName);
-        System.out.println("country = " + country);
-
+    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country
+            , @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
+    ){
         List<QueryReviewDTO> reviews = selectReviewService.findAllReviews(foodName, country);
+        Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
 
         System.out.println("reviews = " + reviews);
         System.out.println("reviewPics = " + reviewPics);
-
+        
         model.addAttribute("reviews", reviews);
+        model.addAttribute("reviewPages", reviewPages);
         model.addAttribute("reviewPics", reviewPics);
+        
 
         return "/review/selectReviews";
     }

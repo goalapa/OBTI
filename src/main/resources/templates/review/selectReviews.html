@@ -5,40 +5,109 @@
     <title>Title</title>
     <style>
         .layout {
-            width: 500px;
+            width: 300px;
+            height: 200px;
             margin: 0 auto;
             margin-top: 40px;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+        }
+        .rating_box {
+            display: flex;
+        }
+
+        .rating {
+            position: relative;
+            color: #ddd;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .rating input {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .rating_star {
+            width: 0;
+            color: #ffc107;
+            position: absolute;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .inner{
+            position: relative;
+            left: 25px;
+            top: 10px;
+        }
+
+        .selected-page {
+            background-color: #ffc107;
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
+
 <body>
 <th:block th:insert="~{common/header}"/>
-<div class="layout">
-    <table>
-        <thead>
-        <tr>
-            <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰 번호</th>
-            <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">까까 이름</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="review : ${reviews}">
-            <td th:text="${review.reviewNo}"/>
-            <td>
-                <a th:text="${review.foodName}" th:href="@{/review/detail(no=${review.reviewNo}, member=${review.memberNo})}"></a>
-<!--                <span th:each="reviewPic : ${reviewPics}">-->
-<!--                <th:block th:if="${reviewPic.reviewNo == review.reviewNo}">-->
-<!--                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="70" height="70" alt="Image">-->
-<!--                </th:block>-->
-<!--                </span>-->
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="layout" th:each="reviewPage : ${reviewPages}">
+    <div class="inner">
+        <span class="rating_box">
+            <div class="rating">
+                ★★★★★
+                <span class="rating_star">★★★★★</span>
+                <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${reviewPage.reviewRate}" readonly>
+            </div>
+        </span>
+        <div class="inner_content">
+            <a th:text="${reviewPage.reviewContent}" th:href="@{/review/detail(no=${reviewPage.reviewNo}, member=${reviewPage.memberNo})}"></a>
+        </div>
+    </div>
 </div>
+
+
+<div style="display: flex; justify-content: center;" th:each="reviewPage : ${reviewPages}">
+    <a th:if="${reviewPages.hasPrevious()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.previousPageable().pageNumber})}">
+        <button class="selected-page">Previous</button>
+    </a>
+
+    <a th:if="${reviewPages.hasNext()}" th:href="@{/selectReviews(foodName=${reviewPage.foodName}, country=${reviewPage.country}, page=${reviewPages.nextPageable().pageNumber})}">
+        <button class="selected-page">Next</button>
+    </a>
+</div>
+
+
+
+
 <div style="display: flex; justify-content: center;">
     <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
 </div>
 
+<script>
+
+    const rating_inputs = document.querySelectorAll('.rating input');
+    const rating_stars = document.querySelectorAll('.rating_star');
+
+    for(let i=0; i<rating_inputs.length; i++) {
+        const rating_input = rating_inputs[i];
+        const rating_star = rating_stars[i];
+
+        rating_star.style.width = `${rating_input.value * 10}%`;
+
+        rating_input.addEventListener('input', () => {
+            rating_star.style.width = `${rating_input.value * 10}%`;
+        });
+    }
+
+</script>
 </body>
 </html>

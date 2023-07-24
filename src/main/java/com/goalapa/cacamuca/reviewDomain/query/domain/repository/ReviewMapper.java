@@ -3,6 +3,7 @@ package com.goalapa.cacamuca.reviewDomain.query.domain.repository;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface ReviewMapper {
     QueryReviewPicDTO findReviewPicByNo(int no);
 
 
-
+    int getTotal(Pageable pageable);
 }
