@@ -233,8 +233,8 @@ VALUES(10,'ko','리뷰 예시01','오레오','2023-06-01',4.0,1,1,'가성비갑'
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(11,'ko','리뷰 예시02','오레오','2023-06-10',2.0,2,1,'개별포장',2000.0,'link');
 
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(12,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(12,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link',20);
 
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(13,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
@@ -249,18 +249,18 @@ VALUES(17,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천'
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(18,'ko','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
 
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(19,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link');
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(20,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link');
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(21,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link');
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(22,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link');
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(23,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link');
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
-VALUES(24,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link');
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(19,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link', 20);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(20,'ko','리뷰 예시03','오레오','2023-06-20',4.0,3,3,'선물추천',1000.0,'link', 20);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(21,'ko','리뷰 예시03','오레오','2023-06-20',2.0,3,3,'선물추천',1000.0,'link', 5);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(22,'ko','리뷰 예시03','오레오','2023-06-20',3.5,3,3,'선물추천',1000.0,'link', 3);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(23,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link', 4);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(24,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천',1000.0,'link', 5);
 
 
 
@@ -284,9 +284,9 @@ VALUES(24,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천'
 -- VALUES(2,4,'link');
 
 
-INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-06-01',20,200,4.5,100,20,'M','한국');
-INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-06-01',21,255,3.8,200,10,'F','한국');
-INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-06-01',22,150,5.0,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-06-01',20,'감동란',200,4.5,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-06-01',21,'통크',255,3.8,200,10,'F','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-06-01',22,'SUI',150,5.0,120,30,'F','한국');

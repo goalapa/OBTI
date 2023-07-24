@@ -8,6 +8,7 @@ public class StatDTO {
     private Integer statNo;
     private LocalDate updateDate;
     private Integer foodNo;
+    private String foodName;
     private Integer reviewCnt;
     private float foodRate;
     private Integer likeCnt;
@@ -17,10 +18,11 @@ public class StatDTO {
 
     public StatDTO() {}
 
-    public StatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender, String country) {
+    public StatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, String foodName, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender, String country) {
         this.statNo = statNo;
         this.updateDate = updateDate;
         this.foodNo = foodNo;
+        this.foodName = foodName;
         this.reviewCnt = reviewCnt;
         this.foodRate = foodRate;
         this.likeCnt = likeCnt;
@@ -51,6 +53,14 @@ public class StatDTO {
 
     public void setFoodNo(Integer foodNo) {
         this.foodNo = foodNo;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public Integer getReviewCnt() {
@@ -107,6 +117,7 @@ public class StatDTO {
                 "statNo=" + statNo +
                 ", updateDate=" + updateDate +
                 ", foodNo=" + foodNo +
+                ", foodName='" + foodName + '\'' +
                 ", reviewCnt=" + reviewCnt +
                 ", foodRate=" + foodRate +
                 ", likeCnt=" + likeCnt +

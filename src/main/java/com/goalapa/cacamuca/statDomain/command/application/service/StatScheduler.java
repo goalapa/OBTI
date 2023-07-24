@@ -40,7 +40,7 @@ public class StatScheduler {
         for(Food food : foods) {
             int foodNo = food.getFoodNo();
             String country = food.getCountryVO().toString();
-            System.out.println("country = " + country);
+            String foodName = food.getFoodName();
             Integer likeCnt = likeCntService.countLikes(foodNo);
             int reviewCnt = reviewCntService.countReviews(foodNo);
             float foodRate = foodRateService.calculateFoodRate(foodNo);
@@ -50,6 +50,7 @@ public class StatScheduler {
             StatDTO statDTO = new StatDTO();
             statDTO.setUpdateDate(LocalDate.now());
             statDTO.setFoodNo(food.getFoodNo());
+            statDTO.setFoodName(foodName);
             statDTO.setCountry(country);
             statDTO.setLikeCnt(likeCnt);
             statDTO.setReviewCnt(reviewCnt);

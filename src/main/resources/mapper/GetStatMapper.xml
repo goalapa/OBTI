@@ -8,6 +8,7 @@
         <id property="statNo" column="STAT_NO"/>
         <result property="updateDate" column="UPDATE_DATE"/>
         <result property="foodNo" column="FOOD_NO"/>
+        <result property="foodName" column="FOOD_NAME"/>
         <result property="reviewCnt" column="REVIEW_CNT"/>
         <result property="foodRate" column="FOOD_RATE"/>
         <result property="likeCnt" column="LIKE_CNT"/>
@@ -20,6 +21,7 @@
         A.STAT_NO
         ,   A.UPDATE_DATE
         ,   A.FOOD_NO
+        ,   A.FOOD_NAME
         ,   A.COUNTRY
         ,   A.REVIEW_CNT
         ,   A.FOOD_RATE

@@ -7,7 +7,7 @@
     <style>
         table {
             position: relative;
-            left: 300px;
+            left: 270px;
             top: 30px;
         }
 
@@ -26,6 +26,7 @@
         <tr>
             <th scope="col" class="px-6 py-3">STAT NO</th>
             <th scope="col" class="px-6 py-3">FOOD NO</th>
+            <th scope="col" class="px-6 py-3">FOOD NAME</th>
             <th scope="col" class="px-6 py-3">COUNTRY</th>
             <th scope="col" class="px-6 py-3">FOOD RATE</th>
             <th scope="col" class="px-6 py-3">REVIEW CNT</th>
@@ -39,6 +40,7 @@
         <tr th:each="list : ${statList}" scope="col" class="px-6 py-3">
             <th scope="row" class="px-6 py-4" th:text="${list.statNo}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.foodNo}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.foodName}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.country}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.foodRate}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.reviewCnt}"/></th>
