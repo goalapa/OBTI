@@ -17,9 +17,12 @@ public class AddCategoryService {
 
     public void addCategory(AddCategoryDTO categoryDTO) {
 
+        System.out.println("서비스에서 받은 categoryDTO = " + categoryDTO);
         CategoryEntity category = new CategoryEntity();
-        category.setCategoryName(categoryDTO.getCategoryName());
-        category.setSubCategoryName(categoryDTO.getSubCategoryName());
+        category.setCountry(categoryDTO.getCountry());
+        category.setFoodType(categoryDTO.getFoodType());
+
+        System.out.println("category 엔티티 = " + category);
 
         categoryRepository.save(category);
     }

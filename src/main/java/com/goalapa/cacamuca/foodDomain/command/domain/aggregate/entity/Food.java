@@ -1,7 +1,7 @@
 package com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity;
 
-import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.Country;
-import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.FoodType;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.CountryVO;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.FoodTypeVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,12 +30,9 @@ public class Food {
     private Integer foodPrice;
 
     @Embedded
-    private Country country;
+    private CountryVO countryVO;
 
     @Embedded
-    private FoodType foodType;
-
-//    @Column(name = "category_no")
-//    private Integer categoryNo;
+    private FoodTypeVO foodTypeVO;
 
 }
