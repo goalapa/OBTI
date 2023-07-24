@@ -1,4 +1,4 @@
-package com.goalapa.cacamuca.statDomain.query.application.service;
+package com.goalapa.cacamuca.statDomain.query.infrastructure.service;
 
 import com.goalapa.cacamuca.statDomain.query.domain.respository.StatMapper;
 import org.springframework.stereotype.Service;

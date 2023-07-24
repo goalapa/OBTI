@@ -28,15 +28,15 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(3,'link');
 
 
-INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
+INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES(1,'abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
-VALUES(1,'abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','ROLE_MEMBER',0,'2001-08-04','한국');
-INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
+VALUES(1,'abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','F','ROLE_MEMBER',0,'2001-08-04','한국');
+INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES(2,'abc111','pwd111','오늘은뭐먹지','zmzlsk@gmail.com',30,20,'1990-01-20');
-VALUES(2,'abc111','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com','ROLE_MEMBER',20,'1990-01-20','한국');
-INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
+VALUES(2,'abc111','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com','M','ROLE_MEMBER',20,'1990-01-20','한국');
+INSERT INTO member(member_no,member_id,member_pwd,member_nickname,member_email,member_gender,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES(3,'abc222','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES(3,'abc222','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',10,'2008-11-30','한국');
+VALUES(3,'abc222','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','F','ROLE_MEMBER',10,'2008-11-30','한국');
 
 
 
@@ -224,9 +224,9 @@ INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
 VALUES(2,4,'link');
 
 
-INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)
-VALUES('2023-06-01',20,3.5,100,1,1);
-INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)
-VALUES('2023-06-02',20,4.5,150,1,1);
-INSERT INTO stat(update_date,review_cnt,food_rate,like_cnt,report_type,member_age_group)
-VALUES('2023-06-03',20,2.5,200,1,1);
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',20,200,4.5,100,20,'M');
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',21,255,3.8,200,10,'F');
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',22,150,5.0,120,30,'F');

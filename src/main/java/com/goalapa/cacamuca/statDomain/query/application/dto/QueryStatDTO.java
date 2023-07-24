@@ -10,11 +10,11 @@ public class QueryStatDTO {
     private float foodRate;
     private Integer likeCnt;
     private Integer memberAgeGroup;
-    private Integer memberGender;
+    private String memberGender;
 
     public QueryStatDTO() {}
 
-    public QueryStatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, Integer memberGender) {
+    public QueryStatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender) {
         this.statNo = statNo;
         this.updateDate = updateDate;
         this.foodNo = foodNo;
@@ -81,11 +81,11 @@ public class QueryStatDTO {
         this.memberAgeGroup = memberAgeGroup;
     }
 
-    public Integer getMemberGender() {
+    public String getMemberGender() {
         return memberGender;
     }
 
-    public void setMemberGender(Integer memberGender) {
+    public void setMemberGender(String memberGender) {
         this.memberGender = memberGender;
     }
 
