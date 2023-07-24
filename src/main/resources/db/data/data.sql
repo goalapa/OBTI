@@ -2,6 +2,8 @@ INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_
 VALUES(1,'2023-05-15','2023-06-30',1);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
 VALUES(2,'2023-07-25','2023-08-20',2);
+INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
+VALUES(3,'2023-05-15', null, 3);
 
 
 INSERT INTO category(category_no,category_name,sub_category_name)

@@ -6,97 +6,100 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <th:block th:insert="~{common/header}"/>
 </head>
 
 <body>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
-        <table id="reportList" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">리뷰 번호</th>
-                <th scope="col" class="px-6 py-3">신고 번호</th>
-                <th scope="col" class="px-6 py-3">리뷰 내용</th>
-                <th scope="col" class="px-6 py-3">신고자</th>
-                <th scope="col" class="px-6 py-3">피신고자</th>
-                <th scope="col" class="px-6 py-3">신고 유형</th>
-                <th scope="col" class="px-6 py-3">신고 수락</th>
-                <th scope="col" class="px-6 py-3">신고 거절</th>
-            </tr>
-            </thead>
+    <th:block th:insert="~{common/adminHeader}" />
+    <th:block th:insert="~{common/adminAside}" />
+    <main class="p-4 sm:ml-64">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
+            <table id="reportList" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">리뷰 번호</th>
+                    <th scope="col" class="px-6 py-3">신고 번호</th>
+                    <th scope="col" class="px-6 py-3">리뷰 내용</th>
+                    <th scope="col" class="px-6 py-3">신고자</th>
+                    <th scope="col" class="px-6 py-3">피신고자</th>
+                    <th scope="col" class="px-6 py-3">신고 유형</th>
+                    <th scope="col" class="px-6 py-3">신고 수락</th>
+                    <th scope="col" class="px-6 py-3">신고 거절</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr th:each="report, reportStat : ${reportPage}" th:id="${reportStat.index}">
-                <th scope="row" class="px-6 py-4" th:text="${report.reviewNo}"></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportNo}"></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reviewContent}"></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}"></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberNo}"></th>
-                <th scope="row" class="px-6 py-4" th:text="${report.reportType}"></th>
-                <th scope="row">
-                    <button type="button" onclick="deleteReport(event, true)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 완료</button>
-                </th>
-                <th scope="row">
-                    <button type="button" onclick="deleteReport(event, false)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 삭제</button>
-                </th>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+                <tbody>
+                <tr th:each="report, reportStat : ${reportPage}" th:id="${reportStat.index}">
+                    <th scope="row" class="px-6 py-4" th:text="${report.reviewNo}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportNo}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reviewContent}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberNo}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportType}"></th>
+                    <th scope="row">
+                        <button type="button" onclick="deleteReport(event, true)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 완료</button>
+                    </th>
+                    <th scope="row">
+                        <button type="button" onclick="deleteReport(event, false)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 삭제</button>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation" >
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
-            <span class="font-semibold text-gray-900 dark:text-white" th:text="${reportPage.getPageable().getOffset()} + 1" /> -
-            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getPageable().offset} + ${reportPage.getNumberOfElements()}" /> of
-            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" />
-        </span>
-        <ul class="inline-flex -space-x-px text-sm h-8">
-            <li>
-                <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
-            </li>
-            <li>
-                <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span th:if="${(reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6) || reportPage.getPageable().pageNumber < 3}" th:text="1" ></span>
-                    <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() -  3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 4}"></span>
-                    <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} - 1" ></span>
-                </a>
-            </li>
-            <li>
-                <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="2" ></span>
-                    <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 3}"></span>
-                    <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()}" ></span>
-                </a>
-            </li>
-            <li>
-                <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="3" ></span>
-                    <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 2}"></span>
-                    <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 1" ></span>
-                </a>
-            </li>
-            <li>
-                <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="4" ></span>
-                    <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 1}"></span>
-                    <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 2" ></span>
-                </a>
-            </li>
-            <li>
-                <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="5" ></span>
-                    <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages()}"></span>
-                    <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 3" ></span>
-                </a>
-            </li>
-            <li>
-                <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-            </li>
-        </ul>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
-            <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalPages()}" id="totalPages"/>
-        </span>
-    </nav>
+        <nav class="flex items-center justify-between pt-4" aria-label="Table navigation" >
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${reportPage.getPageable().getOffset()} + 1" /> -
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getPageable().offset} + ${reportPage.getNumberOfElements()}" /> of
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalElements()}" />
+            </span>
+            <ul class="inline-flex -space-x-px text-sm h-8">
+                <li>
+                    <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                </li>
+                <li>
+                    <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span th:if="${(reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6) || reportPage.getPageable().pageNumber < 3}" th:text="1" ></span>
+                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() -  3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 4}"></span>
+                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} - 1" ></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="2" ></span>
+                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 3}"></span>
+                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()}" ></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="3" ></span>
+                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 2}"></span>
+                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 1" ></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="4" ></span>
+                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 1}"></span>
+                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 2" ></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="5" ></span>
+                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages()}"></span>
+                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 3" ></span>
+                    </a>
+                </li>
+                <li>
+                    <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                </li>
+            </ul>
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ reportPage.getTotalPages()}" id="totalPages"/>
+            </span>
+        </nav>
+    </main>
 
     <script>
         function deleteReport(event, isAccept) {
@@ -117,6 +120,7 @@
             axios.post('/report/delete', data)
                 .then(response => {
                     console.log('Report deleted successfully:', response.data);
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.error('Error:', error);
