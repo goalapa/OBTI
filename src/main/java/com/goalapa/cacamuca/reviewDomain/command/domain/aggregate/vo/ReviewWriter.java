@@ -9,6 +9,13 @@ public class ReviewWriter {
     @Column(name = "member_no")
     private Integer reviewWriterMemberId;
 
+    public ReviewWriter() {
+    }
+
+    public ReviewWriter(int loginMemberNo) {
+        this.reviewWriterMemberId = loginMemberNo;
+    }
+
     public void setReviewWriterMemberId(Integer reviewWriterMemberId) {
         this.reviewWriterMemberId = reviewWriterMemberId;
     }

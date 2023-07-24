@@ -72,6 +72,11 @@ spring:
           transport:
             protocol: smtp
 
+
+uploadPath: file:///C:\app-file\uploadFiles/
+
+
+
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor

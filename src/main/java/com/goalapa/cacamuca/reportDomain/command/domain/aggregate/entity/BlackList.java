@@ -1,5 +1,7 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.BlackListMemberVO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -18,16 +20,20 @@ public class BlackList {
     @Column(name = "blacklist_rel_date")
     private LocalDate blacklistRelDate;
 
-    @Column(name = "member_no")
-    private Integer memberNo;
+    @Embedded
+    private BlackListMemberVO blackListMemberVO;
 
-    public BlackList(Integer memberNo, LocalDate blacklistRegDate, LocalDate blacklistRelDate) {
-        this.memberNo = memberNo;
+    public BlackList() {
+
+    }
+
+    public BlackList(BlackListMemberVO blackListMemberVO, LocalDate blacklistRegDate, LocalDate blacklistRelDate) {
+        this.blackListMemberVO = blackListMemberVO;
         this.blacklistRegDate = blacklistRegDate;
         this.blacklistRelDate = blacklistRelDate;
     }
 
-    public BlackList() {
-
+    public void setBlacklistRelDate(LocalDate blacklistRelDate) {
+        this.blacklistRelDate = blacklistRelDate;
     }
 }
