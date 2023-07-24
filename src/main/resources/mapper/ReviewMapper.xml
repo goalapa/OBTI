@@ -45,7 +45,7 @@
     </select>
 
     <select id="findAllReviewsByName" resultMap="reviewResultMap">
-        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate
+        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate,  r.review_content
         from review r
         where r.food_name like '%${ search }%'
     </select>

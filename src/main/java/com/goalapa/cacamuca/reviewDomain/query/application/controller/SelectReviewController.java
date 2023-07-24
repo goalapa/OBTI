@@ -31,8 +31,8 @@ public class SelectReviewController {
     }
 
     @GetMapping("/selectReviews")
-    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country
-            , @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
+    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country,
+                                @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
     ){
         List<QueryReviewDTO> reviews = selectReviewService.findAllReviews(foodName, country);
         Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
@@ -43,7 +43,6 @@ public class SelectReviewController {
 
         model.addAttribute("foodName", foodName);
         model.addAttribute("country",country);
-        model.addAttribute("reviews", reviews);
         model.addAttribute("reviewPages", reviewPages);
         model.addAttribute("reviewPics", reviewPics);
         
@@ -65,8 +64,13 @@ public class SelectReviewController {
     }
 
     @GetMapping("/search")
-    public String searchReview(Model model, @RequestParam String search){
-        model.addAttribute("searchResult", selectReviewService.searchReviews(search));
+    public String searchReview(Model model, @RequestParam String search
+            , @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
+    ){
+        Page<QueryReviewDTO> searchReviews = selectReviewService.searchReviews(search, pageable);
+
+        model.addAttribute("searchReviews",searchReviews);
+        model.addAttribute("search", search);
 
         return "review/search";
     }

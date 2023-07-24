@@ -34,7 +34,6 @@ public class SelectReviewService {
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), reviews.size());
 
-        // 목록이 없으면 빈페이지 생성
         if (start > reviews.size())
             return new PageImpl<>(new ArrayList<>(), pageable, reviews.size());
 
@@ -60,9 +59,16 @@ public class SelectReviewService {
     }
 
     @Transactional(readOnly = true)
-    public List<QueryReviewDTO> searchReviews(String search) {
-        List<QueryReviewDTO> reviews = mapper.findAllReviewsByName(search);
-        return reviews;
+    public Page<QueryReviewDTO> searchReviews(String search, Pageable pageable) {
+        List<QueryReviewDTO> searchReviews = mapper.findAllReviewsByName(search);
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), searchReviews.size());
+
+        if (start > searchReviews.size())
+            return new PageImpl<>(new ArrayList<>(), pageable, searchReviews.size());
+
+        return new PageImpl<>(searchReviews.subList(start, end), pageable, searchReviews.size());
     }
 
 
