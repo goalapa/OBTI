@@ -2,16 +2,10 @@ package com.goalapa.cacamuca.foodDomain.command.application.service;
 
 import com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.Food;
-import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.Country;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.CountryVO;
-import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.FoodType;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.FoodTypeVO;
 import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.foodDomain.command.domain.service.SaveFoodFromRequest;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.Request;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestCountry;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestFoodType;
-import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.vo.RequestMemberNo;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
