@@ -12,4 +12,9 @@ public class CountryVO {
     public CountryVO(String country) { this.country = country; }
 
     public CountryVO() {}
+
+    @Override
+    public String toString() {
+        return country + "";
+    }
 }

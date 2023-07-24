@@ -20,6 +20,7 @@ public class SaveStatServiceImpl implements SaveStatService {
         Stat stat = new Stat();
         stat.setStatNo(statDTO.getStatNo());
         stat.setFoodNo(statDTO.getFoodNo());
+        stat.setCountry(statDTO.getCountry());
         stat.setFoodRate(statDTO.getFoodRate());
         stat.setLikeCnt(statDTO.getLikeCnt());
         stat.setReviewCnt(statDTO.getReviewCnt());

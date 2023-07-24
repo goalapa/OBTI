@@ -20,6 +20,7 @@
         A.STAT_NO
         ,   A.UPDATE_DATE
         ,   A.FOOD_NO
+        ,   A.COUNTRY
         ,   A.REVIEW_CNT
         ,   A.FOOD_RATE
         ,   A.LIKE_CNT

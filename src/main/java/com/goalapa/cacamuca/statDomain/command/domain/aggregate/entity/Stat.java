@@ -38,6 +38,9 @@ public class Stat {
     @Column(name = "member_gender")
     private String memberGender;
 
+    @Column(name = "country")
+    private String country;
+
 //    @Column(name = "report_type")
 //    private Integer reportType;
 
