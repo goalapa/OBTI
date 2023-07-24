@@ -66,8 +66,8 @@ public class ReportServiceImpl implements ReportService {
             Member member = memberRepository.findById(reportDeleteDTO.getReportedMemberNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
 
-            int reportCnt = Integer.parseInt(member.getMemberReportCnt()) + 1;
-            member.setMemberReportCnt(String.valueOf(reportCnt));
+            int reportCnt = member.getMemberReportCnt() + 1;
+            member.setMemberReportCnt(reportCnt);
 
             return reportCnt;
         } catch (NotFoundException e) {

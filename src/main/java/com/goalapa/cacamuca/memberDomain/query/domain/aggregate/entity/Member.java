@@ -7,7 +7,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Member {
 
@@ -23,11 +22,23 @@ public class Member {
 
     private String memberGrant;
 
-    private String memberReportCnt;
+    private Integer memberReportCnt;
 
     private String memberCountry;
 
     private String memberGender;
 
     private LocalDate memberBirth;
+
+    public Member(String memberId, String memberPwd, String memberNickname, String memberEmail, String memberGrant, Integer memberReportCnt, String memberCountry, String memberGender, LocalDate memberBirth) {
+        this.memberId = memberId;
+        this.memberPwd = memberPwd;
+        this.memberNickname = memberNickname;
+        this.memberEmail = memberEmail;
+        this.memberGrant = memberGrant;
+        this.memberReportCnt = memberReportCnt;
+        this.memberCountry = memberCountry;
+        this.memberGender = memberGender;
+        this.memberBirth = memberBirth;
+    }
 }

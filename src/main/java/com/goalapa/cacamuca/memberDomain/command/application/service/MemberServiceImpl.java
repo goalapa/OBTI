@@ -6,7 +6,6 @@ import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.Password;
 import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
 import com.goalapa.cacamuca.memberDomain.command.domain.service.CommandMemberService;
-import com.goalapa.cacamuca.memberDomain.command.ininfrastructure.service.InfraCommandMemberService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +21,6 @@ import java.util.Optional;
 public class MemberServiceImpl implements CommandMemberService {
 
     private final ModelMapper modelMapper;
-    private final InfraCommandMemberService infraCommandMemberService;
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -48,10 +46,9 @@ public class MemberServiceImpl implements CommandMemberService {
         Optional<Member> optionalMember = memberRepository.findByMemberId(id);
 
         if(optionalMember.isPresent()) {
-            Password password = new Password();
-            String originPassword = password.generateTemporalPassword();
             Member member = optionalMember.get();
-            member.setMemberPwd(passwordEncoder.encode(originPassword));
+            String originPassword = member.getMemberPwd().generateTemporalPassword();
+            member.setMemberPwd(new Password(passwordEncoder.encode(originPassword)));
             return originPassword;
         } else {
             throw new Exception("password is null");
@@ -79,7 +76,7 @@ public class MemberServiceImpl implements CommandMemberService {
         if(optionalMember.isPresent()) {
             Member member = optionalMember.get();
             String encodedPassword =  passwordEncoder.encode(memberDTO.getMemberPwd());
-            if(memberDTO.getMemberPwd() != null) member.setMemberPwd(encodedPassword);
+            if(memberDTO.getMemberPwd() != null) member.setMemberPwd(new Password(encodedPassword));
         } else {
             throw new Exception("변경할 회원정보가 없습니다.");
         }
