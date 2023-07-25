@@ -1,5 +1,7 @@
 package com.goalapa.cacamuca.config;
 
+import com.goalapa.cacamuca.memberDomain.query.application.service.HelloMessageService;
+import com.goalapa.cacamuca.memberDomain.query.domain.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,11 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public MessageService messageService() {
+        return new HelloMessageService();
     }
 
     @Bean

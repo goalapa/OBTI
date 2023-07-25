@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
+@Builder
+@AllArgsConstructor
 public class Member {
 
     @Id

@@ -1,5 +1,7 @@
 package com.goalapa.cacamuca.memberDomain.query.domain.service;
 
+import org.springframework.security.core.Authentication;
+
 /**
  * <pre>
  * Class :
@@ -10,5 +12,5 @@ package com.goalapa.cacamuca.memberDomain.query.domain.service;
  * @author 박성준
  */
 public interface MessageService {
-    String getMessage();
+    Authentication getMessage();
 }
