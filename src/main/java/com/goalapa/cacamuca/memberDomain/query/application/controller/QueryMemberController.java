@@ -2,17 +2,18 @@ package com.goalapa.cacamuca.memberDomain.query.application.controller;
 
 import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.memberDomain.query.application.service.QueryMemberServiceImpl;
+import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.dto.MemberDTO;
 import com.goalapa.cacamuca.memberDomain.query.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.query.infrastructure.service.InfraQueryMemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-
 
 @Controller
 @RequestMapping("/member")
@@ -59,11 +60,11 @@ public class QueryMemberController {
     }
 
     @GetMapping("admin-list")
-    public ModelAndView findAdminPage(ModelAndView mv) {
+    public ModelAndView findAdminPage(ModelAndView mv, @PageableDefault(sort = "member_email") Pageable pageable) {
 
-        List<Member> memberList = memberService.findMemberList();
+        Page<MemberDTO> members = memberService.findMemberList(pageable);
 
-        mv.addObject("members", memberList);
+        mv.addObject("members", members);
         mv.setViewName("adminList");
 
         return mv;

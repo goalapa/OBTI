@@ -3,32 +3,32 @@ package com.goalapa.cacamuca.categoryDomain.command.application.dto;
 
 public class AddCategoryDTO {
 
-    private String categoryName;
-    private String subCategoryName;
+    private String country;
+    private String foodType;
 
     public AddCategoryDTO() {}
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getSubCategoryName() {
-        return subCategoryName;
+    public String getFoodType() {
+        return foodType;
     }
 
-    public void setSubCategoryName(String subCategoryName) {
-        this.subCategoryName = subCategoryName;
+    public void setFoodType(String foodType) {
+        this.foodType = foodType;
     }
 
     @Override
     public String toString() {
         return "AddCategoryDTO{" +
-                "categoryName='" + categoryName + '\'' +
-                ", subCategoryName='" + subCategoryName + '\'' +
+                "categoryName='" + country + '\'' +
+                ", subCategoryName='" + foodType + '\'' +
                 '}';
     }
 

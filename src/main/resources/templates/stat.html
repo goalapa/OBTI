@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>통계 조회</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        table {
+            position: relative;
+            left: 400px;
+            top: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+<th:block th:insert="~{common/adminHeader}" />
+<th:block th:insert="~{common/adminAside}" />
+<div class="body">
+    <table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">STAT NO</th>
+            <th scope="col" class="px-6 py-3">FOOD NO</th>
+            <th scope="col" class="px-6 py-3">FOOD RATE</th>
+            <th scope="col" class="px-6 py-3">REVIEW CNT</th>
+            <th scope="col" class="px-6 py-3">LIKE CNT</th>
+            <th scope="col" class="px-6 py-3">MEMBER AGE GROUP</th>
+            <th scope="col" class="px-6 py-3">MEMBER GENDER</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="list : ${statList}" scope="col" class="px-6 py-3">
+            <th scope="row" class="px-6 py-4" th:text="${list.statNo}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.foodNo}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.foodRate}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.reviewCnt}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.likeCnt}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.memberAgeGroup}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.memberGender}"/></th>
+
+        </tr>
+        </tbody>
+
+    </table>
+
+
+</div>
+</body>
+</html>
