@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BlackListPageServiceImpl implements BlackListPageService {
@@ -27,17 +29,15 @@ public class BlackListPageServiceImpl implements BlackListPageService {
     @Override
     @Transactional(readOnly = true)
     public Page<BlackListQueryDTO> getBlackListPage(Pageable pageable) {
-        List<BlackListQueryDTO> blackList = new ArrayList<>(blackListMapper.getBlackListPage(pageable));
+        Map<String, Object> map = new HashMap<>();
+        map.put("offset", pageable.getOffset());
+        map.put("pageSize", pageable.getPageSize());
+        map.put("sort", pageable.getSort());
+
+        List<BlackListQueryDTO> blackList = new ArrayList<>(blackListMapper.getBlackListPage(map));
 
         int totalItems = blackListMapper.getTotalItems(pageable);
-        int start = (int) pageable.getOffset();
-        int end = Math.min(start + pageable.getPageSize(), totalItems);
 
-        // 목록이 없으면 빈페이지 생성
-        if (start > blackList.size())
-            return new PageImpl<>(new ArrayList<>(), pageable, blackList.size());
-
-
-        return new PageImpl<>(blackList.subList(start, end), pageable, totalItems);
+        return new PageImpl<>(blackList, pageable, totalItems);
     }
 }

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>CACAMUCA</title>
 
+  <link rel="stylesheet" th:href="@{/css/fonts.css}" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
@@ -48,45 +49,25 @@
             </span>
       <ul class="inline-flex -space-x-px text-sm h-8">
         <li>
-          <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+          <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">이전</a>
         </li>
         <li>
-          <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            <span th:if="${(blackListPage.getPageable().pageNumber < 6 && blackListPage.getTotalPages() < 6) || blackListPage.getPageable().pageNumber < 3}" th:text="1" ></span>
-            <span th:if="${blackListPage.getPageable().pageNumber > blackListPage.getTotalPages() -  3 && blackListPage.getTotalPages() > 4}" th:text="${blackListPage.getTotalPages() - 4}"></span>
-            <span th:if="${blackListPage.getPageable().pageNumber >= 3 && blackListPage.getPageable().pageNumber <= blackListPage.getTotalPages() - 3}" th:text="${blackListPage.getNumber()} - 1" ></span>
-          </a>
+          <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
         </li>
         <li>
-          <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            <span th:if="${blackListPage.getPageable().pageNumber < 6 && blackListPage.getTotalPages() < 6 || blackListPage.getPageable().pageNumber < 3}" th:text="2" ></span>
-            <span th:if="${blackListPage.getPageable().pageNumber > blackListPage.getTotalPages() - 3 && blackListPage.getTotalPages() > 4}" th:text="${blackListPage.getTotalPages() - 3}"></span>
-            <span th:if="${blackListPage.getPageable().pageNumber >= 3 && blackListPage.getPageable().pageNumber <= blackListPage.getTotalPages() - 3}" th:text="${blackListPage.getNumber()}" ></span>
-          </a>
+          <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
         </li>
         <li>
-          <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            <span th:if="${blackListPage.getPageable().pageNumber < 6 && blackListPage.getTotalPages() < 6 || blackListPage.getPageable().pageNumber < 3}" th:text="3" ></span>
-            <span th:if="${blackListPage.getPageable().pageNumber > blackListPage.getTotalPages() - 3 && blackListPage.getTotalPages() > 4}" th:text="${blackListPage.getTotalPages() - 2}"></span>
-            <span th:if="${blackListPage.getPageable().pageNumber >= 3 && blackListPage.getPageable().pageNumber <= blackListPage.getTotalPages() - 3}" th:text="${blackListPage.getNumber()} + 1" ></span>
-          </a>
+          <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
         </li>
         <li>
-          <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            <span th:if="${blackListPage.getPageable().pageNumber < 6 && blackListPage.getTotalPages() < 6 || blackListPage.getPageable().pageNumber < 3}" th:text="4" ></span>
-            <span th:if="${blackListPage.getPageable().pageNumber > blackListPage.getTotalPages() - 3 && blackListPage.getTotalPages() > 4}" th:text="${blackListPage.getTotalPages() - 1}"></span>
-            <span th:if="${blackListPage.getPageable().pageNumber >= 3 && blackListPage.getPageable().pageNumber <= blackListPage.getTotalPages() - 3}" th:text="${blackListPage.getNumber()} + 2" ></span>
-          </a>
+          <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
         </li>
         <li>
-          <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            <span th:if="${blackListPage.getPageable().pageNumber < 6 && blackListPage.getTotalPages() < 6 || blackListPage.getPageable().pageNumber < 3}" th:text="5" ></span>
-            <span th:if="${blackListPage.getPageable().pageNumber > blackListPage.getTotalPages() - 3 && blackListPage.getTotalPages() > 4}" th:text="${blackListPage.getTotalPages()}"></span>
-            <span th:if="${blackListPage.getPageable().pageNumber >= 3 && blackListPage.getPageable().pageNumber <= blackListPage.getTotalPages() - 3}" th:text="${blackListPage.getNumber()} + 3" ></span>
-          </a>
+          <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
         </li>
         <li>
-          <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+          <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">다음</a>
         </li>
       </ul>
       <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
@@ -122,79 +103,32 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const currentPage = parseInt(urlParams.get('page') || 0);
+    const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+    const pageButtons = document.querySelectorAll('[id^="page"]');
 
-    const totalPages = document.getElementById('totalPages');
-    const nextButton = document.getElementById('nextButton');
-    const totalPagesInt = parseInt(totalPages.innerText) - 1;
-    const nextPage = (currentPage === totalPagesInt) ? currentPage : currentPage + 1;
-    nextButton.href = `/admin-page/blacklist?page=${nextPage}`;
+    pageButtons.forEach((button, index) => {
+      const pageNumber = currentPage - 2 + index;
+
+      button.href = `/admin-page/blacklist?page=${pageNumber}`;
+      button.innerText = pageNumber + 1;
+
+      if (pageNumber === currentPage) {
+        button.style.backgroundColor = '#C3DDFD';
+      }
+
+      if (pageNumber < 0 || pageNumber > totalPagesInt) {
+        button.style.display = 'none';
+      }
+    });
 
     const previousButton = document.getElementById('previousButton');
-    const previousPage = (currentPage === 0) ? currentPage : currentPage - 1;
-    previousButton.href = `/admin-page/blacklist?page=${previousPage}`;
+    const nextButton = document.getElementById('nextButton');
 
-    let firstNum;
-    if (currentPage > 2 && currentPage < totalPagesInt - 2)
-      firstNum = currentPage - 2;
-    else if (currentPage >= totalPagesInt - 2)
-      firstNum = totalPagesInt - 4;
-    else
-      firstNum = 0;
+    previousButton.href = `/admin-page/blacklist?page=${currentPage - 1}`;
+    previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+    nextButton.href = `/admin-page/blacklist?page=${currentPage + 1}`;
+    nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
 
-    const page1Button = document.getElementById('page1Button');
-    const page2Button = document.getElementById('page2Button');
-    const page3Button = document.getElementById('page3Button');
-    const page4Button = document.getElementById('page4Button');
-    const page5Button = document.getElementById('page5Button');
-
-    let button1Int = parseInt(page1Button.innerText);
-    let button2Int = parseInt(page2Button.innerText);
-    let button3Int = parseInt(page3Button.innerText);
-    let button4Int = parseInt(page4Button.innerText);
-    let button5Int = parseInt(page5Button.innerText);
-
-    page1Button.href = `/admin-page/blacklist?page=${button1Int - 1}`;
-    page2Button.href = `/admin-page/blacklist?page=${button2Int - 1}`;
-    page3Button.href = `/admin-page/blacklist?page=${button3Int - 1}`;
-    page4Button.href = `/admin-page/blacklist?page=${button4Int - 1}`;
-    page5Button.href = `/admin-page/blacklist?page=${button5Int - 1}`;
-
-    if (totalPagesInt === 0) {
-      page2Button.style.display = 'none';
-      page3Button.style.display = 'none';
-      page4Button.style.display = 'none';
-      page5Button.style.display = 'none';
-    }
-    else if (totalPagesInt === 1) {
-      page3Button.style.display = 'none';
-      page4Button.style.display = 'none';
-      page5Button.style.display = 'none';
-    }
-    else if (totalPagesInt === 2) {
-      page4Button.style.display = 'none';
-      page5Button.style.display = 'none';
-    }
-    else if (totalPagesInt === 3) {
-      page5Button.style.display = 'none';
-    }
-
-    switch (currentPage) {
-      case button1Int - 1 :
-        page1Button.style.backgroundColor = "#C3DDFD";
-        break;
-      case button2Int - 1 :
-        page2Button.style.backgroundColor = '#C3DDFD';
-        break;
-      case button3Int - 1 :
-        page3Button.style.backgroundColor = '#C3DDFD';
-        break;
-      case button4Int - 1 :
-        page4Button.style.backgroundColor = '#C3DDFD';
-        break;
-      case button5Int - 1 :
-        page5Button.style.backgroundColor = '#C3DDFD';
-        break;
-    }
   </script>
 </body>
 </html>
