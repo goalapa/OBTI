@@ -145,6 +145,7 @@
     <script>
         let noValue = `[[${no}]]`;
         let memberValue = `[[${member}]]`;
+        const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
 
         function showInputForm(value) {
             var inputForm = document.getElementById("inputForm");
@@ -174,11 +175,6 @@
 
         function clickReport(){
             if (confirm('신고하시겠습니까?')==true) {
-                console.log('신고 버튼이 클릭되었습니다.');
-
-                const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
-                console.log(reportReason);
-
                 axios({
                     method: 'post',
                     url:'/review/report',
@@ -188,7 +184,6 @@
                         reportReason:reportReason
                     }
                 }).then(function (response){
-                    console.log(response.date);
                 }).catch(function (error){
                     console.log(error);
                 });

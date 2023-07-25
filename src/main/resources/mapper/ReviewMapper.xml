@@ -30,6 +30,13 @@
         <result property="memberName" column="member_nickname"/>
     </resultMap>
 
+    <resultMap id="reviewFoodDResultMap" type="com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDTO">
+        <id property="foodNo" column="food_no"/>
+        <result property="foodName" column="food_name"/>
+        <result property="country" column="country"/>
+        <result property="foodType" column="food_type"/>
+    </resultMap>
+
     <!-- 목록 출력(나라, 이름) -->
     <select id="findAllReviews" resultMap="reviewResultMap">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate, r.review_content, r.country
@@ -82,6 +89,14 @@
         select p.review_pic_url
         from review_pic p
         where p.review_no = #{ no }
+    </select>
+
+
+    <!-- 리뷰 작성 -->
+    <select id="findFoodNameByCountryAndFoodType" resultMap="reviewFoodDResultMap">
+        select f.food_name
+        from food f
+        where f.country = #{ country } and f.food_type = #{ foodType }
     </select>
 
 </mapper>

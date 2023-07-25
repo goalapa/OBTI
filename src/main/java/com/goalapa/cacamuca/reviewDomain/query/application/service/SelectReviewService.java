@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.service;
 
+import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
@@ -85,5 +86,11 @@ public class SelectReviewService {
     public List<QueryReviewWriterDTO> findReviewWriter(String search) {
         List<QueryReviewWriterDTO> reviewWriter = mapper.findReviewWriterBySearch(search);
         return reviewWriter;
+    }
+
+    @Transactional(readOnly = true)
+    public List<QueryReviewFoodDTO> checkValue(String country, String foodType) {
+        List<QueryReviewFoodDTO> foods = mapper.findFoodNameByCountryAndFoodType(country, foodType);
+        return foods;
     }
 }

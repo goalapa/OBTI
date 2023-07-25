@@ -1,6 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 
-import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
+import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
@@ -9,17 +9,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = {"/*/*", "/*"})
@@ -82,4 +81,20 @@ public class SelectReviewController {
 
         return "review/search";
     }
+
+    @PostMapping("/checkValue")
+    @ResponseBody
+    public List<String> checkValue(@RequestBody HashMap<String, Object> param){
+        String country = (String) param.get("country");
+        String foodType = (String) param.get("foodType");
+
+        List<QueryReviewFoodDTO> foods = selectReviewService.checkValue(country, foodType);
+        List<String> food = new ArrayList<>();
+        for(int i=0; i<foods.size(); i++) {
+            food.add(foods.get(i).getFoodName());
+        }
+        System.out.println("food = " + food);
+        return food;
+    }
+
 }
