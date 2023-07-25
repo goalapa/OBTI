@@ -3,6 +3,7 @@ package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
+import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,17 +35,19 @@ public class SelectReviewController {
     public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country,
                                 @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
     ){
-        List<QueryReviewDTO> reviews = selectReviewService.findAllReviews(foodName, country);
+//        List<QueryReviewDTO> reviews = selectReviewService.findAllReviews(foodName, country);
         Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
+        List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(foodName, country);
 
-        System.out.println("reviews = " + reviews);
+        System.out.println("reviewWriters = " + reviewWriters);
         System.out.println("reviewPics = " + reviewPics);
 
         model.addAttribute("foodName", foodName);
         model.addAttribute("country",country);
         model.addAttribute("reviewPages", reviewPages);
         model.addAttribute("reviewPics", reviewPics);
+        model.addAttribute("reviewWriters", reviewWriters);
         
 
         return "/review/selectReviews";
@@ -68,9 +71,14 @@ public class SelectReviewController {
             , @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
     ){
         Page<QueryReviewDTO> searchReviews = selectReviewService.searchReviews(search, pageable);
+        List<QueryReviewPicDTO> searchPics = selectReviewService.findAllPictures(search);
+        List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(search);
+        System.out.println("작성자 리스트 = " + reviewWriters);
 
         model.addAttribute("searchReviews",searchReviews);
         model.addAttribute("search", search);
+        model.addAttribute("searchPics", searchPics);
+        model.addAttribute("reviewWriters", reviewWriters);
 
         return "review/search";
     }

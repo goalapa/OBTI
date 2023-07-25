@@ -2,6 +2,7 @@ package com.goalapa.cacamuca.reviewDomain.query.application.service;
 
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
+import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
 import com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,8 +19,6 @@ import java.util.List;
 public class SelectReviewService {
 
     private final ReviewMapper mapper;
-    private static String root = "C:\\app-file";
-    private static String filePath = root + "/uploadFiles";
 
     @Transactional(readOnly = true)
     public List<QueryReviewDTO> findAllReviews(String foodName, String country) {
@@ -71,5 +70,20 @@ public class SelectReviewService {
         return new PageImpl<>(searchReviews.subList(start, end), pageable, searchReviews.size());
     }
 
+    @Transactional(readOnly = true)
+    public List<QueryReviewPicDTO> findAllPictures(String search) {
+        List<QueryReviewPicDTO> reviewPics = mapper.findSearchPictures(search);
+        return reviewPics;
+    }
 
+    @Transactional(readOnly = true)
+    public List<QueryReviewWriterDTO> findReviewWriter(String foodName, String country) {
+        List<QueryReviewWriterDTO> reviewWriter = mapper.findReviewWriter(foodName, country);
+        return reviewWriter;
+    }
+    @Transactional(readOnly = true)
+    public List<QueryReviewWriterDTO> findReviewWriter(String search) {
+        List<QueryReviewWriterDTO> reviewWriter = mapper.findReviewWriterBySearch(search);
+        return reviewWriter;
+    }
 }

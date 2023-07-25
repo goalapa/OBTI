@@ -42,14 +42,32 @@
         }
 
         .inner{
+            box-sizing: content-box;
             position: relative;
             left: 25px;
-            top: 50px;
+            top: 10px;
         }
+
         .inner_content{
             position: relative;
             left: 25px;
             top: 15px;
+            width: 200px;
+            height: 100px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .inner_image{
+            position: relative;
+            left: 300px;
+            bottom: 120px;
+        }
+
+        .inner_id{
+            position: relative;
+            left: 25px;
+            top: 10px;
         }
 
 
@@ -81,6 +99,7 @@
             outline: none;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
+
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -88,18 +107,33 @@
 <body>
     <th:block th:insert="~{common/header}"/>
     <div class="layout" th:each="searchReview : ${searchReviews}">
-        <div class="inner_content">
-            <a th:text="${searchReview.foodName}" th:href="@{/review/detail(no=${searchReview.reviewNo}, member=${searchReview.memberNo})}"/>
-        </div>
-        <div class="inner">
+        <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
+        <th:block th:if="${reviweWriter.reviewNo eq searchReview.reviewNo}">
+            <a th:text="${reviweWriter.memberId}"/>
+        </th:block>
+    </span>
+        <span class="inner">
         <span class="rating_box">
-            <div class="rating">
+            <span class="rating">
                 ★★★★★
                 <span class="rating_star">★★★★★</span>
                 <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${searchReview.reviewRate}" readonly>
-            </div>
+            </span>
         </span>
+        </span>
+
+        <div class="inner_content">
+            <a th:text="${searchReview.reviewContent}" th:href="@{/review/detail(no=${searchReview.reviewNo}, member=${searchReview.memberNo})}"></a>
         </div>
+
+        <span th:each="searchPic : ${searchPics}">
+        <th:block th:if="${searchPic.reviewPicUrl eq null}"/>
+        <th:block th:unless="${searchPic.reviewPicUrl eq null}">
+            <span th:if="${searchPic.reviewNo} eq ${searchReview.reviewNo}" class="inner_image">
+                <img th:src="@{|/review/${searchPic.reviewPicUrl}|}" width="150" height="100" alt="Image">
+            </span>
+        </th:block>
+        </span>
     </div>
 
 

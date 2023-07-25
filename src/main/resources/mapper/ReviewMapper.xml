@@ -24,6 +24,13 @@
         <result property="reviewPicUrl" column="review_pic_url"/>
     </resultMap>
 
+    <resultMap id="reviewWriterResultMap" type="com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO">
+        <id property="reviewNo" column="review_no"/>
+        <result property="memberId" column="member_id"/>
+        <result property="memberName" column="member_nickname"/>
+    </resultMap>
+
+    <!-- 목록 출력(나라, 이름) -->
     <select id="findAllReviews" resultMap="reviewResultMap">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate, r.review_content, r.country
         FROM review r
@@ -33,21 +40,42 @@
     <select id="findAllPictures" resultMap="reviewPicResultMap">
         SELECT p.review_pic_url, p.review_no
         FROM review_pic p, review r
-        WHERE r.food_name = #{ foodName } and r.country = #{ country }
+        WHERE r.food_name = #{ foodName } and r.country = #{ country } and p.review_no = r.review_no
     </select>
 
+    <select id="findReviewWriter" resultMap="reviewWriterResultMap">
+        select r.review_no , m.member_id, m.member_nickname
+        from review r, member m
+        where r.food_name = #{ foodName } and r.country = #{ country} and r.member_no = m.member_no
+    </select>
+
+    <!-- 검색 -->
+    <select id="findAllReviewsByName" resultMap="reviewResultMap">
+        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate,  r.review_content
+        from review r
+        where r.food_name like '%${ search }%'
+    </select>
+
+    <select id="findSearchPictures" resultMap="reviewPicResultMap">
+        SELECT p.review_pic_url, p.review_no
+        FROM review_pic p, review r
+        WHERE r.food_name = #{ search } and p.review_no = r.review_no
+    </select>
+
+    <select id="findReviewWriterBySearch" resultMap="reviewWriterResultMap">
+        select r.review_no , m.member_id, m.member_nickname
+        from review r, member m
+        where r.food_name = #{ search } and r.member_no = m.member_no
+    </select>
+
+
+    <!-- 상세 보기 -->
     <select id="findReviewByNo" resultMap="reviewResultMap">
         SELECT r.review_no, r.country, r.food_name, r.food_no, r.food_type, r.like_cnt, r.member_no,
                r.review_date, r.review_content, r.review_date, r.review_keyword, r.review_link,
                r.review_price, r.review_rate
         FROM review r
         WHERE r.review_no = #{ no }
-    </select>
-
-    <select id="findAllReviewsByName" resultMap="reviewResultMap">
-        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate,  r.review_content
-        from review r
-        where r.food_name like '%${ search }%'
     </select>
 
     <select id="findReviewPicByNo" resultMap="reviewPicResultMap">
