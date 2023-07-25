@@ -39,14 +39,6 @@ public class GetStatService {
         return queryStatRepository.findByUpdateDateAndCountry(date, country, pageable);
     }
 
-//    public List<QueryStatDTO> findStatsByDate(LocalDate date) {
-//        return getStatMapper.findStatsByDate(date);
-//    }
-//
-//    public List<QueryStatDTO> findStatsByDateAndCountry(LocalDate date, String country) {
-//        return getStatMapper.findStatsByDateAndCountry(date, country);
-//    }
-
     public List<QueryStatDTO> getStatTopTen(LocalDate date, String country) {
         return getStatMapper.getStatTopTen(date, country);
     }
