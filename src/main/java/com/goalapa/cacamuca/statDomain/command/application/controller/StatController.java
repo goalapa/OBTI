@@ -1,8 +1,12 @@
 package com.goalapa.cacamuca.statDomain.command.application.controller;
 
 import com.goalapa.cacamuca.statDomain.command.application.service.StatScheduler;
+import com.goalapa.cacamuca.statDomain.command.domain.aggregate.entity.Stat;
 import com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO;
 import com.goalapa.cacamuca.statDomain.query.domain.service.GetStatService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -49,18 +53,20 @@ public class StatController {
 
     @GetMapping("/stat")
     public String showStatByDate(Model model, @RequestParam(name = "selectedDate", required = false)LocalDate selectedDate
-                                            ,@RequestParam(name = "country", required = false) String country) {
+                                            ,@RequestParam(name = "country", required = false) String country,
+                                    @PageableDefault Pageable pageable) {
 
         if (selectedDate == null) selectedDate = LocalDate.now();
 
         if(country == null || country == "") {
-            List<QueryStatDTO> stats = getStatService.findStatsByDate(selectedDate);
-            model.addAttribute("statList", stats);
+//            List<QueryStatDTO> stats = getStatService.findStatsByDate(selectedDate);
+            Page<Stat> stats = getStatService.findStatsByDate(selectedDate, pageable);
+            model.addAttribute("statPage", stats);
             model.addAttribute("selectedDate", selectedDate);
         } else {
-            List<QueryStatDTO> stats = getStatService.findStatsByDateAndCountry(selectedDate, country);
-
-            model.addAttribute("statList", stats);
+//            List<QueryStatDTO> stats = getStatService.findStatsByDateAndCountry(selectedDate, country);
+            Page<Stat> stats = getStatService.findStatsByDateAndCountry(selectedDate, country, pageable);
+            model.addAttribute("statPage", stats);
             model.addAttribute("selectedDate", selectedDate);
             model.addAttribute("country", country);
         }

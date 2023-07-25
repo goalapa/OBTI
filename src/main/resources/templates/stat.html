@@ -15,6 +15,11 @@
             left: 270px;
             top: 10px;
         }
+        .nav {
+            position: relative;
+            left: 400px;
+            top: 100px;
+        }
 
     </style>
 </head>
@@ -61,7 +66,7 @@
         </thead>
 
         <tbody>
-        <tr th:each="list : ${statList}" scope="col" class="px-6 py-3">
+        <tr th:each="list : ${statPage}" scope="col" class="px-6 py-3">
             <th scope="row" class="px-6 py-4" th:text="${list.statNo}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.foodNo}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.foodName}"/></th>
@@ -76,6 +81,35 @@
         </tbody>
 
     </table>
+
+    <div class="nav">
+        <nav>
+            <ul class="flex items-center -space-x-px h-8 text-sm"
+                th:with="start=${T(java.lang.Math).floor(statPage.number/10)*10},
+                    last=(${start + 9 < statPage.totalPages ? start + 9 : statPage.totalPages})">
+                <th:block th:with="
+                firstAddr=@{/stat(page=0, country=${country}, selectedDate=${selectedDate})},
+                lastAddr=@{/stat(page=${statPage.totalPages - 1}, country=${country}, selectedDate=${selectedDate})}">
+                    <li th:class="${statPage.first} ? 'disabled'">
+                        <a th:href="${statPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li th:each="page: ${#numbers.sequence(start, last - 1)}"
+                        th:class="${page == statPage.number + 1} ? 'active'">
+                        <a th:text="${page}+1" th:href="@{/stat(page=${page}, country=${country}, selectedDate=${selectedDate})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+                    </li>
+                    <li th:class="${statPage.last} ? 'disabled'">
+                        <a th:href="${statPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                           aria-label="Next">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                </th:block>
+            </ul>
+        </nav>
+    </div>
 
 
 </div>
