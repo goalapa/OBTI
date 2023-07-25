@@ -12,4 +12,6 @@ public interface GetStatMapper {
     List<QueryStatDTO> findStatsByDate(LocalDate date);
 
     List<QueryStatDTO> findStatsByDateAndCountry(LocalDate date, String country);
+
+    List<QueryStatDTO> getStatTopTen(LocalDate date, String country);
 }

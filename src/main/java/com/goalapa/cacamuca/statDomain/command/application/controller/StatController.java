@@ -68,4 +68,20 @@ public class StatController {
         return "stat";
     }
 
+    @GetMapping("/stat/top10")
+    public String showTopTen(Model model, @RequestParam(name = "selectedDate", required = false)LocalDate selectedDate
+            ,@RequestParam(name = "country", required = false) String country) {
+
+        if (selectedDate == null) selectedDate = LocalDate.now();
+        if (country == null) country = "한국";
+
+        List<QueryStatDTO> stats = getStatService.getStatTopTen(selectedDate, country);
+
+        model.addAttribute("statList", stats);
+        model.addAttribute("selectedDate", selectedDate);
+        model.addAttribute("country", country);
+
+        return "stat-top10";
+    }
+
 }

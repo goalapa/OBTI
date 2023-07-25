@@ -23,11 +23,10 @@
 <th:block th:insert="~{common/adminHeader}" />
 <th:block th:insert="~{common/adminAside}" />
 <div class="buttons">
-    <form th:action="@{/stat}" method="get">
+    <form th:action="@{/stat/top10}" method="get">
         <input type="date" id="datePicker" name="selectedDate" th:value="${selectedDate}" class="w-48 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <select name="country" th:value="${country}" class="w-48 mt-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" selected>전체 국가</option>
-            <option value="한국">한국</option>
+            <option value="한국" selected>한국</option>
             <option value="일본">일본</option>
             <option value="미국">미국</option>
             <option value="영국">영국</option>
@@ -40,7 +39,6 @@
             <option value="몽골">몽골</option>
         </select>
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
-        <button type="button" onclick="location.href='stat/top10'" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">TOP 10 조회</button>
     </form>
 </div>
 
@@ -48,6 +46,7 @@
     <table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
+            <th scope="col" class="px-6 py-3">RATING</th>
             <th scope="col" class="px-6 py-3">STAT NO</th>
             <th scope="col" class="px-6 py-3">FOOD NO</th>
             <th scope="col" class="px-6 py-3">FOOD NAME</th>
@@ -61,7 +60,8 @@
         </thead>
 
         <tbody>
-        <tr th:each="list : ${statList}" scope="col" class="px-6 py-3">
+        <tr th:each="list, iterStat : ${statList}" scope="col" class="px-6 py-3">
+            <th scope="row" class="px-6 py-4" th:text="${iterStat.count}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.statNo}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.foodNo}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.foodName}"/></th>

@@ -306,3 +306,72 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-07-25',29,'미니언',33,2.8,100,20,'M','한국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-25',30,'물',166,1.88,200,10,'F','한국');
+
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',20,'미국감동란',200,4.5,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',21,'미국통크',255,3.8,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',22,'미국SUI',150,5.0,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',23,'미국빼빼로',188,3.02,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',24,'미국콘칩',6,3.94,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',25,'미국오감자',499,1.8,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',26,'미국스윙칩',123,4.5,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',27,'미국핫소스빵',321,1.0,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',28,'미국개구리',22,4.9,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',29,'미국미니언',33,2.8,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',30,'미국물',166,1.88,200,10,'F','미국');
+
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',20,'감동란',200,4.5,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',21,'통크',255,3.8,200,10,'F','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',22,'SUI',150,5.0,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',23,'빼빼로',188,3.02,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',24,'콘칩',6,3.94,200,10,'F','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',25,'오감자',499,1.8,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',26,'스윙칩',123,4.5,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',27,'핫소스빵',321,1.0,200,10,'F','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',28,'개구리',22,4.9,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',29,'미니언',33,2.8,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',30,'물',166,1.88,200,10,'F','한국');
+
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',20,'미국감동란',200,5.0,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',21,'미국통크',255,3.8,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',22,'미국SUI',150,5.0,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',23,'미국빼빼로',188,3.02,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',24,'미국콘칩',6,3.94,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',25,'미국오감자',499,1.8,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',26,'미국스윙칩',123,4.5,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',27,'미국핫소스빵',321,1.0,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',28,'미국개구리',22,4.9,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',29,'미국미니언',33,2.8,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',30,'미국물',166,1.88,200,10,'F','미국');

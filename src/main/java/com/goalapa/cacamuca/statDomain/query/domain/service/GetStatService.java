@@ -30,4 +30,8 @@ public class GetStatService {
     public List<QueryStatDTO> findStatsByDateAndCountry(LocalDate date, String country) {
         return getStatMapper.findStatsByDateAndCountry(date, country);
     }
+
+    public List<QueryStatDTO> getStatTopTen(LocalDate date, String country) {
+        return getStatMapper.getStatTopTen(date, country);
+    }
 }
