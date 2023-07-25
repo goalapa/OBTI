@@ -5,6 +5,8 @@ import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.statDomain.command.application.dto.StatDTO;
 import com.goalapa.cacamuca.statDomain.command.domain.aggregate.service.SaveStatService;
 import com.goalapa.cacamuca.statDomain.query.infrastructure.service.*;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
+@Configuration
 public class StatScheduler {
 
     private final FoodRepository foodRepository;
