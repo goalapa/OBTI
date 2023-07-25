@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin-page")
-public class BlackListQeuryController {
+public class BlackListQueryController {
 
     private final BlackListPageServiceImpl blackListServiceImpl;
 
-    public BlackListQeuryController(BlackListPageServiceImpl blackListServiceImpl) {
+    public BlackListQueryController(BlackListPageServiceImpl blackListServiceImpl) {
         this.blackListServiceImpl = blackListServiceImpl;
     }
 

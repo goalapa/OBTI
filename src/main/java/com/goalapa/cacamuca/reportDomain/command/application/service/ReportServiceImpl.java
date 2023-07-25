@@ -2,7 +2,7 @@ package com.goalapa.cacamuca.reportDomain.command.application.service;
 
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
-import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDTO;
+import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportCreateDTO;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDeleteDTO;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.BlackList;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -39,13 +40,16 @@ public class ReportServiceImpl implements ReportService {
     // 신고 저장
     @Override
     @Transactional
-    public void saveNewReport(ReportDTO reportDTO) {
+    public void saveNewReport(ReportCreateDTO reportCreateDTO, String reportMemberId) {
 
-        ReviewVO reviewVO = new ReviewVO(reportDTO.getReviewNo());
-        ReportMemberVO reportMemberVO = new ReportMemberVO(reportDTO.getReportMemberNo());
-        ReportedMemberVO reportedMemberVO = new ReportedMemberVO(reportDTO.getReportedMemberNo());
+        Optional<Member> reportMember = memberRepository.findByMemberId(reportMemberId);
+        Integer reportMemberNo = reportMember.orElseGet(() -> new Member()).getMemberNo();
 
-        Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportDTO.getReportType());
+        ReviewVO reviewVO = new ReviewVO(reportCreateDTO.getReviewNo());
+        ReportMemberVO reportMemberVO = new ReportMemberVO(reportMemberNo);
+        ReportedMemberVO reportedMemberVO = new ReportedMemberVO(reportCreateDTO.getReportedMemberNo());
+
+        Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportCreateDTO.getReportType());
 
         reportRepository.save(report);
 
@@ -79,8 +83,8 @@ public class ReportServiceImpl implements ReportService {
             Member member = memberRepository.findById(reportDeleteDTO.getReportedMemberNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
 
-            int reportCnt = Integer.parseInt(member.getMemberReportCnt()) + 1;
-            member.setMemberReportCnt(String.valueOf(reportCnt));
+            int reportCnt = member.getMemberReportCnt() + 1;
+            member.setMemberReportCnt(reportCnt);
 
             return reportCnt;
 
@@ -96,12 +100,12 @@ public class ReportServiceImpl implements ReportService {
     public void saveBlackList(Integer reportedMemberNo) {
 
         try {
+
             Member member = memberRepository.findById(reportedMemberNo)
                     .orElseThrow(() -> new NotFoundException("존재하지않는 회원입니다."));
 
-//            if (!member.getmemberBlackListStatus()){
-            if (true) {
-//                member.setmemberBlackListStatus = true;
+            if (!member.getBlackListType()){
+                member.setBlackListType(true);
                 BlackListMemberVO blackListMemberVO = new BlackListMemberVO(member.getMemberNo());
                 BlackList blacklist = new BlackList(blackListMemberVO, LocalDate.now(), null);
                 blackListRepository.save(blacklist);
@@ -113,19 +117,22 @@ public class ReportServiceImpl implements ReportService {
 
     }
 
+    // 리뷰에 신고 횟수 추가 & 신고 많이 당한 리뷰는 삭제
     @Override
     @Transactional
     public void deleteReviewWithReportedCnt(ReportDeleteDTO reportDeleteDTO) {
 
         try {
-            Review reportedReview = reviewRepository.findById(reportDeleteDTO.getReportNo())
+            Review reportedReview = reviewRepository.findById(reportDeleteDTO.getReviewNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 리뷰입니다."));
 
-            // 리뷰의 누적 신고 횟수
-//            int reviewReportCnt = reportedReview.getReviewReportCnt;
-            // 리부의 누적 신고 횟수가 10 이상일 떄
-            if(true) {
-//            if (reviewReportCnt >= 10) {
+            int reviewReportCnt = 0;
+            if (reportedReview.getReportCnt() != null) {
+                reviewReportCnt = reportedReview.getReportCnt();
+            }
+
+            // 리뷰의 누적 신고 횟수가 10 이상일 떄
+            if (reviewReportCnt >= 10) {
                 // 해당 리뷰와 관련된 다른 신고들도 전부 삭제
                 ReviewVO reviewVO = new ReviewVO(reportDeleteDTO.getReviewNo());
                 List<Report> reports = reportRepository.findByReviewVO(reviewVO);
@@ -134,9 +141,9 @@ public class ReportServiceImpl implements ReportService {
                 // 리뷰 삭제
                 reviewRepository.delete(reportedReview);
             }
-//            else {
-//                reportedReview.setReviewReportCnt = reviewReportCnt + 1;
-//            }
+            else {
+                reportedReview.setReportCnt(reviewReportCnt + 1);
+            }
 
         } catch (NotFoundException e) {
             throw new RuntimeException(e);

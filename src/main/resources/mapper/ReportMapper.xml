@@ -10,15 +10,23 @@
         <result property="reportedMemberNo" column="reported_member_no" />
         <result property="reportType" column="report_type" />
         <result property="reviewContent" column="review_content" />
+        <result property="reportedMemberId" column="reported_member_id" />
+        <result property="reportMemberId" column="report_member_id" />
     </resultMap>
 
     <select id="getReportPage" resultMap="reportResultMap">
         SELECT a.report_no, a.report_member_no, a.report_type,
                 a.reported_member_no, a.review_no,
-                b.review_content
+                b.review_content,
+                rm.member_id AS reported_member_id,
+                rep.member_id AS report_member_id
         FROM report a
         LEFT JOIN review b
         ON a.review_no = b.review_no
+        LEFT JOIN member rm
+        ON a.reported_member_no = rm.member_no
+        LEFT JOIN member rep
+        ON a.report_member_no = rep.member_no
     </select>
 
     <select id="getTotalItems" resultType="_int">

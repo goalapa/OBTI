@@ -9,8 +9,25 @@ public class ReportQueryDTO {
     private Integer reportedMemberNo;
     private String reportType;
     private String reviewContent;
-
+    private String reportedMemberId;
+    private String reportMemberId;
     public void ReportQueryDTO() {}
+
+    public void setReportedMemberId(String reportedMemberId) {
+        this.reportedMemberId = reportedMemberId;
+    }
+
+    public void setReportMemberId(String reportMemberId) {
+        this.reportMemberId = reportMemberId;
+    }
+
+    public String getReportedMemberId() {
+        return reportedMemberId;
+    }
+
+    public String getReportMemberId() {
+        return reportMemberId;
+    }
 
     public int getReportNo() {
         return reportNo;
@@ -67,8 +84,10 @@ public class ReportQueryDTO {
                 ", reviewNo=" + reviewNo +
                 ", reportMemberNo=" + reportMemberNo +
                 ", reportedMemberNo=" + reportedMemberNo +
-                ", reportType=" + reportType +
-                ", reviewContent=" + reviewContent +
+                ", reportType='" + reportType + '\'' +
+                ", reviewContent='" + reviewContent + '\'' +
+                ", reportedMemberId='" + reportedMemberId + '\'' +
+                ", reportMemberId='" + reportMemberId + '\'' +
                 '}';
     }
 }
