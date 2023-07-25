@@ -154,47 +154,47 @@ VALUES('대만','과자','신상요청3',1500,3, 'test3');
 
 
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_url)
-VALUES('link');
+VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 
 
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
@@ -285,8 +285,24 @@ VALUES(24,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천'
 
 
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-06-01',20,'감동란',200,4.5,100,20,'M','한국');
+VALUES('2023-07-25',20,'감동란',200,4.5,100,20,'M','한국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-06-01',21,'통크',255,3.8,200,10,'F','한국');
+VALUES('2023-07-25',21,'통크',255,3.8,200,10,'F','한국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-06-01',22,'SUI',150,5.0,120,30,'F','한국');
+VALUES('2023-07-25',22,'SUI',150,5.0,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',23,'빼빼로',188,3.02,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',24,'콘칩',6,3.94,200,10,'F','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',25,'오감자',499,1.8,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',26,'스윙칩',123,4.5,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',27,'핫소스빵',321,1.0,200,10,'F','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',28,'개구리',22,4.9,120,30,'F','한국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',29,'미니언',33,2.8,100,20,'M','한국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-25',30,'물',166,1.88,200,10,'F','한국');

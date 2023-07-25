@@ -3,7 +3,9 @@ package com.goalapa.cacamuca.requestDomain.command.application.service;
 import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.RequestPic;
 import com.goalapa.cacamuca.requestDomain.command.domain.repository.RequestPicRepository;
 import com.goalapa.cacamuca.requestDomain.command.domain.service.SaveRequestPic;
+import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +16,8 @@ import java.util.UUID;
 
 @Service
 public class SaveRequestPicImpl implements SaveRequestPic {
-
+    private static String root = "C:\\app-file";
+    private static String filePath = root + "/uploadFiles";
 
     private final RequestPicRepository requestPicRepository;
 
@@ -27,28 +30,51 @@ public class SaveRequestPicImpl implements SaveRequestPic {
     @Transactional
     public void saveRequestPic(@RequestParam MultipartFile singleFile) {
 
-        String filePath = "C:\\Lecture\\july-monthly\\src\\main\\resources\\image";
 
-        File dir = new File(filePath);
+        //File dir = new File(filePath);
 
-        if(!dir.exists()) {
-            dir.mkdirs();
-        }
+//        if(!dir.exists()) {
+//            dir.mkdirs();
+//        }
 
-        String originFileName = singleFile.getOriginalFilename();
+//        String originFileName = singleFile.getOriginalFilename();
+//
+//        String ext = originFileName.substring(originFileName.lastIndexOf("."));
+//
+//        String savedName = UUID.randomUUID().toString().replaceAll("-", "") + ext;
+//
+//        try {
+//            singleFile.transferTo(new File(filePath  + "/" + savedName));
+//        } catch (IOException e) {
+//            new File(filePath + "/" + savedName).delete();
+//        }
+////        RequestPic requestPic = new RequestPic();
+////        requestPic.setRequestUrl(filePath  + "/" + savedName);
+//
+//        RequestPic requestPic = new RequestPic();
+//        requestPic.setRequestUrl(savedName);
+//
+//        requestPicRepository.save(requestPic);
 
-        String ext = originFileName.substring(originFileName.lastIndexOf("."));
-
-        String savedName = UUID.randomUUID().toString().replaceAll("-", "") + ext;
+        String fileName = StringUtils.cleanPath(singleFile.getOriginalFilename());
 
         try {
-            singleFile.transferTo(new File(filePath  + "/" + savedName));
-        } catch (IOException e) {
-            new File(filePath + "/" + savedName).delete();
-        }
-        RequestPic requestPic = new RequestPic();
-        requestPic.setRequestUrl(filePath  + "/" + savedName);
+            String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;;
+            File uploadDir = new File(filePath);
 
-        requestPicRepository.save(requestPic);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+
+            String uploadPath = filePath + File.separator + uniqueFileName;
+            singleFile.transferTo(new File(uploadPath));
+
+            RequestPic requestPic = new RequestPic();
+            requestPic.setRequestUrl(uniqueFileName);
+
+            requestPicRepository.save(requestPic);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
