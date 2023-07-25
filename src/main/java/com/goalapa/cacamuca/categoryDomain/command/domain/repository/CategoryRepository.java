@@ -9,5 +9,6 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Intege
 
     CategoryEntity findByCountryAndFoodType(String country, String foodType);
 
+    CategoryEntity findCategoryEntityByCountryAndFoodType(String country, String foodType);
 
 }
