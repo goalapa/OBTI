@@ -39,17 +39,6 @@ public class StatController {
         });
     }
 
-//    @GetMapping("/stat")
-//    public String statPage(Model model) {
-//
-//        //statScheduler.insertData();
-//
-//        List<QueryStatDTO> stats = getStatService.findAllStats();
-//
-//        model.addAttribute("statList", stats);
-//
-//        return "stat";
-//    }
 
     @GetMapping("/stat")
     public String showStatByDate(Model model, @RequestParam(name = "selectedDate", required = false)LocalDate selectedDate

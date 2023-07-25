@@ -20,6 +20,8 @@ INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(2,'초코롤','미국','차',5.0,3000);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(3,'초록매실','일본','빵',4.3,1800);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(4,'nullTest','일본','빵',0.0,1000);
 
 
 INSERT INTO food_pic(food_no,food_pic_url)

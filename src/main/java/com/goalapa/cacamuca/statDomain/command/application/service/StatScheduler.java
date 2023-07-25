@@ -42,26 +42,32 @@ public class StatScheduler {
 
         for(Food food : foods) {
             int foodNo = food.getFoodNo();
-            String country = food.getCountryVO().toString();
-            String foodName = food.getFoodName();
-            Integer likeCnt = likeCntService.countLikes(foodNo);
             int reviewCnt = reviewCntService.countReviews(foodNo);
-            float foodRate = foodRateService.calculateFoodRate(foodNo);
-            int memberAgeGroup = memberAgeGroupService.returnMemberAgeGroup(foodNo);
-            String memberGender = memberGenderService.getPreferredMemberGender(foodNo);
 
-            StatDTO statDTO = new StatDTO();
-            statDTO.setUpdateDate(LocalDate.now());
-            statDTO.setFoodNo(food.getFoodNo());
-            statDTO.setFoodName(foodName);
-            statDTO.setCountry(country);
-            statDTO.setLikeCnt(likeCnt);
-            statDTO.setReviewCnt(reviewCnt);
-            statDTO.setFoodRate(foodRate);
-            statDTO.setMemberAgeGroup(memberAgeGroup);
-            statDTO.setMemberGender(memberGender);
+            if(reviewCnt == 0) {
+                break;
+            } else {
+                String country = food.getCountryVO().toString();
+                String foodName = food.getFoodName();
+                Integer likeCnt = likeCntService.countLikes(foodNo);
+                //int reviewCnt = reviewCntService.countReviews(foodNo);
+                float foodRate = foodRateService.calculateFoodRate(foodNo);
+                int memberAgeGroup = memberAgeGroupService.returnMemberAgeGroup(foodNo);
+                String memberGender = memberGenderService.getPreferredMemberGender(foodNo);
 
-            saveStatServiceImpl.insertData(statDTO);
+                StatDTO statDTO = new StatDTO();
+                statDTO.setUpdateDate(LocalDate.now());
+                statDTO.setFoodNo(food.getFoodNo());
+                statDTO.setFoodName(foodName);
+                statDTO.setCountry(country);
+                statDTO.setLikeCnt(likeCnt);
+                statDTO.setReviewCnt(reviewCnt);
+                statDTO.setFoodRate(foodRate);
+                statDTO.setMemberAgeGroup(memberAgeGroup);
+                statDTO.setMemberGender(memberGender);
+
+                saveStatServiceImpl.insertData(statDTO);
+            }
         }
 
 
