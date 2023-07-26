@@ -46,9 +46,6 @@ public class SelectReviewController {
         }
         List<String> uniqueKeywords = new ArrayList<>(deleteKeywords);
 
-        System.out.println("bestStat = " + bestStat);
-        System.out.println("recentPrice = " + recentPrice);
-
         model.addAttribute("foodName",foodName);
         model.addAttribute("country",country);
         model.addAttribute("foodNo", foodNo);

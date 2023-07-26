@@ -31,6 +31,11 @@ public class SelectReviewService {
     @Transactional(readOnly = true)
     public QueryReviewDTO findRecentPrice(String foodName, String country) {
         QueryReviewDTO recentPrice = mapper.findRecentPrice(foodName, country);
+
+        if (recentPrice == null){
+            recentPrice = new QueryReviewDTO(0);
+        }
+        
         return recentPrice;
     }
 
@@ -110,6 +115,10 @@ public class SelectReviewService {
     @Transactional(readOnly = true)
     public QueryStatDTO findBestReview(int foodNo) {
         QueryStatDTO bestStat = mapper.findBestReviewByFoodNo(foodNo);
+
+        if (bestStat == null){
+            bestStat = new QueryStatDTO(0);
+        }
         return bestStat;
     }
 }

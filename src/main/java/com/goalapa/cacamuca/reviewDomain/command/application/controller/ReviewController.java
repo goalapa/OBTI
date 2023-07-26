@@ -49,7 +49,6 @@ public class ReviewController {
             Integer reviewNo =  Integer.parseInt(no);
             Integer memberNo = Integer.parseInt((String) parameter.get("member"));
             String likeStatus = (String) parameter.get("likeStatus");
-            System.out.println("likeStatus = " + likeStatus);
 
             int loginMemberNo = user.getMemberNo();
 
@@ -71,12 +70,6 @@ public class ReviewController {
         int reviewNo = Integer.parseInt((String) param.get("no"));
         int loginMemberNo = user.getMemberNo();
 
-        System.out.println("신고 이유는 = " + reportReason);
-        System.out.println("작성자의 번호는 = " + memberNo);
-        System.out.println("리뷰의 번호는 = " + reviewNo);
-        System.out.println("로그인 유저의 번호는 = " + loginMemberNo);
-
-        boolean reportResult = reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
-        System.out.println("신고 결과는 = " + reportResult);
+        reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
     }
 }

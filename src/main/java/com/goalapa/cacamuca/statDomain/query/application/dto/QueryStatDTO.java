@@ -25,6 +25,10 @@ public class QueryStatDTO {
         this.memberGender = memberGender;
     }
 
+    public QueryStatDTO(int foodRate) {
+        this.foodRate = foodRate;
+    }
+
     public Integer getStatNo() {
         return statNo;
     }

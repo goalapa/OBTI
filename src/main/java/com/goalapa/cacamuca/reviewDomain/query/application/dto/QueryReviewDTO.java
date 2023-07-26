@@ -48,6 +48,10 @@ public class QueryReviewDTO {
         this.likeCnt = likeCnt;
     }
 
+    public QueryReviewDTO(int reviewPrice) {
+        this.reviewPrice = reviewPrice;
+    }
+
     public int getFoodNo() {
         return foodNo;
     }
