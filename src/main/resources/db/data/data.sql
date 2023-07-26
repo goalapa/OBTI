@@ -379,3 +379,30 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-07-21',29,'미국미니언',33,2.8,100,20,'M','미국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-21',30,'미국물',166,1.88,200,10,'F','미국');
+
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('과자 종류가 많이 없어서 아쉬워요.',2.0,'초코맛있다',1);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('신기한 웹사이트네요!',5.0,'냠냠이',10);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('제가 좋아하는 과자는 없네요.',1.5,'치킨',11);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('물건을 살 때 유용한 정보가 많아서 도움이 됩니다.',5.0,'ㅁㅁ',21);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('디자인이 예쁘고 사용하기 편리해요..',4.0,'딸기맛있다',32);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('오류가 자주 발생해서 아쉽습니다.',1.0,'다이어트',22);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('여러 기능을 무료로 제공해서 좋아요..',3.5,'다맛있다',40);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('인터페이스가 직관적이고 쉽게 사용할 수 있어서 좋아요.',3.0,'닉닉',11);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('빠른 반응 속도가 매우 만족스러워요.',4.0,'초초',33);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('소셜 로그인 지원해주세요!! 불편해요',2.0,'얍얍',44);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('다른 언어도 지원이 되면 좋을 것 같네요.',4.0,'영어조아',23);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('광고 없이 깔끔하게 사용할 수 있어서 좋아요.',5.0,'우와',43);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('과자 종류가 많이 없어서 아쉬워요ㅠㅠ',2.0,'맛있다',27);

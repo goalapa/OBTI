@@ -19,7 +19,7 @@ public class AppReviewController {
 
     @GetMapping("/app-review")
     public String requestPage() {
-        return "app-review";
+        return "appReview";
     }
 
     @PostMapping("/app-review")

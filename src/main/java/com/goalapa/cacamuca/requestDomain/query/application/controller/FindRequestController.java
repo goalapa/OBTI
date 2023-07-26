@@ -31,7 +31,7 @@ public class FindRequestController {
 
         model.addAttribute("requestPage", requestPage);
 
-        return "request-list";
+        return "requestList";
     }
 
     @GetMapping("/view/{requestNo}")
@@ -43,7 +43,7 @@ public class FindRequestController {
         model.addAttribute("selectRequest", request);
         model.addAttribute("selectRequestPic", requestPic);
 
-        return "request-detail";
+        return "requestDetail";
     }
 
 
