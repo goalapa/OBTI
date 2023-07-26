@@ -5,6 +5,7 @@ import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
+import com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,10 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = {"/*/*", "/*"})
@@ -31,23 +30,36 @@ public class SelectReviewController {
     }
 
     @GetMapping("/selectReviews")
-    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country,
-                                @PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable
+    public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country,@RequestParam int foodNo,
+                                @PageableDefault(size = 10, sort = "review_rate", direction = Sort.Direction.DESC) Pageable pageable
     ){
-//        List<QueryReviewDTO> reviews = selectReviewService.findAllReviews(foodName, country);
         Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
         List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(foodName, country);
 
-        System.out.println("reviewWriters = " + reviewWriters);
-        System.out.println("reviewPics = " + reviewPics);
+        QueryStatDTO bestStat = selectReviewService.findBestReview(foodNo);
+        QueryReviewDTO recentPrice = selectReviewService.findRecentPrice(foodName, country);
 
-        model.addAttribute("foodName", foodName);
+        Set<String> deleteKeywords = new HashSet<>();
+        for (QueryReviewDTO review : reviewPages) {
+            deleteKeywords.add(review.getReviewKeyword());
+        }
+        List<String> uniqueKeywords = new ArrayList<>(deleteKeywords);
+
+        System.out.println("bestStat = " + bestStat);
+        System.out.println("recentPrice = " + recentPrice);
+
+        model.addAttribute("foodName",foodName);
         model.addAttribute("country",country);
+        model.addAttribute("foodNo", foodNo);
         model.addAttribute("reviewPages", reviewPages);
         model.addAttribute("reviewPics", reviewPics);
         model.addAttribute("reviewWriters", reviewWriters);
-        
+        model.addAttribute("uniqueKeywords", uniqueKeywords);
+        model.addAttribute("bestStat", bestStat);
+        model.addAttribute("recentPrice", recentPrice);
+
+
 
         return "/review/selectReviews";
     }
@@ -57,10 +69,11 @@ public class SelectReviewController {
     public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member){
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
         model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
-
+        model.addAttribute("reviewWriter", selectReviewService.findReviewWriter(no));
 
         model.addAttribute("no", no);
         model.addAttribute("member", member);
+
 
         return "/review/reviewDetail";
     }
@@ -72,12 +85,19 @@ public class SelectReviewController {
         Page<QueryReviewDTO> searchReviews = selectReviewService.searchReviews(search, pageable);
         List<QueryReviewPicDTO> searchPics = selectReviewService.findAllPictures(search);
         List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(search);
-        System.out.println("작성자 리스트 = " + reviewWriters);
+
+        Set<String> deleteKeywords = new HashSet<>();
+        for (QueryReviewDTO review : searchReviews) {
+            deleteKeywords.add(review.getReviewKeyword());
+        }
+        List<String> uniqueKeywords = new ArrayList<>(deleteKeywords);
+        System.out.println("uniqueKeywords = " + uniqueKeywords);
 
         model.addAttribute("searchReviews",searchReviews);
         model.addAttribute("search", search);
         model.addAttribute("searchPics", searchPics);
         model.addAttribute("reviewWriters", reviewWriters);
+        model.addAttribute("uniqueKeywords", uniqueKeywords);
 
         return "review/search";
     }

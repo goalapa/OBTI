@@ -272,7 +272,8 @@ VALUES(18,'한국','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추
 -- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
 -- VALUES(2,4,'link');
 
-
+INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
+VALUES('2023-06-01',1,200,4.5,100,20,'M');
 INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)
 VALUES('2023-06-01',20,200,4.5,100,20,'M');
 INSERT INTO stat(update_date,food_no, review_cnt,food_rate,like_cnt,member_age_group, member_gender)

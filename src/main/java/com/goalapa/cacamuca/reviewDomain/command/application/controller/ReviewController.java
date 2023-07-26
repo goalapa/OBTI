@@ -38,7 +38,7 @@ public class ReviewController {
 
         reviewService.saveReview(reviewDTO, reviewPicUrl,loginMemberNo);
 
-        return "redirect:/review/selectReviews";
+        return "redirect:/";
     }
 
     @PostMapping("/reviewDetail")
@@ -48,6 +48,8 @@ public class ReviewController {
             String no = (String) parameter.get("no");
             Integer reviewNo =  Integer.parseInt(no);
             Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+            String likeStatus = (String) parameter.get("likeStatus");
+            System.out.println("likeStatus = " + likeStatus);
 
             int loginMemberNo = user.getMemberNo();
 
@@ -56,6 +58,8 @@ public class ReviewController {
             Map<String, Object> responseMap = new HashMap<>();
             responseMap.put("no", Integer.valueOf(reviewNo).toString());
             responseMap.put("member", memberNo);
+            responseMap.put("likeStatus", likeStatus);
+
             return responseMap;
     }
 

@@ -4,6 +4,7 @@ import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDT
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
+import com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface ReviewMapper {
 
     QueryReviewDTO findReviewByNo(int no);
     QueryReviewPicDTO findReviewPicByNo(int no);
-
-
-
+    QueryReviewWriterDTO findReviewWriterByReviewNo(int reviewNo);
+    QueryStatDTO findBestReviewByFoodNo(int foodNo);
+    QueryReviewDTO findRecentPrice(String foodName, String country);
 }

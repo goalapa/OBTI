@@ -5,6 +5,7 @@ import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
 import com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper;
+import com.goalapa.cacamuca.statDomain.query.application.dto.QueryStatDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,6 +26,12 @@ public class SelectReviewService {
     public List<QueryReviewDTO> findAllReviews(String foodName, String country) {
         List<QueryReviewDTO> reviews = mapper.findAllReviews(foodName, country);
         return reviews;
+    }
+
+    @Transactional(readOnly = true)
+    public QueryReviewDTO findRecentPrice(String foodName, String country) {
+        QueryReviewDTO recentPrice = mapper.findRecentPrice(foodName, country);
+        return recentPrice;
     }
 
     @Transactional(readOnly = true)
@@ -92,5 +99,17 @@ public class SelectReviewService {
     public List<QueryReviewFoodDTO> checkValue(String country, String foodType) {
         List<QueryReviewFoodDTO> foods = mapper.findFoodNameByCountryAndFoodType(country, foodType);
         return foods;
+    }
+
+    @Transactional(readOnly = true)
+    public QueryReviewWriterDTO findReviewWriter(int reviewNo) {
+        QueryReviewWriterDTO writer = mapper.findReviewWriterByReviewNo(reviewNo);
+        return writer;
+    }
+
+    @Transactional(readOnly = true)
+    public QueryStatDTO findBestReview(int foodNo) {
+        QueryStatDTO bestStat = mapper.findBestReviewByFoodNo(foodNo);
+        return bestStat;
     }
 }
