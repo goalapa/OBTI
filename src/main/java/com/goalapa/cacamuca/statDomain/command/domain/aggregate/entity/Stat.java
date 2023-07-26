@@ -44,6 +44,9 @@ public class Stat {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "food_image_url")
+    private String foodImageUrl;
+
 //    @Column(name = "report_type")
 //    private Integer reportType;
 
