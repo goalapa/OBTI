@@ -45,6 +45,16 @@ public class AuthenticationService implements UserDetailsService {
         List<String> adminPermitList = new ArrayList<>();
         List<String> memberPermitList = new ArrayList<>();
 
+        memberPermitList.add("/member/my-page");
+        memberPermitList.add("/member/secession");
+        memberPermitList.add("/report/**");
+        memberPermitList.add("/request/**");
+        memberPermitList.add("/review/review");
+        memberPermitList.add("/review/report");
+
+        adminPermitList.add("/member/admin-page");
+        adminPermitList.add("/member/admin-list");
+        adminPermitList.add("/stat/**");
 
         permitListMap.put("adminPermitList", adminPermitList);
         permitListMap.put("memberPermitList", memberPermitList);
