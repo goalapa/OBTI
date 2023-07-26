@@ -5,8 +5,8 @@
     <title>Title</title>
     <style>
         .layout {
-            width: 300px;
-            height: 200px;
+            width: 500px;
+            height: 230px;
             margin: 0 auto;
             margin-top: 40px;
             border: 2px solid #ccc;
@@ -44,6 +44,27 @@
         }
 
         .inner{
+            position: relative;
+            left: 25px;
+            top: 5px;
+        }
+        .inner_content{
+            position: relative;
+            left: 25px;
+            top: 10px;
+            width: 200px;
+            height: 120px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .inner_image{
+            position: relative;
+            left: 300px;
+            bottom: 140px;
+        }
+
+        .inner_id{
             position: relative;
             left: 25px;
             top: 10px;
@@ -84,18 +105,34 @@
 <body>
 <th:block th:insert="~{common/header}"/>
 <div class="layout" th:each="reviewPage : ${reviewPages}">
-    <div class="inner">
+    <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
+        <th:block th:if="${reviweWriter.reviewNo eq reviewPage.reviewNo}">
+            <a th:text="${reviweWriter.memberName}"/>
+        </th:block>
+    </span>
+    <span class="inner">
         <span class="rating_box">
-            <div class="rating">
+            <span class="rating">
                 ★★★★★
                 <span class="rating_star">★★★★★</span>
                 <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${reviewPage.reviewRate}" readonly>
-            </div>
+            </span>
         </span>
-        <div class="inner_content">
-            <a th:text="${reviewPage.reviewContent}" th:href="@{/review/detail(no=${reviewPage.reviewNo}, member=${reviewPage.memberNo})}"></a>
-        </div>
+    </span>
+
+    <div class="inner_content">
+        <a th:text="${reviewPage.reviewContent}" th:href="@{/review/detail(no=${reviewPage.reviewNo}, member=${reviewPage.memberNo})}"></a>
     </div>
+
+    <span th:each="reviewPic : ${reviewPics}">
+        <th:block th:if="${reviewPic.reviewPicUrl eq null}"/>
+        <th:block th:unless="${reviewPic.reviewPicUrl eq null}">
+            <span th:if="${reviewPic.reviewNo} eq ${reviewPage.reviewNo}" class="inner_image">
+                <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="150" height="100" alt="Image">
+            </span>
+        </th:block>
+    </span>
+
 </div>
 
 
