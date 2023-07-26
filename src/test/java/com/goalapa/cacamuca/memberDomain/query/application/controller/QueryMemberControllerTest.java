@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.TestExecutionEvent;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.AfterTransaction;
@@ -115,8 +116,9 @@ class QueryMemberControllerTest {
     }
 
     @Test
-    @DisplayName("회원목록 페이지 호출")
-    void findAdminPage() throws Exception {
+    @DisplayName("관리자 회원목록 페이지 호출")
+    @WithMockUser(username="admin",roles={"ADMIN"})
+    void findAdminListPage() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/member/admin-list")
                         .param("page","0")
