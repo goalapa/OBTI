@@ -30,6 +30,7 @@ public class MemberServiceImpl implements CommandMemberService {
         memberDTO.setMemberPwd(passwordEncoder.encode(memberDTO.getMemberPwd()));
 
         Member member =  modelMapper.map(memberDTO, Member.class);
+        member.setMemberPwd(new Password(memberDTO.getMemberPwd()));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(memberDTO.getMemberBirth(), formatter);
