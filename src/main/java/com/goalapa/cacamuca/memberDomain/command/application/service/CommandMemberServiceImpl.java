@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements CommandMemberService {
+public class CommandMemberServiceImpl implements CommandMemberService {
 
     private final ModelMapper modelMapper;
     private final MemberRepository memberRepository;

@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional
-class MemberServiceImplTest {
+class CommandMemberServiceImplTest {
 
     @Autowired
     private MemberRepository memberRepository;

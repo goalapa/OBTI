@@ -2,7 +2,7 @@ package com.goalapa.cacamuca.memberDomain.command.application.controller;
 
 import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.memberDomain.command.application.dto.MemberDTO;
-import com.goalapa.cacamuca.memberDomain.command.application.service.MemberServiceImpl;
+import com.goalapa.cacamuca.memberDomain.command.application.service.CommandMemberServiceImpl;
 import com.goalapa.cacamuca.memberDomain.command.ininfrastructure.service.InfraCommandMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +23,7 @@ import java.nio.charset.Charset;
 @RequiredArgsConstructor
 public class CommandMemberController {
 
-    private final MemberServiceImpl memberService;
+    private final CommandMemberServiceImpl memberService;
     private final InfraCommandMemberService infraCommandMemberService;
 
     private HttpHeaders getHeader() {
