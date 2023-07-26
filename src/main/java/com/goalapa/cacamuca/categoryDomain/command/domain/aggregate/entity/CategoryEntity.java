@@ -34,10 +34,4 @@ public class CategoryEntity {
 
     }
 
-
-    public void setReplaceCountry(String country) {
-    }
-
-    public void setReplaceFoodType(String foodType) {
-    }
 }
