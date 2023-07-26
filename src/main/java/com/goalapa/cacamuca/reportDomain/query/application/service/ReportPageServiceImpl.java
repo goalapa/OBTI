@@ -32,16 +32,20 @@ public class ReportPageServiceImpl implements ReportPageService {
 
         List<ReportQueryDTO> reportList = new ArrayList<>(reportMapper.getReportPage(map));
 
-        System.out.println("reportList = " + reportList);
-
         Sort sort = pageable.getSort();
         if (!sort.isUnsorted()) {
             reportList.sort(Comparator.comparing(dto -> getValueBySort(dto, sort)));
         }
 
         int totalItems = reportMapper.getTotalItems(pageable);
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), totalItems);
 
-        return new PageImpl<>(reportList, pageable, totalItems);
+        // 목록이 없으면 빈페이지 생성
+        if (start > reportList.size())
+            return new PageImpl<>(new ArrayList<>(), pageable, reportList.size());
+
+        return new PageImpl<>(reportList.subList(start, end), pageable, totalItems);
     }
 
     private Comparable getValueBySort(ReportQueryDTO dto, Sort sort) {

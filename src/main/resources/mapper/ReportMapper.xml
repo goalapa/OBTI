@@ -24,18 +24,18 @@
         LEFT JOIN review b ON a.review_no = b.review_no
         LEFT JOIN member rm ON a.reported_member_no = rm.member_no
         LEFT JOIN member rep ON a.report_member_no = rep.member_no
-        <choose>
-            <when test="sort == 'reviewNo'">
-                ORDER BY a.review_no
-            </when>
-            <when test="sort == 'reportNo'">
-                ORDER BY a.report_no
-            </when>
-            <otherwise>
-                ORDER BY a.report_no
-            </otherwise>
-        </choose>
-        LIMIT ${ offset }, ${ pageSize }
+<!--        <choose>-->
+<!--            <when test="sort == 'reviewNo'">-->
+<!--                ORDER BY a.review_no-->
+<!--            </when>-->
+<!--            <when test="sort == 'reportNo'">-->
+<!--                ORDER BY a.report_no-->
+<!--            </when>-->
+<!--            <otherwise>-->
+<!--                ORDER BY a.report_no-->
+<!--            </otherwise>-->
+<!--        </choose>-->
+<!--        LIMIT ${ offset }, ${ pageSize }-->
     </select>
 
     <select id="getTotalItems" resultType="_int">

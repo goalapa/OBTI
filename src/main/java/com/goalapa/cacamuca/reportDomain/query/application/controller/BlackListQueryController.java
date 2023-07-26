@@ -25,7 +25,7 @@ public class BlackListQueryController {
     // 블랙리스트 페이지
     @GetMapping("/blacklist")
     @ResponseBody
-    public ModelAndView getBlackListPage(ModelAndView model, @PageableDefault(size = 10, sort = "blacklist_reg_date", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ModelAndView getBlackListPage(ModelAndView model, @PageableDefault(size = 10, direction = Sort.Direction.DESC) Pageable pageable) {
         Page<BlackListQueryDTO> blackListPage = blackListServiceImpl.getBlackListPage(pageable);
 
         model.addObject("blackListPage", blackListPage);

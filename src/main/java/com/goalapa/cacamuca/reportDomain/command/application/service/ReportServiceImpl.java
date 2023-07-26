@@ -52,7 +52,6 @@ public class ReportServiceImpl implements ReportService {
         Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportCreateDTO.getReportType());
 
         reportRepository.save(report);
-
     }
 
     // 신고 삭제
