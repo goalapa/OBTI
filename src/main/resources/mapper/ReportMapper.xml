@@ -4,21 +4,38 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goalapa.cacamuca.reportDomain.query.domain.repository.ReportMapper">
     <resultMap id="reportResultMap" type="com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO">
-        <result property="reportNo" column="report_no" />
+        <id property="reportNo" column="report_no" />
         <result property="reviewNo" column="review_no" />
         <result property="reportMemberNo" column="report_member_no" />
         <result property="reportedMemberNo" column="reported_member_no" />
         <result property="reportType" column="report_type" />
         <result property="reviewContent" column="review_content" />
+        <result property="reportedMemberId" column="reported_member_id" />
+        <result property="reportMemberId" column="report_member_id" />
     </resultMap>
 
-    <select id="getReportPage" resultMap="reportResultMap">
+    <select id="getReportPage" resultMap="reportResultMap" parameterType="map">
         SELECT a.report_no, a.report_member_no, a.report_type,
                 a.reported_member_no, a.review_no,
-                b.review_content
+                b.review_content,
+                rm.member_id AS reported_member_id,
+                rep.member_id AS report_member_id
         FROM report a
-        LEFT JOIN review b
-        ON a.review_no = b.review_no
+        LEFT JOIN review b ON a.review_no = b.review_no
+        LEFT JOIN member rm ON a.reported_member_no = rm.member_no
+        LEFT JOIN member rep ON a.report_member_no = rep.member_no
+<!--        <choose>-->
+<!--            <when test="sort == 'reviewNo'">-->
+<!--                ORDER BY a.review_no-->
+<!--            </when>-->
+<!--            <when test="sort == 'reportNo'">-->
+<!--                ORDER BY a.report_no-->
+<!--            </when>-->
+<!--            <otherwise>-->
+<!--                ORDER BY a.report_no-->
+<!--            </otherwise>-->
+<!--        </choose>-->
+<!--        LIMIT ${ offset }, ${ pageSize }-->
     </select>
 
     <select id="getTotalItems" resultType="_int">

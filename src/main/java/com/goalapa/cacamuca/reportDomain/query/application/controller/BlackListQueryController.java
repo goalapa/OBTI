@@ -14,18 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin-page")
-public class BlackListQeuryController {
+public class BlackListQueryController {
 
     private final BlackListPageServiceImpl blackListServiceImpl;
 
-    public BlackListQeuryController(BlackListPageServiceImpl blackListServiceImpl) {
+    public BlackListQueryController(BlackListPageServiceImpl blackListServiceImpl) {
         this.blackListServiceImpl = blackListServiceImpl;
     }
 
     // 블랙리스트 페이지
     @GetMapping("/blacklist")
     @ResponseBody
-    public ModelAndView getBlackListPage(ModelAndView model, @PageableDefault(size = 10, sort = "blacklist_reg_date", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ModelAndView getBlackListPage(ModelAndView model, @PageableDefault(size = 10, direction = Sort.Direction.DESC) Pageable pageable) {
         Page<BlackListQueryDTO> blackListPage = blackListServiceImpl.getBlackListPage(pageable);
 
         model.addObject("blackListPage", blackListPage);

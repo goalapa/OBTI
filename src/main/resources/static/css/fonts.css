@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+p {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+a {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+h3 {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+label {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+form {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+span {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+table {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+th {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
