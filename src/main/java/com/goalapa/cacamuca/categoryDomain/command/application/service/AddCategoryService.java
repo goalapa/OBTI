@@ -15,11 +15,14 @@ public class AddCategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public void addCategory(AddCategoryDTO categoryDTO) {
+    public void addCategory(AddCategoryDTO addcategoryDTO) {
+
 
         CategoryEntity category = new CategoryEntity();
-        category.setCategoryName(categoryDTO.getCategoryName());
-        category.setSubCategoryName(categoryDTO.getSubCategoryName());
+        category.setCountry(addcategoryDTO.getCountry());
+        category.setFoodType(addcategoryDTO.getFoodType());
+
+        System.out.println("category = " + category);
 
         categoryRepository.save(category);
     }

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>CACAMUCA</title>
+
+  <link rel="stylesheet" th:href="@{/css/fonts.css}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <th:block th:insert="~{common/adminHeader}" />
+  <th:block th:insert="~{common/adminAside}" />
+  <main class="p-4 sm:ml-64">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
+      <button type="button" id="memberNoButton" onclick="sortBlacklistPage('memberNo')" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+        회원 번호 정렬
+      </button>
+      <button type="button" id="blacklistNoButton" onclick="sortBlacklistPage('blacklistNo')" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+        블랙리스트 번호 정렬
+      </button>
+      <button type="button" id="blacklistRegDateButton" onclick="sortBlacklistPage('blacklistRegDate')" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+        등록일 정렬
+      </button>
+      <button type="button" id="blacklistRelDateButton" onclick="sortBlacklistPage('blacklistRelDate')" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+        해제일 정렬
+      </button>
+      <table id="blackListTable" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">블랙리스트 번호</th>
+            <th scope="col" class="px-6 py-3">회원 번호</th>
+            <th scope="col" class="px-6 py-3">회원 아이디</th>
+            <th scope="col" class="px-6 py-3">등록일</th>
+            <th scope="col" class="px-6 py-3">해제일</th>
+            <th scope="col" class="px-6 py-3">블랙리스트 해제</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="blackList, blackListStat : ${blackListPage}" th:id="${blackListStat.index}">
+            <th scope="row" class="px-6 py-4" th:text="${blackList.blackListNo}"></th>
+            <th scope="row" class="px-6 py-4" th:text="${blackList.memberNo}"></th>
+            <th scope="row" class="px-6 py-4" th:text="${blackList.memberId}"></th>
+            <th scope="row" class="px-6 py-4" th:text="${blackList.blackListRegDate}"></th>
+            <th scope="row" class="px-6 py-4" th:text="${blackList.blackListRelDate}"></th>
+            <th scope="row">
+              <button type="button" th:if="${blackList.getBlackListRelDate() == null}" onclick="releaseBlackList(event, true)" th:data-blacklist-id="${blackListStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">차단 해제하기</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation" >
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ blackListPage.getPageable().getOffset() } + 1" /> -
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ blackListPage.getPageable().offset } + ${ blackListPage.getNumberOfElements() }" /> of
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ blackListPage.getTotalElements() }" />
+            </span>
+      <ul class="inline-flex -space-x-px text-sm h-8">
+        <li>
+          <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">이전</a>
+        </li>
+        <li>
+          <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+        </li>
+        <li>
+          <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+        </li>
+        <li>
+          <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+        </li>
+        <li>
+          <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+        </li>
+        <li>
+          <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+        </li>
+        <li>
+          <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">다음</a>
+        </li>
+      </ul>
+      <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ blackListPage.getTotalPages()}" id="totalPages"/>
+      </span>
+    </nav>
+  </main>
+
+  <script>
+    function releaseBlackList(event){
+      const blacklistRowId = event.target.getAttribute('data-blacklist-id');
+      const blacklistTable = document.getElementById(blacklistRowId);
+
+      const blackListNo = blacklistTable.cells[0].innerText;
+      const memberNo = blacklistTable.cells[1].innerText;
+      const memberId = blacklistTable.cells[2].innerText;
+
+      const data = {
+        blackListNo: blackListNo,
+        memberNo: memberNo,
+        memberId: memberId,
+      };
+
+      axios.post('/admin-page/blacklist-release', data)
+              .then(response => {
+                console.log('Blacklist deleted successfully:', response.data);
+                window.location.reload();
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+    }
+
+    function sortBlacklistPage(sort) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentPage = parseInt(urlParams.get('page') || 0);
+
+      window.location.href = `/admin-page/blacklist?page=${currentPage}&sort=${sort}`;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page') || 0);
+    const currentSort = urlParams.get('sort') || 'blacklistRelDate';
+    const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+    const pageButtons = document.querySelectorAll('[id^="page"]');
+
+    function updateSortButtonStyles(currentSort) {
+      const sortButtons = {
+        'memberNo': 'memberNoButton',
+        'blacklistNo': 'blacklistNoButton',
+        'blacklistRegDate': 'blacklistRegDateButton',
+        'blacklistRelDate': 'blacklistRelDateButton',
+      };
+
+      for (const [sort, buttonId] of Object.entries(sortButtons)) {
+        const button = document.getElementById(buttonId);
+        button.style.backgroundColor = currentSort === sort ? '#C3DDFD' : 'transparent';
+      }
+    }
+
+    // Call this function with the currentSort value to update the button styles
+    updateSortButtonStyles(currentSort);
+
+
+    pageButtons.forEach((button, index) => {
+      const pageNumber = currentPage - 2 + index;
+
+      button.href = `/admin-page/blacklist?page=${pageNumber}&sort=${currentSort}`;
+      button.innerText = pageNumber + 1;
+
+      if (pageNumber === currentPage) {
+        button.style.backgroundColor = '#C3DDFD';
+      }
+
+      if (pageNumber < 0 || pageNumber > totalPagesInt) {
+        button.style.display = 'none';
+      }
+    });
+
+    const previousButton = document.getElementById('previousButton');
+    const nextButton = document.getElementById('nextButton');
+
+    previousButton.href = `/admin-page/blacklist?page=${currentPage - 1}&sort=${currentSort}`;
+    previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+    nextButton.href = `/admin-page/blacklist?page=${currentPage + 1}&sort=${currentSort}`;
+    nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
+
+  </script>
+</body>
+</html>

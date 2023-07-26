@@ -24,8 +24,10 @@ public class ReviewDTO {
     private int reviewPrice;
     private String reviewLink;
     private Integer likeCnt;
+    private Integer reportCnt;
 
-    public ReviewDTO(String country, String foodType, int reviewNo, String foodName, String reviewContent, String reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
+    public ReviewDTO(String country, String foodType, int reviewNo, String foodName, String reviewContent, String reviewDate, double reviewRate,
+                     Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt, Integer reportCnt) {
         this.country = country;
         this.foodType = foodType;
         this.reviewNo = reviewNo;
@@ -39,6 +41,7 @@ public class ReviewDTO {
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
         this.likeCnt = likeCnt;
+        this.reportCnt = reportCnt;
     }
 
     public ReviewDTO() {
@@ -150,19 +153,31 @@ public class ReviewDTO {
         this.likeCnt = likeCnt;
     }
 
+    public Integer getReportCnt() {
+        return reportCnt;
+    }
+
+    public void setReportCnt(Integer reportCnt) {
+        this.reportCnt = reportCnt;
+    }
+
     @Override
     public String toString() {
         return "ReviewDTO{" +
-                "reviewNo=" + reviewNo +
+                "country='" + country + '\'' +
+                ", foodType='" + foodType + '\'' +
+                ", foodName='" + foodName + '\'' +
+                ", reviewNo=" + reviewNo +
                 ", reviewContent='" + reviewContent + '\'' +
-                ", reviewDate=" + reviewDate +
+                ", reviewDate='" + reviewDate + '\'' +
                 ", reviewRate=" + reviewRate +
                 ", memberNo=" + memberNo +
                 ", foodNo=" + foodNo +
                 ", reviewKeyword='" + reviewKeyword + '\'' +
-                ", reviewPrice='" + reviewPrice + '\'' +
+                ", reviewPrice=" + reviewPrice +
                 ", reviewLink='" + reviewLink + '\'' +
                 ", likeCnt=" + likeCnt +
+                ", reportCnt=" + reportCnt +
                 '}';
     }
 }

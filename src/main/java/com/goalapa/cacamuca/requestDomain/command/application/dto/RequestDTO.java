@@ -11,7 +11,6 @@ import static java.lang.Integer.parseInt;
 public class RequestDTO {
 
     private int requestNo;
-
     private String requestCountry;
     private String requestFoodType;
     private String requestFood;
@@ -20,6 +19,24 @@ public class RequestDTO {
     private String requestContent;
 
     public RequestDTO() {}
+
+    public RequestDTO(int requestNo, String requestCountry, String requestFoodType, String requestFood, int requestPrice, String requestContent) {
+        this.requestNo = requestNo;
+        this.requestCountry = requestCountry;
+        this.requestFoodType = requestFoodType;
+        this.requestFood = requestFood;
+        this.requestPrice = requestPrice;
+        this.requestContent = requestContent;
+    }
+
+    public RequestDTO(String requestCountry, String requestFoodType, String requestFood, int requestPrice, int requestMemberNo, String requestContent) {
+        this.requestCountry = requestCountry;
+        this.requestFoodType = requestFoodType;
+        this.requestFood = requestFood;
+        this.requestPrice = requestPrice;
+        this.requestMemberNo = requestMemberNo;
+        this.requestContent = requestContent;
+    }
 
     public int getRequestNo() {
         return requestNo;

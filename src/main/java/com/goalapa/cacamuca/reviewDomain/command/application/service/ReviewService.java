@@ -1,15 +1,19 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
 import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.Like;
-import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.LikeId;
 import com.goalapa.cacamuca.likeDomain.command.domain.repository.LikeRepository;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportMemberVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportedMemberVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
+import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository;
 import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewDTO;
-import com.goalapa.cacamuca.reviewDomain.command.application.dto.ReviewLikeDTO;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
+import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewValidationServiceImpl;
 import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,27 +36,32 @@ public class ReviewService {
     private final LikeRepository likeRepository;
     private final ReviewPicRepository reviewPicRepository;
     private final SelectReviewService selectReviewService;
+    private final ReviewValidationServiceImpl reviewValidationService;
+    private final ReportRepository reportRepository;
 
     private static String root = "C:\\app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService) {
+    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository) {
         this.reviewRepository = reviewRepository;
         this.likeRepository = likeRepository;
         this.reviewPicRepository = reviewPicRepository;
         this.selectReviewService = selectReviewService;
+        this.reviewValidationService = reviewValidationService;
+        this.reportRepository = reportRepository;
     }
 
     @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
         LocalDate date = LocalDate.now();
-        ReviewWriter reviewWriter = new ReviewWriter();
-        ReviewPic reviewPic = new ReviewPic();
+        ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
         Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), loginMemberNo);
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0);
 
         List<String> fileNames = new ArrayList<>();
+        ReviewPic reviewPic = new ReviewPic();
+
 
         for (MultipartFile file : reviewPicUrl) {
             if (file.isEmpty()) {
@@ -71,39 +80,52 @@ public class ReviewService {
 
                 String uploadPath = filePath + File.separator + uniqueFileName;
                 file.transferTo(new File(uploadPath));
-                int review_no = 1;
 
-                reviewPic = new ReviewPic(uploadPath, review_no);
-                fileNames.add(uniqueFileName);
+                reviewPic = new ReviewPic(uniqueFileName);
+                fileNames.add(uploadPath);
+
+                reviewPic.setReviewNo(review);
+
                 reviewPicRepository.save(reviewPic);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        reviewRepository.save(review);
     }
 
     @Transactional
-    public void countHeart(Integer no, Integer memberNo, int loginMemberNo) {
+    public void countHeart(Integer no, int loginMemberNo) {
         Review review = reviewRepository.findById(no).get();
 
-        if(review.getLikeCnt()==null){
-            review.setLikeCnt(0);
-        }
+        boolean checkHeartCondition = reviewValidationService.checkHeartCondition(review, no, loginMemberNo);
 
-        if(likeRepository.findByReviewNoAndMemberNo(no, loginMemberNo).isPresent()){
-            review.setLikeCnt(review.getLikeCnt() -1);
-        }else {
-            System.out.println("no = " + no);
-            System.out.println("memberNo = " + memberNo);
-
+        if(checkHeartCondition == true){
             Like like = new Like();
 
             like.setReviewNo(no);
-            like.setMemberNo(memberNo);
+            like.setMemberNo(loginMemberNo);
 
             review.setLikeCnt(review.getLikeCnt() + 1);
             likeRepository.save(like);
         }
+    }
+
+    @Transactional
+    public boolean countReport(int reportReason, int reviewNo, int loginMemberNo, int memberNo) {
+        Review review = reviewRepository.findById(reviewNo).get();
+        ReviewVO reviewVO = new ReviewVO(reviewNo);
+        ReportMemberVO reportMemberVO = new ReportMemberVO(loginMemberNo);
+        ReportedMemberVO reportedMemberVO = new ReportedMemberVO(memberNo);
+
+        boolean checkCondition = reviewValidationService.checkReportCondition(review, reviewVO, reportMemberVO, reportedMemberVO);
+
+        if (checkCondition==true){
+            Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportReason);
+
+            review.setReportCnt(review.getReportCnt()+1);
+            reportRepository.save(report);
+        }
+
+        return checkCondition;
     }
 }

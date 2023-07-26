@@ -1,10 +1,12 @@
 package com.goalapa.cacamuca.requestDomain.command.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.requestDomain.command.application.dto.RequestDTO;
 import com.goalapa.cacamuca.requestDomain.command.application.service.DeleteRequestImpl;
 import com.goalapa.cacamuca.requestDomain.command.application.service.DeleteRequestPicImpl;
+import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestImpl;
 import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestPicImpl;
-import com.goalapa.cacamuca.requestDomain.command.infrastructure.service.CheckRequestServiceImpl;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,16 +14,15 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 //@RequestMapping("/*")
 public class RequestController {
-
-    private final CheckRequestServiceImpl checkRequestImpl;
+    private final SaveRequestImpl saveRequestImpl;
     private final SaveRequestPicImpl saveRequestPicImpl;
     private final DeleteRequestImpl deleteRequestImpl;
     private final DeleteRequestPicImpl deleteRequestPicImpl;
 
 
 
-    public RequestController(CheckRequestServiceImpl checkRequestImpl, SaveRequestPicImpl saveRequestPicImpl, DeleteRequestImpl deleteRequestImpl, DeleteRequestPicImpl deleteRequestPicImpl) {
-        this.checkRequestImpl = checkRequestImpl;
+    public RequestController(SaveRequestImpl saveRequestImpl, SaveRequestPicImpl saveRequestPicImpl, DeleteRequestImpl deleteRequestImpl, DeleteRequestPicImpl deleteRequestPicImpl) {
+        this.saveRequestImpl = saveRequestImpl;
         this.saveRequestPicImpl = saveRequestPicImpl;
         this.deleteRequestImpl = deleteRequestImpl;
         this.deleteRequestPicImpl = deleteRequestPicImpl;
@@ -34,11 +35,10 @@ public class RequestController {
         return "request";
     }
 
-//    @PostMapping("/request")
     @PostMapping("/request")
-    public String saveRequest(@ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
+    public String saveRequest(@AuthenticationPrincipal CustomUser customUser, @ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
 
-        checkRequestImpl.checkNotNull(requestDTO);
+        saveRequestImpl.saveRequest(requestDTO, customUser.getMemberNo());
         saveRequestPicImpl.saveRequestPic(requestPic);
 
         return "redirect:/";
