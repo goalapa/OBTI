@@ -10,13 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.Charset;
 
 @Controller
@@ -89,22 +88,19 @@ public class CommandMemberController {
     }
 
     @PostMapping("/secession")
-    public void secession(@AuthenticationPrincipal CustomUser customUser, @ModelAttribute String password, RedirectAttributes redirectAttributes
-            , HttpServletRequest request, HttpServletResponse response) {
+    public String secession(@AuthenticationPrincipal CustomUser customUser, @ModelAttribute String password,
+                            RedirectAttributes redirectAttributes, HttpServletRequest request) {
         try {
             Integer memberNo = customUser.getMemberNo();
             memberService.secession(memberNo, password);
             redirectAttributes.addFlashAttribute("result", "회원탈퇴가 완료되었습니다.");
             request.getSession().invalidate();
-
-            Cookie cookie = new Cookie("JSESSIONID", null);
-            cookie.setMaxAge(0);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            response.sendRedirect("/");
+            SecurityContextHolder.clearContext();
+            return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("result", "잘못된 회원정보 입니다.");
+            return "redirect:member/secession";
         }
     }
 }
