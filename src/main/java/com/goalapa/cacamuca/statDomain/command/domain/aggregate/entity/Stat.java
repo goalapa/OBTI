@@ -23,6 +23,9 @@ public class Stat {
     @Column(name = "food_no")
     private Integer foodNo;
 
+    @Column(name = "food_name")
+    private String foodName;
+
     @Column(name = "review_cnt")
     private Integer reviewCnt;
 
@@ -37,6 +40,9 @@ public class Stat {
 
     @Column(name = "member_gender")
     private String memberGender;
+
+    @Column(name = "country")
+    private String country;
 
 //    @Column(name = "report_type")
 //    private Integer reportType;

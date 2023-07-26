@@ -6,23 +6,27 @@ public class QueryStatDTO {
     private Integer statNo;
     private LocalDate updateDate;
     private Integer foodNo;
+    private String foodName;
     private Integer reviewCnt;
     private float foodRate;
     private Integer likeCnt;
     private Integer memberAgeGroup;
     private String memberGender;
+    private String country;
 
     public QueryStatDTO() {}
 
-    public QueryStatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender) {
+    public QueryStatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, String foodName, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender, String country) {
         this.statNo = statNo;
         this.updateDate = updateDate;
         this.foodNo = foodNo;
+        this.foodName = foodName;
         this.reviewCnt = reviewCnt;
         this.foodRate = foodRate;
         this.likeCnt = likeCnt;
         this.memberAgeGroup = memberAgeGroup;
         this.memberGender = memberGender;
+        this.country = country;
     }
 
     public Integer getStatNo() {
@@ -47,6 +51,14 @@ public class QueryStatDTO {
 
     public void setFoodNo(Integer foodNo) {
         this.foodNo = foodNo;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public Integer getReviewCnt() {
@@ -89,17 +101,27 @@ public class QueryStatDTO {
         this.memberGender = memberGender;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public String toString() {
         return "QueryStatDTO{" +
                 "statNo=" + statNo +
                 ", updateDate=" + updateDate +
                 ", foodNo=" + foodNo +
+                ", foodName='" + foodName + '\'' +
                 ", reviewCnt=" + reviewCnt +
                 ", foodRate=" + foodRate +
                 ", likeCnt=" + likeCnt +
                 ", memberAgeGroup=" + memberAgeGroup +
-                ", memberGender=" + memberGender +
+                ", memberGender='" + memberGender + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }
