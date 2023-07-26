@@ -1,7 +1,9 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.service;
 
+import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
+import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewWriterDTO;
 import com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,8 +20,6 @@ import java.util.List;
 public class SelectReviewService {
 
     private final ReviewMapper mapper;
-    private static String root = "C:\\app-file";
-    private static String filePath = root + "/uploadFiles";
 
     @Transactional(readOnly = true)
     public List<QueryReviewDTO> findAllReviews(String foodName, String country) {
@@ -34,7 +34,6 @@ public class SelectReviewService {
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), reviews.size());
 
-        // 목록이 없으면 빈페이지 생성
         if (start > reviews.size())
             return new PageImpl<>(new ArrayList<>(), pageable, reviews.size());
 
@@ -60,10 +59,38 @@ public class SelectReviewService {
     }
 
     @Transactional(readOnly = true)
-    public List<QueryReviewDTO> searchReviews(String search) {
-        List<QueryReviewDTO> reviews = mapper.findAllReviewsByName(search);
-        return reviews;
+    public Page<QueryReviewDTO> searchReviews(String search, Pageable pageable) {
+        List<QueryReviewDTO> searchReviews = mapper.findAllReviewsByName(search);
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), searchReviews.size());
+
+        if (start > searchReviews.size())
+            return new PageImpl<>(new ArrayList<>(), pageable, searchReviews.size());
+
+        return new PageImpl<>(searchReviews.subList(start, end), pageable, searchReviews.size());
     }
 
+    @Transactional(readOnly = true)
+    public List<QueryReviewPicDTO> findAllPictures(String search) {
+        List<QueryReviewPicDTO> reviewPics = mapper.findSearchPictures(search);
+        return reviewPics;
+    }
 
+    @Transactional(readOnly = true)
+    public List<QueryReviewWriterDTO> findReviewWriter(String foodName, String country) {
+        List<QueryReviewWriterDTO> reviewWriter = mapper.findReviewWriter(foodName, country);
+        return reviewWriter;
+    }
+    @Transactional(readOnly = true)
+    public List<QueryReviewWriterDTO> findReviewWriter(String search) {
+        List<QueryReviewWriterDTO> reviewWriter = mapper.findReviewWriterBySearch(search);
+        return reviewWriter;
+    }
+
+    @Transactional(readOnly = true)
+    public List<QueryReviewFoodDTO> checkValue(String country, String foodType) {
+        List<QueryReviewFoodDTO> foods = mapper.findFoodNameByCountryAndFoodType(country, foodType);
+        return foods;
+    }
 }

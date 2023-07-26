@@ -3,73 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>관리자 요청 조회</title>
-    <th:block th:insert="~{common/header}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        table {
-            position: relative;
-            top: 30px;
-        }
         .search {
-            position: relative;
-            top: 20px;
-            left: 10px;
+            /*position: relative;*/
+            /*top: 20px;*/
+            /*left: 40px;*/
+        }
+        .body {
+            padding-top: 30px;
+            padding-left: 400px;
+        }
+        .nav {
+            padding-top: 30px;
+            padding-left: 400px;
         }
 
     </style>
 </head>
+
 <body>
-<div class="search">
-    <div class="pb-4 bg-white dark:bg-gray-900">
-        <label for="table-search" class="sr-only">Search</label>
-        <div class="relative mt-1">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-            </div>
-            <input type="text" id="table-search" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Seach for Snacks">
-        </div>
-    </div>
-</div>
-
-<table  class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400 text-center mx-auto">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+<th:block th:insert="~{common/adminHeader}" />
+<th:block th:insert="~{common/adminAside}" />
+<!--<div class="search">-->
+<!--    <div class="pb-4 bg-white dark:bg-gray-900">-->
+<!--        <label for="table-search" class="sr-only">Search</label>-->
+<!--        <div class="relative mt-1">-->
+<!--            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
+<!--                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">-->
+<!--                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>-->
+<!--                </svg>-->
+<!--            </div>-->
+<!--            <input type="text" id="table-search" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Seach for Snacks">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="body">
+<table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-        <th>REQUEST NO</th>
-        <th>MEMBER NO</th>
-        <th>COUNTRY</th>
-        <th>FOOD TYPE</th>
-        <th>NAME</th>
-        <th>PRICE</th>
-<!--        <th></th>-->
-<!--        <th></th>-->
-
-<!--        <th>CONTENT</th>-->
-        <th scope="col" class="px-6 py-3">
-            <span class="sr-only">Edit</span>
-        </th>
+        <th scope="col" class="px-6 py-3">REQUEST NO</th>
+        <th scope="col" class="px-6 py-3">MEMBER NO</th>
+        <th scope="col" class="px-6 py-3">COUNTRY</th>
+        <th scope="col" class="px-6 py-3">FOOD TYPE</th>
+        <th scope="col" class="px-6 py-3">NAME</th>
+        <th scope="col" class="px-6 py-3">PRICE</th>
     </tr>
     </thead>
 
-    <tr th:each="list : ${requestList}" scope="col" class="px-6 py-3">
-        <td><span th:text="${list.requestNo}"/></td>
-        <td><span th:text="${list.requestMemberNo}"/></td>
-        <td><span th:text="${list.requestCountry}"/></td>
-        <td><span th:text="${list.requestFoodType}"/></td>
-        <td><span th:text="${list.requestFood}"/></td>
-        <td><span th:text="${list.requestPrice}"/></td>
-        <td></td>
-        <td></td>
-<!--        <td class="px-6 py-4">-->
-        <td>
+    <tbody>
+    <tr th:each="list : ${requestPage}" scope="col" class="px-6 py-3">
+        <th scope="row" class="px-6 py-4" th:text="${list.requestNo}"/></th>
+        <th scope="row" class="px-6 py-4" th:text="${list.requestMemberNo}"/></th>
+        <th scope="row" class="px-6 py-4" th:text="${list.requestCountry}"/></th>
+        <th scope="row" class="px-6 py-4" th:text="${list.requestFoodType}"/></th>
+        <th scope="row" class="px-6 py-4" th:text="${list.requestFood}"/></th>
+        <th scope="row" class="px-6 py-4" th:text="${list.requestPrice}"/></th>
+        <th></th>
+        <th></th>
+        <th>
             <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">상세보기</a>
-        </td>
-        <td>
+        </th>
+        <th>
             <a th:href="@{/request-list/delete/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">삭제</a>
-        </td>
+        </th>
     </tr>
+    </tbody>
+
 </table>
 
+<div class="nav">
+<nav>
+    <ul class="flex items-center -space-x-px h-8 text-sm"
+        th:with="start=${T(java.lang.Math).floor(requestPage.number/10)*10},
+                    last=(${start + 9 < requestPage.totalPages ? start + 9 : requestPage.totalPages})">
+        <th:block th:with="
+                firstAddr=@{/request-list(page=0)},
+                lastAddr=@{/request-list(page=${requestPage.totalPages - 1})}">
+            <li th:class="${requestPage.first} ? 'disabled'">
+                <a th:href="${requestPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&lt;</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(start, last - 1)}"
+                th:class="${page == requestPage.number + 1} ? 'active'">
+                <a th:text="${page}+1" th:href="@{/request-list(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+            </li>
+            <li th:class="${requestPage.last} ? 'disabled'">
+                <a th:href="${requestPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                   aria-label="Next">
+                    <span aria-hidden="true">&gt;</span>
+                </a>
+            </li>
+        </th:block>
+    </ul>
+</nav>
+</div>
+</div>
 </body>
 </html>

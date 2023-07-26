@@ -34,5 +34,4 @@ public class Food {
 
     @Embedded
     private FoodTypeVO foodTypeVO;
-
 }

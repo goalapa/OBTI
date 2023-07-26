@@ -14,4 +14,13 @@ public class RequestCountry {
     public RequestCountry(String requestCountry) {
         this.requestCountry = requestCountry;
     }
+
+    public String getRequestCountry() {
+        return requestCountry;
+    }
+
+    @Override
+    public String toString() {
+        return requestCountry;
+    }
 }

@@ -41,7 +41,7 @@
          WHERE m.member_email = #{ memberEmail }
     </select>
 
-    <select id="findMembers" resultMap="memberResultMap">
+    <select id="findMembers" parameterType="map" resultMap="memberResultMap">
         SELECT <!-- com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper -->
                 m.member_no
               , m.member_id
@@ -51,6 +51,24 @@
               , m.member_gender
               , m.member_email
           FROM member m
-         WHERE m.member_grant = "ROLE_MEMBER"
+        <where>
+            m.member_grant = "ROLE_MEMBER"
+        </where>
+        <if test="sort.sorted">
+            <trim prefix="order by">
+                <foreach item="order" index="i" collection="sort" separator=", ">
+                    ${order.property} ${order.direction}
+                </foreach>
+            </trim>
+        </if>
+         LIMIT #{ size }
+        OFFSET #{ offset }
+    </select>
+
+    <select id="countMembers" resultType="_int">
+        SELECT <!-- com.goalapa.cacamuca.memberDomain.query.domain.repository.MemberMapper -->
+             COUNT(m.member_no)
+        FROM member m
+        WHERE m.member_grant = "ROLE_MEMBER"
     </select>
 </mapper>
