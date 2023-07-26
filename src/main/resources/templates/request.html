@@ -19,7 +19,7 @@
     <th:block th:insert="~{common/header}" />
 
 <div class="req">
-    <form action="request" method="post", enctype="multipart/form-data" class="request">
+    <form action="request" method="post", enctype="multipart/form-data" class="request" onsubmit="showAlert()">
         <select name="requestCountry" class="w-60 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             <option value="none">국가를 선택해주세요.</option>
             <option value="한국">한국</option>
@@ -73,6 +73,11 @@
 </div>
 
 <script>
+
+    function showAlert() {
+        alert("식품 등록 요청이 완료되었습니다! 감사합니다! ");
+    }
+
     function previewImages(event) {
         var previewContainer = document.getElementById('preview-container');
         var files = event.target.files;
@@ -94,7 +99,11 @@
 
             reader.readAsDataURL(file);
         }
+
     }
+
 </script>
+
 </body>
 </html>
+
