@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.config;
 
+import com.goalapa.cacamuca.memberDomain.query.application.service.HelloMessageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 요청 조회</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .body {
+            padding-top: 30px;
+            padding-left: 400px;
+        }
+        .nav {
+            padding-top: 30px;
+            padding-left: 400px;
+        }
+
+    </style>
+</head>
+
+<body>
+<th:block th:insert="~{common/adminHeader}" />
+<th:block th:insert="~{common/adminAside}" />
+
+<div class="body">
+
+    <div class="mb-6">
+        <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">현재 사용자 평가 점수 :</label>
+        <input type="text" id="success" class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-green-500" th:placeholder="${reviewAvg}">
+        <p class="mt-2 text-sm text-green-600 dark:text-green-500"><span class="font-medium">더욱 분발합시다!</span></p>
+    </div>
+
+    <table class="w-4/5 text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">APP REVIEW NO</th>
+            <th scope="col" class="px-6 py-3">MEMBER NO</th>
+            <th scope="col" class="px-6 py-3">MEMBER NICKNAME</th>
+            <th scope="col" class="px-6 py-3">REVIEW RATE</th>
+            <th scope="col" class="px-6 py-3">REVIEW CONTENT</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="list : ${appReview}" scope="col" class="px-6 py-3">
+            <th scope="row" class="px-6 py-4" th:text="${list.appReviewNo}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.memberNo}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.memberNickname}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.appReviewRate}"/></th>
+            <th scope="row" class="px-6 py-4" th:text="${list.appReviewContent}"/></th>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div class="nav">
+        <nav>
+            <ul class="flex items-center -space-x-px h-8 text-sm"
+                th:with="start=${T(java.lang.Math).floor(appReview.number/10)*10},
+                    last=(${start + 9 < appReview.totalPages ? start + 9 : appReview.totalPages})">
+                <th:block th:with="
+                firstAddr=@{/admin-page/app-review(page=0)},
+                lastAddr=@{/admin-page/app-review(page=${appReview.totalPages - 1})}">
+                    <li th:class="${appReview.first} ? 'disabled'">
+                        <a th:href="${appReview.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li th:each="page: ${#numbers.sequence(start, last - 1)}"
+                        th:class="${page == appReview.number + 1} ? 'active'">
+                        <a th:text="${page}+1" th:href="@{/admin-page/app-review(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+                    </li>
+                    <li th:class="${appReview.last} ? 'disabled'">
+                        <a th:href="${appReview.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                           aria-label="Next">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                </th:block>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

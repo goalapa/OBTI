@@ -16,32 +16,12 @@ public class UpdateCategoryService {
     @Transactional
     public void checkUpdate(UpdateCategoryDTO updateCategoryDTO) {
 
-        System.out.println("updateCategoryDTO = " + updateCategoryDTO);
+        CategoryEntity category = categoryRepository.findCategoryEntityByCountryAndFoodType(updateCategoryDTO.getCountry(), updateCategoryDTO.getFoodType());
 
-        CategoryEntity category = categoryRepository.findByCountryAndFoodType(updateCategoryDTO.getCountry(), updateCategoryDTO.getFoodType());
-        //카테고리 엔티티를 가져옴
+        category.setCountry(updateCategoryDTO.getReplaceCountry());
+        category.setFoodType(updateCategoryDTO.getReplaceFoodType());
 
-        if(category != null) {
-            category.setCountry(updateCategoryDTO.getReplaceCountry());
-            category.setFoodType(updateCategoryDTO.getReplaceFoodType());
-
-            categoryRepository.save(category);
-        }
-
+        categoryRepository.save(category);
     }
-//
-//    @Transactional
-//    public void UpdateCheckCategory(UpdateCategoryDTO updateCategoryDTO) {
-//
-//        CategoryEntity category = new CategoryEntity();
-//        category.setReplaceCountry(updateCategoryDTO.getCountry());
-//        category.setReplaceFoodType(updateCategoryDTO.getFoodType());
-//
-//        categoryRepository.save(category);
-//    }
-
-
-
-
 
 }

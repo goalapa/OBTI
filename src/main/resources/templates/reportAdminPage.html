@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>CACAMUCA</title>
 
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
@@ -13,6 +14,12 @@
     <th:block th:insert="~{common/adminAside}" />
     <main class="p-4 sm:ml-64">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
+            <button type="button" id="reviewNoButton" onclick="sortReportPage('reviewNo')" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                리뷰 번호 정렬
+            </button>
+            <button type="button" id="reportNoButton" onclick="sortReportPage('reportNo')" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-gray-800 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                신고 번호 정렬
+            </button>
             <table id="reportList" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -21,6 +28,7 @@
                     <th scope="col" class="px-6 py-3">리뷰 내용</th>
                     <th scope="col" class="px-6 py-3">신고자</th>
                     <th scope="col" class="px-6 py-3">피신고자</th>
+                    <th scope="col" class="px-6 py-3">피신고자 번호</th>
                     <th scope="col" class="px-6 py-3">신고 유형</th>
                     <th scope="col" class="px-6 py-3">신고 수락</th>
                     <th scope="col" class="px-6 py-3">신고 거절</th>
@@ -32,9 +40,11 @@
                     <th scope="row" class="px-6 py-4" th:text="${report.reviewNo}"></th>
                     <th scope="row" class="px-6 py-4" th:text="${report.reportNo}"></th>
                     <th scope="row" class="px-6 py-4" th:text="${report.reviewContent}"></th>
-                    <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportMemberId}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberId}"></th>
                     <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberNo}"></th>
-                    <th scope="row" class="px-6 py-4" th:text="${report.reportType}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.getReportType()}"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}" hidden="hidden"></th>
                     <th scope="row">
                         <button type="button" onclick="deleteReport(event, true)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 완료</button>
                     </th>
@@ -54,45 +64,25 @@
             </span>
             <ul class="inline-flex -space-x-px text-sm h-8">
                 <li>
-                    <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                    <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">이전</a>
                 </li>
                 <li>
-                    <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span th:if="${(reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6) || reportPage.getPageable().pageNumber < 3}" th:text="1" ></span>
-                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() -  3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 4}"></span>
-                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} - 1" ></span>
-                    </a>
+                    <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
                 </li>
                 <li>
-                    <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="2" ></span>
-                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 3}"></span>
-                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()}" ></span>
-                    </a>
+                    <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
                 </li>
                 <li>
-                    <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="3" ></span>
-                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 2}"></span>
-                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 1" ></span>
-                    </a>
+                    <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
                 </li>
                 <li>
-                    <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="4" ></span>
-                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages() - 1}"></span>
-                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 2" ></span>
-                    </a>
+                    <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
                 </li>
                 <li>
-                    <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span th:if="${reportPage.getPageable().pageNumber < 6 && reportPage.getTotalPages() < 6 || reportPage.getPageable().pageNumber < 3}" th:text="5" ></span>
-                        <span th:if="${reportPage.getPageable().pageNumber > reportPage.getTotalPages() - 3 && reportPage.getTotalPages() > 4}" th:text="${reportPage.getTotalPages()}"></span>
-                        <span th:if="${reportPage.getPageable().pageNumber >= 3 && reportPage.getPageable().pageNumber <= reportPage.getTotalPages() - 3}" th:text="${reportPage.getNumber()} + 3" ></span>
-                    </a>
+                    <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
                 </li>
                 <li>
-                    <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                    <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">다음</a>
                 </li>
             </ul>
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
@@ -108,7 +98,7 @@
 
             const reviewNo = reportTable.cells[0].innerText;
             const reportNo = reportTable.cells[1].innerText;
-            const reportedMemberNo = reportTable.cells[4].innerText;
+            const reportedMemberNo = reportTable.cells[5].innerText;
 
             const data = {
                 reviewNo: reviewNo,
@@ -127,81 +117,54 @@
                 });
         }
 
+        function sortReportPage(sort) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentPage = parseInt(urlParams.get('page') || 0);
+
+            window.location.href = `/admin-page/report-list?page=${currentPage}&sort=${sort}`;
+        }
+
         const urlParams = new URLSearchParams(window.location.search);
         const currentPage = parseInt(urlParams.get('page') || 0);
+        const currentSort = urlParams.get('sort') || 'reportNo';
+        const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+        const pageButtons = document.querySelectorAll('[id^="page"]');
 
-        const totalPages = document.getElementById('totalPages');
-        const nextButton = document.getElementById('nextButton');
-        const totalPagesInt = parseInt(totalPages.innerText) - 1;
-        const nextPage = (currentPage === totalPagesInt) ? currentPage : currentPage + 1;
-        nextButton.href = `/admin-page/report-list?page=${nextPage}`;
+        const reviewNoButton = document.getElementById('reviewNoButton');
+        const reportNoButton = document.getElementById('reportNoButton');
+
+        if (currentSort === 'reviewNo') {
+            reviewNoButton.style.backgroundColor = '#C3DDFD';
+            reportNoButton.style.backgroundColor = 'transparent';
+        } else {
+            reportNoButton.style.backgroundColor = '#C3DDFD';
+            reviewNoButton.style.backgroundColor = 'transparent';
+        }
+
+
+        pageButtons.forEach((button, index) => {
+            const pageNumber = currentPage - 2 + index;
+
+            button.href = `/admin-page/report-list?page=${pageNumber}&sort=${currentSort}`;
+            button.innerText = pageNumber + 1;
+
+            if (pageNumber === currentPage) {
+                button.style.backgroundColor = '#C3DDFD';
+            }
+
+            if (pageNumber < 0 || pageNumber > totalPagesInt) {
+                button.style.display = 'none';
+            }
+        });
 
         const previousButton = document.getElementById('previousButton');
-        const previousPage = (currentPage === 0) ? currentPage : currentPage - 1;
-        previousButton.href = `/admin-page/report-list?page=${previousPage}`;
+        const nextButton = document.getElementById('nextButton');
 
-        let firstNum;
-        if (currentPage > 2 && currentPage < totalPagesInt - 2)
-            firstNum = currentPage - 2;
-        else if (currentPage >= totalPagesInt - 2)
-            firstNum = totalPagesInt - 4;
-        else
-            firstNum = 0;
+        previousButton.href = `/admin-page/report-list?page=${currentPage - 1}&sort=${currentSort}`;
+        previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+        nextButton.href = `/admin-page/report-list?page=${currentPage + 1}&sort=${currentSort}`;
+        nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
 
-        const page1Button = document.getElementById('page1Button');
-        const page2Button = document.getElementById('page2Button');
-        const page3Button = document.getElementById('page3Button');
-        const page4Button = document.getElementById('page4Button');
-        const page5Button = document.getElementById('page5Button');
-
-        let button1Int = parseInt(page1Button.innerText);
-        let button2Int = parseInt(page2Button.innerText);
-        let button3Int = parseInt(page3Button.innerText);
-        let button4Int = parseInt(page4Button.innerText);
-        let button5Int = parseInt(page5Button.innerText);
-
-        page1Button.href = `/admin-page/report-list?page=${button1Int - 1}`;
-        page2Button.href = `/admin-page/report-list?page=${button2Int - 1}`;
-        page3Button.href = `/admin-page/report-list?page=${button3Int - 1}`;
-        page4Button.href = `/admin-page/report-list?page=${button4Int - 1}`;
-        page5Button.href = `/admin-page/report-list?page=${button5Int - 1}`;
-
-        if (totalPagesInt === 0) {
-            page2Button.style.display = 'none';
-            page3Button.style.display = 'none';
-            page4Button.style.display = 'none';
-            page5Button.style.display = 'none';
-        }
-        else if (totalPagesInt === 1) {
-            page3Button.style.display = 'none';
-            page4Button.style.display = 'none';
-            page5Button.style.display = 'none';
-        }
-        else if (totalPagesInt === 2) {
-            page4Button.style.display = 'none';
-            page5Button.style.display = 'none';
-        }
-        else if (totalPagesInt === 3) {
-            page5Button.style.display = 'none';
-        }
-
-        switch (currentPage) {
-            case button1Int - 1 :
-                page1Button.style.backgroundColor = "#C3DDFD";
-                break;
-            case button2Int - 1 :
-                page2Button.style.backgroundColor = '#C3DDFD';
-                break;
-            case button3Int - 1 :
-                page3Button.style.backgroundColor = '#C3DDFD';
-                break;
-            case button4Int - 1 :
-                page4Button.style.backgroundColor = '#C3DDFD';
-                break;
-            case button5Int - 1 :
-                page5Button.style.backgroundColor = '#C3DDFD';
-                break;
-        }
     </script>
 </body>
 </html>

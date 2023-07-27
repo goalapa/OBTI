@@ -29,6 +29,15 @@ public class RequestDTO {
         this.requestContent = requestContent;
     }
 
+    public RequestDTO(String requestCountry, String requestFoodType, String requestFood, int requestPrice, int requestMemberNo, String requestContent) {
+        this.requestCountry = requestCountry;
+        this.requestFoodType = requestFoodType;
+        this.requestFood = requestFood;
+        this.requestPrice = requestPrice;
+        this.requestMemberNo = requestMemberNo;
+        this.requestContent = requestContent;
+    }
+
     public int getRequestNo() {
         return requestNo;
     }

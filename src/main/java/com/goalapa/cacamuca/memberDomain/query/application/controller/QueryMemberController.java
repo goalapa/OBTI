@@ -23,7 +23,7 @@ public class QueryMemberController {
     private final QueryMemberServiceImpl memberService;
     private final InfraQueryMemberService infraMemberService;
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String login() {
 
         return "member/login";
