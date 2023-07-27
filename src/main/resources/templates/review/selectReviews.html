@@ -9,9 +9,22 @@
             height: 230px;
             margin: 0 auto;
             margin-top: 40px;
+            margin-bottom: 40px;
             border: 2px solid #ccc;
             border-radius: 15px;
         }
+
+        .layout_outline{
+            position: relative;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 800px;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+        }
+
         .rating_box {
             display: flex;
         }
@@ -68,6 +81,7 @@
             position: relative;
             left: 25px;
             top: 10px;
+            font-weight: bold;
         }
 
 
@@ -89,6 +103,7 @@
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
             border-radius: 4px;
+            margin-bottom: 20px;
         }
 
         .page-button:hover {
@@ -99,47 +114,106 @@
             outline: none;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
+
+        .food_name{
+            position: relative;
+            margin: 0 auto;
+            margin-top: 10px;
+            font-size: 35px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .inner_keyword{
+            position: relative;
+            font-size: 12px;
+            text-align: center;
+            background-color: #FF4500;
+            color: #FFFFFF;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-weight: normal;
+        }
+
+        .out_star{
+            position: relative;
+            left: 320px;
+        }
+
+        .price{
+            position: relative;
+            text-align: center;
+            margin: auto;
+            top: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .recent_price{
+            font-size: 30px;
+        }
     </style>
 </head>
 
 <body>
 <th:block th:insert="~{common/header}"/>
-<div class="layout" th:each="reviewPage : ${reviewPages}">
-    <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
-        <th:block th:if="${reviweWriter.reviewNo eq reviewPage.reviewNo}">
-            <a th:text="${reviweWriter.memberName}"/>
-        </th:block>
-    </span>
-    <span class="inner">
+<div class="layout_outline">
+    <div class="food_name">
+        <p th:text="${foodName}"/>
+        <a class="inner_keyword" type="text" th:each="uniqueKeyword : ${uniqueKeywords}" th:text="${uniqueKeyword}"/>
+    </div>
+
+    <span class="out_star">
         <span class="rating_box">
             <span class="rating">
                 ★★★★★
                 <span class="rating_star">★★★★★</span>
-                <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${reviewPage.reviewRate}" readonly>
+                <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${bestStat.foodRate}" readonly>
             </span>
         </span>
     </span>
 
-    <div class="inner_content">
-        <a th:text="${reviewPage.reviewContent}" th:href="@{/review/detail(no=${reviewPage.reviewNo}, member=${reviewPage.memberNo})}"></a>
-    </div>
-
-    <span th:each="reviewPic : ${reviewPics}">
-        <th:block th:if="${reviewPic.reviewPicUrl eq null}"/>
-        <th:block th:unless="${reviewPic.reviewPicUrl eq null}">
-            <span th:if="${reviewPic.reviewNo} eq ${reviewPage.reviewNo}" class="inner_image">
-                <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="150" height="100" alt="Image">
-            </span>
-        </th:block>
+    <span class="price">
+        <p>최신가격</p>
+        <p class="recent_price" th:text="${recentPrice.reviewPrice + '원'}"/>
     </span>
 
+    <div class="layout" th:each="reviewPage : ${reviewPages}">
+        <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
+            <th:block th:if="${reviweWriter.reviewNo eq reviewPage.reviewNo}">
+                <a th:text="${reviweWriter.memberId}"/>
+            </th:block>
+        </span>
+        <span class="inner">
+            <span class="rating_box">
+                <span class="rating">
+                    ★★★★★
+                    <span class="rating_star">★★★★★</span>
+                    <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${reviewPage.reviewRate}" readonly>
+                </span>
+            </span>
+        </span>
+
+        <div class="inner_content">
+            <a th:text="${reviewPage.reviewContent}" th:href="@{/review/detail(no=${reviewPage.reviewNo}, member=${reviewPage.memberNo})}"></a>
+        </div>
+
+        <span th:each="reviewPic : ${reviewPics}">
+            <th:block th:if="${reviewPic.reviewPicUrl eq null}"/>
+            <th:block th:unless="${reviewPic.reviewPicUrl eq null}">
+                <span th:if="${reviewPic.reviewNo} eq ${reviewPage.reviewNo}" class="inner_image">
+                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="150" height="100" alt="Image">
+                </span>
+            </th:block>
+        </span>
+
+    </div>
 </div>
 
 
 <div style="display: flex; justify-content: center; margin-top: 20px;">
     <!-- 이전 페이지 버튼 -->
     <a th:if="${reviewPages.hasPrevious()}"
-       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number - 1})}"
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, foodNo=${foodNo}, page=${reviewPages.number - 1})}"
        style="display: inline-block;">
         <button class="page-button">
             &laquo;
@@ -149,7 +223,7 @@
     <!-- 페이지 번호 버튼 -->
     <a th:each="page : ${#numbers.sequence(0, reviewPages.totalPages - 1)}"
        th:if="${reviewPages.totalPages > 1}"
-       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${page})}"
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, foodNo=${foodNo}, page=${page})}"
        style="display: inline-block;">
         <button th:text="${page + 1}"
                 th:classappend="${page == reviewPages.number} ? 'selected-page' : ''"
@@ -159,7 +233,7 @@
 
     <!-- 다음 페이지 버튼 -->
     <a th:if="${reviewPages.hasNext()}"
-       th:href="@{/selectReviews(foodName=${foodName}, country=${country}, page=${reviewPages.number + 1})}"
+       th:href="@{/selectReviews(foodName=${foodName}, country=${country},  foodNo=${foodNo}, page=${reviewPages.number + 1})}"
        style="display: inline-block;">
         <button class="page-button">
             &raquo;
@@ -167,9 +241,9 @@
     </a>
 </div>
 
-<div style="display: flex; justify-content: center;">
-    <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>
-</div>
+<!--<div style="display: flex; justify-content: center; top: 10px">-->
+<!--    <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>-->
+<!--</div>-->
 
 <script>
     const rating_inputs = document.querySelectorAll('.rating input');

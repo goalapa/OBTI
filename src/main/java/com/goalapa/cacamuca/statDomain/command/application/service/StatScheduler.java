@@ -3,21 +3,21 @@ package com.goalapa.cacamuca.statDomain.command.application.service;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
 import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.statDomain.command.application.dto.StatDTO;
-import com.goalapa.cacamuca.statDomain.command.domain.aggregate.service.SaveStatService;
 import com.goalapa.cacamuca.statDomain.query.infrastructure.service.*;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Configuration
 public class StatScheduler {
 
     private final FoodRepository foodRepository;
+    private final FoodPicRepository foodPicRepository;
     private final SaveStatServiceImpl saveStatServiceImpl;
     private final LikeCntService likeCntService;
     private final ReviewCntService reviewCntService;
@@ -25,8 +25,9 @@ public class StatScheduler {
     private final MemberAgeGroupService memberAgeGroupService;
     private final MemberGenderService memberGenderService;
 
-    public StatScheduler(FoodRepository foodRepository, SaveStatServiceImpl saveStatServiceImpl, LikeCntService likeCntService, ReviewCntService reviewCntService, FoodRateService foodRateService, MemberAgeGroupService memberAgeGroupService, MemberGenderService memberGenderService) {
+    public StatScheduler(FoodRepository foodRepository, FoodPicRepository foodPicRepository, SaveStatServiceImpl saveStatServiceImpl, LikeCntService likeCntService, ReviewCntService reviewCntService, FoodRateService foodRateService, MemberAgeGroupService memberAgeGroupService, MemberGenderService memberGenderService) {
         this.foodRepository = foodRepository;
+        this.foodPicRepository = foodPicRepository;
         this.saveStatServiceImpl = saveStatServiceImpl;
         this.likeCntService = likeCntService;
         this.reviewCntService = reviewCntService;
@@ -43,6 +44,10 @@ public class StatScheduler {
         for(FoodEntity food : foods) {
             int foodNo = food.getFoodNo();
             int reviewCnt = reviewCntService.countReviews(foodNo);
+
+            Optional<FoodPic> optionalFoodPic = foodPicRepository.findById(foodNo);
+            FoodPic foodPic = null;
+            if(optionalFoodPic.isPresent()) foodPic = optionalFoodPic.get();
 
             if(reviewCnt == 0) {
                 break;
@@ -65,6 +70,7 @@ public class StatScheduler {
                 statDTO.setFoodRate(foodRate);
                 statDTO.setMemberAgeGroup(memberAgeGroup);
                 statDTO.setMemberGender(memberGender);
+                statDTO.setFoodeImageUrl(foodPic.getFoodPicUrl());
 
                 saveStatServiceImpl.insertData(statDTO);
             }

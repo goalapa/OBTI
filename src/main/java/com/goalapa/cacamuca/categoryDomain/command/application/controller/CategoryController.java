@@ -16,10 +16,10 @@ import java.util.List;
 
 
 @Controller  //화면 리턴
-@RequestMapping("/category") //URL로 요청을 보내면 컨트롤러에서 어떤 방식으로 처리할지 정의(들어온 요청을 특정 메소드와 매핑하기 위해 사용하는 어노테이션)
+@RequestMapping("/category")
 public class CategoryController {
 
-    //식별자 생성
+
     private final AddCategoryService addCategoryService;
     private final UpdateCategoryService updateCategoryService;
 

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer> {
 
-    CategoryEntity findByCountryAndFoodType(String country, String foodType);
 
     CategoryEntity findCategoryEntityByCountryAndFoodType(String country, String foodType);
 
