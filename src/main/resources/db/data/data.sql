@@ -25,11 +25,13 @@ VALUES(4,'칙촉','한국','과자',4.3,1800);
 
 
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(1,'link');
+VALUES(1,'/assets/img/Oreo-Two-Cookies.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(2,'link');
+VALUES(2,'/assets/img/chocoroll.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(3,'link');
+VALUES(3,'/assets/img/chorokmaesil.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(4,'/assets/img/chickchok.png');
 
 
 
@@ -286,7 +288,6 @@ VALUES(24,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천'
 -- VALUES(2,3,'link');
 -- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
 -- VALUES(2,4,'link');
-
 
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-25',20,'감동란',200,4.5,100,20,'M','한국');

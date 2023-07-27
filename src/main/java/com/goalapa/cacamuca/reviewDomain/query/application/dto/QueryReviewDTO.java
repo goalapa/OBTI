@@ -1,5 +1,8 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.Column;
@@ -8,9 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@ToString
 public class QueryReviewDTO {
     private String country;
     private String foodType;
+    private int foodNo;
     private String foodName;
     private int reviewNo;
     private String reviewContent;
@@ -39,6 +46,18 @@ public class QueryReviewDTO {
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
         this.likeCnt = likeCnt;
+    }
+
+    public QueryReviewDTO(int reviewPrice) {
+        this.reviewPrice = reviewPrice;
+    }
+
+    public int getFoodNo() {
+        return foodNo;
+    }
+
+    public void setFoodNo(int foodNo) {
+        this.foodNo = foodNo;
     }
 
     public int getReviewNo() {
@@ -136,23 +155,5 @@ public class QueryReviewDTO {
 
     public void setLikeCnt(Integer likeCnt) {
         this.likeCnt = likeCnt;
-    }
-
-    @Override
-    public String toString() {
-        return "QueryReviewDTO{" +
-                "reviewNo=" + reviewNo +
-                ", reviewContent='" + reviewContent + '\'' +
-                ", country='" + country + '\'' +
-                ", foodType='" + foodType + '\'' +
-                ", foodName='" + foodName + '\'' +
-                ", reviewDate=" + reviewDate +
-                ", reviewRate=" + reviewRate +
-                ", memberNo=" + memberNo +
-                ", reviewKeyword='" + reviewKeyword + '\'' +
-                ", reviewPrice=" + reviewPrice +
-                ", reviewLink='" + reviewLink + '\'' +
-                ", likeCnt=" + likeCnt +
-                '}';
     }
 }

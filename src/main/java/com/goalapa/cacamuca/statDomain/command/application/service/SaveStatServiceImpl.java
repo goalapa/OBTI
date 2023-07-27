@@ -28,6 +28,7 @@ public class SaveStatServiceImpl implements SaveStatService {
         stat.setReviewCnt(statDTO.getReviewCnt());
         stat.setMemberAgeGroup(statDTO.getMemberAgeGroup());
         stat.setMemberGender(statDTO.getMemberGender());
+        stat.setFoodImageUrl(statDTO.getFoodeImageUrl());
 
         statRepository.save(stat);
     }

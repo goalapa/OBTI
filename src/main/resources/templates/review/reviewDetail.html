@@ -7,7 +7,9 @@
         }
 
         .rating {
-            position: relative;
+            position: absolute;
+            left: 770px;
+            top: 0;
             color: #ddd;
             font-size: 30px;
             text-align: center;
@@ -46,8 +48,73 @@
         .review {
             position: relative;
             top: 80px;
-            left: 250px;
         }
+
+        .layout{
+            position: relative;
+            margin: auto;
+            width: 1000px;
+            height: 500px;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+        }
+
+        .inner_info{
+            position: relative;
+            top: 5px;
+            left: 25px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .inner_content{
+            position: relative;
+            width: 450px;
+            height: 200px;
+            top: 10px;
+            left: 15px;
+        }
+
+        .like_section{
+            position: relative;
+            display: inline-block;
+            left: 350px;
+            top: 10px;
+        }
+
+        .inner_keyword{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 70px;
+            text-align: center;
+            background-color: #FF4500;
+            color: #FFFFFF;
+            border-radius: 3px;
+            font-weight: normal;
+        }
+
+        .likeText{
+            position: relative;
+            left: 355px;
+        }
+
+        .price{
+            position: relative;
+            left: 800px;
+            bottom: 110px;
+            font-weight: bold;
+        }
+        .price_content{
+            position: absolute;
+            font-size: 30px;
+            top: 15px;
+            right: 0px;
+            left: 0px;
+            width: 300px;
+            font-weight: normal;
+        }
+
 
         #my_modal {
             display: none;
@@ -65,11 +132,21 @@
         }
 
         .report_button{
-            /*right: 15px;*/
-            /*position: absolute;*/
+            position: relative;
+            left: 460px;
             color: red;
         }
 
+        .list_btn{
+            position: relative;
+            left: 465px;
+            top: 10px;
+        }
+
+        .img{
+            position: relative;
+            left: 15px;
+        }
     </style>
 
     <meta charset="UTF-8">
@@ -78,71 +155,75 @@
 </head>
 <body>
 <th:block th:insert="~{common/header}"/>
-
-
 <form class="review">
-    <input type="text" th:value="${review.country}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
-    <input type="text" th:value="${review.foodType}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
-    <input type="text" th:value="${review.reviewKeyword}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
-    <input type="text" th:value="${review.foodName}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
-    <input type="text" th:value="${review.reviewPrice}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
-    <input type="text" th:value="${review.reviewLink}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
-    <input type="text" th:value="${review.reviewDate}" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly/>
-
-    <div id="my_modal">
-        <select name="report_reason" onchange="showInputForm(this.value)" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="none">=== 선택 ===</option>
-            <option value="1">관련없는 리뷰 작성</option>
-            <option value="2">욕성 및 비방</option>
-            <option value="3">음란 및 유해</option>
-            <option value="4">광고 및 홍보</option>
-            <option value="5">기타</option>
-        </select>
-
-        <div id="inputForm" style="display: none;">
-            <textarea name="other_reason" placeholder="기타 사유를 입력하세요" rows="3" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+    <div class="layout">
+        <div class="inner_info">
+            <input type="text" th:value="${reviewWriter.memberId}"  readonly/>
+            <input type="text" th:value="${review.reviewDate}"  readonly/>
+            <span class="like_section">
+                <input type="hidden" id="like_check">
+                <img id="likeImg" src="/assets/img/empty_heart.png" width="30px" height="30px" onclick="clickHeart()">
+            </span>
+            <a class="likeText" type="text" id="likeText" th:text="${review.likeCnt}" readonly/>
+            <button type="button" class="report_button" id="popup_open_btn">신고하기</button>
         </div>
 
-        <a class="modal_close_btn">X</a>
-        <button type="button" onclick="clickReport()">신고하기</button>
-    </div>
-    <button type="button" class="report_button" id="popup_open_btn">신고하기</button>
-
-    <div class="rating_box">
-        <div class="rating">
+        <div class="inner_content">
+            <textarea style="resize: none;" th:text="${review.reviewContent}" rows="7" cols="80"/>
+            <span class="rating">
             ★★★★★
             <span class="rating_star">★★★★★</span>
-            <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${review.reviewRate}" readonly>
+                <input name="reviewRate" type="range" step="1" min="0" max="10" th:value="${review.reviewRate}" readonly>
+            </span>
+            <span class="price">
+                구매가격  <span class="price_content" th:text="${review.reviewPrice + '원'}"/>
+                <span class="inner_keyword" type="text" th:text="${review.reviewKeyword}"/>
+            </span>
         </div>
-    </div>
 
-    <div class="absolute top-20 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-            <textarea name="reviewContent" th:value="${review.reviewContent}" th:text="${review.reviewContent}" id="reviewContent" rows="10" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" readonly></textarea>
-        </div>
-        <div>
-            <input type="hidden" id="like_check">
-            <img id="likeImg" src="/assets/img/empty_heart.png" width="30px" height="30px" onclick="clickHeart()">
-            <span id="likeText" th:text="${review.likeCnt}"></span>
-        </div>
-        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-            <button type="button" onclick="location.href='/selectReviews'" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">목록으로</button>
+        <div id="my_modal">
+            <select name="report_reason" onchange="showInputForm(this.value)" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="none">=== 선택 ===</option>
+                <option value="1">관련없는 리뷰 작성</option>
+                <option value="2">욕성 및 비방</option>
+                <option value="3">음란 및 유해</option>
+                <option value="4">광고 및 홍보</option>
+                <option value="5">기타</option>
+            </select>
+            <div id="inputForm" style="display: none;">
+                <textarea name="other_reason" placeholder="기타 사유를 입력하세요" rows="3" cols="30" ></textarea>
+            </div>
+            <a class="modal_close_btn">X</a>
+            <button type="button" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"  onclick="clickReport()">신고하기</button>
         </div>
 
         <th:block th:if="${reviewPic eq null}"/>
 
         <th:block th:unless="${reviewPic eq null}">
-            <div class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-                <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="300" height="250" alt="Image">
-                </div>
-            </div>
+            <img class="img" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="250" height="250" alt="Image">
         </th:block>
+    </div>
+    <div class="list_btn">
+        <button type="button" th:onclick="|location.href='@{/review/selectReviews(foodName=${review.foodName}, country=${review.country}, foodNo=${review.foodNo})}'|" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">목록으로</button>
     </div>
 </form>
 
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const likeImg = document.getElementById("likeImg");
+            const likeCheck = document.getElementById("like_check");
+            const likeStatus = localStorage.getItem("likeStatus");
+
+            if (likeStatus === "true") {
+                likeImg.src = "/assets/img/heart.png";
+                likeCheck.value = "true";
+            } else {
+                likeImg.src = "/assets/img/empty_heart.png";
+                likeCheck.value = "false";
+            }
+        });
+
         let noValue = `[[${no}]]`;
         let memberValue = `[[${member}]]`;
         const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
@@ -158,18 +239,32 @@
 
         function clickHeart () {
             console.log('하트가 클릭되었습니다.');
-            document.getElementById("likeImg").src = "/assets/img/heart.png";
+            // document.getElementById("likeImg").src = "/assets/img/heart.png";
+            const likeImg = document.getElementById("likeImg");
+            const likeCheck = document.getElementById("like_check");
+
+            if (likeCheck.value === "true") {
+                likeImg.src = "/assets/img/empty_heart.png";
+                likeCheck.value = "false";
+            } else {
+                likeImg.src = "/assets/img/heart.png";
+                likeCheck.value = "true";
+            }
+
+            localStorage.setItem("likeStatus", likeCheck.value);
 
             axios({
                 method: 'post',
                 url: '/review/reviewDetail',
                 data: {
                     no: noValue,
-                    member: memberValue
+                    member: memberValue,
+                    likeStatus: likeCheck.value
                 }
             }).then(function (response) {
                 console.log(response.data.no);
                 console.log(response.data.member);
+                console.log(response.data.likeStatus);
             });
         }
 
@@ -210,12 +305,12 @@
             width: '100%',
             height: '100%',
             overflow: 'auto',
-            // 레이어 색갈은 여기서 바꾸면 됨
+
             backgroundColor: 'rgba(0,0,0,0.4)'
         });
         document.body.append(bg);
 
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+
         modal.querySelector('.modal_close_btn').addEventListener('click', function() {
             bg.remove();
             modal.style.display = 'none';
