@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goalapa.cacamuca.memberDomain.query.domain.repository.FoodRegistMapper">
+
+    <resultMap id="foodResultMap" type="com.goalapa.cacamuca.foodDomain.query.domain.aggregate.entity.Food">
+        <id property="foodNo" column="food_no"/>
+        <result property="foodName" column="food_name"/>
+        <result property="foodRate" column="food_rate"/>
+        <result property="foodPrice" column="food_price"/>
+        <result property="country" column="country"/>
+        <result property="foodType" column="food_type"/>
+    </resultMap>
+
+    <resultMap id="foodPicResultMap"
+               type="com.goalapa.cacamuca.foodDomain.query.domain.repository.FoodRegistPicMapper">
+        <result property="foodNo" column="food_no"/>
+        <result property="foodPicUrl" column="food_pic_url"/>
+    </resultMap>
+
+    <select id="findByFoodName" parameterType="string" resultMap="foodResultMap">
+        SELECT a.food_no, a.food_name, a.food_rate, a.food_price, a.country, a.food_type
+        FROM food a
+        WHERE a.food_name = #{ foodName }
+    </select>
+
+</mapper>

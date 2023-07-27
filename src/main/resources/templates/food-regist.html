@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
-  <th:block th:insert="~{common/header}" />
+<th:block th:insert="~{common/header}" />
+
+<form action="food-regist" method="post" enctype="multipart/form-data">
+
 
   국가 선택 :
-  <select id="country" name="country" th:field="${updateCategoryDTO.country}">
+  <select name="country" >
     <option value="none">=== 선택 ===</option>
     <option value="한국">한국</option>
     <option value="대만">대만</option>
@@ -47,15 +50,18 @@
 
   <br>
 
-  식품명 입력 :<input type="text" name="foodName" required>
-  가격 입력 :<input type="text" name="foodPrice" required>
+  식품명 입력 : <input type="text" name="foodName" required>
 
-  <h4>식품 사진 업로드</h4>
-  <form action="single-file" method="post" enctype="multipart/form-data">
-    파일 : <input type="file" name="singleFile"><br>
-    파일 설명 : <input type="text" name="singleFileDescription"><br>
-    <input type="submit">
-  </form>
+  가격 입력 : <input type="text" name="foodPrice" required>
+
+  파일 : <input type="file" name="registPic"><br>
+
+  <input type="submit">
+  <button type="submit" name="수정" onclick="location.href='/member/main'"></button>
+
+</form>
+
+
 
 
 

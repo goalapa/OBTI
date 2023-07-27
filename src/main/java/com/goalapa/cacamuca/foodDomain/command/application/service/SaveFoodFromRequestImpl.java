@@ -1,7 +1,6 @@
 package com.goalapa.cacamuca.foodDomain.command.application.service;
 
-import com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO;
-import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.Food;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.CountryVO;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.FoodTypeVO;
 import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
@@ -21,12 +20,12 @@ public class SaveFoodFromRequestImpl implements SaveFoodFromRequest {
 
     @Override
     @Transactional
-    public void saveFoodFromRequest(FoodDTO foodDTO) {
+    public void saveFoodFromRequest(com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO foodDTO) {
 
         CountryVO country = new CountryVO(foodDTO.getCountry());
         FoodTypeVO foodType = new FoodTypeVO(foodDTO.getFoodType());
 
-        Food food = new Food();
+        FoodEntity food = new FoodEntity();
         food.setFoodName(foodDTO.getFoodName());
         food.setFoodPrice(foodDTO.getFoodPrice());
         food.setCountryVO(country);

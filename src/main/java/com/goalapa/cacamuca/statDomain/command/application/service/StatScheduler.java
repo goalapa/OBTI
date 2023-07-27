@@ -1,6 +1,6 @@
 package com.goalapa.cacamuca.statDomain.command.application.service;
 
-import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.Food;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
 import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.statDomain.command.application.dto.StatDTO;
 import com.goalapa.cacamuca.statDomain.command.domain.aggregate.service.SaveStatService;
@@ -38,9 +38,9 @@ public class StatScheduler {
     @Scheduled(cron = "0 0 3 * * *")
     public void insertData() {
 
-        List<Food> foods = foodRepository.findAll();
+        List<FoodEntity> foods = foodRepository.findAll();
 
-        for(Food food : foods) {
+        for(FoodEntity food : foods) {
             int foodNo = food.getFoodNo();
             int reviewCnt = reviewCntService.countReviews(foodNo);
 

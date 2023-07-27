@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Table(name = "Food")
-public class Food {
+public class FoodEntity {
 
     @Id
     @Column(name = "food_no")
