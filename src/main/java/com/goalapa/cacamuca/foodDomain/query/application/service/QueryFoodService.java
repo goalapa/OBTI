@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Service
+@Service(value = "QueryApplicationFoodService")
 public class QueryFoodService {
 
     private final FoodRegistMapper foodRegistMapper;
