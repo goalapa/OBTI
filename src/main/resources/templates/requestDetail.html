@@ -17,6 +17,8 @@
 <body>
     <form action="save-request" method="post" class="modifyRequest1" onsubmit="showAlert()">
         <div class="w-3/4 grid gap-6 mb-6 md:grid-cols-4">
+            <input type="hidden" name="requestNo" th:value="${requestNo}" />
+
             <div>
                 <label for="requestNo" class="block mb-2 text-sm font-medium text-gray-900">REQUEST NO</label>
                 <input type="text" id="requestNo" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed" th:value="${requestNo}" disabled>
