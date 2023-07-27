@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements CommandMemberService {
+public class CommandMemberServiceImpl implements CommandMemberService {
 
     private final ModelMapper modelMapper;
     private final MemberRepository memberRepository;
@@ -30,6 +30,7 @@ public class MemberServiceImpl implements CommandMemberService {
         memberDTO.setMemberPwd(passwordEncoder.encode(memberDTO.getMemberPwd()));
 
         Member member =  modelMapper.map(memberDTO, Member.class);
+        member.setMemberPwd(new Password(memberDTO.getMemberPwd()));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(memberDTO.getMemberBirth(), formatter);

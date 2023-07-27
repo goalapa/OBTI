@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  */
 @SpringBootTest
 @Transactional
-class QueryMemberServiceImplTest {
+class QueryCommandMemberServiceImplTest {
 
     private static Stream<Arguments> getMemberInfo() {
         return Stream.of(

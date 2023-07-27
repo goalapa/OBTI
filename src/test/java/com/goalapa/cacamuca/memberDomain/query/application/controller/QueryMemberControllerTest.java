@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.TestExecutionEvent;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.AfterTransaction;
@@ -42,23 +43,6 @@ class QueryMemberControllerTest {
     private MockMvc mvc;
 
     private Member member;
-
-//    private MockHttpSession session;
-
-//    @BeforeEach
-//    public void setUp() {
-//        Member member = Member.builder()
-//                .memberId("abc9999")
-//                .memberPwd(new Password("pwd999"))
-//                .memberEmail("securityTest@cacamuca.store")
-//                .memberGrant("ROLE_MEMBER")
-//                .memberCountry("한국")
-//                .birthDay(new BirthDay(LocalDate.parse("2023-07-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
-//                .build();
-//
-//        session = new MockHttpSession();
-//        session.setAttribute("CustomUser", member);
-//    }
 
     @BeforeTransaction
     public void accountSetup() {
@@ -120,9 +104,9 @@ class QueryMemberControllerTest {
     }
 
     @Test
+    @Transactional
     @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
     @DisplayName("마이 페이지 호출")
-//    @WithMockCustomUser
     void findMyPage() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/member/my-page")
@@ -132,8 +116,9 @@ class QueryMemberControllerTest {
     }
 
     @Test
-    @DisplayName("회원목록 페이지 호출")
-    void findAdminPage() throws Exception {
+    @DisplayName("관리자 회원목록 페이지 호출")
+    @WithMockUser(username="admin",roles={"ADMIN"})
+    void findAdminListPage() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/member/admin-list")
                         .param("page","0")
@@ -143,11 +128,12 @@ class QueryMemberControllerTest {
     }
 
     @Test
+    @Transactional
     @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
-    @DisplayName("비밀번호 찾기 페이지 호출")
+    @DisplayName("비밀번호 찾기")
     void findMyPasswordPage() throws Exception {
         mvc.perform(MockMvcRequestBuilders
-                        .get("/member/my-page")
+                        .get("/member/my-password")
                 )
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -164,11 +150,38 @@ class QueryMemberControllerTest {
     }
 
     @Test
+    @Transactional
     @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
-    @DisplayName("아이디 중복체크")
+    @DisplayName("아이디 중복되는지 체크, 중복되지 않음")
     void checkIsDuplicatedId() throws Exception {
         mvc.perform(MockMvcRequestBuilders
+                        .get("/member/id/abc9998")
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("true"))
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    @Transactional
+    @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
+    @DisplayName("아이디 중복되는지 체크, 중복됨")
+    void checkIsDuplicatedIdFailed() throws Exception {
+        mvc.perform(MockMvcRequestBuilders
                         .get("/member/id/abc9999")
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("false"))
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    @Transactional
+    @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
+    @DisplayName("아이디 찾기")
+    void findId() throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/member/id/find-id")
                         .param("email", "securityTest@cacamuca.store")
                 )
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -176,24 +189,27 @@ class QueryMemberControllerTest {
     }
 
     @Test
+    @Transactional
     @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
-    @DisplayName("아이디 찾기")
-    void findId() throws Exception {
+    @DisplayName("이메일 중복 체크, 중복되지않음")
+    void checkDuplicatedEmail() throws Exception {
         mvc.perform(MockMvcRequestBuilders
-                        .get("/member/id/find-id")
-                        .param("email", "ecurityTest@cacamuca.store")
+                        .get("/member/email/security@cacamuca.store")
                 )
+                .andExpect(MockMvcResultMatchers.content().string("true"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
+    @Transactional
     @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
-    @DisplayName("이메일 중복 체크")
-    void checkDuplicatedEmail() throws Exception {
+    @DisplayName("이메일 중복 체크, 중복됨")
+    void checkDuplicatedEmailFailed() throws Exception {
         mvc.perform(MockMvcRequestBuilders
-                        .get("/member/id/ecurityTest@cacamuca.store")
+                        .get("/member/email/securityTest@cacamuca.store")
                 )
+                .andExpect(MockMvcResultMatchers.content().string("false"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }

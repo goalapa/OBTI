@@ -34,7 +34,9 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(4,'/assets/img/chickchok.png');
 
 
-
+INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
+-- VALUES('admin','pwd000','관리자','admin@cacaumca.store',20,0,'2001-08-04');
+VALUES('admin','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','관리자','admin@cacaumca.store','ROLE_ADMIN',0,'2001-08-04','한국');
 INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES('abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
 VALUES('abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','ROLE_MEMBER',0,'2001-08-04','한국');
