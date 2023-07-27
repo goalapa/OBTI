@@ -15,9 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = {"/*/*", "/*"})
@@ -55,8 +53,6 @@ public class SelectReviewController {
         model.addAttribute("uniqueKeywords", uniqueKeywords);
         model.addAttribute("bestStat", bestStat);
         model.addAttribute("recentPrice", recentPrice);
-
-
 
         return "/review/selectReviews";
     }

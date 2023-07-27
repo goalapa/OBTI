@@ -67,7 +67,7 @@
 
 
 <form action="review" method="post" enctype="multipart/form-data" class="review">
-    <select name="country" id="country"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <select name="country" id="country"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         <option value="none">국가 선택</option>
         <option value="한국">한국</option>
         <option value="일본">일본</option>
@@ -92,7 +92,7 @@
 
     </select>
 
-    <select name="foodType"  id="foodType" onchange="checkValue(this.value)"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <select name="foodType"  id="foodType" onchange="checkValue(this.value)"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         <option value="none">종류 선택</option>
         <option value="과자">과자</option>
         <option value="차">차</option>
@@ -104,7 +104,7 @@
         <option value="사탕">사탕</option>
     </select>
 
-    <select name="reviewKeyword" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <select name="reviewKeyword" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         <option value="none">키워드 선택</option>
         <option value="가성비">가성비</option>
         <option value="개별포장">개별포장</option>
@@ -112,19 +112,19 @@
         <option value="증정품포함">증정품포함</option>
     </select>
 
-    <select name="foodName" id="foodName" disabled class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <select name="foodName" id="foodName" disabled class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         <option value="none">식품 선택</option>
     </select>
 
-    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
 
-    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
 
     <div class="rating_box">
         <div class="rating">
             ★★★★★
             <span class="rating_star">★★★★★</span>
-            <input type="range" name="reviewRate" value="1" step="1" min="0" max="10">
+            <input type="range" name="reviewRate" value="1" step="1" min="0" max="10" required>
         </div>
     </div>
 
@@ -136,7 +136,7 @@
             <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                 글 쓰기
             </button>
-            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)" >
+            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)">
         </div>
 
         <div id="preview-container" style="display: none" class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">

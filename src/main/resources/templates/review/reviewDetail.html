@@ -226,7 +226,6 @@
 
         let noValue = `[[${no}]]`;
         let memberValue = `[[${member}]]`;
-        const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
 
         function showInputForm(value) {
             var inputForm = document.getElementById("inputForm");
@@ -269,6 +268,9 @@
         }
 
         function clickReport(){
+            const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
+            console.log(reportReason);
+
             if (confirm('신고하시겠습니까?')==true) {
                 axios({
                     method: 'post',
@@ -279,6 +281,7 @@
                         reportReason:reportReason
                     }
                 }).then(function (response){
+                    alert('신고가 완료되었습니다.');
                 }).catch(function (error){
                     console.log(error);
                 });

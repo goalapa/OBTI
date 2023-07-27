@@ -66,6 +66,7 @@ public class ReviewController {
     public void countReport(@RequestBody HashMap<String, Object> param,
                             @AuthenticationPrincipal CustomUser user){
         int reportReason = Integer.parseInt((String) param.get("reportReason"));
+        System.out.println("reportReason = " + reportReason);
         int memberNo = Integer.parseInt((String) param.get("member"));
         int reviewNo = Integer.parseInt((String) param.get("no"));
         int loginMemberNo = user.getMemberNo();
