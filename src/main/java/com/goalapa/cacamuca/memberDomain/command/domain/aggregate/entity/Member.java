@@ -3,8 +3,6 @@ package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.Password;
 import lombok.*;
-import org.hibernate.annotations.Check;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -14,8 +12,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
+@Builder
+@AllArgsConstructor
 public class Member {
 
     @Id
@@ -27,8 +26,8 @@ public class Member {
     @Nullable
     private String memberId;
 
-    @Column(name = "member_pwd")
-    private String memberPwd;
+    @Embedded
+    private Password memberPwd;
 
     @Column(name = "member_nickname")
     private String memberNickname;
@@ -53,4 +52,17 @@ public class Member {
 
     @Embedded
     private BirthDay birthDay;
+
+    public Member(@Nullable String memberId, Password memberPwd, String memberNickname, String memberEmail, String memberGrant, Integer memberReportCnt, String memberCountry, String memberGender, Boolean blackListType, BirthDay birthDay) {
+        this.memberId = memberId;
+        this.memberPwd = memberPwd;
+        this.memberNickname = memberNickname;
+        this.memberEmail = memberEmail;
+        this.memberGrant = memberGrant;
+        this.memberReportCnt = memberReportCnt;
+        this.memberCountry = memberCountry;
+        this.memberGender = memberGender;
+        this.blackListType = blackListType;
+        this.birthDay = birthDay;
+    }
 }

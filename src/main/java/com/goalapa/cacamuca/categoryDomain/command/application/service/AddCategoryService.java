@@ -22,7 +22,6 @@ public class AddCategoryService {
         category.setCountry(addcategoryDTO.getCountry());
         category.setFoodType(addcategoryDTO.getFoodType());
 
-        System.out.println("category = " + category);
 
         categoryRepository.save(category);
     }

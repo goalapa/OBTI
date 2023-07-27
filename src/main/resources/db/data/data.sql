@@ -22,17 +22,46 @@ INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(3,'초록매실','일본','빵',4.3,1800);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(4,'칙촉','한국','과자',4.3,1800);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(5,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(6,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(7,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(8,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(9,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(10,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(11,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(12,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(13,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(14,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(15,'오레오','한국','과자',4.7,2000);
+INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
+VALUES(16,'오레오','한국','과자',4.7,2000);
+
 
 
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(1,'link');
+VALUES(1,'/assets/img/Oreo-Two-Cookies.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(2,'link');
+VALUES(2,'/assets/img/chocoroll.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(3,'link');
+VALUES(3,'/assets/img/chorokmaesil.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(4,'/assets/img/chickchok.png');
 
 
-
+INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
+-- VALUES('admin','pwd000','관리자','admin@cacaumca.store',20,0,'2001-08-04');
+VALUES('admin','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','관리자','admin@cacaumca.store','ROLE_ADMIN',0,'2001-08-04','한국');
 INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
 -- VALUES('abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
 VALUES('abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','ROLE_MEMBER',0,'2001-08-04','한국');
@@ -287,7 +316,6 @@ VALUES(24,'ko','리뷰 예시03','오레오','2023-06-20',5.0,3,3,'선물추천'
 -- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
 -- VALUES(2,4,'link');
 
-
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-25',20,'감동란',200,4.5,100,20,'M','한국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
@@ -379,3 +407,30 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-07-21',29,'미국미니언',33,2.8,100,20,'M','미국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-21',30,'미국물',166,1.88,200,10,'F','미국');
+
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('과자 종류가 많이 없어서 아쉬워요.',2.0,'초코맛있다',1);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('신기한 웹사이트네요!',5.0,'냠냠이',10);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('제가 좋아하는 과자는 없네요.',1.5,'치킨',11);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('물건을 살 때 유용한 정보가 많아서 도움이 됩니다.',5.0,'ㅁㅁ',21);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('디자인이 예쁘고 사용하기 편리해요..',4.0,'딸기맛있다',32);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('오류가 자주 발생해서 아쉽습니다.',1.0,'다이어트',22);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('여러 기능을 무료로 제공해서 좋아요..',3.5,'다맛있다',40);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('인터페이스가 직관적이고 쉽게 사용할 수 있어서 좋아요.',3.0,'닉닉',11);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('빠른 반응 속도가 매우 만족스러워요.',4.0,'초초',33);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('소셜 로그인 지원해주세요!! 불편해요',2.0,'얍얍',44);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('다른 언어도 지원이 되면 좋을 것 같네요.',4.0,'영어조아',23);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('광고 없이 깔끔하게 사용할 수 있어서 좋아요.',5.0,'우와',43);
+INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
+VALUES ('과자 종류가 많이 없어서 아쉬워요ㅠㅠ',2.0,'맛있다',27);

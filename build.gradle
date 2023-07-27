@@ -46,6 +46,8 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
     // java mail sender
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+    // JSR305 @nullable 어노테이션 관련 에러
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
 }
 
 tasks.named('test') {
