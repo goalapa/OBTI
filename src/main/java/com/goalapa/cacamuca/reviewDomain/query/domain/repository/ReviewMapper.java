@@ -18,11 +18,13 @@ public interface ReviewMapper {
     List<QueryReviewPicDTO> findSearchPictures(String search);
     List<QueryReviewWriterDTO> findReviewWriterBySearch(String search);
     List<QueryReviewFoodDTO> findFoodNameByCountryAndFoodType(String country, String foodType);
-
+    List<QueryReviewDTO> findMyReviewByMemberNo(int loginMemberNo);
 
     QueryReviewDTO findReviewByNo(int no);
     QueryReviewPicDTO findReviewPicByNo(int no);
     QueryReviewWriterDTO findReviewWriterByReviewNo(int reviewNo);
     QueryStatDTO findBestReviewByFoodNo(int foodNo);
     QueryReviewDTO findRecentPrice(String foodName, String country);
+
+
 }
