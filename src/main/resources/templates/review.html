@@ -61,6 +61,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
 <body>
 <th:block th:insert="~{common/header}" />
@@ -116,9 +117,9 @@
         <option value="none">식품 선택</option>
     </select>
 
-    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
+    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
-    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
+    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
     <div class="rating_box">
         <div class="rating">
@@ -136,7 +137,7 @@
             <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                 글 쓰기
             </button>
-            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)">
+            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)" required>
         </div>
 
         <div id="preview-container" style="display: none" class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
@@ -145,9 +146,6 @@
         </div>
     </div>
 </form>
-
-
-
 
 <script>
     const rating_input = document.querySelector('.rating input');
@@ -190,9 +188,6 @@
         const foodName = document.getElementById('foodName');
 
         foodName.disabled = false;
-
-        console.log(value);
-        console.log(clickCountry.value);
 
         axios({
             method: 'post',

@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
+
 import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.Like;
 import com.goalapa.cacamuca.likeDomain.command.domain.repository.LikeRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
@@ -53,15 +54,26 @@ public class ReviewService {
     }
 
     @Transactional
+    public void saveReview(ReviewDTO reviewDTO, int loginMemberNo) {
+        LocalDate date = LocalDate.now();
+        ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
+        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0, 0);
+
+        System.out.println("review = " + review);
+
+        reviewRepository.save(review);
+    }
+
+    @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
         LocalDate date = LocalDate.now();
         ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
         Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0);
+                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0, 0);
 
         List<String> fileNames = new ArrayList<>();
         ReviewPic reviewPic = new ReviewPic();
-
 
         for (MultipartFile file : reviewPicUrl) {
             if (file.isEmpty()) {

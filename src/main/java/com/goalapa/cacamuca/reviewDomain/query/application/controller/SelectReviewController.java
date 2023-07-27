@@ -110,4 +110,10 @@ public class SelectReviewController {
         return food;
     }
 
+    @GetMapping
+    public String findMyReview(){
+
+        return "/review/myReview";
+    }
+
 }

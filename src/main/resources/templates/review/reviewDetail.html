@@ -152,6 +152,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
 <body>
 <th:block th:insert="~{common/header}"/>
@@ -164,12 +165,12 @@
                 <input type="hidden" id="like_check">
                 <img id="likeImg" src="/assets/img/empty_heart.png" width="30px" height="30px" onclick="clickHeart()">
             </span>
-            <a class="likeText" type="text" id="likeText" th:text="${review.likeCnt}" readonly/>
+            <span class="likeText" id="likeText">[[${review.likeCnt}]] Likes</span>
             <button type="button" class="report_button" id="popup_open_btn">신고하기</button>
         </div>
 
         <div class="inner_content">
-            <textarea style="resize: none;" th:text="${review.reviewContent}" rows="7" cols="80"/>
+            <textarea style="resize: none;" th:text="${review.reviewContent}" rows="7" cols="80" readonly/>
             <span class="rating">
             ★★★★★
             <span class="rating_star">★★★★★</span>
@@ -214,6 +215,7 @@
             const likeImg = document.getElementById("likeImg");
             const likeCheck = document.getElementById("like_check");
             const likeStatus = localStorage.getItem("likeStatus");
+            const reviewLikeCnt = `[[${review.likeCnt}]]`
 
             if (likeStatus === "true") {
                 likeImg.src = "/assets/img/heart.png";
@@ -222,10 +224,13 @@
                 likeImg.src = "/assets/img/empty_heart.png";
                 likeCheck.value = "false";
             }
+            updateLikeText(reviewLikeCnt);
         });
 
         let noValue = `[[${no}]]`;
         let memberValue = `[[${member}]]`;
+        let likeText = document.getElementById('likeText');
+
 
         function showInputForm(value) {
             var inputForm = document.getElementById("inputForm");
@@ -234,6 +239,10 @@
             } else {
                 inputForm.style.display = "none";
             }
+        }
+
+        function updateLikeText(reviewLikeCnt){
+            likeText.textContent = reviewLikeCnt;
         }
 
         function clickHeart () {
@@ -245,10 +254,12 @@
             if (likeCheck.value === "true") {
                 likeImg.src = "/assets/img/empty_heart.png";
                 likeCheck.value = "false";
+
             } else {
                 likeImg.src = "/assets/img/heart.png";
                 likeCheck.value = "true";
             }
+            updateLikeText(parseInt(likeText.textContent) + (likeCheck.value === "true" ? 1 : -1));
 
             localStorage.setItem("likeStatus", likeCheck.value);
 
@@ -261,15 +272,11 @@
                     likeStatus: likeCheck.value
                 }
             }).then(function (response) {
-                console.log(response.data.no);
-                console.log(response.data.member);
-                console.log(response.data.likeStatus);
             });
         }
 
         function clickReport(){
             const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
-            console.log(reportReason);
 
             if (confirm('신고하시겠습니까?')==true) {
                 axios({
@@ -353,7 +360,7 @@
 
     rating_star.style.width = `${rating_input.value * 10}%`;
 
-    rating_input.addEventListener('input', () => {
+    rating_input.removeEventListener('input', () => {
         rating_star.style.width = `${rating_input.value * 10}%`;
     });
 </script>
