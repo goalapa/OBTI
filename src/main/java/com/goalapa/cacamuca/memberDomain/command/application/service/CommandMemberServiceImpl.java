@@ -65,6 +65,7 @@ public class CommandMemberServiceImpl implements CommandMemberService {
             if (memberDTO.getMemberNickname() != null) member.setMemberNickname(memberDTO.getMemberNickname());
             if (memberDTO.getMemberEmail() != null) member.setMemberEmail(memberDTO.getMemberEmail());
             if (memberDTO.getMemberCountry() != null) member.setMemberCountry(memberDTO.getMemberCountry());
+            if (memberDTO.getMemberBirth() != null) member.setBirthDay(new BirthDay(LocalDate.parse(memberDTO.getMemberBirth(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
         } else {
             throw new Exception("변경할 회원정보가 없습니다.");
         }
