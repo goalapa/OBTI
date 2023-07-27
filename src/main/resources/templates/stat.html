@@ -78,36 +78,74 @@
 
     </table>
 
-    <div class="nav">
-        <nav>
-            <ul class="flex items-center -space-x-px h-8 text-sm"
-                th:with="start=${T(java.lang.Math).floor(statPage.number/10)*10},
-                    last=(${start + 9 < statPage.totalPages ? start + 9 : statPage.totalPages})">
-                <th:block th:with="
-                firstAddr=@{/stat(page=0, country=${country}, selectedDate=${selectedDate})},
-                lastAddr=@{/stat(page=${statPage.totalPages - 1}, country=${country}, selectedDate=${selectedDate})}">
-                    <li th:class="${statPage.first} ? 'disabled'">
-                        <a th:href="${statPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                           aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
-                        </a>
-                    </li>
-                    <li th:each="page: ${#numbers.sequence(start, last - 1)}"
-                        th:class="${page == statPage.number + 1} ? 'active'">
-                        <a th:text="${page}+1" th:href="@{/stat(page=${page}, country=${country}, selectedDate=${selectedDate})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
-                    </li>
-                    <li th:class="${statPage.last} ? 'disabled'">
-                        <a th:href="${statPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                           aria-label="Next">
-                            <span aria-hidden="true">&gt;</span>
-                        </a>
-                    </li>
-                </th:block>
-            </ul>
-        </nav>
-    </div>
+    <nav class="w-3/4 flex items-center justify-between pt-4" aria-label="Table navigation" >
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${statPage.getPageable().getOffset()} + 1" /> -
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ statPage.getPageable().offset} + ${statPage.getNumberOfElements()}" /> of
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ statPage.getTotalElements()}" />
+            </span>
+        <ul class="inline-flex -space-x-px text-sm h-8">
+            <li>
+                <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">이전</a>
+            </li>
+            <li>
+                <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">다음</a>
+            </li>
+        </ul>
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ statPage.getTotalPages()}" id="totalPages"/>
+            </span>
+    </nav>
 
 
 </div>
 </body>
+<script th:inline="javascript">
+
+    const country = /*[[${country}]]*/ '';
+    const selectedDate = /*[[${selectedDate}]]*/ '';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page') || 0);
+    const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+    const pageButtons = document.querySelectorAll('[id^="page"]');
+
+    pageButtons.forEach((button, index) => {
+        const pageNumber = currentPage - 2 + index;
+
+        button.href = `/stat?page=${pageNumber}&country=${country}&selectedDate=${selectedDate}`;
+        button.innerText = pageNumber + 1;
+
+        if (pageNumber === currentPage) {
+            button.style.backgroundColor = '#C3DDFD';
+        }
+
+        if (pageNumber < 0 || pageNumber > totalPagesInt) {
+            button.style.display = 'none';
+        }
+    });
+
+    const previousButton = document.getElementById('previousButton');
+    const nextButton = document.getElementById('nextButton');
+
+    previousButton.href = `/stat?page=${currentPage - 1}&country=${country}&selectedDate=${selectedDate}`;
+    previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+    nextButton.href = `/stat?page=${currentPage + 1}&country=${country}&selectedDate=${selectedDate}`;
+    nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
+</script>
 </html>

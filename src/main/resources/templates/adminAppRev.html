@@ -25,7 +25,7 @@
 
     <div class="mb-6">
         <label for="success" class="block mb-2 text-sm font-medium text-green-700">현재 사용자 평가 점수 :</label>
-        <input type="text" id="success" readonly class="bg-green-50 border border-green-500 text-green-900" th:placeholder="${reviewAvg}">
+        <input type="text" id="success" readonly class="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5" th:placeholder="${reviewAvg}">
         <p class="mt-2 text-sm text-green-600"><span class="font-medium">더욱 분발합시다!</span></p>
     </div>
 
@@ -52,34 +52,71 @@
 
     </table>
 
-    <div class="nav">
-        <nav>
-            <ul class="flex items-center -space-x-px h-8 text-sm"
-                th:with="start=${T(java.lang.Math).floor(appReview.number/10)*10},
-                    last=(${start + 9 < appReview.totalPages ? start + 9 : appReview.totalPages})">
-                <th:block th:with="
-                firstAddr=@{/admin-page/app-review(page=0)},
-                lastAddr=@{/admin-page/app-review(page=${appReview.totalPages - 1})}">
-                    <li th:class="${appReview.first} ? 'disabled'">
-                        <a th:href="${appReview.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-                           aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
-                        </a>
-                    </li>
-                    <li th:each="page: ${#numbers.sequence(start, last - 1)}"
-                        th:class="${page == appReview.number + 1} ? 'active'">
-                        <a th:text="${page}+1" th:href="@{/admin-page/app-review(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
-                    </li>
-                    <li th:class="${appReview.last} ? 'disabled'">
-                        <a th:href="${appReview.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-                           aria-label="Next">
-                            <span aria-hidden="true">&gt;</span>
-                        </a>
-                    </li>
-                </th:block>
-            </ul>
-        </nav>
+    <nav class="w-3/4 flex items-center justify-between pt-4" aria-label="Table navigation" >
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${appReview.getPageable().getOffset()} + 1" /> -
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ appReview.getPageable().offset} + ${appReview.getNumberOfElements()}" /> of
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ appReview.getTotalElements()}" />
+            </span>
+        <ul class="inline-flex -space-x-px text-sm h-8">
+            <li>
+                <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">이전</a>
+            </li>
+            <li>
+                <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">다음</a>
+            </li>
+        </ul>
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ appReview.getTotalPages()}" id="totalPages"/>
+            </span>
+    </nav>
+
     </div>
 </div>
 </body>
+<script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page') || 0);
+    const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+    const pageButtons = document.querySelectorAll('[id^="page"]');
+
+    pageButtons.forEach((button, index) => {
+        const pageNumber = currentPage - 2 + index;
+
+        button.href = `/admin-page/app-review?page=${pageNumber}`;
+        button.innerText = pageNumber + 1;
+
+        if (pageNumber === currentPage) {
+            button.style.backgroundColor = '#C3DDFD';
+        }
+
+        if (pageNumber < 0 || pageNumber > totalPagesInt) {
+            button.style.display = 'none';
+        }
+    });
+
+    const previousButton = document.getElementById('previousButton');
+    const nextButton = document.getElementById('nextButton');
+
+    previousButton.href = `/admin-page/app-review?page=${currentPage - 1}`;
+    previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+    nextButton.href = `/admin-page/app-review?page=${currentPage + 1}`;
+    nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
+</script>
 </html>

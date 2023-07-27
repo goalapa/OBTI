@@ -8,6 +8,7 @@ import com.goalapa.cacamuca.requestDomain.query.domain.repository.RequestMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,10 @@ public class FindRequestService {
 
     public Page<Request> findAllRequest(Pageable pageable) {
 
-        return findRequestRepository.findAll(pageable);
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "requestNo"));
+
+
+        return findRequestRepository.findAll(sortedPageable);
     }
 
 
