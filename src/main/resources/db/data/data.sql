@@ -25,11 +25,13 @@ VALUES(4,'칙촉','한국','과자',4.3,1800);
 
 
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(1,'link');
+VALUES(1,'/assets/img/Oreo-Two-Cookies.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(2,'link');
+VALUES(2,'/assets/img/chocoroll.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
-VALUES(3,'link');
+VALUES(3,'/assets/img/chorokmaesil.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(4,'/assets/img/chickchok.png');
 
 
 INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)

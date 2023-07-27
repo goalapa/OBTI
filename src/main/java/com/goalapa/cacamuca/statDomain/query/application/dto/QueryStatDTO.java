@@ -13,10 +13,11 @@ public class QueryStatDTO {
     private Integer memberAgeGroup;
     private String memberGender;
     private String country;
+    private String foodImageUrl;
 
     public QueryStatDTO() {}
 
-    public QueryStatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, String foodName, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender, String country) {
+    public QueryStatDTO(Integer statNo, LocalDate updateDate, Integer foodNo, String foodName, Integer reviewCnt, float foodRate, Integer likeCnt, Integer memberAgeGroup, String memberGender, String country, String foodImageUrl) {
         this.statNo = statNo;
         this.updateDate = updateDate;
         this.foodNo = foodNo;
@@ -27,6 +28,7 @@ public class QueryStatDTO {
         this.memberAgeGroup = memberAgeGroup;
         this.memberGender = memberGender;
         this.country = country;
+        this.foodImageUrl = foodImageUrl;
     }
 
     public Integer getStatNo() {
@@ -109,6 +111,14 @@ public class QueryStatDTO {
         this.country = country;
     }
 
+    public String getFoodImageUrl() {
+        return foodImageUrl;
+    }
+
+    public void setFoodImageUrl(String foodImageUrl) {
+        this.foodImageUrl = foodImageUrl;
+    }
+
     @Override
     public String toString() {
         return "QueryStatDTO{" +
@@ -122,6 +132,7 @@ public class QueryStatDTO {
                 ", memberAgeGroup=" + memberAgeGroup +
                 ", memberGender='" + memberGender + '\'' +
                 ", country='" + country + '\'' +
+                ", foodImageUrl='" + foodImageUrl + '\'' +
                 '}';
     }
 }
