@@ -37,6 +37,7 @@
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <body>
 <th:block th:insert="~{common/header}"/>
 <th:block th:insert="~{common/aside}"/>
@@ -57,7 +58,7 @@
                 <th scope="col" class="px-6 py-3">작성 일자</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="reviewList">
             <tr th:each=" myReview : ${myReviews}">
                 <th scope="row" class="px-6 py-4" th:text="${myReview.country}"></th>
                 <th scope="row" class="px-6 py-4" th:text="${myReview.foodName}"></th>
@@ -67,26 +68,27 @@
                 <th scope="row" class="px-6 py-4" th:text="${myReview.reviewKeyword}"></th>
                 <th scope="row" class="px-6 py-4" th:text="${myReview.likeCnt}"></th>
                 <th scope="row" class="px-6 py-4" th:text="${myReview.reportCnt}"></th>
-                <th scope="row" class="px-6 py-4" th:text="${myReview.reviewLink}"></th>
+                <th scope="row" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" class="px-6 py-4">
+                    <a th:text="${myReview.reviewLink}" th:href="${myReview.reviewLink}"/></th>
                 <th scope="row" class="px-6 py-4" th:text="${myReview.reviewDate}"></th>
                 <th scope="row">
-                    <button type="button" onclick="deleteReport(evet, true)" th:data-report-id="${myReview.reviewNo}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">삭제</button>
+                    <button type="button" onclick="deleteReview(event)" th:data-review-id="${myReview.reviewNo}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">삭제</button>
                 </th>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation" >
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
-                <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().getOffset()} + 1" /> -
-                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ myReviews.getPageable().offset} + ${myReviews.getNumberOfElements()}" /> of
-                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ myReviews.getTotalElements()}" />
-            </span>
+    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
+        <!-- 이전 페이지 버튼 -->
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().offset + 1}"></span> -
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().offset + myReviews.getNumberOfElements()}"></span> of
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getTotalElements()}"></span>
+    </span>
         <ul class="inline-flex -space-x-px text-sm h-8">
-            <a th:if="${myReviews.hasPrevious()}"
-               th:href="@{/myReview(page=${myReviews.number - 1})}"
-               style="display: inline-block;">
+            <!-- 이전 페이지 버튼 -->
+            <a th:if="${myReviews.hasPrevious()}" th:href="@{/myReview(page=${myReviews.number - 1})}" style="display: inline-block;">
                 <button class="page-button">
                     &laquo;
                 </button>
@@ -97,25 +99,57 @@
                th:if="${myReviews.totalPages > 1}"
                th:href="@{/myReview(page=${page})}"
                style="display: inline-block;">
-                <button th:text="${page + 1}"
-                        th:classappend="${page == myReviews.number} ? 'selected-page' : ''"
-                        class="page-button">
-                </button>
+                <button th:text="${page + 1}" th:classappend="${page == myReviews.number} ? 'selected-page' : ''" class="page-button"></button>
             </a>
 
             <!-- 다음 페이지 버튼 -->
-            <a th:if="${myReviews.hasNext()}"
-               th:href="@{myReview(page=${myReviews.number + 1})}"
-               style="display: inline-block;">
+            <a th:if="${myReviews.hasNext()}" th:href="@{myReview(page=${myReviews.number + 1})}" style="display: inline-block;">
                 <button class="page-button">
                     &raquo;
                 </button>
             </a>
         </ul>
+        <!-- 총 페이지 수 표시 -->
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
-                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ myReviews.getTotalPages()}" id="totalPages"/>
-            </span>
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getTotalPages()}" id="totalPages"></span>
+    </span>
     </nav>
+
 </main>
+<script>
+
+
+    function deleteReview(event) {
+        const memberNo = `[[${loginMemberNo}]]`;
+        const reviewNo = event.target.getAttribute('data-review-id');
+
+        const data = {
+            reviewNo: reviewNo,
+            memberNo: memberNo,
+        };
+
+        if (confirm('삭제하시겠습니까?')==true) {
+            axios.post('/review/myReview', data)
+                .then(function (response) {
+                    // const deletedRow = event.target.closest('tr');
+                    // deletedRow.remove();
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }else {
+            console.log('취소되었습니다.');
+        }
+    }
+
+    function updatePage() {
+        const currentPage = parseInt(`[[${myReviews.number}]]`);
+        const totalPages = parseInt(`[[${myReviews.totalPages}]]`);
+        const newPage = Math.min(currentPage, totalPages - 1); // 삭제 후 현재 페이지 유지
+
+        window.location.href = `/myReview?page=${newPage}`;
+    }
+</script>
 </body>
 </html>

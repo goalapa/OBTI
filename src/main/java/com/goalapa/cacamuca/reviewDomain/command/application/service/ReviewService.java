@@ -123,7 +123,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public boolean countReport(int reportReason, int reviewNo, int loginMemberNo, int memberNo) {
+    public void countReport(int reportReason, int reviewNo, int loginMemberNo, int memberNo) {
         Review review = reviewRepository.findById(reviewNo).get();
         ReviewVO reviewVO = new ReviewVO(reviewNo);
         ReportMemberVO reportMemberVO = new ReportMemberVO(loginMemberNo);
@@ -133,11 +133,14 @@ public class ReviewService {
 
         if (checkCondition==true){
             Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportReason);
-
-//            review.setReportCnt(review.getReportCnt()+1);
             reportRepository.save(report);
         }
+    }
 
-        return checkCondition;
+    @Transactional
+    public void deleteReview(int reviewNo, int memberNo) {
+        Review review = reviewRepository.findByReviewNoAndReviewWriter_ReviewWriterMemberId(reviewNo, memberNo);
+        System.out.println("review = " + review);
+        reviewRepository.delete(review);
     }
 }

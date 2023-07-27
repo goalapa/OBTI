@@ -112,13 +112,15 @@ public class SelectReviewController {
         return food;
     }
 
-    @GetMapping
+    @GetMapping("/myReview")
     public String findMyReview(@PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable,
                                Model model, @AuthenticationPrincipal CustomUser user){
         int loginMemberNo = user.getMemberNo();
 
         Page<QueryReviewDTO> myReviews = selectReviewService.findMyReview(loginMemberNo, pageable);
+
         model.addAttribute("myReviews", myReviews);
+        model.addAttribute("loginMemberNo", loginMemberNo);
 
         return "review/myReview";
     }

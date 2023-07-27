@@ -74,4 +74,14 @@ public class ReviewController {
 
         reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
     }
+
+    @PostMapping("/review/myReview")
+    public String deleteReview(@RequestBody HashMap<String, Object> param) {
+        int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
+        int memberNo = Integer.parseInt((String) param.get("memberNo"));
+
+        reviewService.deleteReview(reviewNo, memberNo);
+
+        return "redirect:/review/myReview";
+    }
 }
