@@ -171,7 +171,7 @@
     <div style="display: flex; justify-content: center; margin-top: 20px;">
         <!-- 이전 페이지 버튼 -->
         <a th:if="${countryFoods.hasPrevious()}"
-           th:href="@{/search(country=${country}, page=${countryFoods.number - 1})}"
+           th:href="@{/country(country=${country}, page=${countryFoods.number - 1})}"
            style="display: inline-block;">
             <button class="page-button">
                 &laquo;
@@ -181,7 +181,7 @@
         <!-- 페이지 번호 버튼 -->
         <a th:each="page : ${#numbers.sequence(0, countryFoods.totalPages - 1)}"
            th:if="${countryFoods.totalPages > 1}"
-           th:href="@{/search(country=${country}, page=${page})}"
+           th:href="@{/country(country=${country}, page=${page})}"
            style="display: inline-block;">
             <button th:text="${page + 1}"
                     th:classappend="${page == countryFoods.number} ? 'selected-page' : ''"
@@ -191,7 +191,7 @@
 
         <!-- 다음 페이지 버튼 -->
         <a th:if="${countryFoods.hasNext()}"
-           th:href="@{/search(country=${country}, page=${countryFoods.number + 1})}"
+           th:href="@{/country(country=${country}, page=${countryFoods.number + 1})}"
            style="display: inline-block;">
             <button class="page-button">
                 &raquo;

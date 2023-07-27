@@ -45,8 +45,8 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/{country}")
-    public String showCountryFood(@PageableDefault Pageable pageable, @PathVariable String country, Model model) {
+    @GetMapping("/country")
+    public String showCountryFood(@PageableDefault Pageable pageable, @RequestParam String country, Model model) {
 
         Page<FoodEntity> countryFoods = queryFoodService.findFoodByCountry(pageable, country);
         List<FoodPicDTO> foodPics = queryFoodService.findAllFoodPic();
