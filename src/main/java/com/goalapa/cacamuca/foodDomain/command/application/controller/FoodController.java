@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/food-regist")
+//@RequestMapping("/food-regist")
 public class FoodController {
 
     private final SaveFoodFromRequest saveFoodFromRequest;
@@ -41,27 +41,27 @@ public class FoodController {
     }
 
     //식품 등록
-    @GetMapping("")
-    public String foodRegist() {
-        return "food-regist";
-    }
-
-    @PostMapping("")
-    public String registFood(@RequestParam MultipartFile registPic, @ModelAttribute FoodDTO foodDTO) throws IOException {
-
-
-        foodRegistService.saveFood(foodDTO, registPic);
-
-
-        return "food-regist";
-    }
-
-
-    //식품 삭제
-    @GetMapping("/test")
-    public void deleteFood(@PathVariable int foodNo) {
-
-        foodRegistService.deleteFood(foodNo);
-        foodRegistService.deleteFoodPic(foodNo);
-    }
+//    @GetMapping("")
+//    public String foodRegist() {
+//        return "food-regist";
+//    }
+//
+//    @PostMapping("")
+//    public String registFood(@RequestParam MultipartFile registPic, @ModelAttribute FoodDTO foodDTO) throws IOException {
+//
+//
+//        foodRegistService.saveFood(foodDTO, registPic);
+//
+//
+//        return "food-regist";
+//    }
+//
+//
+//    //식품 삭제
+//    @GetMapping("/test")
+//    public void deleteFood(@PathVariable int foodNo) {
+//
+//        foodRegistService.deleteFood(foodNo);
+//        foodRegistService.deleteFoodPic(foodNo);
+//    }
 }
