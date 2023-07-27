@@ -154,14 +154,14 @@
         </span>
 
         <div class="inner_content">
-            <a th:text="${list.foodName}" th:href="@{/review/detail(no=${list.foodNo})}"></a>
+            <a th:text="${list.foodName}" th:href="@{/review/selectReviews(foodName=${list.foodName}, country=${list.countryVO}, foodNo=${list.foodNo})}"></a>
         </div>
 
         <span th:each="searchPic : ${foodPics}">
         <th:block th:if="${searchPic.foodNo eq null}"/>
         <th:block th:unless="${searchPic.foodPicUrl eq null}">
             <span th:if="${searchPic.foodNo} eq ${list.foodNo}" class="inner_image">
-                <img th:src="@{|/review/${searchPic.foodPicUrl}|}" width="150" height="100" alt="Image">
+                <img th:src="@{${searchPic.foodPicUrl}}" width="150" height="100" alt="Image">
             </span>
         </th:block>
         </span>

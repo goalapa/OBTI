@@ -27,8 +27,8 @@
 <th:block th:insert="~{common/adminAside}" />
 
 <div class="body">
-<table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<table class="w-3/4 text-sm text-left text-gray-500">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
     <tr>
         <th scope="col" class="px-6 py-3">REQUEST NO</th>
         <th scope="col" class="px-6 py-3">MEMBER NO</th>
@@ -50,10 +50,10 @@
         <th></th>
         <th></th>
         <th>
-            <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">상세보기</a>
+            <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 hover:underline text-center">상세보기</a>
         </th>
         <th>
-            <button th:onclick="'showAlert(' + ${list.requestNo} + ')'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">삭제</button>
+            <button th:onclick="'showAlert(' + ${list.requestNo} + ')'" class="font-medium text-blue-600 hover:underline text-center">삭제</button>
         </th>
     </tr>
     </tbody>
@@ -69,17 +69,17 @@
                 firstAddr=@{/request-list(page=0)},
                 lastAddr=@{/request-list(page=${requestPage.totalPages - 1})}">
             <li th:class="${requestPage.first} ? 'disabled'">
-                <a th:href="${requestPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                <a th:href="${requestPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
                    aria-label="Previous">
                     <span aria-hidden="true">&lt;</span>
                 </a>
             </li>
             <li th:each="page: ${#numbers.sequence(start, last - 1)}"
                 th:class="${page == requestPage.number + 1} ? 'active'">
-                <a th:text="${page}+1" th:href="@{/request-list(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+                <a th:text="${page}+1" th:href="@{/request-list(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
             </li>
             <li th:class="${requestPage.last} ? 'disabled'">
-                <a th:href="${requestPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                <a th:href="${requestPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
                    aria-label="Next">
                     <span aria-hidden="true">&gt;</span>
                 </a>
