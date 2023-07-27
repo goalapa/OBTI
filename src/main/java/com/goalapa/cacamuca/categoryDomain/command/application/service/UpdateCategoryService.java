@@ -17,16 +17,11 @@ public class UpdateCategoryService {
     public void checkUpdate(UpdateCategoryDTO updateCategoryDTO) {
 
         CategoryEntity category = categoryRepository.findCategoryEntityByCountryAndFoodType(updateCategoryDTO.getCountry(), updateCategoryDTO.getFoodType());
-        //카테고리 엔티티를 가져옴
-        System.out.println("category = " + category);
-
 
         category.setCountry(updateCategoryDTO.getReplaceCountry());
         category.setFoodType(updateCategoryDTO.getReplaceFoodType());
 
         categoryRepository.save(category);
-
-
     }
 
 }
