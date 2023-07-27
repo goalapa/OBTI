@@ -61,12 +61,13 @@
         .inner_image{
             position: relative;
             left: 300px;
-            bottom: 120px;
+            bottom: 140px;
         }
 
         .inner_id{
             position: relative;
-            left: 25px;
+            font-weight: bold;
+            left: 35px;
             top: 10px;
         }
 
@@ -100,12 +101,48 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
 
+        .layout_outline{
+            position: relative;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 800px;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+        }
+
+        .food_name{
+            position: relative;
+            margin: 0 auto;
+            margin-top: 10px;
+            font-size: 35px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .inner_keyword{
+            position: relative;
+            font-size: 12px;
+            text-align: center;
+            background-color: #FF4500;
+            color: #FFFFFF;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-weight: normal;
+        }
+
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <th:block th:insert="~{common/header}"/>
+    <div class="layout_outline">
+        <div class="food_name">
+            <p th:text="${search}"/>
+            <a class="inner_keyword" type="text" th:each="uniqueKeyword : ${uniqueKeywords}" th:text="${uniqueKeyword}"/>
+        </div>
     <div class="layout" th:each="searchReview : ${searchReviews}">
         <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
         <th:block th:if="${reviweWriter.reviewNo eq searchReview.reviewNo}">
@@ -167,6 +204,7 @@
             </button>
         </a>
     </div>
+</div>
 
 
 <!--    <div class="layout">-->

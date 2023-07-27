@@ -31,6 +31,10 @@ public class QueryStatDTO {
         this.foodImageUrl = foodImageUrl;
     }
 
+    public QueryStatDTO(int foodRate) {
+        this.foodRate = foodRate;
+    }
+
     public Integer getStatNo() {
         return statNo;
     }
