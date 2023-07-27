@@ -1,6 +1,8 @@
 package com.goalapa.cacamuca.statDomain.command.application.service;
 
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodPicEntity;
+import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodPicRepository;
 import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.statDomain.command.application.dto.StatDTO;
 import com.goalapa.cacamuca.statDomain.query.infrastructure.service.*;
@@ -45,8 +47,8 @@ public class StatScheduler {
             int foodNo = food.getFoodNo();
             int reviewCnt = reviewCntService.countReviews(foodNo);
 
-            Optional<FoodPic> optionalFoodPic = foodPicRepository.findById(foodNo);
-            FoodPic foodPic = null;
+            Optional<FoodPicEntity> optionalFoodPic = foodPicRepository.findById(foodNo);
+            FoodPicEntity foodPic = null;
             if(optionalFoodPic.isPresent()) foodPic = optionalFoodPic.get();
 
             if(reviewCnt == 0) {

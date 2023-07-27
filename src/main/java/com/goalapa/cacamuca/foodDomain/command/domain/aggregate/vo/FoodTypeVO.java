@@ -12,4 +12,9 @@ public class FoodTypeVO {
     public FoodTypeVO(String foodType) { this.foodType = foodType; }
 
     public FoodTypeVO() {}
+
+    @Override
+    public String toString() {
+        return ""+foodType;
+    }
 }

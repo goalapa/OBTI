@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goalapa.cacamuca.memberDomain.query.domain.repository.FoodRegistMapper">
+<mapper namespace="com.goalapa.cacamuca.foodDomain.query.domain.repository.FoodRegistMapper">
 
     <resultMap id="foodResultMap" type="com.goalapa.cacamuca.foodDomain.query.domain.aggregate.entity.Food">
         <id property="foodNo" column="food_no"/>
@@ -14,7 +14,7 @@
     </resultMap>
 
     <resultMap id="foodPicResultMap"
-               type="com.goalapa.cacamuca.foodDomain.query.domain.repository.FoodRegistPicMapper">
+               type="com.goalapa.cacamuca.foodDomain.command.application.dto.FoodPicDTO">
         <result property="foodNo" column="food_no"/>
         <result property="foodPicUrl" column="food_pic_url"/>
     </resultMap>
@@ -23,6 +23,14 @@
         SELECT a.food_no, a.food_name, a.food_rate, a.food_price, a.country, a.food_type
         FROM food a
         WHERE a.food_name = #{ foodName }
+    </select>
+
+    <select id="findAllFoodPic" resultMap="foodPicResultMap">
+        SELECT
+                a.food_no,
+                a.food_pic_url
+        FROM
+                food_pic a
     </select>
 
 </mapper>
