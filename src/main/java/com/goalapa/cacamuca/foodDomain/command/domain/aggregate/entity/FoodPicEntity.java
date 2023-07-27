@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Table(name = "food_pic")
-public class FoodPic {
+public class FoodPicEntity {
 
     @Id
     @Column(name = "food_no")
