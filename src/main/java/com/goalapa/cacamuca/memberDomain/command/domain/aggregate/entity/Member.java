@@ -4,12 +4,13 @@ import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.BirthDay;
 import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo.Password;
 import lombok.*;
 import org.hibernate.annotations.Check;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Member")
+@Table(name = "member")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,14 +39,17 @@ public class Member {
     @Column(name = "member_grant")
     private String memberGrant;
 
-    @Column(name = "member_report_cnt")
-    private String memberReportCnt;
+    @Column(name = "member_report_cnt", columnDefinition = "integer default 0")
+    private Integer memberReportCnt;
 
     @Column(name = "member_country")
     private String memberCountry;
 
     @Column(name = "member_gender")
     private String memberGender;
+
+    @Column(name = "blacklist_type", columnDefinition = "boolean default false")
+    private Boolean blackListType;
 
     @Embedded
     private BirthDay birthDay;

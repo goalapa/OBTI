@@ -30,6 +30,7 @@
                     <th scope="col" class="px-6 py-3">피신고자</th>
                     <th scope="col" class="px-6 py-3">피신고자 번호</th>
                     <th scope="col" class="px-6 py-3">신고 유형</th>
+                    <th scope="col" class="px-6 py-3">누적 신고 횟수</th>
                     <th scope="col" class="px-6 py-3">신고 수락</th>
                     <th scope="col" class="px-6 py-3">신고 거절</th>
                 </tr>
@@ -45,6 +46,7 @@
                     <th scope="row" class="px-6 py-4" th:text="${report.reportedMemberNo}"></th>
                     <th scope="row" class="px-6 py-4" th:text="${report.getReportType()}"></th>
                     <th scope="row" class="px-6 py-4" th:text="${report.reportMemberNo}" hidden="hidden"></th>
+                    <th scope="row" class="px-6 py-4" th:text="${report.reportCnt}"></th>
                     <th scope="row">
                         <button type="button" onclick="deleteReport(event, true)" th:data-report-id="${reportStat.index}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">신고 완료</button>
                     </th>
