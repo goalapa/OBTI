@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goalapa.cacamuca.appreviewDomain.query.domain.repository.FindAppMapper">
+
+    <select id="findAvgAppReviewRate" resultType="java.lang.Float">
+        SELECT
+                AVG(APP_REVIEW_RATE)
+        FROM
+                APP_REVIEW A
+    </select>
+
+</mapper>
