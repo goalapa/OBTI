@@ -63,7 +63,6 @@ public class CommandMemberController {
 
         try {
             memberService.modifyMemberInfo(member);
-
             redirectAttributes.addFlashAttribute("result", "회원 정보 수정이 완료되었습니다.");
             return "redirect:/member/my-page";
         } catch (Exception e) {

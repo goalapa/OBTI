@@ -34,7 +34,7 @@ public class BlackListServiceImpl implements BlackListService {
             BlackList blackList = blackListRepository.findById(blackListReleaseDTO.getBlackListNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 블랙리스트입니다."));
 
-            //member.setBlackListStatus = false;
+            member.setBlackListType(false);
             blackList.setBlacklistRelDate(LocalDate.now());
 
         } catch (NotFoundException e) {

@@ -8,24 +8,94 @@
         <id property="statNo" column="STAT_NO"/>
         <result property="updateDate" column="UPDATE_DATE"/>
         <result property="foodNo" column="FOOD_NO"/>
+        <result property="foodName" column="FOOD_NAME"/>
         <result property="reviewCnt" column="REVIEW_CNT"/>
         <result property="foodRate" column="FOOD_RATE"/>
         <result property="likeCnt" column="LIKE_CNT"/>
         <result property="memberAgeGroup" column="MEMBER_AGE_GROUP"/>
         <result property="memberGender" column="MEMBER_GENDER"/>
+        <result property="foodImageUrl" column="FOOD_IMAGE_URL"/>
     </resultMap>
 
     <select id="findAllStats" resultMap="statResultMap">
         SELECT
-        A.STAT_NO
-        ,   A.UPDATE_DATE
-        ,   A.FOOD_NO
-        ,   A.REVIEW_CNT
-        ,   A.FOOD_RATE
-        ,   A.LIKE_CNT
-        ,   A.MEMBER_AGE_GROUP
-        ,   A.MEMBER_GENDER
-        FROM STAT A
+                A.STAT_NO
+                ,   A.UPDATE_DATE
+                ,   A.FOOD_NO
+                ,   A.FOOD_NAME
+                ,   A.COUNTRY
+                ,   A.REVIEW_CNT
+                ,   A.FOOD_RATE
+                ,   A.LIKE_CNT
+                ,   A.MEMBER_AGE_GROUP
+                ,   A.MEMBER_GENDER
+                ,   A.FOOD_IMAGE_URL
+        FROM
+                STAT A
     </select>
+
+    <select id="findStatsByDate" resultMap="statResultMap">
+        SELECT
+                    A.STAT_NO
+                ,   A.UPDATE_DATE
+                ,   A.FOOD_NO
+                ,   A.FOOD_NAME
+                ,   A.COUNTRY
+                ,   A.REVIEW_CNT
+                ,   A.FOOD_RATE
+                ,   A.LIKE_CNT
+                ,   A.MEMBER_AGE_GROUP
+                ,   A.MEMBER_GENDER
+                ,   A.FOOD_IMAGE_URL
+        FROM
+                STAT A
+        WHERE
+                A.UPDATE_DATE = #{ date }
+    </select>
+
+    <select id="findStatsByDateAndCountry" resultMap="statResultMap">
+        SELECT
+                A.STAT_NO
+                ,   A.UPDATE_DATE
+                ,   A.FOOD_NO
+                ,   A.FOOD_NAME
+                ,   A.COUNTRY
+                ,   A.REVIEW_CNT
+                ,   A.FOOD_RATE
+                ,   A.LIKE_CNT
+                ,   A.MEMBER_AGE_GROUP
+                ,   A.MEMBER_GENDER
+                ,   A.FOOD_IMAGE_URL
+        FROM
+                STAT A
+        WHERE
+                A.UPDATE_DATE = #{ date }
+                AND
+                A.COUNTRY = #{ country }
+    </select>
+
+    <select id="getStatTopTen" resultMap="statResultMap">
+        SELECT
+                    A.STAT_NO
+                ,   A.UPDATE_DATE
+                ,   A.FOOD_NO
+                ,   A.FOOD_NAME
+                ,   A.COUNTRY
+                ,   A.REVIEW_CNT
+                ,   A.FOOD_RATE
+                ,   A.LIKE_CNT
+                ,   A.MEMBER_AGE_GROUP
+                ,   A.MEMBER_GENDER
+                ,   A.FOOD_IMAGE_URL
+        FROM
+                STAT A
+        WHERE
+                A.UPDATE_DATE = #{ date }
+        AND
+                A.COUNTRY = #{ country }
+        ORDER BY A.FOOD_RATE DESC, A.REVIEW_CNT DESC
+        LIMIT 10;
+    </select>
+
 
 </mapper>

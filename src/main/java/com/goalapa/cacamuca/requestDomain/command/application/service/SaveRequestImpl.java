@@ -29,8 +29,6 @@ public class SaveRequestImpl implements SaveRequest {
         RequestFoodType requestFoodType = new RequestFoodType(requestDTO.getRequestFoodType());
         RequestMemberNo requestMemberNo = new RequestMemberNo(user);
 
-
-
         Request request = new Request();
         request.setRequestMemberNo(requestMemberNo);
         request.setRequestPrice(requestDTO.getRequestPrice());

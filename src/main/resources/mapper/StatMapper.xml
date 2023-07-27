@@ -63,6 +63,7 @@
                 MEMBER B ON A.MEMBER_NO = B.MEMBER_NO
         WHERE
                 A.FOOD_NO = #{ foodNo }
+        AND     A.REVIEW_RATE >= 3.5
         GROUP BY
                 AGE_GROUP
         ORDER BY
@@ -80,6 +81,7 @@
                 MEMBER B ON A.MEMBER_NO = B.MEMBER_NO
         WHERE
                 A.FOOD_NO = #{ foodNo }
+        AND     A.REVIEW_RATE >= 3.5
         GROUP BY
                 B.MEMBER_GENDER
         ORDER BY

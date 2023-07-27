@@ -60,14 +60,6 @@ public class QueryMemberServiceImpl implements QueryMemberService {
 
     public Page<MemberDTO> findMemberList(Pageable pageable) {
 
-        HashMap<String, Object> map = new HashMap<>();
-        Sort sort =  pageable.getSort();
-        int size = pageable.getPageSize();
-        long offset = pageable.getOffset();
-        map.put("sort", sort);
-        map.put("size", size);
-        map.put("offset", offset);
-
         List<Member> memberList = memberMapper.findMembers(pageable);
         Integer count = memberMapper.countMembers();
 

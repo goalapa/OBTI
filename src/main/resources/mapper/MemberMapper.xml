@@ -61,8 +61,10 @@
                 </foreach>
             </trim>
         </if>
-         LIMIT #{ size }
-        OFFSET #{ offset }
+        <if test="size and offset">
+            LIMIT #{ size }
+            OFFSET #{ offset }
+        </if>
     </select>
 
     <select id="countMembers" resultType="_int">
@@ -71,4 +73,10 @@
         FROM member m
         WHERE m.member_grant = "ROLE_MEMBER"
     </select>
+
+    <insert id="insertMember">
+        INSERT
+          INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country)
+        VALUES(#{memberId},#{memberPwd},#{memberNickname},#{memberEmail},#{memberGrant},#{memberReportCnt},#{memberBirth},#{memberCountry})
+    </insert>
 </mapper>

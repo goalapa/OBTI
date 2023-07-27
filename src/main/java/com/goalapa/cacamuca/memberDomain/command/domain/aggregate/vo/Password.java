@@ -1,19 +1,24 @@
 package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo;
 
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.security.SecureRandom;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-@NoArgsConstructor
+@Embeddable
+@AllArgsConstructor
+@ToString
+@Getter
 public class Password {
 
+    @Column(name = "member_pwd")
+    private String memberPwd;
 
-//    @Autowired
-//    public Password(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
+    public Password() {}
 
     public String generateTemporalPassword() {
 
