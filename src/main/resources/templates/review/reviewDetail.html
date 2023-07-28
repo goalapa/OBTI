@@ -153,6 +153,8 @@
 
         .img{
             position: relative;
+            width: 230px;
+            height: 230px;
             left: 15px;
         }
     </style>
@@ -195,26 +197,10 @@
             </span>
         </div>
 
-<!--        <div id="my_modal">-->
-<!--            <select name="report_reason" onchange="showInputForm(this.value)" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">-->
-<!--                <option value="none">=== 선택 ===</option>-->
-<!--                <option value="1">관련없는 리뷰 작성</option>-->
-<!--                <option value="2">욕성 및 비방</option>-->
-<!--                <option value="3">음란 및 유해</option>-->
-<!--                <option value="4">광고 및 홍보</option>-->
-<!--                <option value="5">기타</option>-->
-<!--            </select>-->
-<!--            <div id="inputForm" style="display: none;">-->
-<!--                <textarea name="other_reason" placeholder="기타 사유를 입력하세요" rows="3" cols="30" ></textarea>-->
-<!--            </div>-->
-<!--            <a class="modal_close_btn">X</a>-->
-<!--            <button type="button" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"  onclick="clickReport()">신고하기</button>-->
-<!--        </div>-->
-
         <th:block th:if="${reviewPic eq null}"/>
 
         <th:block th:unless="${reviewPic eq null}">
-            <img class="img" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="250" height="250" alt="Image">
+            <img class="img" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" alt="Image">
         </th:block>
     </div>
     <div class="list_btn">
