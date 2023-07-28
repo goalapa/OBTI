@@ -12,7 +12,8 @@
         }
         .chart-container2 {
             display: flex;
-            margin-left: 250px;
+            //margin-left: 250px;
+            margin-left: 800px;
         }
 
         .chart {
@@ -22,8 +23,8 @@
         .chart2 {
             flex: 1;
             margin: 10px;
-            max-height: 110%;
-            max-width: 110%;
+            max-height: 125%;
+            max-width: 125%;
         }
     </style>
 </head>
@@ -40,9 +41,9 @@
     <div class="chart2">
         <canvas id="genderRatio"></canvas>
     </div>
-    <div class="chart2">
-        <canvas id="ageGroup"></canvas>
-    </div>
+<!--    <div class="chart2">-->
+<!--        <canvas id="ageGroup"></canvas>-->
+<!--    </div>-->
 </div>
 
 </body>
@@ -82,8 +83,8 @@
     const chartDataAge = {
         labels: ["10대", "20대", "30대", "40대", "50대", "60대", "70대", "80대"],
         datasets: [{
-            data: [10,20,10,10,10,10,10,10],
-            //data: /*[[${ageGroup}]]*/'',
+            // data: [10,20,10,10,10,10,10,10],
+            data: /*[[${ageGroup}]]*/'',
             backgroundColor: ['rgba(192,173,30, 0.2)', 'rgba(222,99,99, 0.2)','rgba(84,124,27, 0.2)', 'rgba(86,100,255, 0.2)'
             ,'rgba(150,30,176, 0.2)', 'rgba(154,235,54, 0.2)','rgba(45,45,41, 0.2)', 'rgba(224,174,108, 0.2)'],
             borderColor: ['rgb(192,173,30)', 'rgb(222,99,99)' ,'rgb(84,124,27)', 'rgb(86,100,255)'
@@ -199,6 +200,9 @@
         options: {
             responsive: true,
             plugins: {
+                legend: {
+                    display: false // Hide the legend labels
+                },
                 title: {
                     display: true,
                     text: '나이별 리뷰 작성 비율'

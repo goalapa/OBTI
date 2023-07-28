@@ -83,13 +83,13 @@ public class StatController {
         List<Integer> reviewCnt = getStatService.getReviewCntByMonth(foodNo);
         List<Float> foodRate = getStatService.getFoodRate(foodNo);
         Float genderRatio = getStatService.getGenderRatio(foodNo);
-        List<Integer> ageGroup = getStatService.getAgeGroup(foodNo);
+        //List<Integer> ageGroup = getStatService.getAgeGroup(foodNo);
 
         model.addAttribute("likeCnt", likeCnt);
         model.addAttribute("reviewCnt", reviewCnt);
         model.addAttribute("foodRate", foodRate);
         model.addAttribute("genderRatio", genderRatio/100);
-        model.addAttribute("ageGroup", ageGroup);
+        //model.addAttribute("ageGroup", ageGroup);
 
         return "statDetail";
     }

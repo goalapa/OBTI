@@ -171,7 +171,7 @@
                     WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 80 AND 89 THEN 80
                     ELSE 0
                 END AS AGE_GROUP,
-                COUNT(*) AS REVIEW_CNT
+                COALESCE(COUNT(*), 0) AS REVIEW_CNT
         FROM
                 REVIEW A
         JOIN
