@@ -3,7 +3,7 @@ VALUES(1,'2023-05-15','2023-06-30',1);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
 VALUES(2,'2023-07-25','2023-08-20',6);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
-VALUES(3,'2023-05-15', null, 3);
+VALUES(4,'2023-05-15', null, 3);
 
 
 INSERT INTO category(category_no,country,food_type)
@@ -416,7 +416,7 @@ VALUES('abc011','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','
 
 
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(1,1,2,3,1);
+VALUES(1,19,2,3,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
 VALUES(2,3,3,2,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
@@ -595,7 +595,8 @@ INSERT INTO review(review_no, country, review_content,food_name,review_date,revi
 VALUES(17,'한국','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link)
 VALUES(18,'한국','리뷰 예시03','오레오','2023-06-20',5.0,2,2,'선물추천',1000.0,'link');
-
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,report_cnt)
+VALUES(19,'한국','신고, 블랙리스트 테스트','오레오','2023-06-20',5.0,3,2,'선물추천',1000.0,'link', 9);
 
 
 -- INSERT INTO review_like(review_no,member_no)
@@ -748,3 +749,12 @@ INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, mem
 VALUES ('광고 없이 깔끔하게 사용할 수 있어서 좋아요.',5.0,'우와',43);
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
 VALUES ('과자 종류가 많이 없어서 아쉬워요ㅠㅠ',2.0,'맛있다',27);
+
+INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country, member_gender)
+VALUES('stat000','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','통계걸','stat@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
+INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country, member_gender)
+VALUES('stat111','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','통계보이','stat2@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','M');
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(25,'ko','리뷰 예시03','미국오감자','2023-06-20',5.0,14,25,'선물추천',1000.0,'link', 4);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+VALUES(26,'ko','리뷰 예시03','미국오감자','2023-06-20',5.0,15,25,'선물추천',1000.0,'link', 5);

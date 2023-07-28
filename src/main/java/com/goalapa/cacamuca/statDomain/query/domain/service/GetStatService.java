@@ -50,8 +50,15 @@ public class GetStatService {
         return getStatMapper.getReviewCntByMonth(foodNo);
     }
 
-    public List<Integer> getMemberAgeGroupByMonth(int foodNo) {
+    public List<Float> getFoodRate(int foodNo) {
+        return getStatMapper.getFoodRate(foodNo);
+    }
 
-        return getStatMapper.getMemberAgeGroupByMonth(foodNo);
+    public Float getGenderRatio(int foodNo) {
+        return getStatMapper.getGenderRatio(foodNo);
+    }
+
+    public List<Integer> getAgeGroup(int foodNo) {
+        return getStatMapper.getAgeGroup(foodNo);
     }
 }

@@ -66,10 +66,10 @@ public class ReviewController {
     @PostMapping("/report")
     public void countReport(@RequestBody HashMap<String, Object> param,
                             @AuthenticationPrincipal CustomUser user){
-        int reportReason = Integer.parseInt((String) param.get("reportReason"));
+        int reportReason = Integer.parseInt((String) param.get("reportType"));
         System.out.println("reportReason = " + reportReason);
-        int memberNo = Integer.parseInt((String) param.get("member"));
-        int reviewNo = Integer.parseInt((String) param.get("no"));
+        int memberNo = Integer.parseInt((String) param.get("memberNo"));
+        int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
         int loginMemberNo = user.getMemberNo();
 
         reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
