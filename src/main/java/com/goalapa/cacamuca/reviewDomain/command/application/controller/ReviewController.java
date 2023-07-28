@@ -28,7 +28,10 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public String reviewPage(){
+    public String reviewPage(@AuthenticationPrincipal CustomUser user){
+        if(user == null){
+            return "/member/login";
+        }
         return "review";
     }
 
@@ -46,21 +49,20 @@ public class ReviewController {
     @ResponseBody
     public Map<String, Object> CountHeart(@RequestBody HashMap<String, Object> parameter,
                                           @AuthenticationPrincipal CustomUser user){
-            String no = (String) parameter.get("no");
-            Integer reviewNo =  Integer.parseInt(no);
-            Integer memberNo = Integer.parseInt((String) parameter.get("member"));
-            String likeStatus = (String) parameter.get("likeStatus");
+        String no = (String) parameter.get("no");
+        Integer reviewNo =  Integer.parseInt(no);
+        Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+        String likeStatus = (String) parameter.get("likeStatus");
 
-            int loginMemberNo = user.getMemberNo();
+        int loginMemberNo = user.getMemberNo();
 
-            reviewService.countHeart(reviewNo, loginMemberNo);
+        reviewService.countHeart(reviewNo, loginMemberNo);
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("no", Integer.valueOf(reviewNo).toString());
+        responseMap.put("member", memberNo);
+        responseMap.put("likeStatus", likeStatus);
 
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("no", Integer.valueOf(reviewNo).toString());
-            responseMap.put("member", memberNo);
-            responseMap.put("likeStatus", likeStatus);
-
-            return responseMap;
+        return responseMap;
     }
 
     @PostMapping("/report")
