@@ -6,12 +6,326 @@ INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_
 VALUES(3,'2023-05-15', null, 3);
 
 
--- INSERT INTO category(category_no,category_name,sub_category_name)
--- VALUES(1,'한국','과자');
--- INSERT INTO category(category_no,category_name,sub_category_name)
--- VALUES(2,'일본','과자');
--- INSERT INTO category(category_no,category_name,sub_category_name)
--- VALUES(3,'대만','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(1,'한국','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(2,'한국','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(3,'한국','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(4,'한국','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(5,'한국','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(6,'한국','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(7,'한국','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(8,'한국','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(9,'대만','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(10,'대만','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(11,'대만','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(12,'대만','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(13,'대만','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(14,'대만','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(15,'대만','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(16,'대만','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(17,'독일','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(18,'독일','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(19,'독일','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(20,'독일','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(21,'독일','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(22,'독일','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(23,'독일','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(24,'독일','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(25,'말레이시아','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(26,'말레이시아','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(27,'말레이시아','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(28,'말레이시아','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(29,'말레이시아','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(30,'말레이시아','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(31,'말레이시아','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(32,'말레이시아','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(33,'미국','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(34,'미국','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(35,'미국','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(36,'미국','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(37,'미국','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(38,'미국','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(39,'미국','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(40,'미국','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(41,'베트남','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(42,'베트남','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(43,'베트남','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(44,'베트남','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(45,'베트남','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(46,'베트남','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(47,'베트남','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(48,'베트남','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(49,'벨기에','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(50,'벨기에','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(51,'벨기에','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(52,'벨기에','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(53,'벨기에','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(54,'벨기에','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(55,'벨기에','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(56,'벨기에','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(57,'스웨덴','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(58,'스웨덴','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(59,'스웨덴','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(60,'스웨덴','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(61,'스웨덴','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(62,'스웨덴','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(63,'스웨덴','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(64,'스웨덴','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(65,'스위스','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(66,'스위스','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(67,'스위스','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(68,'스위스','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(69,'스위스','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(70,'스위스','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(71,'스위스','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(72,'스위스','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(73,'영국','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(74,'영국','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(75,'영국','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(76,'영국','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(77,'영국','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(78,'영국','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(79,'영국','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(80,'영국','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(81,'이탈리아','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(82,'이탈리아','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(83,'이탈리아','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(84,'이탈리아','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(85,'이탈리아','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(86,'이탈리아','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(87,'이탈리아','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(88,'이탈리아','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(89,'인도','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(90,'인도','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(91,'인도','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(92,'인도','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(93,'인도','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(94,'인도','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(95,'인도','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(96,'인도','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(97,'일본','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(98,'일본','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(99,'일본','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(100,'일본','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(101,'일본','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(102,'일본','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(103,'일본','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(104,'일본','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(105,'캐나다','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(106,'캐나다','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(107,'캐나다','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(108,'캐나다','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(109,'캐나다','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(110,'캐나다','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(111,'캐나다','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(112,'캐나다','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(113,'태국','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(114,'태국','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(115,'태국','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(116,'태국','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(117,'태국','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(118,'태국','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(119,'태국','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(120,'태국','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(121,'튀르키예','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(122,'튀르키예','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(123,'튀르키예','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(124,'튀르키예','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(125,'튀르키예','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(126,'튀르키예','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(127,'튀르키예','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(128,'튀르키예','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(129,'폴란드','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(130,'폴란드','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(131,'폴란드','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(132,'폴란드','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(133,'폴란드','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(134,'폴란드','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(135,'폴란드','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(136,'폴란드','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(137,'프랑스','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(138,'프랑스','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(139,'프랑스','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(140,'프랑스','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(141,'프랑스','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(142,'프랑스','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(143,'프랑스','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(144,'프랑스','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(145,'필리핀','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(146,'필리핀','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(147,'필리핀','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(148,'필리핀','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(149,'필리핀','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(150,'필리핀','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(151,'필리핀','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(152,'필리핀','차');
+INSERT INTO category(category_no,country,food_type)
+VALUES(153,'호주','과자');
+INSERT INTO category(category_no,country,food_type)
+VALUES(154,'호주','빵');
+INSERT INTO category(category_no,country,food_type)
+VALUES(155,'호주','사탕');
+INSERT INTO category(category_no,country,food_type)
+VALUES(156,'호주','음료');
+INSERT INTO category(category_no,country,food_type)
+VALUES(157,'호주','젤리');
+INSERT INTO category(category_no,country,food_type)
+VALUES(158,'호주','초콜릿');
+INSERT INTO category(category_no,country,food_type)
+VALUES(159,'호주','커피');
+INSERT INTO category(category_no,country,food_type)
+VALUES(160,'호주','차');
 
 
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
