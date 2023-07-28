@@ -39,7 +39,7 @@ public class RequestController {
     public String saveRequest(@AuthenticationPrincipal CustomUser customUser, @ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
 
         saveRequestImpl.saveRequest(requestDTO, customUser.getMemberNo());
-        saveRequestPicImpl.saveRequestPic(requestPic);
+        saveRequestPicImpl.saveRequestPic(requestPic, requestDTO.getRequestNo());
 
         return "redirect:/";
 

@@ -4,5 +4,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface SaveRequestPic {
 
-    void saveRequestPic(MultipartFile singleFile);
+    void saveRequestPic(MultipartFile singleFile, int requestNo);
 }
