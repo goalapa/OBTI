@@ -292,29 +292,6 @@
     let noValue = `[[${no}]]`;
     let memberValue = `[[${member}]]`;
     let likeText = document.getElementById('likeText');
-  
-    document.addEventListener("DOMContentLoaded", function() {
-        const likeImg = document.getElementById("likeImg");
-        const likeCheck = document.getElementById("like_check");
-        const likeStatus = localStorage.getItem("likeStatus");
-
-        if (likeStatus === "true") {
-            likeImg.src = "/assets/img/heart.png";
-            likeCheck.value = "true";
-        } else {
-            likeImg.src = "/assets/img/empty_heart.png";
-            likeCheck.value = "false";
-        }
-    });
-
-    function showInputForm(value) {
-        var inputForm = document.getElementById("inputForm");
-        if (value === "5") {
-            inputForm.style.display = "block";
-        } else {
-            inputForm.style.display = "none";
-        }
-    }
       
     function updateLikeText(reviewLikeCnt){
         likeText.textContent = reviewLikeCnt;
@@ -348,29 +325,6 @@
             }
         }).then(function (response) {
         });
-        }
-      
-        function clickReport(){
-            const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
-
-            if (confirm('신고하시겠습니까?')==true) {
-                axios({
-                    method: 'post',
-                    url:'/review/report',
-                    data: {
-                        no: noValue,
-                        member: memberValue,
-                        reportReason:reportReason
-                    }
-                }).then(function (response){
-                    alert('신고가 완료되었습니다.');
-                }).catch(function (error){
-                    console.log(error);
-                });
-            }
-            else {
-                console.log('취소되었습니다.');
-            }
         }
 </script>
 
@@ -411,7 +365,7 @@
             reviewNo: noValue,
         };
 
-        axios.post("/report", data)
+        axios.post("/review/report", data)
             .then(response => {
                 hideModal('modal');
                 alert("정상적으로 신고되었습니다!");
