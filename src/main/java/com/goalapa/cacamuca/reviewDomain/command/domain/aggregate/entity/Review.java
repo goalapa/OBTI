@@ -71,7 +71,32 @@ public class Review {
         this.reportCnt = reportCnt;
     }
 
+    public Review(String reviewContent, String country, String foodType, String foodName, LocalDate date, double reviewRate, ReviewWriter reviewWriter, Integer foodNo,
+                  String reviewKeyword, int reviewPrice, String reviewLink, Integer reportCnt, Integer likeCnt) {
+        this.reviewContent = reviewContent;
+        this.country = country;
+        this.foodType = foodType;
+        this.foodName = foodName;
+        this.reviewDate = date;
+        this.reviewRate = reviewRate;
+        this.reviewWriter = reviewWriter;
+        this.foodNo = foodNo;
+        this.reviewKeyword = reviewKeyword;
+        this.reviewPrice = reviewPrice;
+        this.reviewLink = reviewLink;
+        this.reportCnt = reportCnt;
+        this.likeCnt = likeCnt;
+    }
+
     public Review(){
+    }
+
+    public ReviewWriter getReviewWriter() {
+        return reviewWriter;
+    }
+
+    public void setReviewWriter(ReviewWriter reviewWriter) {
+        this.reviewWriter = reviewWriter;
     }
 
     public int getReviewNo() {
