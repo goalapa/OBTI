@@ -53,4 +53,39 @@
         VALUES(#{foodNo},#{foodName},#{foodRate},#{foodPrice},#{foodType},#{country})
     </insert>
 
+    <select id="findByFoodName" parameterType="string" resultMap="foodResultMap">
+        SELECT a.food_no, a.food_name, a.food_rate, a.food_price, a.country, a.food_type
+        FROM food a
+        WHERE a.food_name = #{ foodName }
+    </select>
+
+    <select id="findAllFoodPic" resultMap="foodPicResultMap">
+        SELECT
+        a.food_no,
+        a.food_pic_url
+        FROM
+        food_pic a
+    </select>
+
+
+
+
+
+
+
+
+    <select id="findByFoodName" parameterType="string" resultMap="foodResultMap">
+        SELECT a.food_no, a.food_name, a.food_rate, a.food_price, a.country, a.food_type
+        FROM food a
+        WHERE a.food_name = #{ foodName }
+    </select>
+
+    <select id="findAllFoodPic" resultMap="foodPicResultMap">
+        SELECT
+        a.food_no,
+        a.food_pic_url
+        FROM
+        food_pic a
+    </select>
+
 </mapper>
