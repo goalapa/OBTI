@@ -77,9 +77,7 @@ public class ReviewService {
 
         for (MultipartFile file : reviewPicUrl) {
             if (file.isEmpty()) {
-                reviewPic.setReviewNo(review);
-                reviewPicRepository.save(reviewPic);
-                break;
+                continue;
             }
 
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());

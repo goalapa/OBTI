@@ -113,7 +113,7 @@
         <option value="증정품포함">증정품포함</option>
     </select>
 
-    <select name="foodName" id="foodName" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5            " required>
+    <select name="foodName" id="foodName" disabled class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5            " required>
         <option value="none">식품 선택</option>
     </select>
 
@@ -137,7 +137,7 @@
             <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200   hover:bg-blue-800">
                 글 쓰기
             </button>
-            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)">
+            <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)" required>
         </div>
 
         <div id="preview-container" style="display: none" class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50    ">
@@ -186,6 +186,8 @@
     function checkValue(value) {
         var clickCountry = country.options[country.selectedIndex];
         const foodName = document.getElementById('foodName');
+
+        foodName.disabled = false;
 
         axios({
             method: 'post',
