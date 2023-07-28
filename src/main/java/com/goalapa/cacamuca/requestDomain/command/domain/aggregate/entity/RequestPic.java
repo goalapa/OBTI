@@ -14,9 +14,6 @@ import javax.persistence.*;
 public class RequestPic {
 
     @Id
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "request", referencedColumnName = "request_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_no")
     private Integer requestNo;
 

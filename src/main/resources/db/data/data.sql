@@ -495,48 +495,16 @@ VALUES('대만','과자','신상요청3',1500,3, 'test3');
 
 
 
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_url)
-VALUES('2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
+INSERT INTO request_pic(request_no, request_url)
+VALUES(1, '2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
+INSERT INTO request_pic(request_no, request_url)
+VALUES(2,'2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
+INSERT INTO request_pic(request_no, request_url)
+VALUES(3,'2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
+INSERT INTO request_pic(request_no, request_url)
+VALUES(4,'2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
+
+
 
 
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
