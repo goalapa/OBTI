@@ -140,7 +140,11 @@ public class ReviewService {
     @Transactional
     public void deleteReview(int reviewNo, int memberNo) {
         Review review = reviewRepository.findByReviewNoAndReviewWriter_ReviewWriterMemberId(reviewNo, memberNo);
-        System.out.println("review = " + review);
-        reviewRepository.deleteById(review.getReviewNo());
+        ReviewPic reviewPic = reviewPicRepository.findByReviewNo(review);
+
+        if(reviewPic != null){
+            reviewPicRepository.delete(reviewPic);
+        }
+        reviewRepository.delete(review);
     }
 }
