@@ -44,8 +44,8 @@
 
 <main class="p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
-        <table id="reportList" style="table-layout: fixed;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table id="reportList" style="table-layout: fixed;" class="w-full text-sm text-left text-gray-500   ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50      ">
             <tr>
                 <th scope="col" class="px-6 py-3">나라</th>
                 <th scope="col" class="px-6 py-3">식품명</th>
@@ -72,7 +72,7 @@
                     <a th:text="${myReview.reviewLink}" th:href="${myReview.reviewLink}"/></th>
                 <th scope="row" class="px-6 py-4" th:text="${myReview.reviewDate}"></th>
                 <th scope="row">
-                    <button type="button" onclick="deleteReview(event)" th:data-review-id="${myReview.reviewNo}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">삭제</button>
+                    <button type="button" onclick="deleteReview(event)" th:data-review-id="${myReview.reviewNo}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200                  ">삭제</button>
                 </th>
             </tr>
             </tbody>
@@ -81,10 +81,10 @@
 
     <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
         <!-- 이전 페이지 버튼 -->
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
-        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().offset + 1}"></span> -
-        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().offset + myReviews.getNumberOfElements()}"></span> of
-        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getTotalElements()}"></span>
+        <span class="text-sm font-normal text-gray-500    ml-10 mb-15">Showing
+        <span class="font-semibold text-gray-900   " th:text="${myReviews.getPageable().offset + 1}"></span> -
+        <span class="font-semibold text-gray-900   " th:text="${myReviews.getPageable().offset + myReviews.getNumberOfElements()}"></span> of
+        <span class="font-semibold text-gray-900   " th:text="${myReviews.getTotalElements()}"></span>
     </span>
         <ul class="inline-flex -space-x-px text-sm h-8">
             <!-- 이전 페이지 버튼 -->
@@ -110,8 +110,8 @@
             </a>
         </ul>
         <!-- 총 페이지 수 표시 -->
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
-        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getTotalPages()}" id="totalPages"></span>
+        <span class="text-sm font-normal text-gray-500    mr-10"> total pages :
+        <span class="font-semibold text-gray-900   " th:text="${myReviews.getTotalPages()}" id="totalPages"></span>
     </span>
     </nav>
 

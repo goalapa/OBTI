@@ -68,7 +68,7 @@
 
 
 <form action="review" method="post" enctype="multipart/form-data" class="review">
-    <select name="country" id="country"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    <select name="country" id="country"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5                  " required>
         <option value="none">국가 선택</option>
         <option value="한국">한국</option>
         <option value="일본">일본</option>
@@ -93,7 +93,7 @@
 
     </select>
 
-    <select name="foodType"  id="foodType" onchange="checkValue(this.value)"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    <select name="foodType"  id="foodType" onchange="checkValue(this.value)"  class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5                  " required>
         <option value="none">종류 선택</option>
         <option value="과자">과자</option>
         <option value="차">차</option>
@@ -105,7 +105,7 @@
         <option value="사탕">사탕</option>
     </select>
 
-    <select name="reviewKeyword" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    <select name="reviewKeyword" class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5                  " required>
         <option value="none">키워드 선택</option>
         <option value="가성비">가성비</option>
         <option value="개별포장">개별포장</option>
@@ -113,13 +113,13 @@
         <option value="증정품포함">증정품포함</option>
     </select>
 
-    <select name="foodName" id="foodName" disabled class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    <select name="foodName" id="foodName" disabled class="w-55 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5                  " required>
         <option value="none">식품 선택</option>
     </select>
 
-    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    <input type="number" name="reviewPrice" placeholder="식품 가격을 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5                  " required>
 
-    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    <input type="text" name="reviewLink" placeholder="구매한 링크를 입력해주세요"  class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5                  " required>
 
     <div class="rating_box">
         <div class="rating">
@@ -129,19 +129,19 @@
         </div>
     </div>
 
-    <div class="absolute top-20 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-            <textarea name="reviewContent" id="reviewContent" rows="10" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="과자에 대한 설명을 적어주세요!" required></textarea>
+    <div class="absolute top-20 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50      ">
+        <div class="px-4 py-2 bg-white rounded-t-lg   ">
+            <textarea name="reviewContent" id="reviewContent" rows="10" class="w-full px-0 text-sm text-gray-900 bg-white border-0    focus:ring-0      " placeholder="과자에 대한 설명을 적어주세요!" required></textarea>
         </div>
-        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+        <div class="flex items-center justify-between px-3 py-2 border-t   ">
+            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200    hover:bg-blue-800">
                 글 쓰기
             </button>
             <input type="file" multiple="multiple" name="reviewPicUrl" onchange="previewImages(event)" required>
         </div>
 
-        <div id="preview-container" style="display: none" class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-            <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+        <div id="preview-container" style="display: none" class="absolute top-450 left-0 w-3/4 mb-4 border border-gray-200 rounded-lg bg-gray-50      ">
+            <div class="px-4 py-2 bg-white rounded-t-lg   ">
             </div>
         </div>
     </div>
