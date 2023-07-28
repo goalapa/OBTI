@@ -358,10 +358,11 @@
     function submitReport() {
         const form = document.getElementById('reportForm');
         const reportTypeValue = form.querySelector('input[name="report_type"]:checked').value;
+        console.log(reportTypeValue);
 
         const data = {
             reportType: reportTypeValue,
-            reportedMemberNo: memberValue,
+            memberNo: memberValue,
             reviewNo: noValue,
         };
 
