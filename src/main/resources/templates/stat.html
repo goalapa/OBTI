@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <title>통계 조회</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
     <style>
         .body {
             padding-top: 30px;
-            padding-left: 400px;
+            padding-left: 320px;
         }
         .buttons {
             padding-top: 30px;
-            padding-left: 400px;
+            padding-left: 320px;
         }
         .nav {
             padding-top: 30px;
-            padding-left: 400px;
+            padding-left: 350px;
         }
     </style>
 </head>
@@ -27,18 +28,27 @@
     <form th:action="@{/stat}" method="get">
         <input type="date" id="datePicker" name="selectedDate" th:value="${selectedDate}" class="w-48 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <select name="country" th:value="${country}" class="w-48 mt-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" selected>전체 국가</option>
-            <option value="한국">한국</option>
-            <option value="일본">일본</option>
-            <option value="미국">미국</option>
-            <option value="영국">영국</option>
-            <option value="베트남">베트남</option>
-            <option value="태국">태국</option>
-            <option value="프랑스">프랑스</option>
-            <option value="이탈리아">이탈리아</option>
-            <option value="튀르키예">튀르키예</option>
-            <option value="중국">중국</option>
-            <option value="몽골">몽골</option>
+<!--            <option value="" selected>전체 국가</option>-->
+            <option value="한국" th:selected="${country == '한국'}">한국</option>
+            <option value="일본" th:selected="${country == '일본'}">일본</option>
+            <option value="미국" th:selected="${country == '미국'}">미국</option>
+            <option value="영국" th:selected="${country == '영국'}">영국</option>
+            <option value="베트남" th:selected="${country == '베트남'}">베트남</option>
+            <option value="태국" th:selected="${country == '태국'}">태국</option>
+            <option value="프랑스" th:selected="${country == '프랑스'}">프랑스</option>
+            <option value="이탈리아" th:selected="${country == '이탈리아'}">이탈리아</option>
+            <option value="튀르키예" th:selected="${country == '튀르키예'}">튀르키예</option>
+            <option value="프랑스" th:selected="${country == '프랑스'}">프랑스</option>
+            <option value="독일" th:selected="${country == '독일'}">독일</option>
+            <option value="벨기에" th:selected="${country == '벨기에'}">벨기에</option>
+            <option value="스웨덴" th:selected="${country == '스웨덴'}">스웨덴</option>
+            <option value="이탈리아" th:selected="${country == '이탈리아'}">이탈리아</option>
+            <option value="폴란드" th:selected="${country == '폴란드'}">폴란드</option>
+            <option value="스위스" th:selected="${country == '스위스'}">스위스</option>
+            <option value="캐나다" th:selected="${country == '캐나다'}">캐나다</option>
+            <option value="호주" th:selected="${country == '호주'}">호주</option>
+            <option value="기타" th:selected="${country == '기타'}">기타</option>
+<!--            <option value="all">전체국가</option>-->
         </select>
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
         <button type="button" onclick="location.href='stat/top10'" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">TOP 10 조회</button>
@@ -46,7 +56,7 @@
 </div>
 
 <div class="body">
-    <table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
             <th scope="col" class="px-6 py-3">STAT NO</th>
@@ -58,6 +68,7 @@
             <th scope="col" class="px-6 py-3">LIKE CNT</th>
             <th scope="col" class="px-6 py-3">MEMBER AGE GROUP</th>
             <th scope="col" class="px-6 py-3">MEMBER GENDER</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -72,42 +83,83 @@
             <th scope="row" class="px-6 py-4" th:text="${list.likeCnt}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.memberAgeGroup}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.memberGender}"/></th>
+            <th>
+                <a th:href="@{/stat/show-detail/{foodNo}(foodNo=${list.foodNo})}" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-blue-200 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">상세보기</a>
+            </th>
 
         </tr>
         </tbody>
 
     </table>
 
-    <div class="nav">
-        <nav>
-            <ul class="flex items-center -space-x-px h-8 text-sm"
-                th:with="start=${T(java.lang.Math).floor(statPage.number/10)*10},
-                    last=(${start + 9 < statPage.totalPages ? start + 9 : statPage.totalPages})">
-                <th:block th:with="
-                firstAddr=@{/stat(page=0, country=${country}, selectedDate=${selectedDate})},
-                lastAddr=@{/stat(page=${statPage.totalPages - 1}, country=${country}, selectedDate=${selectedDate})}">
-                    <li th:class="${statPage.first} ? 'disabled'">
-                        <a th:href="${statPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                           aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
-                        </a>
-                    </li>
-                    <li th:each="page: ${#numbers.sequence(start, last - 1)}"
-                        th:class="${page == statPage.number + 1} ? 'active'">
-                        <a th:text="${page}+1" th:href="@{/stat(page=${page}, country=${country}, selectedDate=${selectedDate})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
-                    </li>
-                    <li th:class="${statPage.last} ? 'disabled'">
-                        <a th:href="${statPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                           aria-label="Next">
-                            <span aria-hidden="true">&gt;</span>
-                        </a>
-                    </li>
-                </th:block>
-            </ul>
-        </nav>
-    </div>
+    <nav class="w-3/4 flex items-center justify-between pt-4" aria-label="Table navigation" >
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${statPage.getPageable().getOffset()} + 1" /> -
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ statPage.getPageable().offset} + ${statPage.getNumberOfElements()}" /> of
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ statPage.getTotalElements()}" />
+            </span>
+        <ul class="inline-flex -space-x-px text-sm h-8">
+            <li>
+                <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">이전</a>
+            </li>
+            <li>
+                <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">다음</a>
+            </li>
+        </ul>
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ statPage.getTotalPages()}" id="totalPages"/>
+            </span>
+    </nav>
 
 
 </div>
 </body>
+<script th:inline="javascript">
+
+    const country = /*[[${country}]]*/ '';
+    const selectedDate = /*[[${selectedDate}]]*/ '';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page') || 0);
+    const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+    const pageButtons = document.querySelectorAll('[id^="page"]');
+
+    pageButtons.forEach((button, index) => {
+        const pageNumber = currentPage - 2 + index;
+
+        button.href = `/stat?page=${pageNumber}&selectedDate=${selectedDate}&country=${country}`;
+        button.innerText = pageNumber + 1;
+
+        if (pageNumber === currentPage) {
+            button.style.backgroundColor = '#C3DDFD';
+        }
+
+        if (pageNumber < 0 || pageNumber > totalPagesInt) {
+            button.style.display = 'none';
+        }
+    });
+
+    const previousButton = document.getElementById('previousButton');
+    const nextButton = document.getElementById('nextButton');
+
+    previousButton.href = `/stat?page=${currentPage - 1}&selectedDate=${selectedDate}&country=${country}`;
+    previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+    nextButton.href = `/stat?page=${currentPage + 1}&selectedDate=${selectedDate}&country=${country}`;
+    nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
+</script>
 </html>

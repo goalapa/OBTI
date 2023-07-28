@@ -4,19 +4,14 @@
     <meta charset="UTF-8">
     <title>관리자 요청 조회</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
     <style>
-        .search {
-            /*position: relative;*/
-            /*top: 20px;*/
-            /*left: 40px;*/
-        }
         .body {
-            padding-top: 30px;
+            padding-top: 40px;
             padding-left: 400px;
         }
         .nav {
             padding-top: 30px;
-            padding-left: 400px;
         }
 
     </style>
@@ -27,8 +22,8 @@
 <th:block th:insert="~{common/adminAside}" />
 
 <div class="body">
-<table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<table class="w-3/4 text-sm text-left text-gray-500">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
     <tr>
         <th scope="col" class="px-6 py-3">REQUEST NO</th>
         <th scope="col" class="px-6 py-3">MEMBER NO</th>
@@ -50,43 +45,51 @@
         <th></th>
         <th></th>
         <th>
-            <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">상세보기</a>
+            <a th:href="@{/request-list/view/{requestNo}(requestNo=${list.requestNo})}" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-blue-200 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">상세보기</a>
         </th>
         <th>
-            <button th:onclick="'showAlert(' + ${list.requestNo} + ')'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center">삭제</button>
+            <button th:onclick="'showAlert(' + ${list.requestNo} + ')'" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-blue-200 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">삭제</button>
         </th>
     </tr>
     </tbody>
 
 </table>
 
+
 <div class="nav">
-<nav>
-    <ul class="flex items-center -space-x-px h-8 text-sm"
-        th:with="start=${T(java.lang.Math).floor(requestPage.number/10)*10},
-                    last=(${start + 9 < requestPage.totalPages ? start + 9 : requestPage.totalPages})">
-        <th:block th:with="
-                firstAddr=@{/request-list(page=0)},
-                lastAddr=@{/request-list(page=${requestPage.totalPages - 1})}">
-            <li th:class="${requestPage.first} ? 'disabled'">
-                <a th:href="${requestPage.first} ? '#' : ${firstAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                   aria-label="Previous">
-                    <span aria-hidden="true">&lt;</span>
-                </a>
+    <nav class="w-3/4 flex items-center justify-between pt-4" aria-label="Table navigation" >
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${requestPage.getPageable().getOffset()} + 1" /> -
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ requestPage.getPageable().offset} + ${requestPage.getNumberOfElements()}" /> of
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ requestPage.getTotalElements()}" />
+            </span>
+        <ul class="inline-flex -space-x-px text-sm h-8">
+            <li>
+                <a id="previousButton" href="" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">이전</a>
             </li>
-            <li th:each="page: ${#numbers.sequence(start, last - 1)}"
-                th:class="${page == requestPage.number + 1} ? 'active'">
-                <a th:text="${page}+1" th:href="@{/request-list(page=${page})}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+            <li>
+                <a id="page1Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
             </li>
-            <li th:class="${requestPage.last} ? 'disabled'">
-                <a th:href="${requestPage.last} ? '#' : ${lastAddr}" class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-blue-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                   aria-label="Next">
-                    <span aria-hidden="true">&gt;</span>
-                </a>
+            <li>
+                <a id="page2Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
             </li>
-        </th:block>
-    </ul>
-</nav>
+            <li>
+                <a id="page3Button" href="" aria-current="page"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page4Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="page5Button" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"></a>
+            </li>
+            <li>
+                <a id="nextButton" href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">다음</a>
+            </li>
+        </ul>
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+                <span class="font-semibold text-gray-900 dark:text-white" th:text="${ requestPage.getTotalPages()}" id="totalPages"/>
+            </span>
+    </nav>
 </div>
 </div>
 <script>
@@ -96,6 +99,34 @@
             window.location.href = `/request-list/delete/${requestNo}`;
         }
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlParams.get('page') || 0);
+    const totalPagesInt = parseInt(document.getElementById('totalPages').innerText) - 1;
+    const pageButtons = document.querySelectorAll('[id^="page"]');
+
+    pageButtons.forEach((button, index) => {
+        const pageNumber = currentPage - 2 + index;
+
+        button.href = `/request-list?page=${pageNumber}`;
+        button.innerText = pageNumber + 1;
+
+        if (pageNumber === currentPage) {
+            button.style.backgroundColor = '#C3DDFD';
+        }
+
+        if (pageNumber < 0 || pageNumber > totalPagesInt) {
+            button.style.display = 'none';
+        }
+    });
+
+    const previousButton = document.getElementById('previousButton');
+    const nextButton = document.getElementById('nextButton');
+
+    previousButton.href = `/request-list?page=${currentPage - 1}`;
+    previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+    nextButton.href = `/request-list?page=${currentPage + 1}`;
+    nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
 
 </script>
 
