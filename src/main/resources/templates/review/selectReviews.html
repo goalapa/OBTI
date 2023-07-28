@@ -294,7 +294,7 @@
 
         const sortedItems = Array.from(reviewItems).sort((a, b) => {
             if (value === '1') {
-                return a.querySelector('[name="reviewNoData"]').textContent - b.querySelector('[name="reviewNoData"]').textContent;
+                return b.querySelector('[name="reviewNoData"]').textContent - a.querySelector('[name="reviewNoData"]').textContent;
             } else if (value === '2') {
                 return b.querySelector('[name="likeCntData"]').textContent - a.querySelector('[name="likeCntData"]').textContent;
             } else if (value === '3') {
