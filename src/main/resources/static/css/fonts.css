@@ -20,6 +20,14 @@ a {
     font-family: 'S-CoreDream-3Light', sans-serif;
 }
 
+h1 {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+h2 {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
 h3 {
     font-family: 'S-CoreDream-3Light', sans-serif;
 }
@@ -41,5 +49,9 @@ table {
 }
 
 th {
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
+
+button {
     font-family: 'S-CoreDream-3Light', sans-serif;
 }

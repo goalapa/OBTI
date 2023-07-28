@@ -55,8 +55,10 @@ public class ReportController {
             // 리뷰의 누적 신고 횟수를 확인하고, 확인 후 누적 신고 횟수 + 1 을 하거나 리뷰를 삭제하는 로직
             reportService.deleteReviewWithReportedCnt(reportDeleteDTO);
         }
+        else {
+            reportService.deleteReportById(reportDeleteDTO.getReportNo());
+        }
 
-        reportService.deleteReportById(reportDeleteDTO.getReportNo());
 
         return new ResponseEntity<>("200", HttpStatus.OK);
     }

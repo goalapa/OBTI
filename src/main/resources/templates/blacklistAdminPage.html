@@ -42,7 +42,7 @@
           <tr th:each="blackList, blackListStat : ${blackListPage}" th:id="${blackListStat.index}">
             <th scope="row" class="px-6 py-4" th:text="${blackList.blackListNo}"></th>
             <th scope="row" class="px-6 py-4" th:text="${blackList.memberNo}"></th>
-            <th scope="row" class="px-6 py-4" th:text="${blackList.memberId}"></th>
+            <th scope="row" class="px-6 py-4" th:text="${blackList.memberId != null ? blackList.memberId : '탈퇴한 회원'}"></th>
             <th scope="row" class="px-6 py-4" th:text="${blackList.blackListRegDate}"></th>
             <th scope="row" class="px-6 py-4" th:text="${blackList.blackListRelDate}"></th>
             <th scope="row">
