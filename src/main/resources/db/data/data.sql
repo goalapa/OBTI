@@ -537,8 +537,6 @@ INSERT INTO request_pic(request_no, request_url)
 VALUES(20,'2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 INSERT INTO request_pic(request_no, request_url)
 VALUES(21, '2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
-INSERT INTO request_pic(request_no, request_url)
-VALUES(22,'2d1543c9-3745-4012-ac11-de703a6f8d81_dog_test.jpg');
 
 
 
