@@ -10,5 +10,7 @@ public interface GetStatMapper {
     List<QueryStatDTO> getStatTopTen(LocalDate date, String country);
     List<Integer> getLikeCntByMonth(int foodNo);
     List<Integer> getReviewCntByMonth(int foodNo);
-    List<Integer> getMemberAgeGroupByMonth(int foodNo);
+    List<Float> getFoodRate(int foodNo);
+    Float getGenderRatio(int foodNo);
+    List<Integer> getAgeGroup(int foodNo);
 }

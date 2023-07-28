@@ -7,45 +7,106 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" th:href="@{/css/fonts.css}" />
     <style>
-        .cnt {
-            width: 1000px;
-            align-self: center;
+        .chart-container {
+            display: flex;
+        }
+        .chart-container2 {
+            display: flex;
+            margin-left: 250px;
+        }
+
+        .chart {
+            flex: 1;
+            margin: 10px;
+        }
+        .chart2 {
+            flex: 1;
+            margin: 10px;
+            max-height: 110%;
+            max-width: 110%;
         }
     </style>
 </head>
 <body>
-<div class="cnt">
-    <canvas id="likeAndReviewCnt"></canvas>
+<div class="chart-container">
+        <div class="chart">
+            <canvas id="likeAndReviewCnt"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="foodRate"></canvas>
+        </div>
 </div>
-<div class="age">
-    <canvas id=""></canvas>
+<div class="chart-container2">
+    <div class="chart2">
+        <canvas id="genderRatio"></canvas>
+    </div>
+    <div class="chart2">
+        <canvas id="ageGroup"></canvas>
+    </div>
 </div>
 
 </body>
 <script th:inline="javascript">
-    const chartData = {
+
+    const genderData = parseFloat(/*[[${genderRatio}]]*/'');
+
+    const chartDataCnt = {
         datasets: [
             {
                 label: "좋아요 개수",
                 backgroundColor: "rgba(255, 99, 132, 0.2)",
                 borderColor: "rgba(255, 99, 132, 1)",
                 data: /*[[${likeCnt}]]*/ '',
-                // yAxisID: "y-axis",
             },
             {
                 label: "리뷰 개수",
                 backgroundColor: "rgba(54, 162, 235, 0.2)",
                 borderColor: "rgba(54, 162, 235, 1)",
                 data: /*[[${reviewCnt}]]*/ '',
-                // yAxisID: "y-axis", // Both datasets now share the same y-axis
             },
         ],
-        // labels: ["2월","3월", "4월", "5월", "6월", "7월"],
-        labels: ["MONTH1","MONTH2", "MONTH3", "MONTH4", "MONTH5", "MONTH6"],
+         labels: ["2월","3월", "4월", "5월", "6월", "7월"],
+        //labels: ["MONTH1","MONTH2", "MONTH3", "MONTH4", "MONTH5", "MONTH6"],
+    };
+
+    const chartDataGender = {
+        labels: ["여성", "남성"],
+        datasets: [{
+            data: [genderData, 1-genderData],
+            backgroundColor: ['rgba(86,100,255, 0.2)', 'rgba(235,163,54, 0.2)'],
+            borderColor: ['rgb(86,100,255)', 'rgb(235,163,54)'],
+            borderWidth: 1
+        }]
+    };
+
+    const chartDataAge = {
+        labels: ["10대", "20대", "30대", "40대", "50대", "60대", "70대", "80대"],
+        datasets: [{
+            data: [10,20,10,10,10,10,10,10],
+            //data: /*[[${ageGroup}]]*/'',
+            backgroundColor: ['rgba(192,173,30, 0.2)', 'rgba(222,99,99, 0.2)','rgba(84,124,27, 0.2)', 'rgba(86,100,255, 0.2)'
+            ,'rgba(150,30,176, 0.2)', 'rgba(154,235,54, 0.2)','rgba(45,45,41, 0.2)', 'rgba(224,174,108, 0.2)'],
+            borderColor: ['rgb(192,173,30)', 'rgb(222,99,99)' ,'rgb(84,124,27)', 'rgb(86,100,255)'
+            ,'rgb(150,30,176)', 'rgb(154,235,54)','rgb(45,45,41)', 'rgb(224,174,108)'],
+            borderWidth: 1
+        }]
+    };
+
+    const chartDataRate = {
+        datasets: [
+            {
+                label: "평균 별점",
+                backgroundColor: "rgba(84,124,27,0.2)",
+                borderColor: "rgb(84,124,27,1)",
+                data: /*[[${foodRate}]]*/ '',
+            }
+        ],
+         labels: ["2월","3월", "4월", "5월", "6월", "7월"],
+        //labels: ["MONTH1","MONTH2", "MONTH3", "MONTH4", "MONTH5", "MONTH6"],
     };
 
     // Chart configuration options
-    const chartOptions = {
+    const chartOptionsCnt = {
         responsive: true,
         interaction: {
             mode: "index",
@@ -73,14 +134,79 @@
         },
     };
 
-    // Create the chart
-    const ctx = document.getElementById("likeAndReviewCnt").getContext("2d");
-    const likeAndReviewCnt = new Chart(ctx, {
+    const chartOptionsRate = {
+        responsive: true,
+        interaction: {
+            mode: "index",
+            intersect: false,
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: '최근 6개월 간 평균 별점'
+            }
+        },
+        scales: {
+            y: {
+                type: "linear",
+                display: true,
+                position: "left",
+                id: "y-axis",
+                grid: {
+                    drawOnChartArea: false,
+                },
+                ticks: {
+                    stepSize: 1,
+                },
+            }
+        },
+    };
+
+    const ctxCnt = document.getElementById("likeAndReviewCnt").getContext("2d");
+    const likeAndReviewCnt = new Chart(ctxCnt, {
         type: "line",
-        data: chartData,
-        options: chartOptions,
+        data: chartDataCnt,
+        options: chartOptionsCnt,
     });
 
-    const foodNo = /*[[${foodNo}]]*/ '';
+    // Create the chart for food rate
+    const ctxRate = document.getElementById("foodRate").getContext("2d");
+    const foodRate = new Chart(ctxRate, {
+        type: "line",
+        data: chartDataRate,
+        options: chartOptionsRate,
+    });
+
+    const ctxGender = document.getElementById("genderRatio").getContext("2d");
+    const genderRatioChart = new Chart(ctxGender, {
+        type: "pie",
+        data: chartDataGender,
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: '선호 성별'
+                }
+            }
+        }
+    });
+
+    const ctxAge = document.getElementById("ageGroup").getContext("2d");
+    const ageRatioChart = new Chart(ctxAge, {
+        type: "pie",
+        data: chartDataAge,
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: '나이별 리뷰 작성 비율'
+                }
+            }
+        }
+    });
+
+
 </script>
 </html>
