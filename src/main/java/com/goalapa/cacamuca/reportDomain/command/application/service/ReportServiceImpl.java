@@ -127,6 +127,7 @@ public class ReportServiceImpl implements ReportService {
 
             int reviewReportCnt = 0;
             if (reportedReview.getReportCnt() != null) {
+                reportedReview.setReportCnt(reportedReview.getReportCnt() + 1);
                 reviewReportCnt = reportedReview.getReportCnt();
             }
 
@@ -141,7 +142,7 @@ public class ReportServiceImpl implements ReportService {
                 reviewRepository.delete(reportedReview);
             }
             else {
-                reportedReview.setReportCnt(reviewReportCnt + 1);
+                reportRepository.deleteById(reportDeleteDTO.getReportNo());
             }
 
         } catch (NotFoundException e) {
