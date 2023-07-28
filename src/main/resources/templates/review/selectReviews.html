@@ -152,6 +152,7 @@
             font-size: 30px;
         }
     </style>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
 
 <body>
@@ -201,7 +202,7 @@
             <th:block th:if="${reviewPic.reviewPicUrl eq null}"/>
             <th:block th:unless="${reviewPic.reviewPicUrl eq null}">
                 <span th:if="${reviewPic.reviewNo} eq ${reviewPage.reviewNo}" class="inner_image">
-                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="150" height="100" alt="Image">
+                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" style="width: 150px; height: 150px;" alt="Image">
                 </span>
             </th:block>
         </span>
@@ -255,7 +256,7 @@
 
         rating_star.style.width = `${rating_input.value * 10}%`;
 
-        rating_input.addEventListener('input', () => {
+        rating_input.removeEventListener('input', () => {
             rating_star.style.width = `${rating_input.value * 10}%`;
         });
     }

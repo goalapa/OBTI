@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,10 +67,21 @@ public class ReviewController {
     public void countReport(@RequestBody HashMap<String, Object> param,
                             @AuthenticationPrincipal CustomUser user){
         int reportReason = Integer.parseInt((String) param.get("reportReason"));
+        System.out.println("reportReason = " + reportReason);
         int memberNo = Integer.parseInt((String) param.get("member"));
         int reviewNo = Integer.parseInt((String) param.get("no"));
         int loginMemberNo = user.getMemberNo();
 
         reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
+    }
+
+    @PostMapping("/review/myReview")
+    public String deleteReview(@RequestBody HashMap<String, Object> param) {
+        int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
+        int memberNo = Integer.parseInt((String) param.get("memberNo"));
+
+        reviewService.deleteReview(reviewNo, memberNo);
+
+        return "redirect:/review/myReview";
     }
 }
