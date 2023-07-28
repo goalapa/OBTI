@@ -35,7 +35,6 @@ public class SelectReviewController {
         if(user == null){
             return "/member/login";
         }
-
         Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
         List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(foodName, country);
@@ -132,5 +131,4 @@ public class SelectReviewController {
 
         return "review/myReview";
     }
-
 }
