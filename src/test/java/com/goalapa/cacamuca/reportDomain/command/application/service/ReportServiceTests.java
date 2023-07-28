@@ -56,7 +56,7 @@ public class ReportServiceTests {
         // then
         Assertions.assertEquals(repositoryCnt + 1, reportRepository.count());
     }
-
+//
 //    @Test
 //    @DisplayName("신고 삭제 기능")
 //    public void reportDeleteTest() {
