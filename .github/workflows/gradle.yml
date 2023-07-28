@@ -12,7 +12,7 @@ on:
     branches: [ "master", "release" ]
   push:
     branches:
-      - release/**
+      - release
 
 permissions:
   contents: read
