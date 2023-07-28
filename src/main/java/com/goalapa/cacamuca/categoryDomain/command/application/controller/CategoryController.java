@@ -30,6 +30,9 @@ public class CategoryController {
         this.updateCategoryService = updateCategoryService;
     }
 
+    @GetMapping("/tempcategory")
+    public void tempCategoryPage() {}
+
     //카테고리 추가 기능 구현
     @GetMapping("/add")
     public String categoryAdd() {
@@ -46,7 +49,7 @@ public class CategoryController {
         addCategoryService.addCategory(addCategoryDTO);
 
 
-        return "add-result";
+        return "/main";
 
 //        return "redirect:/category/add-result";
     }
@@ -65,7 +68,7 @@ public class CategoryController {
         updateCategoryService.checkUpdate(updateCategoryDTO);
 
 
-        return "/category/update-result";
+        return "/main";
     }
 
 }

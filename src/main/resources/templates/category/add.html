@@ -3,19 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
+    <style>
+        .body {
+            padding-top: 40px;
+            padding-left: 400px;
+        }
+        .nav {
+            padding-top: 30px;
+        }
+
+    </style>
 </head>
 <body>
-<h1 align="center">카테고리 및 식품 추가 페이지</h1>
-<form action="add" method="post">
-    <h3>카테고리 추가</h3>
-    국가 카테고리 항목 추가 : <input type="text" name="country" required>
+    <th:block th:insert="~{common/adminHeader}" />
+    <th:block th:insert="~{common/adminAside}" />
+    <div class="body">
+        <h1 align="center">카테고리 및 식품 추가 페이지</h1>
+        <form action="add" method="post">
+            <h3>카테고리 추가</h3>
+            국가 카테고리 항목 추가 : <input type="text" name="country" required>
 
-    <br>
-    <br>
+            <br>
+            <br>
 
-    식품 카테고리 항목 추가 : <input type="text" name="foodType" required>
-    <br>
-    <button type="submit" >저장</button>
-</form>
+            식품 카테고리 항목 추가 : <input type="text" name="foodType" required>
+            <br>
+            <button type="submit" >저장</button>
+<!--        <h1 align="center">카테고리 및 식품 추가 페이지</h1>-->
+<!--        <form action="add" method="post">-->
+<!--            <label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">국가 카테고리 항목 추가 :</label>-->
+<!--            <input type="text" name="country" id="helper-text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1000 p-2.5" required>-->
+<!--            <p id="국가명을 입력하세요" class="mt-2 text-sm text-gray-500 dark:text-gray-400"></p>-->
+<!--            <br>-->
+<!--            <label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">식품 유형 항목 추가 :</label>-->
+<!--            <input type="text" name="foodType" id="helper-text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1000 p-2.5" required>-->
+<!--            <p id="식품 유형을 입력하세요" class="mt-2 text-sm text-gray-500 dark:text-gray-400"></p>-->
+<!--            <br>-->
+<!--            <a href="https://127.0.0.1:7777/main" style="cursor: pointer; " class="text-blue-600" type="submit">[추가하기]</a>-->
+<!--        </form>-->
+    </div>
+
 </body>
 </html>

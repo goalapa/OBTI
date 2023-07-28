@@ -19,18 +19,38 @@
         <result property="foodPicUrl" column="food_pic_url"/>
     </resultMap>
 
-    <select id="findByFoodName" parameterType="string" resultMap="foodResultMap">
-        SELECT a.food_no, a.food_name, a.food_rate, a.food_price, a.country, a.food_type
+    <select id="findFoodsRegist" parameterType="map" resultMap="foodResultMap">
+        SELECT
+          a.food_no
+        , a.food_name
+        , a.food_rate
+        , a.food_price
+        , a.country
+        , a.food_type
         FROM food a
-        WHERE a.food_name = #{ foodName }
+        <if test="sort.sorted">
+            <trim prefix="order by">
+                <foreach item="order" index="i" collection="sort" separator=", ">
+                    ${ order.property } ${ order.direction }
+                </foreach>
+            </trim>
+        </if>
+        <if test="size and offset">
+            LIMIT #{ size }
+            OFFSET #{ offset }
+        </if>
     </select>
 
-    <select id="findAllFoodPic" resultMap="foodPicResultMap">
+    <select id="countFoodRegistList" resultType="_int">
         SELECT
-                a.food_no,
-                a.food_pic_url
-        FROM
-                food_pic a
+            COUNT(a.food_no)
+        FROM food a
     </select>
+
+    <insert id="insertFood">
+        INSERT
+            INTO food(food_no, food_name, food_rate, food_price, food_type, country)
+        VALUES(#{foodNo},#{foodName},#{foodRate},#{foodPrice},#{foodType},#{country})
+    </insert>
 
 </mapper>

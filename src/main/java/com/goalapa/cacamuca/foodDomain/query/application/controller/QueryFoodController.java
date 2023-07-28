@@ -1,7 +1,8 @@
 package com.goalapa.cacamuca.foodDomain.query.application.controller;
 
 
-import com.goalapa.cacamuca.foodDomain.query.application.service.QueryFoodService;
+
+import com.goalapa.cacamuca.foodDomain.query.application.service.QueryFoodServiceImpl;
 import com.goalapa.cacamuca.foodDomain.query.domain.aggregate.dto.CheckFoodDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,19 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("food-regist")
 @RequiredArgsConstructor
 public class QueryFoodController {
 
-    private final QueryFoodService foodService;
+    private final QueryFoodServiceImpl queryFoodServiceImpl;
 
 
-    @GetMapping("food-list")
+    @GetMapping("/food-list")
     public ModelAndView findFoodRegistPage(ModelAndView mv, @PageableDefault(sort="food_name") Pageable pageable) {
 
-        Page<CheckFoodDTO> foods = foodService.findFoodList(pageable);
+        Page<CheckFoodDTO> foodRegistPage = queryFoodServiceImpl.findFoodRegistList(pageable);
 
-        mv.addObject("foods", foods);
+        mv.addObject("foodRegistPage", foodRegistPage);
         mv.setViewName("food-list");
 
         return mv;
