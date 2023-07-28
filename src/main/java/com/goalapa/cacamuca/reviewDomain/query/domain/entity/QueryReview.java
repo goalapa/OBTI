@@ -49,7 +49,7 @@ public class QueryReview {
     @Column(name = "review_link")
     private String reviewLink;
 
-    @Column(name = "likeCnt")
+    @Column(name = "like_cnt")
     private Integer likeCnt;
 
     public int getReviewNo() {

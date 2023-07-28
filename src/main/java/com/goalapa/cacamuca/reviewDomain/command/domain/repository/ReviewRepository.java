@@ -10,9 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    @Modifying
-    @Query(value = "update Review r set r.likeCnt = r.likeCnt + 1 where r.reviewNo = :no")
-    int plusLike(int no);
-
     Review findByReviewNoAndReviewWriter_ReviewWriterMemberId(int reviewNo, int memberNo);
 }

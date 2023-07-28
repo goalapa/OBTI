@@ -141,6 +141,6 @@ public class ReviewService {
     public void deleteReview(int reviewNo, int memberNo) {
         Review review = reviewRepository.findByReviewNoAndReviewWriter_ReviewWriterMemberId(reviewNo, memberNo);
         System.out.println("review = " + review);
-        reviewRepository.delete(review);
+        reviewRepository.deleteById(review.getReviewNo());
     }
 }
