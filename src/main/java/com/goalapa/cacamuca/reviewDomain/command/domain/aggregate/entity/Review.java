@@ -1,6 +1,8 @@
 package com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity;
 
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "review")
+@AllArgsConstructor
 public class Review {
 
     @Id()
@@ -49,7 +52,7 @@ public class Review {
     @Column(name = "review_link")
     private String reviewLink;
 
-    @Column(name = "likeCnt")
+    @Column(name = "like_cnt")
     private Integer likeCnt;
 
     @Column(name = "report_cnt")
@@ -71,7 +74,32 @@ public class Review {
         this.reportCnt = reportCnt;
     }
 
+    public Review(String reviewContent, String country, String foodType, String foodName, LocalDate date, double reviewRate, ReviewWriter reviewWriter, Integer foodNo,
+                  String reviewKeyword, int reviewPrice, String reviewLink, Integer reportCnt, Integer likeCnt) {
+        this.reviewContent = reviewContent;
+        this.country = country;
+        this.foodType = foodType;
+        this.foodName = foodName;
+        this.reviewDate = date;
+        this.reviewRate = reviewRate;
+        this.reviewWriter = reviewWriter;
+        this.foodNo = foodNo;
+        this.reviewKeyword = reviewKeyword;
+        this.reviewPrice = reviewPrice;
+        this.reviewLink = reviewLink;
+        this.reportCnt = reportCnt;
+        this.likeCnt = likeCnt;
+    }
+
     public Review(){
+    }
+
+    public ReviewWriter getReviewWriter() {
+        return reviewWriter;
+    }
+
+    public void setReviewWriter(ReviewWriter reviewWriter) {
+        this.reviewWriter = reviewWriter;
     }
 
     public int getReviewNo() {

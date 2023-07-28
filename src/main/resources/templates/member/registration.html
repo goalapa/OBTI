@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
 <body>
 <!--
@@ -73,7 +74,7 @@ plugins: [
             </div>
 
             <select id="country" name="memberCountry" class="block w-full p-2 mb-6 text-sm text-gray-500 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                <option selected value="none">국가를 선택해주세요</option>
+                <option selected value="none">국적을 선택해주세요</option>
                 <option value="한국">한국</option>
                 <option value="일본">일본</option>
                 <option value="미국">미국</option>

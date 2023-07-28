@@ -10,6 +10,7 @@
         <result property="foodName" column="food_name"/>
         <result property="foodType" column="food_type"/>
         <result property="likeCnt" column="like_cnt"/>
+        <result property="reportCnt" column="report_cnt"/>
         <result property="memberNo" column="member_no"/>
         <result property="reviewContent" column="review_content"/>
         <result property="reviewDate" column="review_date"/>
@@ -81,6 +82,13 @@
         WHERE r.food_name = #{ foodName } AND r.country = #{ country }
         ORDER BY r.review_date DESC
         LIMIT 1;
+    </select>
+
+    <!-- 마이 페이지 -->
+    <select id="findMyReviewByMemberNo" resultMap="reviewResultMap">
+        select *
+        from review r
+        where r.member_no = #{ loginMemberNo }
     </select>
 
     <!-- 검색 -->

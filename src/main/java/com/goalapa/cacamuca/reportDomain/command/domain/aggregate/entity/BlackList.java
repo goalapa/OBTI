@@ -1,11 +1,13 @@
 package com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity;
 
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.BlackListMemberVO;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Getter
 @Table(name = "blacklist")
 public class BlackList {
 
