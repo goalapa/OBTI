@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>통계 상세 조회</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
+    <style>
+        .cnt {
+            width: 1000px;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+<div class="cnt">
+    <canvas id="likeAndReviewCnt"></canvas>
+</div>
+<div class="age">
+    <canvas id=""></canvas>
+</div>
+
+</body>
+<script th:inline="javascript">
+    const chartData = {
+        datasets: [
+            {
+                label: "좋아요 개수",
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                data: /*[[${likeCnt}]]*/ '',
+                // yAxisID: "y-axis",
+            },
+            {
+                label: "리뷰 개수",
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                data: /*[[${reviewCnt}]]*/ '',
+                // yAxisID: "y-axis", // Both datasets now share the same y-axis
+            },
+        ],
+        // labels: ["2월","3월", "4월", "5월", "6월", "7월"],
+        labels: ["MONTH1","MONTH2", "MONTH3", "MONTH4", "MONTH5", "MONTH6"],
+    };
+
+    // Chart configuration options
+    const chartOptions = {
+        responsive: true,
+        interaction: {
+            mode: "index",
+            intersect: false,
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: '최근 6개월 간 좋아요&리뷰 개수'
+            }
+        },
+        scales: {
+            y: {
+                type: "linear",
+                display: true,
+                position: "left",
+                id: "y-axis",
+                grid: {
+                    drawOnChartArea: false,
+                },
+                ticks: {
+                    stepSize: 200,
+                },
+            }
+        },
+    };
+
+    // Create the chart
+    const ctx = document.getElementById("likeAndReviewCnt").getContext("2d");
+    const likeAndReviewCnt = new Chart(ctx, {
+        type: "line",
+        data: chartData,
+        options: chartOptions,
+    });
+
+    const foodNo = /*[[${foodNo}]]*/ '';
+</script>
+</html>

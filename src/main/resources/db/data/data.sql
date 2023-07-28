@@ -408,6 +408,19 @@ VALUES('2023-07-21',29,'미국미니언',33,2.8,100,20,'M','미국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-21',30,'미국물',166,1.88,200,10,'F','미국');
 
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-02-21',25,'미국오감자',499,1.8,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-03-21',25,'미국오감자',123,4.5,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-04-21',25,'미국오감자',321,1.0,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-05-21',25,'미국오감자',22,4.9,120,30,'F','미국');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-06-21',25,'미국오감자',33,2.8,100,20,'M','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+VALUES('2023-07-21',25,'미국오감자',166,1.88,200,10,'F','미국');
+
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
 VALUES ('과자 종류가 많이 없어서 아쉬워요.',2.0,'초코맛있다',1);
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)

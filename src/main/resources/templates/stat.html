@@ -28,18 +28,27 @@
     <form th:action="@{/stat}" method="get">
         <input type="date" id="datePicker" name="selectedDate" th:value="${selectedDate}" class="w-48 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <select name="country" th:value="${country}" class="w-48 mt-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="" selected>전체 국가</option>
-            <option value="한국">한국</option>
-            <option value="일본">일본</option>
-            <option value="미국">미국</option>
-            <option value="영국">영국</option>
-            <option value="베트남">베트남</option>
-            <option value="태국">태국</option>
-            <option value="프랑스">프랑스</option>
-            <option value="이탈리아">이탈리아</option>
-            <option value="튀르키예">튀르키예</option>
-            <option value="중국">중국</option>
-            <option value="몽골">몽골</option>
+<!--            <option value="" selected>전체 국가</option>-->
+            <option value="한국" th:selected="${country == '한국'}">한국</option>
+            <option value="일본" th:selected="${country == '일본'}">일본</option>
+            <option value="미국" th:selected="${country == '미국'}">미국</option>
+            <option value="영국" th:selected="${country == '영국'}">영국</option>
+            <option value="베트남" th:selected="${country == '베트남'}">베트남</option>
+            <option value="태국" th:selected="${country == '태국'}">태국</option>
+            <option value="프랑스" th:selected="${country == '프랑스'}">프랑스</option>
+            <option value="이탈리아" th:selected="${country == '이탈리아'}">이탈리아</option>
+            <option value="튀르키예" th:selected="${country == '튀르키예'}">튀르키예</option>
+            <option value="프랑스" th:selected="${country == '프랑스'}">프랑스</option>
+            <option value="독일" th:selected="${country == '독일'}">독일</option>
+            <option value="벨기에" th:selected="${country == '벨기에'}">벨기에</option>
+            <option value="스웨덴" th:selected="${country == '스웨덴'}">스웨덴</option>
+            <option value="이탈리아" th:selected="${country == '이탈리아'}">이탈리아</option>
+            <option value="폴란드" th:selected="${country == '폴란드'}">폴란드</option>
+            <option value="스위스" th:selected="${country == '스위스'}">스위스</option>
+            <option value="캐나다" th:selected="${country == '캐나다'}">캐나다</option>
+            <option value="호주" th:selected="${country == '호주'}">호주</option>
+            <option value="기타" th:selected="${country == '기타'}">기타</option>
+<!--            <option value="all">전체국가</option>-->
         </select>
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
         <button type="button" onclick="location.href='stat/top10'" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">TOP 10 조회</button>
@@ -47,7 +56,7 @@
 </div>
 
 <div class="body">
-    <table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
+    <table class="w-4/5 text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
             <th scope="col" class="px-6 py-3">STAT NO</th>
@@ -59,6 +68,7 @@
             <th scope="col" class="px-6 py-3">LIKE CNT</th>
             <th scope="col" class="px-6 py-3">MEMBER AGE GROUP</th>
             <th scope="col" class="px-6 py-3">MEMBER GENDER</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -73,6 +83,9 @@
             <th scope="row" class="px-6 py-4" th:text="${list.likeCnt}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.memberAgeGroup}"/></th>
             <th scope="row" class="px-6 py-4" th:text="${list.memberGender}"/></th>
+            <th>
+                <a th:href="@{/stat/show-detail/{foodNo}(foodNo=${list.foodNo})}" class="text-gray-700 hover:text-black border border-gray-200 hover:bg-blue-200 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">상세보기</a>
+            </th>
 
         </tr>
         </tbody>
@@ -129,7 +142,7 @@
     pageButtons.forEach((button, index) => {
         const pageNumber = currentPage - 2 + index;
 
-        button.href = `/stat?page=${pageNumber}&country=${country}&selectedDate=${selectedDate}`;
+        button.href = `/stat?page=${pageNumber}&selectedDate=${selectedDate}&country=${country}`;
         button.innerText = pageNumber + 1;
 
         if (pageNumber === currentPage) {
@@ -144,9 +157,9 @@
     const previousButton = document.getElementById('previousButton');
     const nextButton = document.getElementById('nextButton');
 
-    previousButton.href = `/stat?page=${currentPage - 1}&country=${country}&selectedDate=${selectedDate}`;
+    previousButton.href = `/stat?page=${currentPage - 1}&selectedDate=${selectedDate}&country=${country}`;
     previousButton.style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
-    nextButton.href = `/stat?page=${currentPage + 1}&country=${country}&selectedDate=${selectedDate}`;
+    nextButton.href = `/stat?page=${currentPage + 1}&selectedDate=${selectedDate}&country=${country}`;
     nextButton.style.pointerEvents = currentPage === totalPagesInt ? 'none' : 'auto';
 </script>
 </html>

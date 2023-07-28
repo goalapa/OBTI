@@ -98,4 +98,47 @@
     </select>
 
 
+    <select id="getLikeCntByMonth" resultType="Integer">
+        SELECT
+                COALESCE(SUM(LIKE_CNT), 0) AS totalLikes
+        FROM
+                STAT
+        WHERE
+                FOOD_NO = #{ foodNo }
+        GROUP BY
+                YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+        ORDER BY
+                YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+        LIMIT 6;
+    </select>
+
+    <select id="getReviewCntByMonth" resultType="Integer">
+        SELECT
+                COALESCE(SUM(REVIEW_CNT), 0) AS totalLikes
+        FROM
+                STAT
+        WHERE
+                FOOD_NO = #{ foodNo }
+        GROUP BY
+                YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+        ORDER BY
+                YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+        LIMIT 6;
+    </select>
+
+    <select id="getMemberAgeGroupByMonth" resultType="Integer">
+        SELECT
+        COALESCE(SUM(REVIEW_CNT), 0) AS totalLikes
+        FROM
+        STAT
+        WHERE
+        FOOD_NO = #{ foodNo }
+        GROUP BY
+        YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+        ORDER BY
+        YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+        LIMIT 6;
+    </select>
+
+
 </mapper>

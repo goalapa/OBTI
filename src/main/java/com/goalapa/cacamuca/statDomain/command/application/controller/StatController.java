@@ -7,7 +7,6 @@ import com.goalapa.cacamuca.statDomain.query.domain.service.GetStatService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.apache.ibatis.ognl.Ognl.setValue;
 
 @Controller
 public class StatController {
@@ -47,13 +45,11 @@ public class StatController {
 
         if (selectedDate == null) selectedDate = LocalDate.now();
 
-        if(country == null || country == "") {
-//            List<QueryStatDTO> stats = getStatService.findStatsByDate(selectedDate);
+        if(country == "all" || country == "") {
             Page<Stat> stats = getStatService.findStatsByDate(selectedDate, pageable);
             model.addAttribute("statPage", stats);
             model.addAttribute("selectedDate", selectedDate);
         } else {
-//            List<QueryStatDTO> stats = getStatService.findStatsByDateAndCountry(selectedDate, country);
             Page<Stat> stats = getStatService.findStatsByDateAndCountry(selectedDate, country, pageable);
             model.addAttribute("statPage", stats);
             model.addAttribute("selectedDate", selectedDate);
@@ -77,6 +73,20 @@ public class StatController {
         model.addAttribute("country", country);
 
         return "stat-top10";
+    }
+
+    @GetMapping("/stat/show-detail/{foodNo}")
+    public String showStatDetail(Model model, @PathVariable("foodNo") int foodNo) {
+
+        model.addAttribute("foodNo", foodNo);
+        List<Integer> likeCnt = getStatService.getLikeCntByMonth(foodNo);
+        List<Integer> reviewCnt = getStatService.getReviewCntByMonth(foodNo);
+        List<Integer> memberAgeGroup = getStatService.getMemberAgeGroupByMonth(foodNo);
+
+        model.addAttribute("likeCnt", likeCnt);
+        model.addAttribute("reviewCnt", reviewCnt);
+
+        return "statDetail";
     }
 
 }
