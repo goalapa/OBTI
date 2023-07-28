@@ -126,18 +126,60 @@
         LIMIT 6;
     </select>
 
-    <select id="getMemberAgeGroupByMonth" resultType="Integer">
+    <select id="getFoodRate" resultType="java.lang.Float">
         SELECT
-        COALESCE(SUM(REVIEW_CNT), 0) AS totalLikes
+                COALESCE(AVG(FOOD_RATE), 0) AS foodRate
         FROM
-        STAT
+                STAT
         WHERE
-        FOOD_NO = #{ foodNo }
+                FOOD_NO = #{ foodNo }
         GROUP BY
-        YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+                YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
         ORDER BY
-        YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
+                YEAR(UPDATE_DATE), MONTH(UPDATE_DATE)
         LIMIT 6;
+    </select>
+
+    <select id="getGenderRatio" resultType="java.lang.Float">
+        SELECT
+                COUNT(*) * 100.0 / (
+                        SELECT COUNT(*)
+                        FROM REVIEW A
+                        JOIN MEMBER B ON A.MEMBER_NO = B.MEMBER_NO
+                        WHERE A.FOOD_NO = #{foodNo}
+                ) AS genderRatio
+        FROM
+                REVIEW A
+                JOIN
+                MEMBER B ON A.MEMBER_NO = B.MEMBER_NO
+        WHERE
+                A.FOOD_NO = #{ foodNo }
+                AND
+                B.MEMBER_GENDER = 'F'
+    </select>
+
+    <select id="getAgeGroup" resultType="Integer">
+        SELECT
+                CASE
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 10 AND 19 THEN 10
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 20 AND 29 THEN 20
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 30 AND 39 THEN 30
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 40 AND 49 THEN 40
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 50 AND 59 THEN 50
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 60 AND 69 THEN 60
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 70 AND 79 THEN 70
+                    WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM B.MEMBER_BIRTH) BETWEEN 80 AND 89 THEN 80
+                    ELSE 0
+                END AS AGE_GROUP,
+                COALESCE(COUNT(*), 0) AS REVIEW_CNT
+        FROM
+                REVIEW A
+        JOIN
+                MEMBER B ON A.MEMBER_NO = B.MEMBER_NO
+        WHERE
+                A.FOOD_NO = #{ foodNo }
+        GROUP BY
+                AGE_GROUP;
     </select>
 
 
