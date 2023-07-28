@@ -11,11 +11,9 @@ import java.util.List;
 @Mapper
 public interface FoodRegistMapper {
 
-    FoodEntity findByFoodName(String foodName);
+    List<Food> findFoodsRegist(Pageable pageable);
 
-    List<Food> findFoods(Pageable pageable);
-
-    Integer countFoods();
+    Integer countFoodRegistList();
 
     List<FoodPicDTO> findAllFoodPic();
 }

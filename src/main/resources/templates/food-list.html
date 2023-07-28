@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,9 +10,9 @@
     <th:block th:insert="~{common/adminHeader}" />
     <th:block th:insert="~{common/adminAside}" />
     <main class="p-4 sm:ml-64">
-        <h1 class="px-1 mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-gray-900 ">
-             식품목록
-        </h1>
+        <h3 class="px-1 mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-gray-900 ">
+            식품 리스트
+        </h3>
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
@@ -20,17 +20,27 @@
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             식품 번호
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='food_no')}">
+                            <a th:href="@{/food-list(page=${ foodRegistPage.number}, sort='food_no')}">
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                 </svg>
                             </a>
                         </div>
                     </th>
+    <!--                <th scope="col" class="px-6 py-3">-->
+    <!--                    <div class="flex items-center">-->
+    <!--                        식품 이미지-->
+    <!--                        <a th:href="@{templates/food-list.html(page=${ foodRegistPage.number}, sort='food_pic')}">-->
+    <!--                            <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">-->
+    <!--                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>-->
+    <!--                            </svg>-->
+    <!--                        </a>-->
+    <!--                    </div>-->
+    <!--                </th>-->
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             식품명
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='food_kname')}">
+                            <a th:href="@{/food-list(page=${ foodRegistPage.number}, sort='food_name')}">
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                 </svg>
@@ -40,17 +50,7 @@
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             국가
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='country')}">
-                                <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <div class="flex items-center">
-                            식품 유형
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='food_type')}">
+                            <a th:href="@{/food-list(page=${ foodRegistPage.number}, sort='country')}">
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                 </svg>
@@ -59,8 +59,8 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
-                            식품 가격
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='food_price')}">
+                            식품 유형
+                            <a th:href="@{/food-list(page=${ foodRegistPage.number}, sort='food_type')}">
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                 </svg>
@@ -70,7 +70,7 @@
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
                             식품 평점
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='food_rate')}">
+                            <a th:href="@{/food-list(page=${ foodRegistPage.number}, sort='food_rate')}">
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                 </svg>
@@ -79,8 +79,8 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <div class="flex items-center">
-                            식품 사진
-                            <a th:href="@{/food-list(page=${ foods.number }, sort='food_rate')}">
+                            식품 가격
+                            <a th:href="@{/food-list(page=${ foodRegistPage.number}, sort='food_price')}">
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                 </svg>
@@ -90,14 +90,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="foods, index : ${ foods.content } " class="bg-white border-b">
-                        <th th:text="${foods.foodNo}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" />
-                        <td th:text="${foods.foodName}" class="px-6 py-4" />
-                        <td th:text="${foods.country}" class="px-6 py-4" />
-                        <td th:text="${foods.foodType}" class="px-6 py-4" />
-                        <td th:text="${foods.foodPrice}" class="px-6 py-4" />
-                        <td th:text="${foods.foodRate}" class="px-6 py-4" />
-                    </tr>
+                <tr th:each="foodRegistPage, index : ${ foodRegistPage.content } " class="bg-white border-b">
+                    <th th:text="${foodRegistPage.foodNo}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" />
+    <!--                <td th:text="${foodRegistPage.foodPic}" class="px-6 py-4" />-->
+                    <td th:text="${foodRegistPage.foodName}" class="px-6 py-4" />
+                    <td th:text="${foodRegistPage.country}" class="px-6 py-4" />
+                    <td th:text="${foodRegistPage.foodType}" class="px-6 py-4" />
+                    <td th:text="${foodRegistPage.foodRate}" class="px-6 py-4" />
+                    <td th:text="${foodRegistPage.foodPrice}" class="px-6 py-4" />
+                </tr>
                 </tbody>
             </table>
 
@@ -108,28 +109,29 @@
                             Showing
                             <span class="font-medium">1</span>
                             to
-                            <span class="font-medium" th:text="${ foods.numberOfElements }"></span>
+                            <span class="font-medium" th:text="${ foodRegistPage.numberOfElements }"></span>
                             of
-                            <span class="font-medium" th:text="${ foods.totalElements }"></span>
+                            <span class="font-medium" th:text="${ foodRegistPage.totalElements }"></span>
                             results
                         </p>
                     </div>
                     <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination"
-                         th:with="start=${(foods.number/ 5) * 5  + 1}, end=(${(foods.totalPages == 0) ? 1 : (start + (5 - 1) < foods.totalPages ? start + (5 - 1) : foods.totalPages)})">
-                        <a id="previous-page" th:href="@{/food-list(page=${ foods.number == 0? foods.number : foods.number - 1 })}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                         th:with="start=${(foodRegistPage.number/ 5) * 5  + 1}, end=(${(foodRegistPage.totalPages == 0) ? 1 : (start + (5 - 1) < foodRegistPage.totalPages ? start + (5 - 1) : foodRegistPage.totalPages)})">
+                        <a id="previous-page" th:href="@{/food-list(page=${ foodRegistPage.number == 0? foodRegistPage.number : foodRegistPage.number - 1 })}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                             <span class="sr-only">Previous</span>
                             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
                             </svg>
-                            <th:block th:each="page: ${foods.sequence(start, end)}">
-                                <a th:id="'page-' + ${ page }" th:href="@{/food-list(page=${ page } - 1)}" th:text="${ page }" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"></a>
-                            </th:block>
-                            <a id="next-page" th:href="@{/food-list(page=${ foods.number == foods.totalPages - 1? foods.number : foods.number + 1 })}" th:disabled="${ foods.number eq foods.totalPages - 1 }" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span class="sr-only">Next</span>
-                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                        </a>
+                        <th:block th:each="page: ${#foodRegistPage.sequence(start, end)}">
+                            <a th:id="'page-' + ${ page }" th:href="@{/food-list(page=${ page } - 1)}" th:text="${ page }" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"></a>
+                        </th:block>
+                        <a id="next-page" th:href="@{templates/food-list.html(page=${ foodRegistPage.number == foodRegistPage.totalPages - 1? foodRegistPage.number : foodRegistPage.number + 1 })}" th:disabled="${ foodRegistPage.number eq foodRegistPage.totalPages - 1 }" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                            <span class="sr-only">Next</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
                     </nav>
                 </div>
             </div>
@@ -137,14 +139,14 @@
     </main>
     <script>
         window.onload = function() {
-            const no = Number(`[[${ foods.number }]]`).valueOf() + 1;
+            const no = Number(`[[${ foodRegistPage.number }]]`).valueOf() + 1;
             const number = 'page-' + no;
             const element =  document.getElementById(number);
             element.classList.add("bg-blue-300");
             element.classList.remove("hover:bg-gray-50");
 
-            const currentPage = Number(`[[${ foods.number }]]`);
-            const lastPage = Number(`[[${ foods.totalPages }]]`).valueOf() - 1;
+            const currentPage = Number(`[[${ foodRegistPage.number }]]`);
+            const lastPage = Number(`[[${ foodRegistPage.totalPages }]]`).valueOf() - 1;
 
             if(currentPage == 0) {
                 document.getElementById('previous-page').removeAttribute('href');
