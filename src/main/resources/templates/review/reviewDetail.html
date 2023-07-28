@@ -307,10 +307,6 @@
         }
     });
 
-    let noValue = `[[${no}]]`;
-    let memberValue = `[[${member}]]`;
-    const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
-
     function showInputForm(value) {
         var inputForm = document.getElementById("inputForm");
         if (value === "5") {
@@ -318,39 +314,40 @@
         } else {
             inputForm.style.display = "none";
         }
+    }
       
-        function updateLikeText(reviewLikeCnt){
-            likeText.textContent = reviewLikeCnt;
+    function updateLikeText(reviewLikeCnt){
+        likeText.textContent = reviewLikeCnt;
+    }
+
+    function clickHeart() {
+        console.log('하트가 클릭되었습니다.');
+        // document.getElementById("likeImg").src = "/assets/img/heart.png";
+        const likeImg = document.getElementById("likeImg");
+        const likeCheck = document.getElementById("like_check");
+
+        if (likeCheck.value === "true") {
+            likeImg.src = "/assets/img/empty_heart.png";
+            likeCheck.value = "false";
+
+        } else {
+            likeImg.src = "/assets/img/heart.png";
+            likeCheck.value = "true";
         }
+        updateLikeText(parseInt(likeText.textContent) + (likeCheck.value === "true" ? 1 : -1));
 
-        function clickHeart () {
-            console.log('하트가 클릭되었습니다.');
-            // document.getElementById("likeImg").src = "/assets/img/heart.png";
-            const likeImg = document.getElementById("likeImg");
-            const likeCheck = document.getElementById("like_check");
+        localStorage.setItem("likeStatus", likeCheck.value);
 
-            if (likeCheck.value === "true") {
-                likeImg.src = "/assets/img/empty_heart.png";
-                likeCheck.value = "false";
-
-            } else {
-                likeImg.src = "/assets/img/heart.png";
-                likeCheck.value = "true";
+        axios({
+            method: 'post',
+            url: '/review/reviewDetail',
+            data: {
+                no: noValue,
+                member: memberValue,
+                likeStatus: likeCheck.value
             }
-            updateLikeText(parseInt(likeText.textContent) + (likeCheck.value === "true" ? 1 : -1));
-
-            localStorage.setItem("likeStatus", likeCheck.value);
-
-            axios({
-                method: 'post',
-                url: '/review/reviewDetail',
-                data: {
-                    no: noValue,
-                    member: memberValue,
-                    likeStatus: likeCheck.value
-                }
-            }).then(function (response) {
-            });
+        }).then(function (response) {
+        });
         }
       
         function clickReport(){
@@ -375,99 +372,9 @@
                 console.log('취소되었습니다.');
             }
         }
-
-        localStorage.setItem("likeStatus", likeCheck.value);
-
-        axios({
-            method: 'post',
-            url: '/review/reviewDetail',
-            data: {
-                no: noValue,
-                member: memberValue,
-                likeStatus: likeCheck.value
-            }
-        }).then(function (response) {
-            console.log(response.data.no);
-            console.log(response.data.member);
-            console.log(response.data.likeStatus);
-        });
-    }
-
-    // function clickReport(){
-    //     if (confirm('신고하시겠습니까?')==true) {
-    //         axios({
-    //             method: 'post',
-    //             url:'/review/report',
-    //             data: {
-    //                 no: noValue,
-    //                 member: memberValue,
-    //                 reportReason:reportReason
-    //             }
-    //         }).then(function (response){
-    //         }).catch(function (error){
-    //             console.log(error);
-    //         });
-    //     }
-    //     else {
-    //         console.log('취소되었습니다.');
-    //     }
-    // }
-
 </script>
 
-<!--<script>-->
-<!--    function modal(id) {-->
-<!--        var zIndex = 9999;-->
-<!--        var modal = document.getElementById(id);-->
-
-<!--        var bg = document.createElement('div');-->
-<!--        bg.setStyle({-->
-<!--            position: 'fixed',-->
-<!--            zIndex: zIndex,-->
-<!--            left: '0px',-->
-<!--            top: '0px',-->
-<!--            width: '100%',-->
-<!--            height: '100%',-->
-<!--            overflow: 'auto',-->
-
-<!--            backgroundColor: 'rgba(0,0,0,0.4)'-->
-<!--        });-->
-<!--        document.body.append(bg);-->
-
-
-<!--        modal.querySelector('.modal_close_btn').addEventListener('click', function() {-->
-<!--            bg.remove();-->
-<!--            modal.style.display = 'none';-->
-<!--        });-->
-
-<!--        modal.setStyle({-->
-<!--            position: 'fixed',-->
-<!--            display: 'block',-->
-<!--            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',-->
-
-<!--            zIndex: zIndex + 1,-->
-
-<!--            top: '50%',-->
-<!--            left: '50%',-->
-<!--            transform: 'translate(-50%, -50%)',-->
-<!--            msTransform: 'translate(-50%, -50%)',-->
-<!--            webkitTransform: 'translate(-50%, -50%)'-->
-<!--        });-->
-<!--    }-->
-
-
-<!--    Element.prototype.setStyle = function(styles) {-->
-<!--        for (var k in styles) this.style[k] = styles[k];-->
-<!--        return this;-->
-<!--    };-->
-
-<!--    document.getElementById('popup_open_btn').addEventListener('click', function() {-->
-<!--        modal('my_modal');-->
-<!--    });-->
-<!--</script>-->
-
 <script>
-
     const rating_input = document.querySelector('.rating input');
     const rating_star = document.querySelector('.rating_star');
 
