@@ -132,6 +132,8 @@
 
         .img{
             position: relative;
+            width: 230px;
+            height: 230px;
             left: 15px;
         }
     </style>
@@ -177,7 +179,7 @@
         <th:block th:if="${reviewPic eq null}"/>
 
         <th:block th:unless="${reviewPic eq null}">
-            <img class="img" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="250" height="250" alt="Image">
+            <img class="img" th:src="@{|/review/${reviewPic.reviewPicUrl}|}" alt="Image">
         </th:block>
     </div>
     <div class="list_btn">
