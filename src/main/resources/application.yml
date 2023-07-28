@@ -28,12 +28,14 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
+      # activate가 dev일때만, create, create-drop
       ddl-auto: none
 #      use-new-id-generator-mappings: false
     defer-datasource-initialization : true
   sql:
     init:
       data-locations: classpath:db/data/data.sql
+      # activate가 dev일때만, always
       mode: never
       platform: mysql
       encoding: UTF-8
