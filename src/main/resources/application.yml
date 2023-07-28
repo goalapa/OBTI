@@ -29,13 +29,13 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
 #      use-new-id-generator-mappings: false
     defer-datasource-initialization : true
   sql:
     init:
       data-locations: classpath:db/data/data.sql
-      mode: always
+      mode: never
       platform: mysql
       encoding: UTF-8
 
