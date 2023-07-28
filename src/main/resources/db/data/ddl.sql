@@ -5,7 +5,7 @@ create table app_review (
                             member_nickname varchar(255),
                             member_no integer,
                             primary key (app_review_no)
-)  
+);
  
 
 create table blacklist (
@@ -14,7 +14,7 @@ create table blacklist (
                            blacklist_reg_date date,
                            blacklist_rel_date date,
                            primary key (blacklist_no)
-)  
+);
  
 
 create table category (
@@ -22,7 +22,7 @@ create table category (
                           country varchar(255) comment '국가명',
                           food_type varchar(255) comment '식품 종류',
                           primary key (category_no)
-)  
+);
  
 
 create table food (
@@ -33,14 +33,14 @@ create table food (
                       food_rate double precision,
                       food_type varchar(255),
                       primary key (food_no)
-)  
+);
  
 
 create table food_pic (
                           food_no integer not null auto_increment,
                           food_pic_url varchar(255),
                           primary key (food_no)
-)  
+);
  
 
 create table member (
@@ -56,7 +56,7 @@ create table member (
                         member_pwd varchar(255),
                         member_report_cnt integer default 0,
                         primary key (member_no)
-)  
+);
  
 
 create table report (
@@ -66,7 +66,7 @@ create table report (
                         reported_member_no integer,
                         review_no integer,
                         primary key (report_no)
-)  
+);
  
 
 create table request (
@@ -78,14 +78,14 @@ create table request (
                          request_member_no integer,
                          request_price integer,
                          primary key (request_no)
-)  
+);
  
 
 create table request_pic (
                              request_no integer not null auto_increment,
                              request_url varchar(255),
                              primary key (request_no)
-)  
+);
  
 
 create table review (
@@ -104,7 +104,7 @@ create table review (
                         review_rate double precision,
                         member_no integer,
                         primary key (review_no)
-)  
+);
  
 
 create table review_like (
@@ -112,7 +112,7 @@ create table review_like (
                              member_no integer,
                              review_no integer,
                              primary key (like_no)
-)  
+);
  
 
 create table review_pic (
@@ -120,7 +120,7 @@ create table review_pic (
                             review_pic_url varchar(255),
                             review_no integer,
                             primary key (review_pic_no)
-)  
+);
  
 
 create table stat (
@@ -136,10 +136,10 @@ create table stat (
                       review_cnt integer,
                       update_date date,
                       primary key (stat_no)
-)  
+);
  
 
 alter table review_pic
     add constraint FK6wp6s32m419ed65c8trmmpiq9
         foreign key (review_no)
-            references review (review_no)
+            references review (review_no);
