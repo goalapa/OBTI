@@ -125,10 +125,13 @@ public class ReportServiceImpl implements ReportService {
             Review reportedReview = reviewRepository.findById(reportDeleteDTO.getReviewNo())
                     .orElseThrow(() -> new NotFoundException("존재하지않는 리뷰입니다."));
 
-            int reviewReportCnt = 0;
+            int reviewReportCnt = 1;
             if (reportedReview.getReportCnt() != null) {
                 reportedReview.setReportCnt(reportedReview.getReportCnt() + 1);
                 reviewReportCnt = reportedReview.getReportCnt();
+            }
+            else {
+                reportedReview.setReportCnt(reviewReportCnt);
             }
 
             // 리뷰의 누적 신고 횟수가 10 이상일 떄
