@@ -413,8 +413,6 @@ INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_gran
 -- VALUES('abc011','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
 VALUES('abc011','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
 
-
-
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
 VALUES(1,19,2,3,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
