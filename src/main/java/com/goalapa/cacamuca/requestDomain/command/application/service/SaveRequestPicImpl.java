@@ -28,38 +28,13 @@ public class SaveRequestPicImpl implements SaveRequestPic {
 
     @Override
     @Transactional
-    public void saveRequestPic(@RequestParam MultipartFile singleFile) {
+    public void saveRequestPic(@RequestParam MultipartFile singleFile, int requestNo) {
 
-
-        //File dir = new File(filePath);
-
-//        if(!dir.exists()) {
-//            dir.mkdirs();
-//        }
-
-//        String originFileName = singleFile.getOriginalFilename();
-//
-//        String ext = originFileName.substring(originFileName.lastIndexOf("."));
-//
-//        String savedName = UUID.randomUUID().toString().replaceAll("-", "") + ext;
-//
-//        try {
-//            singleFile.transferTo(new File(filePath  + "/" + savedName));
-//        } catch (IOException e) {
-//            new File(filePath + "/" + savedName).delete();
-//        }
-////        RequestPic requestPic = new RequestPic();
-////        requestPic.setRequestUrl(filePath  + "/" + savedName);
-//
-//        RequestPic requestPic = new RequestPic();
-//        requestPic.setRequestUrl(savedName);
-//
-//        requestPicRepository.save(requestPic);
 
         String fileName = StringUtils.cleanPath(singleFile.getOriginalFilename());
 
         try {
-            String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;;
+            String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
             File uploadDir = new File(filePath);
 
             if (!uploadDir.exists()) {
@@ -70,6 +45,7 @@ public class SaveRequestPicImpl implements SaveRequestPic {
             singleFile.transferTo(new File(uploadPath));
 
             RequestPic requestPic = new RequestPic();
+            requestPic.setRequestNo(requestNo);
             requestPic.setRequestUrl(uniqueFileName);
 
             requestPicRepository.save(requestPic);
