@@ -356,24 +356,29 @@
     }
 
     function submitReport() {
-        const form = document.getElementById('reportForm');
-        const reportTypeValue = form.querySelector('input[name="report_type"]:checked').value;
-        console.log(reportTypeValue);
+        if(confirm("신고하시겠습니까?")) {
+            const form = document.getElementById('reportForm');
+            const reportTypeValue = form.querySelector('input[name="report_type"]:checked').value;
+            console.log(reportTypeValue);
 
-        const data = {
-            reportType: reportTypeValue,
-            memberNo: memberValue,
-            reviewNo: noValue,
-        };
+            const data = {
+                reportType: reportTypeValue,
+                memberNo: memberValue,
+                reviewNo: noValue,
+            };
 
-        axios.post("/review/report", data)
-            .then(response => {
+            axios.post("/review/report", data)
+                .then(response => {
+                    hideModal('modal');
+                    alert("정상적으로 신고되었습니다!");
+                }).catch(error => {
+                console.error('Failed to submit report.', error);
                 hideModal('modal');
-                alert("정상적으로 신고되었습니다!");
-            }).catch(error => {
-            console.error('Failed to submit report.', error);
-            hideModal('modal');
-        });
+            });
+        }
+        else {
+            console.log('취소하였습니다.');
+        }
     }
 </script>
 </body>
