@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
+
+</head>
+<style>
+    .selected-page {
+        background-color: #3490dc;
+        color: white;
+    }
+
+    .page-button {
+        width: 30px;
+        height: 30px;
+        /*background-color: #f2f2f2;*/
+        border: 1px solid #ccc;
+        color: #333;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .page-button:hover {
+        background-color: #ddd;
+    }
+
+    .page-button:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<body>
+<th:block th:insert="~{common/header}"/>
+<th:block th:insert="~{common/aside}"/>
+
+<main class="p-4 sm:ml-64">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
+        <table id="reportList" style="table-layout: fixed;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">나라</th>
+                <th scope="col" class="px-6 py-3">식품명</th>
+                <th scope="col" class="px-6 py-3">식품 타입</th>
+                <th scope="col" class="px-6 py-3">리뷰 내용</th>
+                <th scope="col" class="px-6 py-3">키워드</th>
+                <th scope="col" class="px-6 py-3">좋아요 수</th>
+                <th scope="col" class="px-6 py-3">신고 횟수</th>
+                <th scope="col" class="px-6 py-3">구매 링크</th>
+                <th scope="col" class="px-6 py-3">작성 일자</th>
+            </tr>
+            </thead>
+            <tbody id="reviewList">
+            <tr th:each=" myReview : ${myReviews}">
+                <th scope="row" class="px-6 py-4" th:text="${myReview.country}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${myReview.foodName}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${myReview.foodType}"></th>
+                <th scope="row" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" class="px-6 py-4">
+                    <a th:text="${myReview.reviewContent}" th:href="@{/detail(no=${myReview.reviewNo}, country=${myReview.country})}"/></th>
+                <th scope="row" class="px-6 py-4" th:text="${myReview.reviewKeyword}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${myReview.likeCnt}"></th>
+                <th scope="row" class="px-6 py-4" th:text="${myReview.reportCnt}"></th>
+                <th scope="row" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" class="px-6 py-4">
+                    <a th:text="${myReview.reviewLink}" th:href="${myReview.reviewLink}"/></th>
+                <th scope="row" class="px-6 py-4" th:text="${myReview.reviewDate}"></th>
+                <th scope="row">
+                    <button type="button" onclick="deleteReview(event)" th:data-review-id="${myReview.reviewNo}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">삭제</button>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
+        <!-- 이전 페이지 버튼 -->
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-10 mb-15">Showing
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().offset + 1}"></span> -
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getPageable().offset + myReviews.getNumberOfElements()}"></span> of
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getTotalElements()}"></span>
+    </span>
+        <ul class="inline-flex -space-x-px text-sm h-8">
+            <!-- 이전 페이지 버튼 -->
+            <a th:if="${myReviews.hasPrevious()}" th:href="@{/myReview(page=${myReviews.number - 1})}" style="display: inline-block;">
+                <button class="page-button">
+                    &laquo;
+                </button>
+            </a>
+
+            <!-- 페이지 번호 버튼 -->
+            <a th:each="page : ${#numbers.sequence(0, myReviews.totalPages - 1)}"
+               th:if="${myReviews.totalPages > 1}"
+               th:href="@{/myReview(page=${page})}"
+               style="display: inline-block;">
+                <button th:text="${page + 1}" th:classappend="${page == myReviews.number} ? 'selected-page' : ''" class="page-button"></button>
+            </a>
+
+            <!-- 다음 페이지 버튼 -->
+            <a th:if="${myReviews.hasNext()}" th:href="@{myReview(page=${myReviews.number + 1})}" style="display: inline-block;">
+                <button class="page-button">
+                    &raquo;
+                </button>
+            </a>
+        </ul>
+        <!-- 총 페이지 수 표시 -->
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mr-10"> total pages :
+        <span class="font-semibold text-gray-900 dark:text-white" th:text="${myReviews.getTotalPages()}" id="totalPages"></span>
+    </span>
+    </nav>
+
+</main>
+<script>
+    function deleteReview(event) {
+        const memberNo = `[[${loginMemberNo}]]`;
+        const reviewNo = event.target.getAttribute('data-review-id');
+
+        const data = {
+            reviewNo: reviewNo,
+            memberNo: memberNo,
+        };
+
+        if (confirm('삭제하시겠습니까?')==true) {
+            axios.post('/review/myReview', data)
+                .then(function (response) {
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }else {
+            console.log('취소되었습니다.');
+        }
+    }
+</script>
+</body>
+</html>

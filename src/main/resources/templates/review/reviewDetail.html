@@ -162,6 +162,7 @@
 
     <link rel="stylesheet" th:href="@{/css/fonts.css}" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/1s.css}" />
 </head>
 <body>
 <th:block th:insert="~{common/header}"/>
@@ -182,7 +183,7 @@
         </div>
 
         <div class="inner_content">
-            <textarea style="resize: none;" th:text="${review.reviewContent}" rows="7" cols="80"/>
+            <textarea style="resize: none;" th:text="${review.reviewContent}" rows="7" cols="80" readonly/>
             <span class="rating">
             ★★★★★
             <span class="rating_star">★★★★★</span>
@@ -271,8 +272,27 @@
     </div>
 </div>
 
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const likeImg = document.getElementById("likeImg");
+        const likeCheck = document.getElementById("like_check");
+        const likeStatus = localStorage.getItem("likeStatus");
+        const reviewLikeCnt = `[[${review.likeCnt}]]`
 
-<script>
+        if (likeStatus === "true") {
+            likeImg.src = "/assets/img/heart.png";
+            likeCheck.value = "true";
+        } else {
+            likeImg.src = "/assets/img/empty_heart.png";
+            likeCheck.value = "false";
+        }
+        updateLikeText(reviewLikeCnt);
+    });
+
+    let noValue = `[[${no}]]`;
+    let memberValue = `[[${member}]]`;
+    let likeText = document.getElementById('likeText');
+  
     document.addEventListener("DOMContentLoaded", function() {
         const likeImg = document.getElementById("likeImg");
         const likeCheck = document.getElementById("like_check");
@@ -298,20 +318,62 @@
         } else {
             inputForm.style.display = "none";
         }
-    }
+      
+        function updateLikeText(reviewLikeCnt){
+            likeText.textContent = reviewLikeCnt;
+        }
 
-    function clickHeart () {
-        console.log('하트가 클릭되었습니다.');
-        // document.getElementById("likeImg").src = "/assets/img/heart.png";
-        const likeImg = document.getElementById("likeImg");
-        const likeCheck = document.getElementById("like_check");
+        function clickHeart () {
+            console.log('하트가 클릭되었습니다.');
+            // document.getElementById("likeImg").src = "/assets/img/heart.png";
+            const likeImg = document.getElementById("likeImg");
+            const likeCheck = document.getElementById("like_check");
 
-        if (likeCheck.value === "true") {
-            likeImg.src = "/assets/img/empty_heart.png";
-            likeCheck.value = "false";
-        } else {
-            likeImg.src = "/assets/img/heart.png";
-            likeCheck.value = "true";
+            if (likeCheck.value === "true") {
+                likeImg.src = "/assets/img/empty_heart.png";
+                likeCheck.value = "false";
+
+            } else {
+                likeImg.src = "/assets/img/heart.png";
+                likeCheck.value = "true";
+            }
+            updateLikeText(parseInt(likeText.textContent) + (likeCheck.value === "true" ? 1 : -1));
+
+            localStorage.setItem("likeStatus", likeCheck.value);
+
+            axios({
+                method: 'post',
+                url: '/review/reviewDetail',
+                data: {
+                    no: noValue,
+                    member: memberValue,
+                    likeStatus: likeCheck.value
+                }
+            }).then(function (response) {
+            });
+        }
+      
+        function clickReport(){
+            const reportReason = document.querySelector('#my_modal select[name="report_reason"]').value;
+
+            if (confirm('신고하시겠습니까?')==true) {
+                axios({
+                    method: 'post',
+                    url:'/review/report',
+                    data: {
+                        no: noValue,
+                        member: memberValue,
+                        reportReason:reportReason
+                    }
+                }).then(function (response){
+                    alert('신고가 완료되었습니다.');
+                }).catch(function (error){
+                    console.log(error);
+                });
+            }
+            else {
+                console.log('취소되었습니다.');
+            }
         }
 
         localStorage.setItem("likeStatus", likeCheck.value);
@@ -412,7 +474,7 @@
 
     rating_star.style.width = `${rating_input.value * 10}%`;
 
-    rating_input.addEventListener('input', () => {
+    rating_input.removeEventListener('input', () => {
         rating_star.style.width = `${rating_input.value * 10}%`;
     });
 </script>

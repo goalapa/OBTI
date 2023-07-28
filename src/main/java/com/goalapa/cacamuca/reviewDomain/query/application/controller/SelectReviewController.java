@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
@@ -10,14 +11,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = {"/*/*", "/*"})
@@ -55,8 +55,6 @@ public class SelectReviewController {
         model.addAttribute("uniqueKeywords", uniqueKeywords);
         model.addAttribute("bestStat", bestStat);
         model.addAttribute("recentPrice", recentPrice);
-
-
 
         return "/review/selectReviews";
     }
@@ -112,6 +110,19 @@ public class SelectReviewController {
         }
         System.out.println("food = " + food);
         return food;
+    }
+
+    @GetMapping("/myReview")
+    public String findMyReview(@PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable,
+                               Model model, @AuthenticationPrincipal CustomUser user){
+        int loginMemberNo = user.getMemberNo();
+
+        Page<QueryReviewDTO> myReviews = selectReviewService.findMyReview(loginMemberNo, pageable);
+
+        model.addAttribute("myReviews", myReviews);
+        model.addAttribute("loginMemberNo", loginMemberNo);
+
+        return "review/myReview";
     }
 
 }
