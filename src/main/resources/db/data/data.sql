@@ -517,78 +517,42 @@ VALUES(21,'17422ca5-410c-4815-b7a6-9be7e4980dba_flaminhot.jpeg');
 
 
 
-
+/* 2023-07-29 bbbbooo */
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(1,'한국', '보통 초코와 커피의 맛의 조화는 한가지 맛이 지배적이고 나머지 한 맛이 향 추임새를 넣어주어야하는데, 이 초콜릿은 두 맛이 모두 난잡하게 싸우는 느낌. 거기에 카푸치노의 향이 너무 인공적이다.','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(2, '한국', '노맛.','쌍쌍바','2023-06-10',1.0,2,1,'개별포장',2000.0,'link', 10);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(3,'한국','맛이 너무 인공적이야','프레첼','2023-06-20',8.5,2,2,'선물추천',1000.0,'link', 10);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(4,'한국','존맛탱','김말이','2023-06-01',4.0,1,1,'가성비갑',1000.0,'link', 10);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(5,'한국','기분좋은 진함에 바나나킥향이 적당히 첨가되어있다. 바나나킥 먹고 나면 봉지에 남은 가루를 타먹는 맛. 조화가 전혀 어색하지 않다.','쌍쌍바', '2023-06-10',3.0,2,1,'개별포장',2000.0,'link', 10);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(6,'한국','기분좋은 진함에 바나나킥향이 적당히 첨가되어있다. 바나나킥 먹고 나면 봉지에 남은 가루를 타먹는 맛. 조화가 전혀 어색하지 않다.','프레첼', '2023-06-20',2.5,2,2,'선물추천',1000.0,'link', 10);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(7,'한국','리뷰 예시01','김말이','2023-06-01',8.0,1,1,'가성비갑',1000.0,'link', 18);
-
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(8,'한국','노맛','오레오','2023-06-10',7.0,2,1,'개별포장',2000.0,'link', 19);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(9,'한국','진짜 맛있어요','오레오','2023-06-20',2.0,2,2,'선물추천',1000.0,'link', 16);
-
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
 VALUES(10,'한국','목에 칼이 들어와도 다시는 안먹음','오레오','2023-06-01',1.5,1,1,'가성비갑',1000.0,'link', 1);
-
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(11,'한국','흠.. 그정둔가? 근데 먹을만함','오레오','2023-06-10',9.0,2,1,'개별포장',2000.0,'link',26);
-
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(12,'한국','미국에서 상당히 인기있는 리세스 초콜릿을 M&M 스타일로 줄인 버젼. 오리지널 리세스는 꽤 큰편인데, 저 작은 한알에도 그 맛이 전부 표현된다는게 신기하다. 내가 원래 리세스를 그리 좋아하지는 않았지만, 저렇게 작게작게 먹으니 뭔가 더 맛있었다.','오레오','2023-06-20',6.5,2,2,'선물추천',1000.0,'link',3);
-
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(13,'한국','그럭저럭 먹을만 했어요','오레오','2023-06-20',5.5,2,2,'선물추천',1000.0,'link', 11);
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(14,'한국','맛있긴한데 두번은 안먹을듯','오레오','2023-06-20',3.5,2,2,'선물추천',1000.0,'link', 15);
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(15,'한국','솔직히 별로임','오레오','2023-06-20',2.0,2,2,'선물추천',1000.0,'link', 21);
-
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(16,'한국','이건 신이 만든건가?','칙촉','2023-06-20',9.5,2,4,'선물추천',1000.0,'link', 35);
+/* 2023-07-29 bbbbooo */
 
 
-
--- INSERT INTO review_like(review_no,member_no)
--- VALUES(1,2);
--- INSERT INTO review_like(review_no,member_no)
--- VALUES(2,2);
--- INSERT INTO review_like(review_no,member_no)
--- VALUES(1,1);
--- INSERT INTO review_like(review_no,member_no)
--- VALUES(3,2);
-
-
--- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
--- VALUES(1,1,'link');
--- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
--- VALUES(2,2,'link');
--- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
--- VALUES(2,3,'link');
--- INSERT INTO review_pic(review_no,review_pic_no,review_pic_url)
--- VALUES(2,4,'link');
 
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-29',20,'몽쉘',200,4.5,100,20,'M','한국');
