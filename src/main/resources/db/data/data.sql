@@ -550,6 +550,36 @@ INSERT INTO review(review_no, country, review_content,food_name,review_date,revi
 VALUES(15,'한국','솔직히 별로임','오레오','2023-06-20',2.0,2,2,'선물추천',1000.0,'link', 21);
 INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
 VALUES(16,'한국','이건 신이 만든건가?','칙촉','2023-06-20',9.5,2,4,'선물추천',1000.0,'link', 35);
+
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(17,'한국','이건 신이 만든건가?','몽쉘','2023-06-20',9.5,2,20,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(18,'한국','맛없어요...','통크','2023-06-20',2.5,2,21,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(19,'한국','솔직히 존맛탱...','빼빼로 오리지널','2023-06-20',9.5,2,22,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(20,'한국','맛없어요...','새우깡','2023-06-20',2.5,2,23,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(21,'한국','맛없어요...','콘칩','2023-06-20',2.5,2,24,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(22,'한국','맛없어요...','오감자 오리지널','2023-06-20',2.5,2,25,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(23,'한국','맛없어요...','스윙칩','2023-06-20',2.5,2,26,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(24,'한국','맛없어요...','보름달','2023-06-20',2.5,2,27,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(25,'한국','맛없어요...','바나나킥','2023-06-20',2.5,2,28,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(26,'한국','맛없어요...','바나나맛 우유','2023-06-20',2.5,2,29,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(27,'한국','맛없어요...','딸기맛 우유','2023-06-20',2.5,2,30,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(28,'한국','맛없어요...','사또밥','2023-06-20',2.5,2,31,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(29,'한국','맛없어요...','초코하임','2023-06-20',2.5,2,32,'선물추천',1000.0,'link', 35);
+INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link, like_cnt)
+VALUES(30,'한국','맛없어요...','화이트하임','2023-06-20',2.5,2,33,'선물추천',1000.0,'link', 35);
+
 /* 2023-07-29 bbbbooo */
 
 
@@ -649,9 +679,9 @@ INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_gran
 VALUES('stat000','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','통계걸','stat@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
 INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country, member_gender)
 VALUES('stat111','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','통계보이','stat2@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','M');
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
-VALUES(20,'ko','한국 오감자 맛있따!!!','오감자 오리지널','2023-06-20',5.0,14,20,'선물추천',1000.0,'www.naver.com', 4);
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
-VALUES(21,'ko','오감자 굿~~','오감자 오리지널','2023-06-20',5.0,15,20,'선물추천',1000.0,'www.naver.comk', 5);
-INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
-VALUES(22,'ko','오감자 굿~~','오감자 오리지널','2023-06-20',5.0,15,20,'선물추천',1000.0,'www.naver.comk', 4);
+# INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+# VALUES(20,'ko','한국 오감자 맛있따!!!','오감자 오리지널','2023-06-20',5.0,14,20,'선물추천',1000.0,'www.naver.com', 4);
+# INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+# VALUES(21,'ko','오감자 굿~~','오감자 오리지널','2023-06-20',5.0,15,20,'선물추천',1000.0,'www.naver.comk', 5);
+# INSERT INTO review(review_no, country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
+# VALUES(22,'ko','오감자 굿~~','오감자 오리지널','2023-06-20',5.0,15,20,'선물추천',1000.0,'www.naver.comk', 4);
