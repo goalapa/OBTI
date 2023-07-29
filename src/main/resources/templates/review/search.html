@@ -139,6 +139,11 @@
             background-color: #eeee;
             border-radius: 3px;
         }
+        .likeCount{
+            position: relative;
+            color: #ff3333;
+            left: 230px;
+        }
 
     </style>
     <meta charset="UTF-8">
@@ -165,6 +170,7 @@
         <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
         <th:block th:if="${reviweWriter.reviewNo eq searchReview.reviewNo}">
             <a th:text="${reviweWriter.memberId}"/>
+            <a class="likeCount" th:text="${'좋아요 수 ' + searchReview.likeCnt}"/>
         </th:block>
         </span>
 
