@@ -58,16 +58,6 @@ public class ReviewService {
     }
 
     @Transactional
-    public void saveReview(ReviewDTO reviewDTO, int loginMemberNo) {
-        LocalDate date = LocalDate.now();
-        ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
-        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0, 0);
-
-        reviewRepository.save(review);
-    }
-
-    @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
         LocalDate date = LocalDate.now();
         ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
