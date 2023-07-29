@@ -56,6 +56,11 @@
 
 
 
+
+
+
+
+
     <select id="findByFoodName" parameterType="string" resultMap="foodResultMap">
         SELECT a.food_no, a.food_name, a.food_rate, a.food_price, a.country, a.food_type
         FROM food a
@@ -69,4 +74,5 @@
         FROM
         food_pic a
     </select>
+
 </mapper>

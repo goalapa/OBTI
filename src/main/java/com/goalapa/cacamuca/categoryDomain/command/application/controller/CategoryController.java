@@ -37,7 +37,7 @@ public class CategoryController {
     @GetMapping("/add")
     public String categoryAdd() {
 
-        return "/category/add";
+        return "category/add";
     }
 
     @PostMapping("/add")
@@ -57,7 +57,7 @@ public class CategoryController {
     //카테고리 수정 기능 구현
     @GetMapping("/update")
     public String checkCategory() {
-        return "/category/update";
+        return "category/update";
     }
 
     @PostMapping("/update")
