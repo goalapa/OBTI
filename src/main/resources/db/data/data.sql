@@ -734,8 +734,7 @@ INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,me
 VALUES('2023-07-29',7,'빼빼로 오리지널',150,5.0,120,30,'F','한국');
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-29',8,'새우깡',188,3.02,100,20,'M','한국');
-INSERT INTO stat(update_date,food_no,food_name, 
-                 _cnt,food_rate,like_cnt,member_age_group, member_gender, country)
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-29',9,'콘칩',6,3.94,200,10,'F','한국');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-07-29',10,'오감자 오리지널',499,5.0,120,30,'F','한국');
