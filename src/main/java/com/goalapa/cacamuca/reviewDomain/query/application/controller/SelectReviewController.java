@@ -31,10 +31,7 @@ public class SelectReviewController {
 
     @GetMapping("/selectReviews")
     public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country,@RequestParam int foodNo,
-                                @PageableDefault(sort = "review_rate", direction = Sort.Direction.DESC) Pageable pageable, @AuthenticationPrincipal CustomUser user){
-        if(user == null){
-            return "/member/login";
-        }
+                                @PageableDefault(sort = "review_rate", direction = Sort.Direction.DESC) Pageable pageable){
         Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
         List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(foodName, country);
@@ -63,11 +60,7 @@ public class SelectReviewController {
 
 
     @GetMapping("/detail")
-    public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member, @AuthenticationPrincipal CustomUser user){
-
-        if(user == null){
-            return "/member/login";
-        }
+    public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member){
 
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
         model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));

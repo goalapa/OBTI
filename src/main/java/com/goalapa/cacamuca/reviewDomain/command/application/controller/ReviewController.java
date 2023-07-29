@@ -28,10 +28,7 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public String reviewPage(@AuthenticationPrincipal CustomUser user){
-        if(user == null){
-            return "/member/login";
-        }
+    public String reviewPage(){
         return "review";
     }
 
