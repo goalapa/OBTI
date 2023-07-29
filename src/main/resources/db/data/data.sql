@@ -1,9 +1,10 @@
+-- 2022.07.29 by sui --
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
-VALUES(1,'2023-05-15','2023-06-30',1);
+VALUES(1,'2023-05-15','2023-06-30',7);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
-VALUES(2,'2023-07-25','2023-08-20',6);
+VALUES(2,'2023-06-10','2023-07-20',8);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
-VALUES(4,'2023-05-15', null, 3);
+VALUES(3,'2023-07-15', null, 9);
 
 
 INSERT INTO category(category_no,country,food_type)
@@ -390,42 +391,43 @@ INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_gran
 -- VALUES('abc011','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
 VALUES('abc011','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
 
+-- 2022.07.29 by sui --
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(1,19,2,3,1);
+VALUES(1,10,2,1,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(2,3,3,2,1);
+VALUES(2,2,5,2,4);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(3,1,2,3,1);
+VALUES(3,2,4,2,4);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(4,3,3,2,1);
+VALUES(4,2,3,2,2);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(5,1,2,3,3);
+VALUES(5,10,2,1,3);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(6,3,3,2,1);
+VALUES(6,10,3,1,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(7,1,2,3,1);
+VALUES(7,10,2,1,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(8,3,3,2,1);
+VALUES(8,19,5,3,3);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(9,1,2,3,2);
+VALUES(9,2,6,2,2);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(10,3,3,2,1);
+VALUES(10,2,8,2,4);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(11,1,2,3,3);
+VALUES(11,10,2,1,2);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(12,3,3,2,2);
+VALUES(12,19,4,3,2);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(13,1,2,3,1);
+VALUES(13,2,4,2,3);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(14,3,3,2,1);
+VALUES(14,10,3,1,3);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(15,1,2,3,2);
+VALUES(15,19,6,3,2);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(16,3,3,2,1);
+VALUES(16,10,3,1,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(17,1,2,3,3);
+VALUES(17,19,2,3,3);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
-VALUES(18,3,3,2,2);
+VALUES(18,19,7,3,2);
 
 INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('한국','빵','밤맛 쁘띠몽쉘',4200, 1, '노티드 콜라보 제품인데 추가해주세요');

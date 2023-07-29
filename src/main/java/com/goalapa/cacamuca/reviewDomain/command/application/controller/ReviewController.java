@@ -70,7 +70,7 @@ public class ReviewController {
         int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
         int loginMemberNo = user.getMemberNo();
 
-        reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
+        reviewService.countReport(reportReason, reviewNo, loginMemberNo, memberNo);
     }
 
     @PostMapping("/review/myReview")
