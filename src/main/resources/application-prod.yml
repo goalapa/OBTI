@@ -1,8 +1,8 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://43.200.231.220:54497/diary?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: ENC(fhXeWnhK8e8x9IEHlp9pDw==)
-    password: ENC(d1L0YrD1/M4Ah2rHXjqP5Q==)
+    url: jdbc:mysql://metaverse.ohgiraffers.com:3306/cacamuca?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ENC(rn+gwlMl/OzXtFqPV1ffTwr1PqxD2bkV)
+    password: ENC(wmH+9dh08A9cMsdx+9CPLq3J5Bf+tbVU)
     hikari:
       auto-commit: false

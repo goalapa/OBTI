@@ -42,6 +42,7 @@ public class SelectReviewService {
     @Transactional(readOnly = true)
     public Page<QueryReviewDTO> findAllReviews(String foodName, String country, Pageable pageable) {
         List<QueryReviewDTO> reviews = mapper.findAllReviews(foodName, country);
+        System.out.println("reviews = " + reviews);
 
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), reviews.size());

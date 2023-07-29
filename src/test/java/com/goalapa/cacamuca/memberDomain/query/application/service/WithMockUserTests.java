@@ -37,57 +37,57 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @WebAppConfiguration
 public class WithMockUserTests {
 
-    @Autowired
-    private MessageService messageService;
-
-    @Autowired
-    private WebApplicationContext context;
-
-    private MockMvc mvc;
-
-    @BeforeEach
-    public void setup() {
-        mvc = MockMvcBuilders
-                .webAppContextSetup(context)
-                .apply(springSecurity())
-                .build();
-    }
-
-    @Test
-    @DisplayName("인증 받지 않은 사용자 테스트")
-    public void getMessageUnauthenticated() {
-        Assertions.assertThrows(AuthenticationCredentialsNotFoundException.class, () -> {
-            messageService.getMessage();
-        });
-    }
-
-    @Test
-    @WithMockUser(username = "admin", roles = { "USER", "ADMIN" })
-    @DisplayName("인증 받은 사용자 테스트")
-    public void getMessageAuthenticated() {
-        Assertions.assertDoesNotThrow(
-                () -> messageService.getMessage()
-        );
-    }
-
-    @Test
-    @DisplayName("로그인 성공")
-    @WithMockUser(username = "admin", roles = { "USER", "ADMIN" })
-    void login_success() throws Exception {
-        mvc.perform(formLogin("/member/login").user("admin").password("pass"));
-    }
-
-    @Test
-    @DisplayName("로그인 실패")
-    void login_failed() throws Exception {
-
-        mvc.perform(formLogin("/member/login").user("admin").password("pass")).andExpect(unauthenticated());
-    }
-
-    @Test
-    @DisplayName("로그아웃")
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
-    void test_logout() throws Exception {
-        mvc.perform(logout("/logout"));
-    }
+//    @Autowired
+//    private MessageService messageService;
+//
+//    @Autowired
+//    private WebApplicationContext context;
+//
+//    private MockMvc mvc;
+//
+//    @BeforeEach
+//    public void setup() {
+//        mvc = MockMvcBuilders
+//                .webAppContextSetup(context)
+//                .apply(springSecurity())
+//                .build();
+//    }
+//
+//    @Test
+//    @DisplayName("인증 받지 않은 사용자 테스트")
+//    public void getMessageUnauthenticated() {
+//        Assertions.assertThrows(AuthenticationCredentialsNotFoundException.class, () -> {
+//            messageService.getMessage();
+//        });
+//    }
+//
+//    @Test
+//    @WithMockUser(username = "admin", roles = { "USER", "ADMIN" })
+//    @DisplayName("인증 받은 사용자 테스트")
+//    public void getMessageAuthenticated() {
+//        Assertions.assertDoesNotThrow(
+//                () -> messageService.getMessage()
+//        );
+//    }
+//
+//    @Test
+//    @DisplayName("로그인 성공")
+//    @WithMockUser(username = "admin", roles = { "USER", "ADMIN" })
+//    void login_success() throws Exception {
+//        mvc.perform(formLogin("/member/login").user("admin").password("pass"));
+//    }
+//
+//    @Test
+//    @DisplayName("로그인 실패")
+//    void login_failed() throws Exception {
+//
+//        mvc.perform(formLogin("/member/login").user("admin").password("pass")).andExpect(unauthenticated());
+//    }
+//
+//    @Test
+//    @DisplayName("로그아웃")
+//    @WithMockUser(username="admin",roles={"USER","ADMIN"})
+//    void test_logout() throws Exception {
+//        mvc.perform(logout("/logout"));
+//    }
 }

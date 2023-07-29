@@ -140,6 +140,7 @@ class QueryMemberControllerTest {
     }
 
     @Test
+    @WithMockUser(username="admin",roles={"ADMIN"})
     @DisplayName("회원탈퇴 페이지 호출")
     void secessionPage() throws Exception {
         mvc.perform(MockMvcRequestBuilders

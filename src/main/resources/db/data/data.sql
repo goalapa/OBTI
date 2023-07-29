@@ -336,30 +336,7 @@ INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(3,'초록매실','일본','빵',4.3,1800);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(4,'칙촉','한국','과자',4.3,1800);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(5,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(6,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(7,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(8,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(9,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(10,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(11,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(12,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(13,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(14,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(15,'오레오','한국','과자',4.7,2000);
-INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(16,'오레오','한국','과자',4.7,2000);
+
 
 
 
