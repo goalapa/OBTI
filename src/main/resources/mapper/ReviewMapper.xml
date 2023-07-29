@@ -51,7 +51,7 @@
     </resultMap>
 
     <!-- 목록 출력(나라, 이름) -->
-    <select id="findAllReviews" resultMap="reviewResultMap">
+    <select id="findAllReviews" resultMap="reviewResultMap" fetchSize="1000">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate, r.review_content, r.country,
                r.review_keyword, r.like_cnt
         FROM review r
