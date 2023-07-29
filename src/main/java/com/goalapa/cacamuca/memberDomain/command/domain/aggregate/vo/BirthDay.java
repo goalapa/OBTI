@@ -1,5 +1,7 @@
 package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo;
 
+import org.hibernate.annotations.Comment;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.time.LocalDate;
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 public class BirthDay {
 
     @Column(name = "member_birth")
+    @Comment("생년월일")
     private LocalDate memberBirth;
 
     protected BirthDay() {}
