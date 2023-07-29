@@ -85,7 +85,7 @@
                         <td th:text="${members.memberNickname}" class="px-6 py-4" />
                         <td th:text="${members.memberEmail}" class="px-6 py-4" />
                         <td th:text="${members.memberCountry}" class="px-6 py-4" />
-                        <td th:text="${members.memberGender}" class="px-6 py-4" />
+                        <td th:text="${members.memberGender == 'M'}? '남': '여'" class="px-6 py-4" />
                         <td th:text="${members.memberBirth}" class="px-6 py-4" />
                     </tr>
                 </tbody>

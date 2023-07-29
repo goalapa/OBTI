@@ -30,8 +30,8 @@ public class ReviewDTO {
                      Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt, Integer reportCnt) {
         this.country = country;
         this.foodType = foodType;
-        this.foodName = foodName;
         this.reviewNo = reviewNo;
+        this.foodName = foodName;
         this.reviewContent = reviewContent;
         this.reviewDate = reviewDate;
         this.reviewRate = reviewRate;
