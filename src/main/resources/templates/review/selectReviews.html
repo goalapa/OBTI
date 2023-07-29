@@ -152,6 +152,13 @@
             font-size: 30px;
             margin-bottom: 30px;
         }
+
+        .viewOption{
+            position: relative;
+            left: 150px;
+            background-color: #eeee;
+            border-radius: 3px;
+        }
     </style>
     <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
@@ -178,6 +185,13 @@
         <p>최신가격</p>
         <p class="recent_price" th:text="${recentPrice.reviewPrice + '원'}"/>
     </span>
+    <span>
+        <select class="viewOption" name="viewOption" id="viewOption" onchange="sortReviews(this.value)">
+            <option value="1">최신순</option>
+            <option value="2">좋아요순</option>
+            <option value="3">별점순</option>
+        </select>
+    </span>
 
     <div class="layout" th:each="reviewPage : ${reviewPages}">
         <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
@@ -185,6 +199,12 @@
                 <a th:text="${reviweWriter.memberId}"/>
             </th:block>
         </span>
+
+        <!-- 정렬을 위한 보이지 않는 데이터 -->
+        <a style="display: none;" name="reviewNoData" th:text="${reviewPage.reviewNo}"/>
+        <a style="display: none;" name="likeCntData"  th:text="${reviewPage.likeCnt}"/>
+        <a style="display: none;" name="reviewRateData" th:text="${reviewPage.reviewRate}"/>
+
         <span class="inner">
             <span class="rating_box">
                 <span class="rating">
@@ -251,6 +271,12 @@
     const rating_inputs = document.querySelectorAll('.rating input');
     const rating_stars = document.querySelectorAll('.rating_star');
 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const viewOption = document.getElementById('viewOption');
+        sortReviews(viewOption.value);
+    });
+
     for(let i=0; i<rating_inputs.length; i++) {
         const rating_input = rating_inputs[i];
         const rating_star = rating_stars[i];
@@ -261,6 +287,30 @@
             rating_star.style.width = `${rating_input.value * 10}%`;
         });
     }
+
+    function sortReviews(value){
+        const reviewContainer = document.querySelector('.layout_outline');
+        const reviewItems = document.querySelectorAll('.layout');
+
+        const sortedItems = Array.from(reviewItems).sort((a, b) => {
+            if (value === '1') {
+                return b.querySelector('[name="reviewNoData"]').textContent - a.querySelector('[name="reviewNoData"]').textContent;
+            } else if (value === '2') {
+                return b.querySelector('[name="likeCntData"]').textContent - a.querySelector('[name="likeCntData"]').textContent;
+            } else if (value === '3') {
+                return b.querySelector('[name="reviewRateData"]').textContent - a.querySelector('[name="reviewRateData"]').textContent;
+            }
+        });
+
+        reviewItems.forEach((item) => {
+            reviewContainer.removeChild(item);
+        });
+
+        sortedItems.forEach((item) => {
+            reviewContainer.appendChild(item);
+        });
+    }
+
 </script>
 </body>
 </html>
