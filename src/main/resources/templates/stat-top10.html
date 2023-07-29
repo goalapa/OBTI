@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>통계 조회</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
     <style>
         .body {
             padding-top: 30px;
@@ -22,8 +23,8 @@
 <th:block th:insert="~{common/adminAside}" />
 <div class="buttons">
     <form th:action="@{/stat/top10}" method="get">
-        <input type="date" id="datePicker" name="selectedDate" th:value="${selectedDate}" class="w-48 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <select name="country" th:value="${country}" class="w-48 mt-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <input type="date" id="datePicker" name="selectedDate" th:value="${selectedDate}" class="w-48 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5            ">
+        <select name="country" th:value="${country}" class="w-48 mt-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5            ">
             <option value="한국" selected>한국</option>
             <option value="일본">일본</option>
             <option value="미국">미국</option>
@@ -36,13 +37,13 @@
             <option value="중국">중국</option>
             <option value="몽골">몽골</option>
         </select>
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2     focus:outline-none  ">조회</button>
     </form>
 </div>
 
 <div class="body">
-    <table class="w-3/4 text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-3/4 text-sm text-left text-gray-500  ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50    ">
         <tr>
             <th scope="col" class="px-6 py-3">RATING</th>
             <th scope="col" class="px-6 py-3">STAT NO</th>

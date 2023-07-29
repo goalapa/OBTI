@@ -10,6 +10,7 @@
         <result property="foodName" column="food_name"/>
         <result property="foodType" column="food_type"/>
         <result property="likeCnt" column="like_cnt"/>
+        <result property="reportCnt" column="report_cnt"/>
         <result property="memberNo" column="member_no"/>
         <result property="reviewContent" column="review_content"/>
         <result property="reviewDate" column="review_date"/>
@@ -55,6 +56,7 @@
                r.review_keyword
         FROM review r
         WHERE r.food_name = #{ foodName } and r.country = #{ country }
+        order by r.review_no desc
     </select>
 
     <select id="findAllPictures" resultMap="reviewPicResultMap">
@@ -83,11 +85,20 @@
         LIMIT 1;
     </select>
 
+    <!-- 마이 페이지 -->
+    <select id="findMyReviewByMemberNo" resultMap="reviewResultMap">
+        select *
+        from review r
+        where r.member_no = #{ loginMemberNo }
+        order by r.review_no desc
+    </select>
+
     <!-- 검색 -->
     <select id="findAllReviewsByName" resultMap="reviewResultMap">
         select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate,  r.review_content, r.review_keyword
         from review r
         where r.food_name like '%${ search }%'
+        order by r.review_no desc
     </select>
 
     <select id="findSearchPictures" resultMap="reviewPicResultMap">

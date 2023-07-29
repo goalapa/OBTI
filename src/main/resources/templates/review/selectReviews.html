@@ -150,8 +150,10 @@
 
         .recent_price{
             font-size: 30px;
+            margin-bottom: 30px;
         }
     </style>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
 
 <body>
@@ -201,7 +203,7 @@
             <th:block th:if="${reviewPic.reviewPicUrl eq null}"/>
             <th:block th:unless="${reviewPic.reviewPicUrl eq null}">
                 <span th:if="${reviewPic.reviewNo} eq ${reviewPage.reviewNo}" class="inner_image">
-                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" width="150" height="100" alt="Image">
+                    <img th:src="@{|/review/${reviewPic.reviewPicUrl}|}" style="width: 150px; height: 150px;" alt="Image">
                 </span>
             </th:block>
         </span>
@@ -242,7 +244,7 @@
 </div>
 
 <!--<div style="display: flex; justify-content: center; top: 10px">-->
-<!--    <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰작성</button>-->
+<!--    <button onclick="location.href='/review/review'" class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5            ">리뷰작성</button>-->
 <!--</div>-->
 
 <script>
@@ -255,7 +257,7 @@
 
         rating_star.style.width = `${rating_input.value * 10}%`;
 
-        rating_input.addEventListener('input', () => {
+        rating_input.removeEventListener('input', () => {
             rating_star.style.width = `${rating_input.value * 10}%`;
         });
     }

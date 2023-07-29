@@ -5,13 +5,23 @@ import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReportTypeV
 public class ReportQueryDTO {
     private int reportNo;
     private Integer reviewNo;
+    private Integer reportCnt;
     private Integer reportMemberNo;
     private Integer reportedMemberNo;
     private String reportType;
     private String reviewContent;
     private String reportedMemberId;
     private String reportMemberId;
+
     public void ReportQueryDTO() {}
+
+    public void setReportCnt(Integer reportCnt) {
+        this.reportCnt = reportCnt;
+    }
+
+    public Integer getReportCnt() {
+        return reportCnt;
+    }
 
     public void setReportedMemberId(String reportedMemberId) {
         this.reportedMemberId = reportedMemberId;

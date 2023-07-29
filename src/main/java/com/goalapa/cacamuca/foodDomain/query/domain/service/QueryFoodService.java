@@ -1,29 +1,11 @@
 package com.goalapa.cacamuca.foodDomain.query.domain.service;
 
-import com.goalapa.cacamuca.foodDomain.query.domain.mapper.FoodMapper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.goalapa.cacamuca.foodDomain.query.domain.aggregate.dto.CheckFoodDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-import java.util.Map;
+public interface QueryFoodService {
 
-/**
- * <pre>
- * Class :
- * Comment :
- * History
- * </pre>
- *
- * @author
- */
-@Service
-@RequiredArgsConstructor
-public class QueryFoodService {
+    Page<CheckFoodDTO> findFoodRegistList(Pageable pageable);
 
-    private final FoodMapper foodMapper;
-
-    public List<Map<String, Object>> getFoodImageUrl() {
-
-        return null;
-    }
 }

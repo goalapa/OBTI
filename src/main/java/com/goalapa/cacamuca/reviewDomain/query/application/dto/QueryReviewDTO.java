@@ -29,11 +29,12 @@ public class QueryReviewDTO {
     private int reviewPrice;
     private String reviewLink;
     private Integer likeCnt;
+    private Integer reportCnt;
 
     public QueryReviewDTO() {
     }
 
-    public QueryReviewDTO(int reviewNo, String reviewContent, String country, String foodType, String foodName, String reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt) {
+    public QueryReviewDTO(int reviewNo, String reviewContent, String country, String foodType, String foodName, String reviewDate, double reviewRate, Integer memberNo, Integer foodNo, String reviewKeyword, int reviewPrice, String reviewLink, Integer likeCnt, Integer reportCnt) {
         this.reviewNo = reviewNo;
         this.reviewContent = reviewContent;
         this.country = country;
@@ -46,10 +47,20 @@ public class QueryReviewDTO {
         this.reviewPrice = reviewPrice;
         this.reviewLink = reviewLink;
         this.likeCnt = likeCnt;
+        this.reportCnt = reportCnt;
     }
 
     public QueryReviewDTO(int reviewPrice) {
         this.reviewPrice = reviewPrice;
+    }
+
+
+    public Integer getReportCnt() {
+        return reportCnt;
+    }
+
+    public void setReportCnt(Integer reportCnt) {
+        this.reportCnt = reportCnt;
     }
 
     public int getFoodNo() {

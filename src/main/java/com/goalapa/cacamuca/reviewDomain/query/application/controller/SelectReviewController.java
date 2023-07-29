@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.reviewDomain.query.application.controller;
 
+import com.goalapa.cacamuca.memberDomain.command.application.dto.CustomUser;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewFoodDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewPicDTO;
@@ -10,14 +11,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = {"/*/*", "/*"})
@@ -31,8 +31,10 @@ public class SelectReviewController {
 
     @GetMapping("/selectReviews")
     public String selectReviews(Model model, @RequestParam String foodName, @RequestParam String country,@RequestParam int foodNo,
-                                @PageableDefault(size = 10, sort = "review_rate", direction = Sort.Direction.DESC) Pageable pageable
-    ){
+                                @PageableDefault(size = 10, sort = "review_rate", direction = Sort.Direction.DESC) Pageable pageable, @AuthenticationPrincipal CustomUser user){
+        if(user == null){
+            return "/member/login";
+        }
         Page<QueryReviewDTO> reviewPages = selectReviewService.findAllReviews(foodName, country, pageable);
         List<QueryReviewPicDTO> reviewPics = selectReviewService.findAllPictures(foodName, country);
         List<QueryReviewWriterDTO> reviewWriters = selectReviewService.findReviewWriter(foodName, country);
@@ -56,14 +58,17 @@ public class SelectReviewController {
         model.addAttribute("bestStat", bestStat);
         model.addAttribute("recentPrice", recentPrice);
 
-
-
         return "/review/selectReviews";
     }
 
 
     @GetMapping("/detail")
-    public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member){
+    public String selectReview(Model model, @RequestParam int no, @RequestParam(defaultValue = "1") int member, @AuthenticationPrincipal CustomUser user){
+
+        if(user == null){
+            return "/member/login";
+        }
+
         model.addAttribute("review", selectReviewService.findReviewByNo(no));
         model.addAttribute("reviewPic", selectReviewService.findReviewPicByNo(no));
         model.addAttribute("reviewWriter", selectReviewService.findReviewWriter(no));
@@ -114,4 +119,16 @@ public class SelectReviewController {
         return food;
     }
 
+    @GetMapping("/myReview")
+    public String findMyReview(@PageableDefault(size = 10, sort = "review_no", direction = Sort.Direction.DESC) Pageable pageable,
+                               Model model, @AuthenticationPrincipal CustomUser user){
+        int loginMemberNo = user.getMemberNo();
+
+        Page<QueryReviewDTO> myReviews = selectReviewService.findMyReview(loginMemberNo, pageable);
+
+        model.addAttribute("myReviews", myReviews);
+        model.addAttribute("loginMemberNo", loginMemberNo);
+
+        return "review/myReview";
+    }
 }

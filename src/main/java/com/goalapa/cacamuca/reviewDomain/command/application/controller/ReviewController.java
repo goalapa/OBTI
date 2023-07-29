@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,10 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public String reviewPage(){
+    public String reviewPage(@AuthenticationPrincipal CustomUser user){
+        if(user == null){
+            return "/member/login";
+        }
         return "review";
     }
 
@@ -45,31 +49,41 @@ public class ReviewController {
     @ResponseBody
     public Map<String, Object> CountHeart(@RequestBody HashMap<String, Object> parameter,
                                           @AuthenticationPrincipal CustomUser user){
-            String no = (String) parameter.get("no");
-            Integer reviewNo =  Integer.parseInt(no);
-            Integer memberNo = Integer.parseInt((String) parameter.get("member"));
-            String likeStatus = (String) parameter.get("likeStatus");
+        String no = (String) parameter.get("no");
+        Integer reviewNo =  Integer.parseInt(no);
+        Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+        String likeStatus = (String) parameter.get("likeStatus");
 
-            int loginMemberNo = user.getMemberNo();
+        int loginMemberNo = user.getMemberNo();
 
-            reviewService.countHeart(reviewNo, loginMemberNo);
+        reviewService.countHeart(reviewNo, loginMemberNo);
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("no", Integer.valueOf(reviewNo).toString());
+        responseMap.put("member", memberNo);
+        responseMap.put("likeStatus", likeStatus);
 
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("no", Integer.valueOf(reviewNo).toString());
-            responseMap.put("member", memberNo);
-            responseMap.put("likeStatus", likeStatus);
-
-            return responseMap;
+        return responseMap;
     }
 
     @PostMapping("/report")
     public void countReport(@RequestBody HashMap<String, Object> param,
                             @AuthenticationPrincipal CustomUser user){
-        int reportReason = Integer.parseInt((String) param.get("reportReason"));
-        int memberNo = Integer.parseInt((String) param.get("member"));
-        int reviewNo = Integer.parseInt((String) param.get("no"));
+        int reportReason = Integer.parseInt((String) param.get("reportType"));
+        System.out.println("reportReason = " + reportReason);
+        int memberNo = Integer.parseInt((String) param.get("memberNo"));
+        int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
         int loginMemberNo = user.getMemberNo();
 
         reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
+    }
+
+    @PostMapping("/review/myReview")
+    public String deleteReview(@RequestBody HashMap<String, Object> param) {
+        int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
+        int memberNo = Integer.parseInt((String) param.get("memberNo"));
+
+        reviewService.deleteReview(reviewNo, memberNo);
+
+        return "redirect:/review/myReview";
     }
 }

@@ -84,6 +84,20 @@ public class SelectReviewService {
     }
 
     @Transactional(readOnly = true)
+    public Page<QueryReviewDTO> findMyReview(int loginMemberNo, Pageable pageable) {
+        List<QueryReviewDTO> myReviews = mapper.findMyReviewByMemberNo(loginMemberNo);
+        System.out.println("myReviews = " + myReviews);
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), myReviews.size());
+
+        if (start > myReviews.size())
+            return new PageImpl<>(new ArrayList<>(), pageable, myReviews.size());
+
+        return new PageImpl<>(myReviews.subList(start, end), pageable, myReviews.size());
+    }
+
+    @Transactional(readOnly = true)
     public List<QueryReviewPicDTO> findAllPictures(String search) {
         List<QueryReviewPicDTO> reviewPics = mapper.findSearchPictures(search);
         return reviewPics;
@@ -121,4 +135,6 @@ public class SelectReviewService {
         }
         return bestStat;
     }
+
+
 }

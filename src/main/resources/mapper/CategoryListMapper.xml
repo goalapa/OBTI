@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goalapa.cacamuca.categoryDomain.query.domain.repository.CategoryListMapper">
+    <resultMap id="categoryListResultMap" type="com.goalapa.cacamuca.categoryDomain.query.domain.aggregate.entity.Category">
+        <id property="categoryNo" column="category_no"/>
+        <result property="country" column="country"/>
+        <result property="foodType" column="food_type"/>
+    </resultMap>
+
+    <select id="findCategories" parameterType="map" resultMap="categoryListResultMap">
+        SELECT
+                a.category_no
+              , a.country
+              , a.food_type
+          FROM category a
+        <if test="sort.sorted">
+            <trim prefix="order by">
+                <foreach item="order" index="i" collection="sort" separator=", ">
+                       ${ order.property } ${ order.direction }
+                </foreach>
+            </trim>
+        </if>
+        <if test="size and offset">
+            LIMIT #{ size }
+            OFFSET #{ offset }
+        </if>
+    </select>
+
+    <select id="countCategories" resultMap="categoryListResultMap">
+        SELECT
+              COUNT(a.category_no)
+        FROM category.a
+    </select>
+
+
+</mapper>
+
+

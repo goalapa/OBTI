@@ -17,6 +17,7 @@ public class FindRequestPicService {
     public FindRequestPicDTO findRequestPicByRequestNo(int requestNo) {
 
         FindRequestPicDTO request = requestMapper.findRequestPicByRequestNo(requestNo);
+
         return request;
     }
 }
