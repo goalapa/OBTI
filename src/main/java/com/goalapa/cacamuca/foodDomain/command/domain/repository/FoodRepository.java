@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FoodRepository extends JpaRepository<FoodEntity, Integer> {
+    FoodEntity findByFoodNameAndCountryVO_Country(String foodName, String country);
 }

@@ -3,7 +3,9 @@ package com.goalapa.cacamuca.reviewDomain.command.application.controller;
 import com.goalapa.cacamuca.reviewDomain.command.application.controller.Object.TestObjects;
 import com.goalapa.cacamuca.reviewDomain.command.application.service.ReviewService;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
+import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
+import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
 import com.goalapa.cacamuca.reviewDomain.query.application.dto.QueryReviewDTO;
 import com.goalapa.cacamuca.reviewDomain.query.domain.repository.ReviewMapper;
@@ -21,6 +23,8 @@ import java.util.List;
 @SpringBootTest
 public class ReviewController {
     private ReviewRepository reviewRepository;
+    private ReviewPicRepository reviewPicRepository;
+    private ReviewService reviewService;
     private ReviewMapper mapper;
 
     private static LocalDate date = LocalDate.now();
@@ -30,16 +34,28 @@ public class ReviewController {
             "가성비", 3000, "dasdas.com", 10, 5);
 
     @Autowired
-    public ReviewController(ReviewRepository reviewRepository, ReviewMapper mapper) {
+    public ReviewController(ReviewRepository reviewRepository, ReviewMapper mapper, ReviewService reviewService, ReviewPicRepository reviewPicRepository) {
         this.reviewRepository = reviewRepository;
         this.mapper = mapper;
+        this.reviewService = reviewService;
+        this.reviewPicRepository = reviewPicRepository;
     }
 
     @DisplayName("저장 테스트")
     @Test
     void reviewSaveTest(){
+        ReviewPic reviewPic = TestObjects.createReviewPic(review);
+        System.out.println("reviewPic = " + reviewPic);
         Assertions.assertDoesNotThrow(
-                () -> reviewRepository.save(review)
+                () -> reviewPicRepository.save(reviewPic)
+        );
+    }
+
+    @DisplayName("사진 없이 저장 테스트")
+    @Test
+    void reviewSaveNoPictureTest(){
+        Assertions.assertDoesNotThrow(
+                () -> reviewRepository.save(review2)
         );
     }
 
@@ -56,14 +72,23 @@ public class ReviewController {
     @DisplayName("목록 출력 테스트")
     @Test
     void findReviewAllTest(){
-        reviewRepository.save(review);
-        reviewRepository.save(review2);
+        List<QueryReviewDTO> reviews = mapper.findAllReviews("오레오", "한국");
+        Assertions.assertNotNull(reviews);
+    }
 
-//        List<QueryReviewDTO> reviews = mapper.findAllReviews(re);
-//
-//        Assertions.assertDoesNotThrow(
-//                () -> reviewRepository.findById(reviewNo)
-//        );
+    @DisplayName("신고 테스트")
+    @Test
+    void reportTest(){
+        Assertions.assertDoesNotThrow(
+                () -> reviewService.countReport(1, 1, 1, 2)
+        );
+    }
 
+    @DisplayName("좋아요 테스트")
+    @Test
+    void likeTest(){
+        Assertions.assertDoesNotThrow(
+                () -> reviewService.countHeart(2, 1)
+        );
     }
 }

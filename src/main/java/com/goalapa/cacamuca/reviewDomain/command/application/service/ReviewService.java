@@ -1,6 +1,8 @@
 package com.goalapa.cacamuca.reviewDomain.command.application.service;
 
 
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
+import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.likeDomain.command.domain.aggregate.entity.Like;
 import com.goalapa.cacamuca.likeDomain.command.domain.repository.LikeRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
@@ -39,37 +41,29 @@ public class ReviewService {
     private final SelectReviewService selectReviewService;
     private final ReviewValidationServiceImpl reviewValidationService;
     private final ReportRepository reportRepository;
+    private final FoodRepository foodRepository;
 
     private static String root = "C:\\app-file";
     private static String filePath = root + "/uploadFiles";
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository) {
+    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository, FoodRepository foodRepository) {
         this.reviewRepository = reviewRepository;
         this.likeRepository = likeRepository;
         this.reviewPicRepository = reviewPicRepository;
         this.selectReviewService = selectReviewService;
         this.reviewValidationService = reviewValidationService;
         this.reportRepository = reportRepository;
-    }
-
-    @Transactional
-    public void saveReview(ReviewDTO reviewDTO, int loginMemberNo) {
-        LocalDate date = LocalDate.now();
-        ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
-        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
-                , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0, 0);
-
-        System.out.println("review = " + review);
-
-        reviewRepository.save(review);
+        this.foodRepository = foodRepository;
     }
 
     @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
         LocalDate date = LocalDate.now();
         ReviewWriter reviewWriter = new ReviewWriter(loginMemberNo);
-        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, reviewDTO.getFoodNo()
+        FoodEntity food = foodRepository.findByFoodNameAndCountryVO_Country(reviewDTO.getFoodName(), reviewDTO.getCountry());
+
+        Review review = new Review(reviewDTO.getReviewContent(), reviewDTO.getCountry(), reviewDTO.getFoodType(), reviewDTO.getFoodName(), date, reviewDTO.getReviewRate(), reviewWriter, food.getFoodNo()
                 , reviewDTO.getReviewKeyword(), reviewDTO.getReviewPrice(), reviewDTO.getReviewLink(), 0, 0);
 
         List<String> fileNames = new ArrayList<>();
