@@ -400,6 +400,29 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(3,'/assets/img/chorokmaesil.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(4,'/assets/img/chickchok.png');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(5,'/assets/img/moncher.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(6,'/assets/img/tonk.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(7,'/assets/img/pepero_original.png');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(8,'/assets/img/saewookkang.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(9,'/assets/img/cornchip.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(10,'/assets/img/ohgamja.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(11,'/assets/img/swingchip.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(12,'/assets/img/fullmoon.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(13,'/assets/img/bananakick.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(14,'/assets/img/bananamilk.jpg');
+INSERT INTO food_pic(food_no,food_pic_url)
+VALUES(15,'/assets/img/strawberrymilk.jpg');
+
 
 
 INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
