@@ -487,47 +487,6 @@ INSERT INTO member (member_no, member_birth, blacklist_type, member_country, mem
 VALUES (15, '2008-11-30', 0, '한국', 'stat2@cacamuca.strore', 'M', 'ROLE_MEMBER', 'stat111', '통계보이', '$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq', 0);
 --- 2023.07.29 by sjPark --
 
-
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('admin','pwd000','관리자','admin@cacaumca.store',20,0,'2001-08-04');
-VALUES('admin','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','관리자','admin@cacaumca.store','ROLE_ADMIN',0,'2001-08-04','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country, member_gender)
--- VALUES('abc000','pwd000','초코맛있다','dkem@gmail.com',20,0,'2001-08-04');
-VALUES('abc000','$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC','초코맛있다','myrhymetree@gmail.com','ROLE_MEMBER',0,'2001-08-04','한국','M');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc001','pwd111','오늘은뭐먹지','zmzlsk@gmail.com',30,20,'1990-01-20');
-VALUES('abc001','$2a$12$S.uKNb4nk6g4RFUsxDYyZO6UTbdvotNsOJPmvUM/E2O7gMVguv7Cu','오늘은뭐먹지','zmzlsk@gmail.com','ROLE_MEMBER',20,'1990-01-20','한국', 'F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc002','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc002','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc003','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc003','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc004','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc004','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc005','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc005','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc006','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc006','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc007','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc007','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc008','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc008','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc009','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc009','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc010','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc010','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-INSERT INTO member(member_id,member_pwd,member_nickname,member_email,member_grant,member_report_cnt,member_birth,member_country,member_gender)
--- VALUES('abc011','pwd222','돼징','ehowld@gmail.com',10,10,'2008-11-30');
-VALUES('abc011','$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq','돼징','ehowld@gmail.com','ROLE_MEMBER',0,'2008-11-30','한국','F');
-
 -- 2022.07.29 by sui --
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
 VALUES(1,10,2,1,1);
@@ -932,11 +891,11 @@ INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, mem
 VALUES ('과자 종류가 많이 없어서 아쉬워요ㅠㅠ',2.0,'맛있다',27);
 
 --손정인
-INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
-VALUES('ko','몽쉘 오감자 맛있따!!!','오감자 오리지널','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.com', 4);
-INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
-VALUES('ko','몽쉘 굿~~','오감자 오리지널','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.comk', 5);
-INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt)
-VALUES('ko','몽쉘 굿~~','오감자 오리지널','2023-06-20',5.0,2,5,'선물추천',1000.0,'www.naver.comk', 4);
+INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
+VALUES('한국','몽쉘 오감자 맛있따!!!','몽쉘','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.com', 4, '과자', 0);
+INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
+VALUES('한국','몽쉘 굿~~','몽쉘','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.comk', 5, '과자', 0);
+INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
+VALUES('한국','몽쉘 굿~~','몽쉘','2023-06-20',5.0,2,5,'선물추천',1000.0,'www.naver.comk', 4, '과자', 0);
 --손정인
 
