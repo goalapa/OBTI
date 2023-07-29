@@ -766,28 +766,28 @@ VALUES('2023-03-29',5,'몽쉘',160,3.8,284,20,'M','한국');
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-02-20',5,'몽쉘',23,4.0,128,20,'M','한국');
 
-INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',19,'치토스 퍼프',200,4.5,100,20,'M','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',20,'사워 밤즈',255,3.8,200,10,'F','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',21,'라이스크리스피',150,5.0,120,30,'F','미국');
-INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',22,'팝타르트 딸기',188,3.02,100,20,'M','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',23,'팝타르트 블루베리',6,3.94,200,10,'F','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',24,'피넛버터 프레츨',499,1.8,120,30,'F','미국');
-INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',25,'시나몬 토스트 크런치',123,4.5,100,20,'M','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',26,'프룻 롤업',321,1.0,200,10,'F','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',27,'자이언트 수이',22,4.9,120,30,'F','미국');
-INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',28,'투니스',33,2.8,100,20,'M','미국');
-INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
-VALUES('2023-07-29',29,'체스터스',166,1.88,200,10,'F','미국');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',19,'치토스 퍼프',200,4.5,100,20,'M','미국','/assets/img/치토스퍼프.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',20,'사워 밤즈',255,3.8,200,10,'F','미국','/assets/img/사워밤즈.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',21,'라이스크리스피',150,5.0,120,30,'F','미국','/assets/img/라이스크리스피.jpg');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',22,'팝타르트 딸기',188,3.02,100,20,'M','미국''/assets/img/팝타르트딸기.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',23,'팝타르트 블루베리',6,3.94,200,10,'F','미국','/assets/img/팝타르트블루베리.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',24,'피넛버터 프레츨',499,1.8,120,30,'F','미국','/assets/img/피넛버터프레츨.jpg');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',25,'시나몬 토스트 크런치',123,4.5,100,20,'M','미국','/assets/img/시나몬토스트크런치.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',26,'프룻 롤업',321,1.0,200,10,'F','미국','/assets/img/프룻롤업.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',27,'자이언트 수이',22,4.9,120,30,'F','미국','/assets/img/자이언트츄이.jpg');
+INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투니스.jpg');
+INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
+VALUES('2023-07-29',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
 
 
 
