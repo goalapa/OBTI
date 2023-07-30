@@ -330,63 +330,63 @@ VALUES(160,'호주','차');
 
 -- 23.07.29 손정인
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(1,'오레오(OREO)','한국','과자',4.7,2000);
+VALUES(1,'오레오','한국','과자',4.7,2000);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(2,'초코롤(CHOCO ROLL)','한국','빵',5.0,3000);
+VALUES(2,'초코롤','한국','빵',5.0,3000);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(3,'초록매실(GREEN PLUM)','한국','음료',4.3,1800);
+VALUES(3,'초록매실','한국','음료',4.3,1800);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(4,'칙촉(CIG-COG)','한국','과자',3.3,1800);
+VALUES(4,'칙촉','한국','과자',3.3,1800);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(5,'몽쉘(MONCHER)','한국','과자',2.3,4500);
+VALUES(5,'몽쉘','한국','과자',2.3,4500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(6,'통크(TONK)','한국','과자',1.3,4500);
+VALUES(6,'통크','한국','과자',1.3,4500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(7,'빼빼로 오리지널(PEPERO ORIGINAL)','한국','과자',4.33,1700);
+VALUES(7,'빼빼로 오리지널','한국','과자',4.33,1700);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(8,'새우깡(SAEWOOKKANG)','한국','과자',2.2,2300);
+VALUES(8,'새우깡','한국','과자',2.2,2300);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(9,'콘칩(CORN CHIP)','한국','과자',3.89,3000);
+VALUES(9,'콘칩','한국','과자',3.89,3000);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(10,'오감자 오리지널(OHGAMJA)','한국','과자',2.0,2500);
+VALUES(10,'오감자 오리지널','한국','과자',2.0,2500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(11,'스윙칩(SWING CHIP)','한국','과자',4.38,2500);
+VALUES(11,'스윙칩','한국','과자',4.38,2500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(12,'보름달(FULL MOON)','한국','빵',4.31,2800);
+VALUES(12,'보름달','한국','빵',4.31,2800);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(13,'바나나킥(BANANA KICK)','한국','과자',4.25,3400);
+VALUES(13,'바나나킥','한국','과자',4.25,3400);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(14,'바나나맛 우유(BANANA MILK)','한국','과자',3.76,1700);
+VALUES(14,'바나나맛 우유','한국','과자',3.76,1700);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(15,'딸기맛 우유(STRAWBERRY MILK)','한국','과자',4.3,1700);
+VALUES(15,'딸기맛 우유','한국','과자',4.3,1700);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(16,'사또밥(SATTOBAB)','한국','과자',2.3,2300);
+VALUES(16,'사또밥','한국','과자',2.3,2300);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(17,'초코하임(CHOCO HEIM)','한국','과자',4.3,3700);
+VALUES(17,'초코하임','한국','과자',4.3,3700);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(18,'화이트하임(WHITE HEIM)','한국','과자',4.2,3700);
+VALUES(18,'화이트하임','한국','과자',4.2,3700);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(19,'치토스 퍼프(CHEETOS PUFF)','미국','과자',5.0,3500);
+VALUES(19,'치토스 퍼프','미국','과자',5.0,3500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(20,'사워 밤즈(SOUR BOMBS)','미국','과자',4.3,4500);
+VALUES(20,'사워 밤즈','미국','과자',4.3,4500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(21,'라이스크리스피(RICE CRISPY)','미국','과자',3.6,7500);
+VALUES(21,'라이스크리스피','미국','과자',3.6,7500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(22,'팝타르트 딸기(POPTART STRAWBERRY)','미국','과자',2.7,6500);
+VALUES(22,'팝타르트 딸기','미국','과자',2.7,6500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(23,'팝타르트 블루베리(POPTART BLUEBERRY)','미국','과자',4.38,6500);
+VALUES(23,'팝타르트 블루베리','미국','과자',4.38,6500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(24,'피넛버터 프레츨(PB PRETZEL)','미국','과자',2.99,4500);
+VALUES(24,'피넛버터 프레츨','미국','과자',2.99,4500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(25,'시나몬 토스트 크런치(CINNAMON TOAST)','미국','과자',4.2658,6000);
+VALUES(25,'시나몬 토스트 크런치','미국','과자',4.2658,6000);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(26,'프룻 롤업(FRUIT ROLLUP)','미국','과자',2.146,5500);
+VALUES(26,'프룻 롤업','미국','과자',2.146,5500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(27,'자이언트 수이(GIANT CHEWY)','미국','과자',4.325,2500);
+VALUES(27,'자이언트 수이','미국','과자',4.325,2500);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(28,'투니스(TOONIES)','미국','과자',4.09,6300);
+VALUES(28,'투니스','미국','과자',4.09,6300);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
-VALUES(29,'체스터스(CHESTERS)','미국','과자',4.53,4000);
+VALUES(29,'체스터스','미국','과자',4.53,4000);
 -- 23.07.29 손정인
 
 
