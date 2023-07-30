@@ -19,39 +19,39 @@
         <result property="foodPicUrl" column="food_pic_url"/>
     </resultMap>
 
-    <select id="findFoodsRegist" parameterType="map" resultMap="foodResultMap">
-        SELECT
-          a.food_no
-        , a.food_name
-        , a.food_rate
-        , a.food_price
-        , a.country
-        , a.food_type
-        FROM food a
-        <if test="sort.sorted">
-            <trim prefix="order by">
-                <foreach item="order" index="i" collection="sort" separator=", ">
-                    ${ order.property } ${ order.direction }
-                </foreach>
-            </trim>
-        </if>
-        <if test="size and offset">
-            LIMIT #{ size }
-            OFFSET #{ offset }
-        </if>
-    </select>
+<!--    <select id="findFoodsRegist" parameterType="map" resultMap="foodResultMap">-->
+<!--        SELECT-->
+<!--          a.food_no-->
+<!--        , a.food_name-->
+<!--        , a.food_rate-->
+<!--        , a.food_price-->
+<!--        , a.country-->
+<!--        , a.food_type-->
+<!--        FROM food a-->
+<!--        <if test="sort.sorted">-->
+<!--            <trim prefix="order by">-->
+<!--                <foreach item="order" index="i" collection="sort" separator=", ">-->
+<!--                    ${ order.property } ${ order.direction }-->
+<!--                </foreach>-->
+<!--            </trim>-->
+<!--        </if>-->
+<!--        <if test="size and offset">-->
+<!--            LIMIT #{ size }-->
+<!--            OFFSET #{ offset }-->
+<!--        </if>-->
+<!--    </select>-->
 
-    <select id="countFoodRegistList" resultType="_int">
-        SELECT
-            COUNT(a.food_no)
-        FROM food a
-    </select>
+<!--    <select id="countFoodRegistList" resultType="_int">-->
+<!--        SELECT-->
+<!--            COUNT(a.food_no)-->
+<!--        FROM food a-->
+<!--    </select>-->
 
-    <insert id="insertFood">
-        INSERT
-            INTO food(food_no, food_name, food_rate, food_price, food_type, country)
-        VALUES(#{foodNo},#{foodName},#{foodRate},#{foodPrice},#{foodType},#{country})
-    </insert>
+<!--    <insert id="insertFood">-->
+<!--        INSERT-->
+<!--            INTO food(food_no, food_name, food_rate, food_price, food_type, country)-->
+<!--        VALUES(#{foodNo},#{foodName},#{foodRate},#{foodPrice},#{foodType},#{country})-->
+<!--    </insert>-->
 
 
 

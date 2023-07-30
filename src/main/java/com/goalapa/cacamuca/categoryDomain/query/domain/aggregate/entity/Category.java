@@ -1,26 +1,27 @@
 package com.goalapa.cacamuca.categoryDomain.query.domain.aggregate.entity;
 
+
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "Category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer foodNo;
-    private String country;
-    private String foodType;
+    @Column(name = "category_no")
+    private Integer categoryNo;
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "foodNo=" + foodNo +
-                ", country='" + country + '\'' +
-                ", foodType='" + foodType + '\'' +
-                '}';
-    }
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "food_type")
+    private String foodType;
 }
