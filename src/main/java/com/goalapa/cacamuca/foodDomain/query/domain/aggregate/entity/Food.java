@@ -4,6 +4,7 @@ package com.goalapa.cacamuca.foodDomain.query.domain.aggregate.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "Food")
+@ToString
 public class Food {
 
 
