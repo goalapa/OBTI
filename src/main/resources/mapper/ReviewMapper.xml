@@ -75,6 +75,7 @@
         select s.food_rate, s.like_cnt, s.review_cnt
         from stat s
         where s.food_no = #{ foodNo }
+          and s.update_date = DATE_FORMAT(NOW(), '%Y-%m-%d')
     </select>
 
     <select id="findRecentPrice" resultMap="reviewResultMap">
