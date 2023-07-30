@@ -1,5 +1,6 @@
 package com.goalapa.cacamuca.foodDomain.command.application.controller;
 
+import com.goalapa.cacamuca.categoryDomain.command.application.dto.AddCategoryDTO;
 import com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO;
 import com.goalapa.cacamuca.foodDomain.command.application.service.FoodRegistService;
 import com.goalapa.cacamuca.foodDomain.command.domain.service.SaveFoodFromRequest;
@@ -50,27 +51,29 @@ public class FoodController {
     }
 
     //식품 등록
-    @GetMapping("/food-regist")
+    @GetMapping("/food/food-regist")
     public String foodRegist() {
-        return "food-regist";
+        return "food/food-regist";
     }
 
-    @PostMapping("food-regist")
+    @PostMapping("/food/food-regist")
     public String registFood(@RequestParam MultipartFile registPic, @ModelAttribute FoodDTO foodDTO) throws IOException, IOException {
 
 
         foodRegistService.saveFood(foodDTO, registPic);
 
 
-        return "food-regist";
+        return "redirect:/food/food-list";
     }
 
 
     //식품 삭제
-    @GetMapping("/test")
-    public void deleteFood(@PathVariable int foodNo) {
+    @GetMapping("/food/delete/{foodNo}")
+    public String deleteFood(@PathVariable("foodNo") Integer foodNo) {
 
         foodRegistService.deleteFood(foodNo);
         foodRegistService.deleteFoodPic(foodNo);
+
+        return "redirect:/food/food-list";
     }
 }

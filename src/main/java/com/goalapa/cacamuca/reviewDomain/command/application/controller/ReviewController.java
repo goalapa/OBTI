@@ -28,10 +28,7 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public String reviewPage(@AuthenticationPrincipal CustomUser user){
-        if(user == null){
-            return "/member/login";
-        }
+    public String reviewPage(){
         return "review";
     }
 
@@ -69,12 +66,11 @@ public class ReviewController {
     public void countReport(@RequestBody HashMap<String, Object> param,
                             @AuthenticationPrincipal CustomUser user){
         int reportReason = Integer.parseInt((String) param.get("reportType"));
-        System.out.println("reportReason = " + reportReason);
         int memberNo = Integer.parseInt((String) param.get("memberNo"));
         int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
         int loginMemberNo = user.getMemberNo();
 
-        reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
+        reviewService.countReport(reportReason, reviewNo, loginMemberNo, memberNo);
     }
 
     @PostMapping("/review/myReview")

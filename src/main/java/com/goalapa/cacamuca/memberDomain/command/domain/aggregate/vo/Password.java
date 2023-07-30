@@ -3,6 +3,7 @@ package com.goalapa.cacamuca.memberDomain.command.domain.aggregate.vo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+import org.hibernate.annotations.Comment;
 
 import java.security.SecureRandom;
 
@@ -16,6 +17,7 @@ import javax.persistence.Embeddable;
 public class Password {
 
     @Column(name = "member_pwd")
+    @Comment("회원 비밀번호")
     private String memberPwd;
 
     public Password() {}

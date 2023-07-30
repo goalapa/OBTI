@@ -32,7 +32,10 @@ public class ReviewValidationServiceImpl implements ReviewValidationService {
 
             Like like = likeRepository.findByMemberNo(loginMemberNo);
             likeRepository.delete(like);
+        }
 
+        if (review.getLikeCnt() < 0) {
+            review.setLikeCnt(0);
             return false;
         }
 

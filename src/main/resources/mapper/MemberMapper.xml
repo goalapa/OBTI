@@ -12,6 +12,7 @@
         <result property="memberCountry" column="member_country" />
         <result property="memberEmail" column="member_email" />
         <result property="memberGrant" column="member_grant" />
+        <result property="memberGender" column="member_gender" />
         <result property="memberReportCnt" column="member_report_cnt" />
     </resultMap>
 

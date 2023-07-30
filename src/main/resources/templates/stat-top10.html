@@ -25,17 +25,25 @@
     <form th:action="@{/stat/top10}" method="get">
         <input type="date" id="datePicker" name="selectedDate" th:value="${selectedDate}" class="w-48 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5            ">
         <select name="country" th:value="${country}" class="w-48 mt-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5            ">
-            <option value="한국" selected>한국</option>
-            <option value="일본">일본</option>
-            <option value="미국">미국</option>
-            <option value="영국">영국</option>
-            <option value="베트남">베트남</option>
-            <option value="태국">태국</option>
-            <option value="프랑스">프랑스</option>
-            <option value="이탈리아">이탈리아</option>
-            <option value="튀르키예">튀르키예</option>
-            <option value="중국">중국</option>
-            <option value="몽골">몽골</option>
+            <option value="한국" th:selected="${country == '한국'}">한국</option>
+            <option value="일본" th:selected="${country == '일본'}">일본</option>
+            <option value="미국" th:selected="${country == '미국'}">미국</option>
+            <option value="영국" th:selected="${country == '영국'}">영국</option>
+            <option value="베트남" th:selected="${country == '베트남'}">베트남</option>
+            <option value="태국" th:selected="${country == '태국'}">태국</option>
+            <option value="프랑스" th:selected="${country == '프랑스'}">프랑스</option>
+            <option value="이탈리아" th:selected="${country == '이탈리아'}">이탈리아</option>
+            <option value="튀르키예" th:selected="${country == '튀르키예'}">튀르키예</option>
+            <option value="프랑스" th:selected="${country == '프랑스'}">프랑스</option>
+            <option value="독일" th:selected="${country == '독일'}">독일</option>
+            <option value="벨기에" th:selected="${country == '벨기에'}">벨기에</option>
+            <option value="스웨덴" th:selected="${country == '스웨덴'}">스웨덴</option>
+            <option value="이탈리아" th:selected="${country == '이탈리아'}">이탈리아</option>
+            <option value="폴란드" th:selected="${country == '폴란드'}">폴란드</option>
+            <option value="스위스" th:selected="${country == '스위스'}">스위스</option>
+            <option value="캐나다" th:selected="${country == '캐나다'}">캐나다</option>
+            <option value="호주" th:selected="${country == '호주'}">호주</option>
+            <option value="기타" th:selected="${country == '기타'}">기타</option>
         </select>
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2     focus:outline-none  ">조회</button>
     </form>

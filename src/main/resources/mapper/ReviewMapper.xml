@@ -51,11 +51,12 @@
     </resultMap>
 
     <!-- 목록 출력(나라, 이름) -->
-    <select id="findAllReviews" resultMap="reviewResultMap">
+    <select id="findAllReviews" resultMap="reviewResultMap" fetchSize="1000">
         SELECT r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate, r.review_content, r.country,
-               r.review_keyword
+               r.review_keyword, r.like_cnt
         FROM review r
         WHERE r.food_name = #{ foodName } and r.country = #{ country }
+        order by r.review_no desc
     </select>
 
     <select id="findAllPictures" resultMap="reviewPicResultMap">
@@ -74,6 +75,7 @@
         select s.food_rate, s.like_cnt, s.review_cnt
         from stat s
         where s.food_no = #{ foodNo }
+          and s.update_date = DATE_FORMAT(NOW(), '%Y-%m-%d')
     </select>
 
     <select id="findRecentPrice" resultMap="reviewResultMap">
@@ -89,13 +91,15 @@
         select *
         from review r
         where r.member_no = #{ loginMemberNo }
+        order by r.review_no desc
     </select>
 
     <!-- 검색 -->
     <select id="findAllReviewsByName" resultMap="reviewResultMap">
-        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate,  r.review_content, r.review_keyword
+        select r.review_no, r.member_no, r.food_name, r.review_date, r.review_price, r.review_rate,  r.review_content, r.review_keyword, r.like_cnt
         from review r
         where r.food_name like '%${ search }%'
+        order by r.review_no desc
     </select>
 
     <select id="findSearchPictures" resultMap="reviewPicResultMap">

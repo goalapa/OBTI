@@ -21,123 +21,75 @@
     <th:block th:insert="~{common/adminAside}" />
     <div class="body">
 
-        <h1 align="center">카테고리 및 식품 수정 페이지</h1>
-        <h3>카테고리 수정</h3>
         <form action="update" method="post">
-            국가 카테고리 :
-            <select id="country" name="country">
-                <!--            th:field="${updateCategoryDTO.country}">-->
-                <!--        <option th:each="country : ${categoryList}"-->
-                <!--                th:value="${category.country}"-->
-                <!--                th:text="${category.country}"></option>-->
-                <option value="none">=== 선택 ===</option>
-                <option value="한국">한국</option>
-                <option value="대만">대만</option>
-                <option value="독일">독일</option>
-                <option value="말레이시아">말레이시아</option>
-                <option value="미국">미국</option>
-                <option value="베트남">베트남</option>
-                <option value="벨기에">벨기에</option>
-                <option value="스웨덴">스웨덴</option>
-                <option value="스위스">스위스</option>
-                <option value="영국">영국</option>
-                <option value="이탈리아">이탈리아</option>
-                <option value="인도">인도</option>
-                <option value="일본">일본</option>
-                <option value="캐나다">캐나다</option>
-                <option value="태국">태국</option>
-                <option value="튀르키예">튀르키예</option>
-                <option value="폴란드">폴란드</option>
-                <option value="프랑스">프랑스</option>
-                <option value="필리핀">필리핀</option>
-                <option value="호주">호주</option>
-            </select>
-            &nbsp;  &nbsp; 수정할 내용 : <input type="text" name="replaceCountry" required>
-            <br>
-            <br>
-            식품 카테고리 :
-            <select name="foodType">
-                <option value="none">=== 선택 ===</option>
-                <option value="과자">과자</option>
-                <option value="빵">빵</option>
-                <option value="사탕">사탕</option>
-                <option value="음료">음료</option>
-                <option value="젤리">젤리</option>
-                <option value="초콜릿">초콜릿</option>
-                <option value="커피">커피</option>
-                <option value="차">차</option>
-            </select>
-            &nbsp;  &nbsp; 수정할 내용 : <input type="text" name="replaceFoodType" required>
-            <button type="submit">수정</button>
-            <br>
+            <section class="bg-white ">
+                <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+                    <h2 class="mb-4 text-xl font-bold text-gray-900 ">카테고리 수정</h2>
+                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                        <div>
+                            <label for="country" class="block mb-2 text-sm font-medium text-gray-900 ">국가 카테고리</label>
+                            <select id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5      ">
+                                <option value="none">국가 선택</option>
+                                <option value="한국">한국</option>
+                                <option value="대만">대만</option>
+                                <option value="독일">독일</option>
+                                <option value="말레이시아">말레이시아</option>
+                                <option value="미국">미국</option>
+                                <option value="베트남">베트남</option>
+                                <option value="벨기에">벨기에</option>
+                                <option value="스웨덴">스웨덴</option>
+                                <option value="스위스">스위스</option>
+                                <option value="영국">영국</option>
+                                <option value="이탈리아">이탈리아</option>
+                                <option value="인도">인도</option>
+                                <option value="일본">일본</option>
+                                <option value="캐나다">캐나다</option>
+                                <option value="태국">태국</option>
+                                <option value="튀르키예">튀르키예</option>
+                                <option value="폴란드">폴란드</option>
+                                <option value="프랑스">프랑스</option>
+                                <option value="필리핀">필리핀</option>
+                                <option value="호주">호주</option>
+                            </select>
+                        </div>
 
+                        <div>
+                            <div>
+                                <label for="replaceFoodName" class="block mb-2 text-sm font-medium text-gray-900 ">수정 국가명 입력</label>
+                                <input type="text" name="replaceFoodName" id="replaceFoodName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5      " placeholder="수정 국가명 입력" required="">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="foodType" class="block mb-2 text-sm font-medium text-gray-900 ">식품 유형</label>
+                            <select id="foodType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5      ">
+                                <option value="none">종류 선택</option>
+                                <option value="과자">과자</option>
+                                <option value="빵">빵</option>
+                                <option value="사탕">사탕</option>
+                                <option value="음료">음료</option>
+                                <option value="젤리">젤리</option>
+                                <option value="초콜릿">초콜릿</option>
+                                <option value="커피">커피</option>
+                                <option value="차">차</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <div>
+                                <label for="replaceFoodType" class="block mb-2 text-sm font-medium text-gray-900 ">수정 식품 유형 입력</label>
+                                <input type="text" name="replaceFoodType" id="replaceFoodType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5      " placeholder="수정 식품 유형 입력" required="">
+                            </div>
+                        </div>
+<!--                        <div class="flex items-center justify-center sm:col-span-2">-->
+<!--                            <button onclick="location.href='/category/category-list'" type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200">-->
+<!--                                카테고리 수정-->
+<!--                            </button>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </section>
         </form>
-
-<!--        <h1 align="center">카테고리 및 식품 수정 페이지</h1>-->
-<!--        <h3>카테고리 수정</h3>-->
-<!--        <form action="update" method="post">-->
-<!--        &lt;!&ndash;    국가 카테고리 :&ndash;&gt;-->
-<!--        &lt;!&ndash;    <select id="country" name="country">&ndash;&gt;-->
-<!--        &lt;!&ndash;        <option value="none">=== 선택 ===</option>&ndash;&gt;-->
-<!--        &lt;!&ndash;        <option th:each="category : ${ categoryList }"&ndash;&gt;-->
-<!--        &lt;!&ndash;                th:value="${ category }"&ndash;&gt;-->
-<!--        &lt;!&ndash;                th:text="${ category }"&ndash;&gt;-->
-<!--        &lt;!&ndash;                th:selected="${ category == updateCategoryDTO.country }"></option>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <option value="한국">한국</option>&ndash;&gt;-->
-
-
-
-<!--            <label for="default" class="block mb-2 text-sm font-medium text-gray-900  ">국가 카테고리 수정</label>-->
-<!--            <select id="default" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-mid p-2.5            ">-->
-<!--                <option value="none">=== 선택 ===</option>-->
-<!--                <option value="한국">한국</option>-->
-<!--                <option value="대만">대만</option>-->
-<!--                <option value="독일">독일</option>-->
-<!--                <option value="말레이시아">말레이시아</option>-->
-<!--                <option value="미국">미국</option>-->
-<!--                <option value="베트남">베트남</option>-->
-<!--                <option value="벨기에">벨기에</option>-->
-<!--                <option value="스웨덴">스웨덴</option>-->
-<!--                <option value="스위스">스위스</option>-->
-<!--                <option value="영국">영국</option>-->
-<!--                <option value="이탈리아">이탈리아</option>-->
-<!--                <option value="인도">인도</option>-->
-<!--                <option value="일본">일본</option>-->
-<!--                <option value="캐나다">캐나다</option>-->
-<!--                <option value="태국">태국</option>-->
-<!--                <option value="튀르키예">튀르키예</option>-->
-<!--                <option value="폴란드">폴란드</option>-->
-<!--                <option value="프랑스">프랑스</option>-->
-<!--                <option value="필리핀">필리핀</option>-->
-<!--                <option value="호주">호주</option>-->
-<!--            </select>-->
-<!--            <label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900  ">국가명 수정 :</label>-->
-<!--            <input type="text" name="replaceCountry" id="helper-text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1000 p-2.5" required>-->
-<!--            <p id="국가명을 입력하세요" class="mt-2 text-sm text-gray-500  "></p>-->
-
-
-<!--            <label for="foodType" class="block mb-2 text-sm font-medium text-gray-900  ">음식 유형 수정</label>-->
-<!--            <select id="foodType" name="foodType" class="block w-mid p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">-->
-<!--                <option value="none">=== 선택 ===</option>-->
-<!--                <option value="과자">과자</option>-->
-<!--                <option value="빵">빵</option>-->
-<!--                <option value="사탕">사탕</option>-->
-<!--                <option value="음료">음료</option>-->
-<!--                <option value="젤리">젤리</option>-->
-<!--                <option value="초콜릿">초콜릿</option>-->
-<!--                <option value="커피">커피</option>-->
-<!--                <option value="차">차</option>-->
-<!--            </select>-->
-<!--            <label for="helper-text" class="block mb-2 text-sm font-medium text-gray-900  ">음식 유형 수정 :</label>-->
-<!--            <input type="text" name="replaceFoodType" id="helper-text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1000 p-2.5" required>-->
-<!--            <p id="국가명을 입력하세요" class="mt-2 text-sm text-gray-500  "></p>-->
-<!--        &lt;!&ndash;    &nbsp;  &nbsp; 수정할 내용 : <input type="text" name="replaceCountry" required>&ndash;&gt;-->
-
-<!--            <a href="/category/reesult" style="cursor: pointer; " class="text-blue-600">[수정하기]</a>-->
-
-<!--&lt;!&ndash;            <a onClick="window.location.reload()" style="cursor: pointer; " class="text-blue-600">[수정하기]</a>&ndash;&gt;-->
-<!--            <br>-->
-<!--        </form>-->
     </div>
 
 </body>
