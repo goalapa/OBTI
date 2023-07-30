@@ -1,38 +1,38 @@
 package com.goalapa.cacamuca.foodDomain.query.domain.aggregate.entity;
 
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "Food")
+@ToString
 public class Food {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int foodNo;
 
+    @Id
+    @Column(name = "food_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer foodNo;
+
+    @Column(name = "food_name")
     private String foodName;
 
+    @Column(name = "food_rate")
     private double foodRate;
 
-    private int foodPrice;
+    @Column(name = "food_price")
+    private Integer foodPrice;
 
+    @Column(name = "country")
     private String country;
 
+    @Column(name = "food_type")
     private String foodType;
-
-    @Override
-    public String toString() {
-        return "Food{" +
-                "foodNo=" + foodNo +
-                ", foodName='" + foodName + '\'' +
-                ", foodRate=" + foodRate +
-                ", foodPrice=" + foodPrice +
-                ", country='" + country + '\'' +
-                ", foodType='" + foodType + '\'' +
-                '}';
-    }
 }

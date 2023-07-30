@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Controller  //화면 리턴
+@Controller
 @RequestMapping("/category")
 public class CategoryController {
 
@@ -30,9 +30,6 @@ public class CategoryController {
         this.updateCategoryService = updateCategoryService;
     }
 
-    @GetMapping("/tempcategory")
-    public void tempCategoryPage() {}
-
     //카테고리 추가 기능 구현
     @GetMapping("/add")
     public String categoryAdd() {
@@ -43,15 +40,12 @@ public class CategoryController {
     @PostMapping("/add")
     public String addCategory(@ModelAttribute AddCategoryDTO addCategoryDTO) {
 
-        System.out.println("addCategoryDTO = " + addCategoryDTO);
 
-        //add카테고리서비스에 보내기
         addCategoryService.addCategory(addCategoryDTO);
 
 
-        return "/main";
+        return "redirect:/category/category-list";
 
-//        return "redirect:/category/add-result";
     }
 
     //카테고리 수정 기능 구현
@@ -63,12 +57,11 @@ public class CategoryController {
     @PostMapping("/update")
     public String UpdateCheckCategory(@ModelAttribute UpdateCategoryDTO updateCategoryDTO) {
 
-        System.out.println("updateCategoryDTO = " + updateCategoryDTO);
 
         updateCategoryService.checkUpdate(updateCategoryDTO);
 
 
-        return "/main";
+        return "redirect:/category/category-list";
     }
 
 }

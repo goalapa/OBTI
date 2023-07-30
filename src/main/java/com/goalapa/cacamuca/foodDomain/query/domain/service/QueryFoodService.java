@@ -6,6 +6,4 @@ import org.springframework.data.domain.Pageable;
 
 public interface QueryFoodService {
 
-    Page<CheckFoodDTO> findFoodRegistList(Pageable pageable);
-
 }

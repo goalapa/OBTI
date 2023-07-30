@@ -4,6 +4,7 @@ import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportCreateDTO;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDeleteDTO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.repository.BlackListRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -56,27 +58,29 @@ public class ReportServiceTests {
         // then
         Assertions.assertEquals(repositoryCnt + 1, reportRepository.count());
     }
-//
-//    @Test
-//    @DisplayName("신고 삭제 기능")
-//    public void reportDeleteTest() {
-//
-//        // given
-//        ReportCreateDTO reportCreateDTO = new ReportCreateDTO();
-//        reportCreateDTO.setReviewNo(1);
-//        reportCreateDTO.setReportType(3);
-//        reportCreateDTO.setReportedMemberNo(2);
-//
-//        reportService.saveNewReport(reportCreateDTO, "abc000");
-//
-//        long repositoryCnt = reportRepository.count();
-//
-//        // when
-//        reportService.deleteReportById(1);
-//
-//        // then
-//        Assertions.assertEquals(repositoryCnt - 1, reportRepository.count());
-//    }
+
+    @Test
+    @DisplayName("신고 삭제 기능")
+    public void reportDeleteTest() {
+
+        // given
+        ReportCreateDTO reportCreateDTO = new ReportCreateDTO();
+        reportCreateDTO.setReviewNo(1);
+        reportCreateDTO.setReportType(3);
+        reportCreateDTO.setReportedMemberNo(2);
+
+        reportService.saveNewReport(reportCreateDTO, "abc000");
+
+        long repositoryCnt = reportRepository.count();
+
+        List<Report> list = reportRepository.findAll();
+
+        // when
+        reportService.deleteReportById(list.get(list.size() - 1).getReportNo());
+
+        // then
+        Assertions.assertEquals(repositoryCnt - 1, reportRepository.count());
+    }
 
     // 신고횟수 + 1
     @Test
@@ -150,28 +154,31 @@ public class ReportServiceTests {
     }
 
     // 리뷰에 신고 횟수 추가 & 신고 많이 당한 리뷰는 삭제
-//    @Test
-//    @DisplayName("리뷰에 신고 횟수 추가")
-//    public void reportIncreaseReportCntWithReviewNo() {
-//
-//        // given
-//        ReportDeleteDTO reportDeleteDTO = new ReportDeleteDTO();
-//        reportDeleteDTO.setReportNo(1);
-//        reportDeleteDTO.setReportedMemberNo(3);
-//        reportDeleteDTO.setReviewNo(1);
-//        reportDeleteDTO.setIsAccept("true");
-//
-//        Optional<Review> review = reviewRepository.findById(reportDeleteDTO.getReviewNo());
-//        review.get().setReportCnt(8);
-//        long reviewReportedCnt = review.get().getReportCnt();
-//
-//        // when
-//        reportService.deleteReviewWithReportedCnt(reportDeleteDTO);
-//
-//        // then
-//        Optional<Review> resultReview = reviewRepository.findById(reportDeleteDTO.getReviewNo());
-//        long resultCnt = resultReview.get().getReportCnt();
-//
-//        Assertions.assertEquals(reviewReportedCnt + 1, resultCnt);
-//    }
+    @Test
+    @DisplayName("리뷰에 신고 횟수 추가")
+    public void reportIncreaseReportCntWithReviewNo() {
+
+        // given
+        List<Report> reportList = reportRepository.findAll();
+        int reportNo = reportList.get(reportList.size() - 1).getReportNo();
+
+        ReportDeleteDTO reportDeleteDTO = new ReportDeleteDTO();
+        reportDeleteDTO.setReportNo(reportNo);
+        reportDeleteDTO.setReportedMemberNo(3);
+        reportDeleteDTO.setReviewNo(1);
+        reportDeleteDTO.setIsAccept("true");
+
+        Optional<Review> review = reviewRepository.findById(reportDeleteDTO.getReviewNo());
+        review.get().setReportCnt(8);
+        long reviewReportedCnt = review.get().getReportCnt();
+
+        // when
+        reportService.deleteReviewWithReportedCnt(reportDeleteDTO);
+
+        // then
+        Optional<Review> resultReview = reviewRepository.findById(reportDeleteDTO.getReviewNo());
+        long resultCnt = resultReview.get().getReportCnt();
+
+        Assertions.assertEquals(reviewReportedCnt + 1, resultCnt);
+    }
 }
