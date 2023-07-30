@@ -913,12 +913,12 @@ VALUES ('광고 없이 깔끔하게 사용할 수 있어서 좋아요.',5.0,'우
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
 VALUES ('과자 종류가 많이 없어서 아쉬워요ㅠㅠ',2.0,'맛있다',27);
 
---손정인
+-- 손정인
 INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
 VALUES('한국','몽쉘 오감자 맛있따!!!','몽쉘','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.com', 4, '과자', 0);
 INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
 VALUES('한국','몽쉘 굿~~','몽쉘','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.comk', 5, '과자', 0);
 INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
 VALUES('한국','몽쉘 굿~~','몽쉘','2023-06-20',5.0,2,5,'선물추천',1000.0,'www.naver.comk', 4, '과자', 0);
---손정인
+-- 손정인
 
