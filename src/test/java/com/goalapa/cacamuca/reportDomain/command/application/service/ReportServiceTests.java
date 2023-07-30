@@ -107,7 +107,7 @@ public class ReportServiceTests {
     public void blacklistSaveTest() {
 
         // given
-        int reportedMemberNo = 1;
+        int reportedMemberNo = 10;
         long blacklistCnt = blackListRepository.count();
 
         Optional<Member> member = memberRepository.findById(reportedMemberNo);
