@@ -26,7 +26,7 @@
         </div>
 
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table class="w-full text-sm text-left text-gray-500 ">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th></th>
@@ -40,15 +40,15 @@
                 </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                <tr th:each="food : ${ foods }" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+                <tr th:each="food : ${ foods }" class="bg-white border-b  ">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "></th>
                     <td th:text="${food.foodNo}" class="px-6 py-4"></td>
                     <td th:text="${food.foodName}" class="px-6 py-4"></td>
                     <td th:text="${food.country}" class="px-6 py-4"></td>
                     <td th:text="${food.foodType}" class="px-6 py-4"></td>
                     <td th:text="${food.foodRate}" class="px-6 py-4"></td>
                     <td th:text="${food.foodPrice}" class="px-6 py-4"></td>
-                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
 <!--                        <div class="flex items-center space-x-4">-->
 <!--                            <button type="button" data-drawer-target="drawer-read-product-advanced" data-drawer-show="drawer-read-product-advanced" aria-controls="drawer-read-product-advanced" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200">-->
 <!--                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2 -ml-0.5">-->
