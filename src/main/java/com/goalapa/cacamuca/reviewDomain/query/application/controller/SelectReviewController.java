@@ -86,7 +86,6 @@ public class SelectReviewController {
             deleteKeywords.add(review.getReviewKeyword());
         }
         List<String> uniqueKeywords = new ArrayList<>(deleteKeywords);
-        System.out.println("uniqueKeywords = " + uniqueKeywords);
 
         model.addAttribute("searchReviews",searchReviews);
         model.addAttribute("search", search);
