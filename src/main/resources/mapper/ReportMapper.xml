@@ -6,6 +6,7 @@
     <resultMap id="reportResultMap" type="com.goalapa.cacamuca.reportDomain.query.application.dto.ReportQueryDTO">
         <id property="reportNo" column="report_no" />
         <result property="reviewNo" column="review_no" />
+        <result property="reportCnt" column="report_cnt"/>
         <result property="reportMemberNo" column="report_member_no" />
         <result property="reportedMemberNo" column="reported_member_no" />
         <result property="reportType" column="report_type" />
@@ -17,7 +18,7 @@
     <select id="getReportPage" resultMap="reportResultMap" parameterType="map">
         SELECT a.report_no, a.report_member_no, a.report_type,
                 a.reported_member_no, a.review_no,
-                b.review_content,
+                b.review_content, b.report_cnt,
                 rm.member_id AS reported_member_id,
                 rep.member_id AS report_member_id
         FROM report a

@@ -7,6 +7,7 @@
             height: 200px;
             margin: 0 auto;
             margin-top: 40px;
+            margin-bottom: 40px;
             border: 2px solid #ccc;
             border-radius: 15px;
         }
@@ -90,6 +91,7 @@
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
             border-radius: 4px;
+            margin-bottom: 20px;
         }
 
         .page-button:hover {
@@ -131,6 +133,17 @@
             margin-right: 5px;
             font-weight: normal;
         }
+        .viewOption{
+            position: relative;
+            left: 150px;
+            background-color: #eeee;
+            border-radius: 3px;
+        }
+        .likeCount{
+            position: relative;
+            color: #ff3333;
+            left: 230px;
+        }
 
     </style>
     <meta charset="UTF-8">
@@ -144,12 +157,29 @@
             <p th:text="${search}"/>
             <a class="inner_keyword" type="text" th:each="uniqueKeyword : ${uniqueKeywords}" th:text="${uniqueKeyword}"/>
         </div>
+
+        <span>
+        <select class="viewOption" name="viewOption" id="viewOption" onchange="sortReviews(this.value)">
+            <option value="1">최신순</option>
+            <option value="2">좋아요순</option>
+            <option value="3">별점순</option>
+        </select>
+        </span>
+
     <div class="layout" th:each="searchReview : ${searchReviews}">
         <span class="inner_id" th:each="reviweWriter : ${reviewWriters}">
         <th:block th:if="${reviweWriter.reviewNo eq searchReview.reviewNo}">
             <a th:text="${reviweWriter.memberId}"/>
+            <a class="likeCount" th:text="${'좋아요 수 ' + searchReview.likeCnt}"/>
         </th:block>
-    </span>
+        </span>
+
+
+        <!-- 정렬을 위한 보이지 않는 데이터 -->
+        <a style="display: none;" name="reviewNoData" th:text="${searchReview.reviewNo}"/>
+        <a style="display: none;" name="likeCntData"  th:text="${searchReview.likeCnt}"/>
+        <a style="display: none;" name="reviewRateData" th:text="${searchReview.reviewRate}"/>
+
         <span class="inner">
         <span class="rating_box">
             <span class="rating">
@@ -173,8 +203,7 @@
         </th:block>
         </span>
     </div>
-
-
+</div>
     <div style="display: flex; justify-content: center; margin-top: 20px;">
         <!-- 이전 페이지 버튼 -->
         <a th:if="${searchReviews.hasPrevious()}"
@@ -205,32 +234,15 @@
             </button>
         </a>
     </div>
-</div>
-
-
-<!--    <div class="layout">-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">리뷰 번호</th>-->
-<!--                <th class="w-64 gap-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">까까 이름</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="search : ${searchReviews}">-->
-<!--                <td th:text="${search.reviewNo}"/>-->
-<!--                <td>-->
-<!--                    <a th:text="${search.foodName}" th:href="@{/detail(no=${search.reviewNo}, member=${search.memberNo})}"></a>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-
 
     <script>
         const rating_inputs = document.querySelectorAll('.rating input');
         const rating_stars = document.querySelectorAll('.rating_star');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewOption = document.getElementById('viewOption');
+            sortReviews(viewOption.value);
+        });
 
         for(let i=0; i<rating_inputs.length; i++) {
             const rating_input = rating_inputs[i];
@@ -242,6 +254,30 @@
                 rating_star.style.width = `${rating_input.value * 10}%`;
             });
         }
+
+        function sortReviews(value){
+            const reviewContainer = document.querySelector('.layout_outline');
+            const reviewItems = document.querySelectorAll('.layout');
+
+            const sortedItems = Array.from(reviewItems).sort((a, b) => {
+                if (value === '1') {
+                    return a.querySelector('[name="reviewNoData"]').textContent - b.querySelector('[name="reviewNoData"]').textContent;
+                } else if (value === '2') {
+                    return b.querySelector('[name="likeCntData"]').textContent - a.querySelector('[name="likeCntData"]').textContent;
+                } else if (value === '3') {
+                    return b.querySelector('[name="reviewRateData"]').textContent - a.querySelector('[name="reviewRateData"]').textContent;
+                }
+            });
+
+            reviewItems.forEach((item) => {
+                reviewContainer.removeChild(item);
+            });
+
+            sortedItems.forEach((item) => {
+                reviewContainer.appendChild(item);
+            });
+        }
+
     </script>
 </body>
 </html>

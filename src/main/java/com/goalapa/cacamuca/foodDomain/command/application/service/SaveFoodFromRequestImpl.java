@@ -1,10 +1,12 @@
 package com.goalapa.cacamuca.foodDomain.command.application.service;
 
+import com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.CountryVO;
 import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.FoodTypeVO;
 import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
 import com.goalapa.cacamuca.foodDomain.command.domain.service.SaveFoodFromRequest;
+import com.goalapa.cacamuca.requestDomain.command.domain.repository.RequestRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,13 +16,14 @@ public class SaveFoodFromRequestImpl implements SaveFoodFromRequest {
 
     private final FoodRepository foodRepository;
 
+
     public SaveFoodFromRequestImpl(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
     }
 
     @Override
     @Transactional
-    public void saveFoodFromRequest(com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO foodDTO) {
+    public void saveFoodFromRequest(FoodDTO foodDTO) {
 
         CountryVO country = new CountryVO(foodDTO.getCountry());
         FoodTypeVO foodType = new FoodTypeVO(foodDTO.getFoodType());

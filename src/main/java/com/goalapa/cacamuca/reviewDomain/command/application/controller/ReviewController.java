@@ -46,33 +46,31 @@ public class ReviewController {
     @ResponseBody
     public Map<String, Object> CountHeart(@RequestBody HashMap<String, Object> parameter,
                                           @AuthenticationPrincipal CustomUser user){
-            String no = (String) parameter.get("no");
-            Integer reviewNo =  Integer.parseInt(no);
-            Integer memberNo = Integer.parseInt((String) parameter.get("member"));
-            String likeStatus = (String) parameter.get("likeStatus");
+        String no = (String) parameter.get("no");
+        Integer reviewNo =  Integer.parseInt(no);
+        Integer memberNo = Integer.parseInt((String) parameter.get("member"));
+        String likeStatus = (String) parameter.get("likeStatus");
 
-            int loginMemberNo = user.getMemberNo();
+        int loginMemberNo = user.getMemberNo();
 
-            reviewService.countHeart(reviewNo, loginMemberNo);
+        reviewService.countHeart(reviewNo, loginMemberNo);
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("no", Integer.valueOf(reviewNo).toString());
+        responseMap.put("member", memberNo);
+        responseMap.put("likeStatus", likeStatus);
 
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("no", Integer.valueOf(reviewNo).toString());
-            responseMap.put("member", memberNo);
-            responseMap.put("likeStatus", likeStatus);
-
-            return responseMap;
+        return responseMap;
     }
 
     @PostMapping("/report")
     public void countReport(@RequestBody HashMap<String, Object> param,
                             @AuthenticationPrincipal CustomUser user){
-        int reportReason = Integer.parseInt((String) param.get("reportReason"));
-        System.out.println("reportReason = " + reportReason);
-        int memberNo = Integer.parseInt((String) param.get("member"));
-        int reviewNo = Integer.parseInt((String) param.get("no"));
+        int reportReason = Integer.parseInt((String) param.get("reportType"));
+        int memberNo = Integer.parseInt((String) param.get("memberNo"));
+        int reviewNo = Integer.parseInt((String) param.get("reviewNo"));
         int loginMemberNo = user.getMemberNo();
 
-        reviewService.countReport(reportReason, reviewNo, memberNo, loginMemberNo);
+        reviewService.countReport(reportReason, reviewNo, loginMemberNo, memberNo);
     }
 
     @PostMapping("/review/myReview")

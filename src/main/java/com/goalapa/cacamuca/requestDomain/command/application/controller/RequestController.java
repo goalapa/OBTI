@@ -6,6 +6,7 @@ import com.goalapa.cacamuca.requestDomain.command.application.service.DeleteRequ
 import com.goalapa.cacamuca.requestDomain.command.application.service.DeleteRequestPicImpl;
 import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestImpl;
 import com.goalapa.cacamuca.requestDomain.command.application.service.SaveRequestPicImpl;
+import com.goalapa.cacamuca.requestDomain.command.domain.aggregate.entity.Request;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,8 +39,8 @@ public class RequestController {
     @PostMapping("/request")
     public String saveRequest(@AuthenticationPrincipal CustomUser customUser, @ModelAttribute RequestDTO requestDTO, @RequestParam MultipartFile requestPic) {
 
-        saveRequestImpl.saveRequest(requestDTO, customUser.getMemberNo());
-        saveRequestPicImpl.saveRequestPic(requestPic);
+        int saveRequest = saveRequestImpl.saveRequest(requestDTO, customUser.getMemberNo());
+        saveRequestPicImpl.saveRequestPic(requestPic, saveRequest);
 
         return "redirect:/";
 

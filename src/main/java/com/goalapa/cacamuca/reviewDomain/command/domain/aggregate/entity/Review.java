@@ -1,6 +1,8 @@
 package com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity;
 
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWriter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "review")
+@AllArgsConstructor
 public class Review {
 
     @Id()
@@ -49,7 +52,7 @@ public class Review {
     @Column(name = "review_link")
     private String reviewLink;
 
-    @Column(name = "likeCnt")
+    @Column(name = "like_cnt")
     private Integer likeCnt;
 
     @Column(name = "report_cnt")

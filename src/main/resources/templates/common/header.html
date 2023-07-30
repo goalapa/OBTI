@@ -5,6 +5,7 @@
     <title>Header</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/fonts.css}" />
 </head>
 <body>
 <!--
@@ -43,11 +44,11 @@ This example requires updating your template:
                     <a sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')" href="/member/my-page" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">마이페이지</a>
                     <a sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')" href="/review/review" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">리뷰쓰기</a>
                     <a sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')" href="/request" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">식품 등록 요청</a>
-                    <a sec:authorize="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')" href="/report" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">신고</a>
                 </div>
             </div>
         </header>
     </div>
+
     <nav class="bg-blue-200">
         <div class="max-w-screen-xl items-center justify-between mx-auto p-4">
             <div class="bg-blue-200 hidden w-full md:block md:w-auto" id="navbar-dropdown">
@@ -56,69 +57,73 @@ This example requires updating your template:
                         <button id="dropdownAsiaLink" data-dropdown-toggle="dropdownAsia" class="ml-8 bg-blue-200 flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">아시아<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                         </svg></button>
+                        <form action="/" method="get">
                         <div id="dropdownAsia" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                             <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">한국(KOREA)</a>
+                                    <a href="/country/?country=한국" class="block px-4 py-2 hover:bg-gray-100">한국(KOREA)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">일본(JAPAN)</a>
+                                    <a href="/country/?country=일본" class="block px-4 py-2 hover:bg-gray-100">일본(JAPAN)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">대만(TAIWAN)</a>
+                                    <a href="/country/?country=대만" class="block px-4 py-2 hover:bg-gray-100">대만(TAIWAN)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">베트남(VIETNAM)</a>
+                                    <a href="/country/?country=베트남" class="block px-4 py-2 hover:bg-gray-100">베트남(VIETNAM)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">필리핀(PHILIPPINES)</a>
+                                    <a href="/country/?country=필리핀" class="block px-4 py-2 hover:bg-gray-100">필리핀(PHILIPPINES)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">태국(THAILAND)</a>
+                                    <a href="/country/?country=태국" class="block px-4 py-2 hover:bg-gray-100">태국(THAILAND)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">말레이시아(MALAYSIA)</a>
+                                    <a href="/country/?country=말레이시아" class="block px-4 py-2 hover:bg-gray-100">말레이시아(MALAYSIA)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">인도(INDIA)</a>
+                                    <a href="/country/?country=인도" class="block px-4 py-2 hover:bg-gray-100">인도(INDIA)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">튀르기예(TURKIYE)</a>
+                                    <a href="/country/?country=튀르키예" class="block px-4 py-2 hover:bg-gray-100">튀르기예(TURKIYE)</a>
                                 </li>
                             </ul>
                         </div>
+                        </form>
                     </li>
 
                     <li>
                         <button id="dropdownEuropeLink" data-dropdown-toggle="dropdownEurope" class="ml-24 w-full bg-blue-200 flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">유럽<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                         </svg></button>
+                        <form action="/" method="get">
                         <!-- Dropdown menu -->
                         <div id="dropdownEurope" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">프랑스(FRANCE)</a>
+                                    <a href="/country/?country=프랑스" class="block px-4 py-2 hover:bg-gray-100">프랑스(FRANCE)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">독일(GERMANY)</a>
+                                    <a href="/country/?country=독일" class="block px-4 py-2 hover:bg-gray-100">독일(GERMANY)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">벨기에(BELGIUM)</a>
+                                    <a href="/country/?country=벨기에" class="block px-4 py-2 hover:bg-gray-100">벨기에(BELGIUM)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">스웨덴(SWEDEN)</a>
+                                    <a href="/country/?country=스웨덴" class="block px-4 py-2 hover:bg-gray-100">스웨덴(SWEDEN)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">이탈리아(ITALIA)</a>
+                                    <a href="/country/?country=이탈리아" class="block px-4 py-2 hover:bg-gray-100">이탈리아(ITALIA)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">폴란드(POLAND)</a>
+                                    <a href="/country/?country=폴란드" class="block px-4 py-2 hover:bg-gray-100">폴란드(POLAND)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">스위스(SWISS)</a>
+                                    <a href="/country/?country=스위스" class="block px-4 py-2 hover:bg-gray-100">스위스(SWISS)</a>
                                 </li>
                             </ul>
                         </div>
+                        </form>
                     </li>
 
 
@@ -126,52 +131,52 @@ This example requires updating your template:
                         <button id="dropdownNorthALink" data-dropdown-toggle="dropdownNorthA" class="ml-24 w-full bg-blue-200 flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">북아메리카<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                         </svg></button>
+                        <form action="/" method="get">
                         <!-- Dropdown menu -->
                         <div id="dropdownNorthA" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">미국(USA)</a>
+                                    <a href="/country/?country=미국" class="block px-4 py-2 hover:bg-gray-100">미국(USA)</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">캐나다(CANADA)</a>
+                                    <a href="/country/?country=캐나다" class="block px-4 py-2 hover:bg-gray-100">캐나다(CANADA)</a>
                                 </li>
                             </ul>
                         </div>
+                        </form>
                     </li>
 
                     <li>
                         <button id="dropdownOceaniaLink" data-dropdown-toggle="dropdownOceania" class="ml-24 w-full bg-blue-200 flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">오세아니아<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                         </svg></button>
+                        <form action="/" method="get">
                         <!-- Dropdown menu -->
                         <div id="dropdownOceania" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">호주(AUSTRALIA)</a>
+                                    <a href="/country/?country=호주" class="block px-4 py-2 hover:bg-gray-100">호주(AUSTRALIA)</a>
                                 </li>
                             </ul>
                         </div>
+                        </form>
                     </li>
 
                     <li>
                         <button id="dropdownEtcLink" data-dropdown-toggle="dropdownEtc" class="ml-24 w-full bg-blue-200 flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">그 외<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                         </svg></button>
+                        <form action="/" method="get">
                         <!-- Dropdown menu -->
                         <div id="dropdownEtc" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">기타국가</a>
+                                    <a href="/country/?country=기타국가" class="block px-4 py-2 hover:bg-gray-100">기타국가</a>
                                 </li>
                             </ul>
                         </div>
+                        </form>
                     </li>
-
-
-                    <li>
-                        <button id="myPage" class="ml-24 w-full bg-blue-200 flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">마이페이지</button>
-                    </li>
-
                 </ul>
             </div>
         </div>

@@ -4,7 +4,9 @@ import com.goalapa.cacamuca.appreviewDomain.command.domain.aggregate.entity.AppR
 import com.goalapa.cacamuca.appreviewDomain.query.domain.repository.FindAppMapper;
 import com.goalapa.cacamuca.appreviewDomain.query.domain.repository.FindAppReviewRepo;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,8 +22,11 @@ public class FindAppReviewService {
 
     public Page<AppReview> findAllAppReview(Pageable pageable) {
 
-        return findAppReviewRepo.findAll(pageable);
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "appReviewNo"));
+
+        return findAppReviewRepo.findAll(sortedPageable);
     }
+
 
     public Float findAvgAppReviewRate() {
         System.out.println("findAppMapper = " + findAppMapper.findAvgAppReviewRate());

@@ -1,57 +1,75 @@
 package com.goalapa.cacamuca.foodDomain.query.application.service;
 
-import com.goalapa.cacamuca.foodDomain.command.application.dto.FoodDTO;
-import com.goalapa.cacamuca.foodDomain.command.domain.repository.FoodRepository;
-import com.goalapa.cacamuca.foodDomain.query.application.dto.Dto;
-import com.goalapa.cacamuca.foodDomain.query.domain.aggregate.dto.CheckFoodDTO;
+import com.goalapa.cacamuca.foodDomain.command.application.dto.FoodPicDTO;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.entity.FoodEntity;
+import com.goalapa.cacamuca.foodDomain.command.domain.aggregate.vo.CountryVO;
+import com.goalapa.cacamuca.foodDomain.query.application.dto.QueryFoodDTO;
 import com.goalapa.cacamuca.foodDomain.query.domain.aggregate.entity.Food;
 import com.goalapa.cacamuca.foodDomain.query.domain.repository.FoodRegistMapper;
+import com.goalapa.cacamuca.foodDomain.query.domain.repository.QueryFoodRepo;
+import com.goalapa.cacamuca.foodDomain.query.infrastructure.repository.FoodMapper;
+import com.goalapa.cacamuca.foodDomain.query.infrastructure.repository.QueryFoodRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RequiredArgsConstructor
 @Service(value = "QueryApplicationFoodService")
 public class QueryFoodService {
 
     private final FoodRegistMapper foodRegistMapper;
-    private final FoodRepository foodRepository;
-    private final ModelMapper modelMapper;
+    private final QueryFoodRepo queryFoodRepo;
+    private final QueryFoodRepository queryFoodRepository;
+    private final FoodMapper foodMapper;
 
 
-    public Page<CheckFoodDTO> findFoodList(Pageable pageable) {
+    public Page<FoodEntity> findFoodByCountry(Pageable pageable, String country) {
 
-        HashMap<String, Object> map = new HashMap<>();
-        Sort sort = pageable.getSort();
-        int size = pageable.getPageSize();
-        long offset = pageable.getOffset();
-        map.put("sort", sort);
-        map.put("size", size);
-        map.put("offset", offset);
+        CountryVO countryVO = new CountryVO(country);
 
-        List<Food> foodList = foodRegistMapper.findFoods(pageable);
-        Integer count = foodRegistMapper.countFoods();
+        return queryFoodRepo.findByCountryVO(pageable, countryVO);
+    }
 
-        List<CheckFoodDTO> checkFoodDTOList = foodList.stream().map(
-                food ->
-                        modelMapper.map(food, CheckFoodDTO.class)
-        ).collect(
-                Collectors.toList()
-        );
+    public List<FoodPicDTO> findAllFoodPic() {
 
+        return foodRegistMapper.findAllFoodPic();
+    }
 
-        Page<CheckFoodDTO> page = new PageImpl<>(checkFoodDTOList, pageable, count);
+    public List<QueryFoodDTO> findAllFood() {
 
-        return page;
+        return foodMapper.findAllFood();
+    }
 
+    public Page<QueryFoodDTO> getFoodList(int pageNo, int pageSize, String sortBy) {
+
+        int pageNumber = pageNo - 1;
+        Sort sort = Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        Page<Food> foodListPage = queryFoodRepository.findAll(pageable);
+
+        return foodListPage.map(this::toDTO);
+    }
+
+    private QueryFoodDTO toDTO(Food food) {
+        QueryFoodDTO dto = new QueryFoodDTO();
+        dto.setFoodNo(food.getFoodNo());
+        dto.setFoodName(food.getFoodName());
+        dto.setFoodType(food.getFoodType());
+        dto.setFoodRate(food.getFoodRate());
+        dto.setFoodPrice(food.getFoodPrice());
+        dto.setCountry(food.getCountry());
+        return dto;
+    }
+
+    public Food findById(Integer foodNo) {
+        return queryFoodRepository.findById(foodNo).orElseThrow(RuntimeException::new);
     }
 }

@@ -25,7 +25,7 @@ public class ReportQueryController {
     // 신고 리스트 조회
     @GetMapping("/report-list")
     @ResponseBody
-    public ModelAndView getReportListPage(ModelAndView model, @PageableDefault(size = 10, direction = Sort.Direction.DESC) Pageable pageable) {
+    public ModelAndView getReportListPage(ModelAndView model, @PageableDefault(size = 5, direction = Sort.Direction.DESC) Pageable pageable) {
         Page<ReportQueryDTO> reportPage = reportPageServiceImpl.getReportPage(pageable);
 
         model.addObject("reportPage", reportPage);

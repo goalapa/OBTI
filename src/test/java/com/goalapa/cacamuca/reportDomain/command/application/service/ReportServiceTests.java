@@ -4,6 +4,7 @@ import com.goalapa.cacamuca.memberDomain.command.domain.aggregate.entity.Member;
 import com.goalapa.cacamuca.memberDomain.command.domain.repository.MemberRepository;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportCreateDTO;
 import com.goalapa.cacamuca.reportDomain.command.application.dto.ReportDeleteDTO;
+import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.entity.Report;
 import com.goalapa.cacamuca.reportDomain.command.domain.aggregate.vo.ReviewVO;
 import com.goalapa.cacamuca.reportDomain.command.domain.repository.BlackListRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -71,8 +73,10 @@ public class ReportServiceTests {
 
         long repositoryCnt = reportRepository.count();
 
+        List<Report> list = reportRepository.findAll();
+
         // when
-        reportService.deleteReportById(1);
+        reportService.deleteReportById(list.get(list.size() - 1).getReportNo());
 
         // then
         Assertions.assertEquals(repositoryCnt - 1, reportRepository.count());
@@ -107,7 +111,7 @@ public class ReportServiceTests {
     public void blacklistSaveTest() {
 
         // given
-        int reportedMemberNo = 1;
+        int reportedMemberNo = 10;
         long blacklistCnt = blackListRepository.count();
 
         Optional<Member> member = memberRepository.findById(reportedMemberNo);
@@ -155,8 +159,11 @@ public class ReportServiceTests {
     public void reportIncreaseReportCntWithReviewNo() {
 
         // given
+        List<Report> reportList = reportRepository.findAll();
+        int reportNo = reportList.get(reportList.size() - 1).getReportNo();
+
         ReportDeleteDTO reportDeleteDTO = new ReportDeleteDTO();
-        reportDeleteDTO.setReportNo(1);
+        reportDeleteDTO.setReportNo(reportNo);
         reportDeleteDTO.setReportedMemberNo(3);
         reportDeleteDTO.setReviewNo(1);
         reportDeleteDTO.setIsAccept("true");

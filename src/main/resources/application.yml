@@ -11,9 +11,8 @@ server:
       force: true
 spring:
   profiles:
-    active: dev
   # 운영환경 or 로컬 환경 중에 선택하세요.
-  #    active: prod
+    active: dev
   #  config:
   #    activate:
   #    use-legacy-processing: true
@@ -29,12 +28,14 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
+      # activate가 dev일때만, create, create-drop
       ddl-auto: create
 #      use-new-id-generator-mappings: false
     defer-datasource-initialization : true
   sql:
     init:
       data-locations: classpath:db/data/data.sql
+      # activate가 dev일때만, always
       mode: always
       platform: mysql
       encoding: UTF-8
