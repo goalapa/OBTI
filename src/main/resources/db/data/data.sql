@@ -1,4 +1,4 @@
--- 2022.07.29 by sui --
+
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
 VALUES(1,'2023-05-15','2023-06-30',7);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
@@ -328,7 +328,7 @@ VALUES(159,'호주','커피');
 INSERT INTO category(category_no,country,food_type)
 VALUES(160,'호주','차');
 
--- 23.07.29 손정인
+
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(1,'오레오','한국','과자',4.7,2000);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
@@ -387,7 +387,7 @@ INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(28,'투니스','미국','과자',4.09,6300);
 INSERT INTO food(food_no,food_name,country,food_type,food_rate,food_price)
 VALUES(29,'체스터스','미국','과자',4.53,4000);
--- 23.07.29 손정인
+
 
 
 
@@ -399,7 +399,6 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(3,'/assets/img/chorokmaesil.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(4,'/assets/img/chickchok.png');
---손정인
 INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(5,'/assets/img/moncher.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
@@ -422,8 +421,6 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(14,'/assets/img/bananamilk.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(15,'/assets/img/strawberrymilk.jpg');
---손정인
--- 23.07.29 by sjPark
 INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(16,'/assets/img/사또밥.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
@@ -452,9 +449,9 @@ INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(28,'/assets/img/투니스.jpg');
 INSERT INTO food_pic(food_no,food_pic_url)
 VALUES(29,'/assets/img/체스터스.jpg');
--- 2023.07.29 by sjPark --
 
--- 2023.07.29 by sjPark --
+
+
 INSERT INTO member (member_no, member_birth, blacklist_type, member_country, member_email, member_gender, member_grant, member_id, member_nickname, member_pwd, member_report_cnt)
 VALUES (1, '2001-08-04', 1, '한국', 'admin@cacaumca.store', 'F', 'ROLE_ADMIN', 'admin', '관리자', '$2a$12$jirbZeEp2BWrrlwXxIjb5uAFhF//a.nMocLQlYb58mV4wKNq5GvCC', 0);
 INSERT INTO member (member_no, member_birth, blacklist_type, member_country, member_email, member_gender, member_grant, member_id, member_nickname, member_pwd, member_report_cnt)
@@ -485,9 +482,9 @@ INSERT INTO member (member_no, member_birth, blacklist_type, member_country, mem
 VALUES (14, '2004-11-30', 0, '한국', 'stat@cacamuca.strore', 'F', 'ROLE_MEMBER', 'stat000', '통계걸', '$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq', 0);
 INSERT INTO member (member_no, member_birth, blacklist_type, member_country, member_email, member_gender, member_grant, member_id, member_nickname, member_pwd, member_report_cnt)
 VALUES (15, '2008-11-30', 0, '한국', 'stat2@cacamuca.strore', 'M', 'ROLE_MEMBER', 'stat111', '통계보이', '$2a$12$Zvaej4PNgRURKlAMPurdsuq3y/ScO/wU8g0iRyHj8yYlDypmbjwhq', 0);
---- 2023.07.29 by sjPark --
 
--- 2022.07.29 by sui --
+
+
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
 VALUES(1,10,2,1,1);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
@@ -525,7 +522,7 @@ VALUES(17,19,2,3,3);
 INSERT INTO report(report_no,review_no,report_member_no,reported_member_no,report_type)
 VALUES(18,19,7,3,2);
 
---손정인
+
 INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
 VALUES('한국','빵','밤맛 쁘띠몽쉘',4200, 1, '노티드 콜라보 제품인데 추가해주세요');
 INSERT INTO request(request_country, request_food_type, request_food,request_price,request_member_no, request_content)
@@ -613,7 +610,7 @@ INSERT INTO request_pic(request_no, request_url)
 VALUES(20,'1a5b5462-5535-475e-9bed-38dc6c3ea9ed_pocky.png');
 INSERT INTO request_pic(request_no, request_url)
 VALUES(21,'17422ca5-410c-4815-b7a6-9be7e4980dba_flaminhot.jpeg');
---손정인
+
 
 
 /* 2023-07-29 bbbbooo */
@@ -705,7 +702,7 @@ VALUES(41,'한국','솔직히 너무 맛있어요','체스터스','2023-06-20',8
 /* 2023-07-29 bbbbooo */
 
 
---손정인 0729
+
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-29',5,'몽쉘',200,4.5,100,20,'M','한국','/assets/img/moncher.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
@@ -734,9 +731,9 @@ INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,me
 VALUES('2023-07-29',17,'초코하임',166,1.88,200,10,'M','한국','/assets/img/초코하임.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
 VALUES('2023-07-29',18,'화이트하임',166,4.89,200,10,'M','한국','/assets/img/화이트하임.jpg');
--- 손정인 0729
 
--- 손정인 0730
+
+
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-30',5,'몽쉘',200,4.5,100,20,'M','한국','/assets/img/moncher.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
@@ -765,9 +762,9 @@ INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,me
 VALUES('2023-07-30',17,'초코하임',166,1.88,200,10,'M','한국','/assets/img/초코하임.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
 VALUES('2023-07-30',18,'화이트하임',166,4.89,200,10,'M','한국','/assets/img/화이트하임.jpg');
--- 손정인 0730
 
---손정인 0731
+
+
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-31',5,'몽쉘',200,4.5,100,20,'M','한국','/assets/img/moncher.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
@@ -796,7 +793,7 @@ INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,me
 VALUES('2023-07-31',17,'초코하임',166,1.88,200,10,'M','한국','/assets/img/초코하임.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
 VALUES('2023-07-31',18,'화이트하임',166,4.89,200,10,'M','한국','/assets/img/화이트하임.jpg');
--- 손정인 0731
+
 
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-06-29',5,'몽쉘',30,4.5,100,20,'M','한국');
@@ -832,9 +829,9 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-07-29',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투니스.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-29',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
--- 손정인 0729
 
--- 손정인 0730
+
+
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-30',19,'치토스 퍼프',200,4.5,100,20,'M','미국','/assets/img/치토스퍼프.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
@@ -857,10 +854,10 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-07-30',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투니스.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-30',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
--- 손정인 0730
 
 
--- 손정인 0731
+
+
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-31',19,'치토스 퍼프',200,4.5,100,20,'M','미국','/assets/img/치토스퍼프.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
@@ -883,7 +880,7 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-07-31',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투니스.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-07-31',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
--- 손정인 0731
+
 
 
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
@@ -913,12 +910,10 @@ VALUES ('광고 없이 깔끔하게 사용할 수 있어서 좋아요.',5.0,'우
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
 VALUES ('과자 종류가 많이 없어서 아쉬워요ㅠㅠ',2.0,'맛있다',27);
 
---손정인
+
 INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
 VALUES('한국','몽쉘 오감자 맛있따!!!','몽쉘','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.com', 4, '과자', 0);
 INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
 VALUES('한국','몽쉘 굿~~','몽쉘','2023-06-20',5.0,1,5,'선물추천',1000.0,'www.naver.comk', 5, '과자', 0);
 INSERT INTO review(country, review_content,food_name,review_date,review_rate,member_no,food_no,review_keyword,review_price,review_link,like_cnt, food_type, report_cnt)
 VALUES('한국','몽쉘 굿~~','몽쉘','2023-06-20',5.0,2,5,'선물추천',1000.0,'www.naver.comk', 4, '과자', 0);
---손정인
-
