@@ -3,6 +3,8 @@
 
 **CACAMUCA는 전세계의 과자를 리뷰하는 사이트입니다!!**
 
+https://www.notion.so/hammang/Goal-apa-3662c97974f54b93b62adf62e506bf38
+
 
 <br>
 
