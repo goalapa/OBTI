@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://metaverse.ohgiraffers.com:3306/cacamuca?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://3.34.62.141:56955/cacamuca?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: ENC(rn+gwlMl/OzXtFqPV1ffTwr1PqxD2bkV)
     password: ENC(wmH+9dh08A9cMsdx+9CPLq3J5Bf+tbVU)
     hikari:
