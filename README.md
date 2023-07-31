@@ -2,8 +2,10 @@
 ## 🍪 1. 프로젝트 소개
 
 **CACAMUCA는 전세계의 과자를 리뷰하는 사이트입니다!!**
+### 1-1. 프로젝트 노션
+<img width="1194" alt="image" src="https://github.com/goalapa/spring-cacamuca/assets/61495627/b8e6f8c7-a477-4132-880e-cc89b523dd52">
 
-https://www.notion.so/hammang/Goal-apa-3662c97974f54b93b62adf62e506bf38
+* 노션 링크 : https://www.notion.so/hammang/Goal-apa-3662c97974f54b93b62adf62e506bf38
 
 
 <br>
@@ -27,11 +29,18 @@ https://www.notion.so/hammang/Goal-apa-3662c97974f54b93b62adf62e506bf38
   </tr>
 
   <tr>
-    <td align="center"><strong>Lee Hyeon Seok</strong></td>
-    <td align="center"><strong>Son Jung In</strong></td>
-    <td align="center"><strong>Yi Ju Won</strong></td>
-    <td align="center"><strong>Kang Su Ui</strong></td>
-    <td align="center"><strong>Park Seong Joon</strong></td>
+    <td align="center">Lee Hyeon Seok</td>
+    <td align="center">Son Jung In</td>
+    <td align="center">Yi Ju Won</td>
+    <td align="center">Kang Su Ui</td>
+    <td align="center">Park Seong Joon</td>
+  </tr>
+    <tr>
+    <td align="center"><strong>리뷰, 좋아요 기능</strong></td>
+    <td align="center"><strong>통계, 요청 기능</strong></td>
+    <td align="center"><strong>카테고리, 식품 기능</strong></td>
+    <td align="center"><strong>신고, 블랙리스트 기능</strong></td>
+    <td align="center"><strong>회원, 로그인 기능</strong></td>
   </tr>
 </table>
 
@@ -44,13 +53,8 @@ https://www.notion.so/hammang/Goal-apa-3662c97974f54b93b62adf62e506bf38
 
 
 ## 🧱 4. 프로젝트 아키텍처
-### 4-1 . CONTEXT MAP
+### 4-1. CONTEXT MAP
 ![image](https://github.com/goalapa/spring-cacamuca/assets/61495627/1083d5fd-9e89-4b0c-8652-0d85466c5024)
-
-### 4-2. 흐름도
-
-### 4-3. File Settings 🗄️
-
 
 <br>
 
