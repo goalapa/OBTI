@@ -90,38 +90,38 @@ class CommandMemberControllerTest {
                 .build();
     }
 
-//    @ParameterizedTest
-//    @MethodSource("getMemberInfo")
-//    @Transactional
-//    @DisplayName("회원가입")
-//    void registration(String memberId, String memberPwd, String memberNickName, String memberEmail,
-//                      String memberGrant, Integer memberReportCnt, String memberCountry, String memberGender, LocalDate memberBirth) throws Exception {
-//        mvc.perform(MockMvcRequestBuilders
-//                        .post("/member/registration")
-//                        .param("memberId", memberId)
-//                        .param("memberPwd", memberPwd)
-//                        .param("memberNickname", memberNickName)
-//                        .param("memberEmail", memberEmail)
-//                        .param("memberCountry", memberCountry)
-//                        .param("memberGender", memberGender)
-//                        .param("memberBirth", "2023-07-01")
-//                )
-//                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
-//    }
+    @ParameterizedTest
+    @MethodSource("getMemberInfo")
+    @Transactional
+    @DisplayName("회원가입")
+    void registration(String memberId, String memberPwd, String memberNickName, String memberEmail,
+                      String memberGrant, Integer memberReportCnt, String memberCountry, String memberGender, LocalDate memberBirth) throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/member/registration")
+                        .param("memberId", memberId)
+                        .param("memberPwd", memberPwd)
+                        .param("memberNickname", memberNickName)
+                        .param("memberEmail", memberEmail)
+                        .param("memberCountry", memberCountry)
+                        .param("memberGender", memberGender)
+                        .param("memberBirth", "2023-07-01")
+                )
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+    }
 
-//    @ParameterizedTest
-//    @MethodSource("getMemberInfo")
-//    @Transactional
-//    @DisplayName("임시비밀번호로 변경")
-//    void changeTempPassword(String memberId, String memberPwd, String memberNickName, String memberEmail,
-//                            String memberGrant, Integer memberReportCnt, String memberCountry, String memberGender, LocalDate memberBirth) throws Exception {
-//        registration(memberId, memberPwd, memberNickName, memberEmail, memberGrant, memberReportCnt, memberCountry, memberGender, memberBirth);
-//        mvc.perform(MockMvcRequestBuilders
-//                        .post("/member/temp-password")
-//                        .param("id", memberId)
-//                )
-//                .andExpect(MockMvcResultMatchers.status().isOk());
-//    }
+    @ParameterizedTest
+    @MethodSource("getMemberInfo")
+    @Transactional
+    @DisplayName("임시비밀번호로 변경")
+    void changeTempPassword(String memberId, String memberPwd, String memberNickName, String memberEmail,
+                            String memberGrant, Integer memberReportCnt, String memberCountry, String memberGender, LocalDate memberBirth) throws Exception {
+        registration(memberId, memberPwd, memberNickName, memberEmail, memberGrant, memberReportCnt, memberCountry, memberGender, memberBirth);
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/member/temp-password")
+                        .param("id", memberId)
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
 
     @Test
     @Transactional
@@ -151,20 +151,20 @@ class CommandMemberControllerTest {
                 .andExpect(MockMvcResultMatchers.flash().attribute("result", "잘못된 회원정보 입니다."));
     }
 
-//    @Test
-//    @Transactional
-//    @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
-//    @DisplayName("회원 비밀번호변경 성공")
-//    void modifyMemberPasswordSuccess() throws Exception {
-//
-//        mvc.perform(MockMvcRequestBuilders
-//                        .post("/member/password")
-//                        .param("memberNo", String.valueOf(member.getMemberNo()))
-//                        .param("memberPwd", "pwd00000")
-//                )
-//                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-//                .andExpect(MockMvcResultMatchers.flash().attribute("result", "비밀번호 변경이 완료되었습니다."));
-//    }
+    @Test
+    @Transactional
+    @WithUserDetails(value="abc9999", setupBefore = TestExecutionEvent.TEST_EXECUTION)
+    @DisplayName("회원 비밀번호변경 성공")
+    void modifyMemberPasswordSuccess() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/member/password")
+                        .param("memberNo", String.valueOf(member.getMemberNo()))
+                        .param("memberPwd", "pwd00000")
+                )
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.flash().attribute("result", "비밀번호 변경이 완료되었습니다."));
+    }
 
     @Test
     @Transactional
