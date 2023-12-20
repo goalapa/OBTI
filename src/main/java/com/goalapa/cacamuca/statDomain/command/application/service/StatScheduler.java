@@ -38,7 +38,7 @@ public class StatScheduler {
         this.memberGenderService = memberGenderService;
     }
 
-//    @Scheduled(cron = "0 0 3 * * *")
+    @Scheduled(cron = "0 0 3 * * *")
     public void insertData() {
 
         List<FoodEntity> foods = foodRepository.findAll();

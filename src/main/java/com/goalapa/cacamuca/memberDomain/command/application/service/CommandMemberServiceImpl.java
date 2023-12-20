@@ -37,8 +37,6 @@ public class CommandMemberServiceImpl implements CommandMemberService {
 
         BirthDay birthDay = new BirthDay(date);
         member.setBirthDay(birthDay);
-        member.setMemberReportCnt(0);
-        member.setBlackListType(false);
         member.setMemberGrant("ROLE_MEMBER");
 
         memberRepository.save(member);

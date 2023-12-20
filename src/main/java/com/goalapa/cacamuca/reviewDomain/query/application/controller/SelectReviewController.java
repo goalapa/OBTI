@@ -55,7 +55,7 @@ public class SelectReviewController {
         model.addAttribute("bestStat", bestStat);
         model.addAttribute("recentPrice", recentPrice);
 
-        return "review/selectReviews";
+        return "/review/selectReviews";
     }
 
 
@@ -70,7 +70,7 @@ public class SelectReviewController {
         model.addAttribute("member", member);
 
 
-        return "review/reviewDetail";
+        return "/review/reviewDetail";
     }
 
     @GetMapping("/search")
