@@ -123,7 +123,7 @@
 
 
 #### 📝 PPT
-* https://docs.google.com/presentation/d/1yONZjXBWja2FH9xkFYXS6o7l_Pr_GsSr/edit?usp=drive_link&ouid=109438832189200987789&rtpof=true&sd=true
+* https://docs.google.com/presentation/d/1yONZjXBWja2FH9xkFYXS6o7l_Pr_GsSr/edit?usp=sharing&ouid=109438832189200987789&rtpof=true&sd=true
 
 #### 🏷️ Git Convention
 | **Convention**  | **내용**                                                         |
