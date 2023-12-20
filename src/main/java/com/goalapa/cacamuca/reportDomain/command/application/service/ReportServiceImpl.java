@@ -14,6 +14,8 @@ import com.goalapa.cacamuca.reportDomain.command.domain.repository.BlackListRepo
 import com.goalapa.cacamuca.reportDomain.command.domain.repository.ReportRepository;
 import com.goalapa.cacamuca.reportDomain.command.domain.service.ReportService;
 import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.Review;
+import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.entity.ReviewPic;
+import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,12 +31,14 @@ public class ReportServiceImpl implements ReportService {
     private final MemberRepository memberRepository;
     private final BlackListRepository blackListRepository;
     private final ReviewRepository reviewRepository;
+    private final ReviewPicRepository reviewPicRepository;
 
-    public ReportServiceImpl(ReportRepository reportRepository, MemberRepository memberRepository, BlackListRepository blackListRepository, ReviewRepository reviewRepository) {
+    public ReportServiceImpl(ReportRepository reportRepository, MemberRepository memberRepository, BlackListRepository blackListRepository, ReviewRepository reviewRepository, ReviewPicRepository reviewPicRepository) {
         this.reportRepository = reportRepository;
         this.memberRepository = memberRepository;
         this.blackListRepository = blackListRepository;
         this.reviewRepository = reviewRepository;
+        this.reviewPicRepository = reviewPicRepository;
     }
 
     // 신고 저장
@@ -142,7 +146,12 @@ public class ReportServiceImpl implements ReportService {
                 reportRepository.deleteAll(reports);
 
                 // 리뷰 삭제
-                reviewRepository.delete(reportedReview);
+                ReviewPic foundReviewPic = reviewPicRepository.findByReviewNo(reportedReview);
+                if(foundReviewPic != null) {
+                    reviewPicRepository.deleteByReviewNo(reportedReview);
+                }
+
+                reviewRepository.deleteById(reportedReview.getReviewNo());
             }
             else {
                 reportRepository.deleteById(reportDeleteDTO.getReportNo());
