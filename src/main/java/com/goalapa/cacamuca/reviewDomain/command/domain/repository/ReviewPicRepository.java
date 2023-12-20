@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface ReviewPicRepository extends JpaRepository<ReviewPic, Integer> {
     ReviewPic findByReviewNo(Review reviewNo);
 //    @Query("delete from ReviewPic p where p.reviewNo = :reviewNo")
-    void deleteByReviewNo(Review review);
+//    void deleteByReviewNo(int reviewNo);
 
 }
