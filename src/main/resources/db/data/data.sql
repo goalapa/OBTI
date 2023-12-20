@@ -1,11 +1,11 @@
 
+
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
 VALUES(1,'2023-05-15','2023-06-30',7);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
 VALUES(2,'2023-06-10','2023-07-20',8);
 INSERT INTO blacklist(blacklist_no,blacklist_reg_date,blacklist_rel_date,member_no)
 VALUES(3,'2023-07-15', null, 9);
-
 
 INSERT INTO category(category_no,country,food_type)
 VALUES(1,'한국','과자');
@@ -732,8 +732,6 @@ VALUES('2023-12-19',17,'초코하임',166,1.88,200,10,'M','한국','/assets/img/
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
 VALUES('2023-12-19',18,'화이트하임',166,4.89,200,10,'M','한국','/assets/img/화이트하임.jpg');
 
-
-
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-20',5,'몽쉘',200,4.5,100,20,'M','한국','/assets/img/moncher.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
@@ -763,8 +761,6 @@ VALUES('2023-12-20',17,'초코하임',166,1.88,200,10,'M','한국','/assets/img/
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
 VALUES('2023-12-20',18,'화이트하임',166,4.89,200,10,'M','한국','/assets/img/화이트하임.jpg');
 
-
-
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-21',5,'몽쉘',200,4.5,100,20,'M','한국','/assets/img/moncher.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
@@ -793,7 +789,6 @@ INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,me
 VALUES('2023-12-21',17,'초코하임',166,1.88,200,10,'M','한국','/assets/img/초코하임.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country,food_image_url)
 VALUES('2023-12-21',18,'화이트하임',166,4.89,200,10,'M','한국','/assets/img/화이트하임.jpg');
-
 
 INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country)
 VALUES('2023-06-29',5,'몽쉘',30,4.5,100,20,'M','한국');
@@ -830,8 +825,6 @@ VALUES('2023-12-19',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투�
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-19',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
 
-
-
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-20',19,'치토스 퍼프',200,4.5,100,20,'M','미국','/assets/img/치토스퍼프.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
@@ -855,9 +848,6 @@ VALUES('2023-12-20',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투�
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-20',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
 
-
-
-
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-21',19,'치토스 퍼프',200,4.5,100,20,'M','미국','/assets/img/치토스퍼프.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
@@ -880,8 +870,6 @@ INSERT INTO stat(update_date,food_no, food_name, review_cnt,food_rate,like_cnt,m
 VALUES('2023-12-21',28,'투니스',33,2.8,100,20,'M','미국','/assets/img/투니스.jpg');
 INSERT INTO stat(update_date,food_no,food_name, review_cnt,food_rate,like_cnt,member_age_group, member_gender, country, food_image_url)
 VALUES('2023-12-21',29,'체스터스',166,1.88,200,10,'F','미국','/assets/img/체스터스.jpg');
-
-
 
 INSERT INTO app_review(app_review_content, app_review_rate, member_nickname, member_no)
 VALUES ('과자 종류가 많이 없어서 아쉬워요.',2.0,'초코맛있다',1);
