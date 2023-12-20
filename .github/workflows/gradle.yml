@@ -33,6 +33,42 @@ jobs:
         run: chmod +x gradlew
       - name: print env
         run: echo "${{ secrets.APP_EN }}"
+
+      - name: Copy Secret
+          env:
+            OCCUPY_SECRETS: ${{ secrets.COMMON_ENV }}
+            OCCUPY_PROD_SECRETS: ${{ secrets.PROD_ENV }}
+            OCCUPY_DEV_SECRETS: ${{ secrets.DEV_ENV }}
+            OCCUPY_SECRET_DIR: src/main/resources
+            OCCUPY_SECRET_FILE: application.yml
+            OCCUPY_SECRET_PROD_FILE: application-prod.yml
+            OCCUPY_SECRET_DEV_FILE: application-dev.yml
+          run: |
+            echo $OCCUPY_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_FILE &&
+            echo $OCCUPY_PROD_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_PROD_FILE &&
+            echo $OCCUPY_DEV_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_DEV_FILE &&
+            find src
+
+      - name: Check if the file exists
+        run:
+          ls -l ./src/main/resources
+        shell: bash
+
+      - name: Check if the file is a regular file
+        run: file ./src/main/resources/application-dev.yml
+        shell: bash
+
+      - name: Setup MySQL
+        uses: samin/mysql-action@v1
+        with:
+          mysql database: iroas
+          mysql user: ${{ secrets.MYSQL_USERNAME }}
+          mysql password: ${{ secrets.MYSQL_PASSWORD }}
+
+      - name: Run chmod to make gradlew executable
+        run: chmod +x ./gradlew |
+          chmod +x src/main/resources
+
       - name: Test with Gradle
         run: ./gradlew --info test
         env:
