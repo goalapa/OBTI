@@ -17,7 +17,7 @@ import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWrite
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
 import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewValidationServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +32,7 @@ import java.util.UUID;
 
 
 @Service
+@RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final LikeRepository likeRepository;
@@ -42,16 +43,6 @@ public class ReviewService {
 
     private static final String root = "C:\\app-file";
     private static final String filePath = root + "/uploadFiles";
-
-    @Autowired
-    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository, FoodRepository foodRepository) {
-        this.reviewRepository = reviewRepository;
-        this.likeRepository = likeRepository;
-        this.reviewPicRepository = reviewPicRepository;
-        this.reviewValidationService = reviewValidationService;
-        this.reportRepository = reportRepository;
-        this.foodRepository = foodRepository;
-    }
 
     @Transactional
     public void saveReview(ReviewDTO reviewDTO, List<MultipartFile> reviewPicUrl, int loginMemberNo) {
