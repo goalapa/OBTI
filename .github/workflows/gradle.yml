@@ -61,7 +61,7 @@ jobs:
       - name: Setup MySQL
         uses: samin/mysql-action@v1
         with:
-          mysql database: cacamuca
+          mysql database: iroas
           mysql user: ${{ secrets.MYSQL_USERNAME }}
           mysql password: ${{ secrets.MYSQL_PASSWORD }}
 
@@ -73,10 +73,6 @@ jobs:
         run: ./gradlew --info test
         env:
           APP_EN : ${{ secrets.APP_EN }}
-          PROD_DB_IP : ${{ secrets.PROD_DB_IP }}
-          PROD_DB_PORT : ${{ secets.PROD_DB_PORT }}
-          DEV_DB_IP : ${{ secets.DEV_DB_IP }}
-          DEV_DB_PORT : ${{ secets.DEV_DB_PORT }}
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
