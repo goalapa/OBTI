@@ -47,9 +47,20 @@
 <br>
 
 ## ⚒️ 3. 기술 스택
-![image](https://github.com/goalapa/spring-cacamuca/assets/61495627/410c86db-5ee4-4ee0-a804-a9a0b7911a85)
 
-<br>
+![java badge](https://img.shields.io/badge/JAVA-0474bc?style=for-the-badge)
+![java script badge](https://img.shields.io/badge/Java_Script-black?style=for-the-badge&logo=javascript)
+![thymeleaf badge](https://img.shields.io/badge/thymeleaf-aeb1a1?style=for-the-badge&logo=thymeleaf&logoColor=046404)
+
+![spring boot badge](https://img.shields.io/badge/Spring_Boot-e2e2e2?style=for-the-badge&logo=springboot)
+![spring security badge](https://img.shields.io/badge/Spring_Security-e2e2e2?style=for-the-badge&logo=springsecurity)
+
+![jpa badge](https://img.shields.io/badge/JPA-bbac72?style=for-the-badge&logo=hibernate&logoColor=58676a)
+![MyBatis badge](https://img.shields.io/badge/MyBatis-black?style=for-the-badge&logo=mybatis&logoColor=red)
+
+
+![MySQL](https://img.shields.io/badge/MySQL-f29111?style=for-the-badge&logo=mysql&logoColor=00758f)
+
 
 
 ## 🧱 4. 프로젝트 아키텍처
