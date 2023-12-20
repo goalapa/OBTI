@@ -17,9 +17,6 @@ import com.goalapa.cacamuca.reviewDomain.command.domain.aggregate.vo.ReviewWrite
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewPicRepository;
 import com.goalapa.cacamuca.reviewDomain.command.domain.repository.ReviewRepository;
 import com.goalapa.cacamuca.reviewDomain.command.infrastructure.service.ReviewValidationServiceImpl;
-import com.goalapa.cacamuca.reviewDomain.query.application.service.SelectReviewService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -29,29 +26,28 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Service
 public class ReviewService {
-    private static final Logger logger = LoggerFactory.getLogger(ReviewService.class);
     private final ReviewRepository reviewRepository;
     private final LikeRepository likeRepository;
     private final ReviewPicRepository reviewPicRepository;
-    private final SelectReviewService selectReviewService;
     private final ReviewValidationServiceImpl reviewValidationService;
     private final ReportRepository reportRepository;
     private final FoodRepository foodRepository;
 
-    private static String root = "C:\\app-file";
-    private static String filePath = root + "/uploadFiles";
+    private static final String root = "C:\\app-file";
+    private static final String filePath = root + "/uploadFiles";
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, SelectReviewService selectReviewService, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository, FoodRepository foodRepository) {
+    public ReviewService(ReviewRepository reviewRepository, LikeRepository likeRepository, ReviewPicRepository reviewPicRepository, ReviewValidationServiceImpl reviewValidationService, ReportRepository reportRepository, FoodRepository foodRepository) {
         this.reviewRepository = reviewRepository;
         this.likeRepository = likeRepository;
         this.reviewPicRepository = reviewPicRepository;
-        this.selectReviewService = selectReviewService;
         this.reviewValidationService = reviewValidationService;
         this.reportRepository = reportRepository;
         this.foodRepository = foodRepository;
@@ -107,7 +103,7 @@ public class ReviewService {
 
         boolean checkHeartCondition = reviewValidationService.checkHeartCondition(review, no, loginMemberNo);
 
-        if(checkHeartCondition == true){
+        if(checkHeartCondition){
             Like like = new Like();
 
             like.setReviewNo(no);
@@ -127,7 +123,7 @@ public class ReviewService {
 
         boolean checkCondition = reviewValidationService.checkReportCondition(review, reviewVO, reportMemberVO, reportedMemberVO);
 
-        if (checkCondition==true){
+        if (checkCondition){
             Report report = new Report(reviewVO, reportMemberVO, reportedMemberVO, reportReason);
             reportRepository.save(report);
         }
