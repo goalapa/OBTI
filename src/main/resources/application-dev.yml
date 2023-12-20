@@ -1,9 +1,0 @@
-spring:
-    datasource:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/cacamuca?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-        username: ENC(fhXeWnhK8e8x9IEHlp9pDw==)
-        password: ENC(d1L0YrD1/M4Ah2rHXjqP5Q==)
-        hikari:
-            auto-commit: true
-
