@@ -35,19 +35,19 @@ jobs:
         run: echo "${{ secrets.APP_EN }}"
 
       - name: Copy Secret
-          env:
-            OCCUPY_SECRETS: ${{ secrets.COMMON_ENV }}
-            OCCUPY_PROD_SECRETS: ${{ secrets.PROD_ENV }}
-            OCCUPY_DEV_SECRETS: ${{ secrets.DEV_ENV }}
-            OCCUPY_SECRET_DIR: src/main/resources
-            OCCUPY_SECRET_FILE: application.yml
-            OCCUPY_SECRET_PROD_FILE: application-prod.yml
-            OCCUPY_SECRET_DEV_FILE: application-dev.yml
-          run: |
-            echo $OCCUPY_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_FILE &&
-            echo $OCCUPY_PROD_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_PROD_FILE &&
-            echo $OCCUPY_DEV_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_DEV_FILE &&
-            find src
+        env:
+          OCCUPY_SECRETS: ${{ secrets.COMMON_ENV }}
+          OCCUPY_PROD_SECRETS: ${{ secrets.PROD_ENV }}
+          OCCUPY_DEV_SECRETS: ${{ secrets.DEV_ENV }}
+          OCCUPY_SECRET_DIR: src/main/resources
+          OCCUPY_SECRET_FILE: application.yml
+          OCCUPY_SECRET_PROD_FILE: application-prod.yml
+          OCCUPY_SECRET_DEV_FILE: application-dev.yml
+        run: |
+          echo $OCCUPY_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_FILE &&
+          echo $OCCUPY_PROD_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_PROD_FILE &&
+          echo $OCCUPY_DEV_SECRETS | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_DEV_FILE &&
+          find src
 
       - name: Check if the file exists
         run:
@@ -73,6 +73,11 @@ jobs:
         run: ./gradlew --info test
         env:
           APP_EN : ${{ secrets.APP_EN }}
+          PROD_DB_IP : ${{ secrets.PROD_DB_IP }}
+          PROD_DB_PORT : ${{ secrets.PROD_DB_PORT }}
+          DEV_DB_IP : ${{ secrets.DEV_DB_IP }}
+          DEV_DB_PORT : ${{ secrets.DEV_DB_PORT }}
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
