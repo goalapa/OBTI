@@ -14,7 +14,7 @@
 <table>
   <tr>
     <td align="center"><a href="https://github.com/bbbbooo"><img src="https://avatars.githubusercontent.com/bbbbooo" width="150px;" alt="">
-    <td align="center"><a href="https://github.com/Dylan-SonJungin"><img src="https://avatars.githubusercontent.com/Dylan-SonJungin" width="150px;" alt="">
+    <td align="center"><a href="https://github.com/Dylan-SonJungin"><img src="https://avatars.githubusercontent.com/silverpoodle" width="150px;" alt="">
     <td align="center"><a href="https://github.com/juunewon"><img src="https://avatars.githubusercontent.com/juunewon" width="150px;" alt="">
     <td align="center"><a href="https://github.com/numerical43"><img src="https://avatars.githubusercontent.com/numerical43" width="150px;" alt="">
     <td align="center"><a href="https://github.com/myrhymetree"><img src="https://avatars.githubusercontent.com/myrhymetree" width="150px;" alt="">
@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/bbbbooo"><b>이현석</b></td>
-    <td align="center"><a href="https://github.com/Dylan-SonJungin"><b>손정인</b></td>
+    <td align="center"><a href="https://github.com/silverpoodle"><b>손정인</b></td>
     <td align="center"><a href="https://github.com/juunewon"><b>이주원</b></td>
     <td align="center"><a href="https://github.com/numerical43"><b>강수의</b></td>
     <td align="center"><a href="https://github.com/myrhymetree"><b>박성준</b></td>
