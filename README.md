@@ -53,6 +53,9 @@
 
 
 ## 🧱 4. 프로젝트 아키텍처
+### 4-1. SERVICE ARCHITECTURE
+![service architecture](https://github.com/goalapa/spring-cacamuca/assets/94158097/fd409a80-dc0f-4454-ae18-fd5cfc86f1a9)
+
 ### 4-1. CONTEXT MAP
 ![image](https://github.com/goalapa/spring-cacamuca/assets/61495627/1083d5fd-9e89-4b0c-8652-0d85466c5024)
 
